@@ -50,6 +50,16 @@ module.exports = function ( grunt ) {
     ],
 
     copy: {
+      build_appjs: {
+        files: [
+          {
+            src: [ '<%= app_files.js %>' ],
+            dest: '<%= build_dir %>/',
+            cwd: '.',
+            expand: true
+          }
+        ]
+      },
       build_i18n: {
         files: [
           {
@@ -65,6 +75,16 @@ module.exports = function ( grunt ) {
           {
             src: [ '<%= vendor_files.js %>' ],
             dest: '<%= build_dir %>/',
+            cwd: '.',
+            expand: true
+          }
+        ]
+      },
+      build_external: {
+        files: [
+          {
+            src: [ '<%= app_files.external %>' ],
+            dest: '<%= build_dir %>/src/',
             cwd: '.',
             expand: true
           }
@@ -202,7 +222,7 @@ module.exports = function ( grunt ) {
 
   grunt.registerTask( 'build', [
     'clean', 'jshint', 'less:build',
-    'copy:build_i18n', 'copy:build_vendorjs'
+    'copy:build_appjs', 'copy:build_i18n', 'copy:build_external', 'copy:build_vendorjs'
   ]);
 
   grunt.registerTask( 'compile', [
