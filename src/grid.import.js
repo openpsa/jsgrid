@@ -58,13 +58,13 @@
                 };
                 var jsonConvert = function (jsonstr,o){
                     if (jsonstr && typeof jsonstr === 'string') {
-			var _jsonparse = false;
-			if($.jgrid.useJSON) {
-			    $.jgrid.useJSON = false;
-			    _jsonparse = true;
-			}
+                        var _jsonparse = false;
+                        if($.jgrid.useJSON) {
+                            $.jgrid.useJSON = false;
+                            _jsonparse = true;
+                        }
                         var json = $.jgrid.parse(jsonstr);
-			if(_jsonparse) { $.jgrid.useJSON = true; }
+                        if(_jsonparse) { $.jgrid.useJSON = true; }
                         var gprm = json[o.jsonGrid.config];
                         var jdata = json[o.jsonGrid.data];
                         if(jdata) {
