@@ -26,6 +26,13 @@ module.exports = {
       less: 'less/grid.less'
   },
 
+    doc_files: {
+        content: [ 'docs/**/*.md' ],
+        template: [ 'docs/template/**/*' ],
+        layoutdir: 'docs/template/layout',
+        layout: 'default.hbs'
+    },
+
   /**
    * This is a collection of files used during testing only.
    */
