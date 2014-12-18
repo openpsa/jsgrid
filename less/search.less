@@ -1,0 +1,52 @@
+.ui-search-menu
+{
+    position: absolute;
+    padding: 2px 5px;
+    &.ui-menu .ui-menu-item
+    {
+        list-style-image: none;
+        padding-right: 0;
+        padding-left: 0;
+        a
+        {
+            display: block;
+            &.g-menu-item:hover
+            {
+                margin: -1px;
+                font-weight: normal;
+            }
+        }
+    }
+    .ui-search-table
+    {
+        padding: 0;
+        border: 0 none;
+        height: 20px;
+        width: 100%;
+        .ui-search-oper
+        {
+            width: 20px;
+        }
+        .ui-search-input
+        {
+            & > input,
+            & > select
+            {
+                display: block;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+        }
+    }
+}
+
+a
+{
+    &.g-menu-item,
+    &.soptclass,
+    &.clearsearchclass
+    {
+        cursor: pointer;
+    }
+}

@@ -1,0 +1,60 @@
+.ui-jqgrid
+{
+    .ui-th-ltr
+    {
+        border-left: none;
+    }
+
+    .ui-th-rtl
+    {
+        border-right: none;
+    }
+
+    .ui-jqgrid-htable th
+    {
+        &.ui-th-ltr
+        {
+            &:extend(.ui-jqgrid .ui-th-ltr);
+        }
+        &.ui-th-rtl
+        {
+            &:extend(.ui-jqgrid .ui-th-rtl);
+        }
+    }
+
+    .ui-jqgrid-caption-rtl
+    {
+        text-align: right;
+    }
+    .ui-jqgrid-hbox-rtl
+    {
+        float: right;
+        padding-left: 20px;
+    }
+    .ui-jqgrid-resize-ltr
+    {
+        float: right;
+        margin: -2px -2px -2px 0;
+    }
+    .ui-jqgrid-resize-rtl
+    {
+        float: left;
+        margin: -2px 0 -1px -3px;
+    }
+    .ui-sort-rtl
+    {
+        left: 0;
+    }
+    .tree-wrap-ltr
+    {
+        float: left;
+    }
+    .tree-wrap-rtl
+    {
+        float: right;
+    }
+    .ui-ellipsis
+    {
+        text-overflow: ellipsis;
+    }
+}
