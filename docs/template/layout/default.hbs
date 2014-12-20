@@ -11,13 +11,18 @@ version: <%= pkg.version %>
 <title>grid.js</title>
 <link href="{{ assets }}/{{ name }}-{{ version }}.min.css" rel="stylesheet">
 <link href="{{ assets }}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="{{ assets }}/docs.css" rel="stylesheet">
 
 <script src="{{ assets }}/vendor/jquery.min.js"></script>
-<script src="{{ assets }}/{{ name }}-{{ version }}.min.js"></script>
 </head>
 <body>
+<div class="container">
 {{#markdown}}
 {{> body }}
 {{/markdown}}
+</div>
+<script src="{{ assets }}/{{ name }}-{{ version }}.min.js"></script>
+<script src="{{ assets }}/bootstrap/js/bootstrap.min.js"></script>
+<script src="{{ assets }}/ui.js"></script>
 </body>
 </html>

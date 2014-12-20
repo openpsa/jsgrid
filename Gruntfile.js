@@ -109,6 +109,16 @@ module.exports = function ( grunt ) {
             doc_assets: {
                 files: [
                     {
+                        src: [ '*.js' ],
+                        dest: '<%= build_dir %>/docs',
+                        cwd: 'docs/template/',
+                        expand: true
+                    }
+                ]
+            },
+            doc_vendor_assets: {
+                files: [
+                    {
                         src: [ '**/*' ],
                         dest: '<%= build_dir %>/docs/bootstrap',
                         cwd: 'bower_components/bootstrap/dist/',
@@ -183,6 +193,11 @@ module.exports = function ( grunt ) {
                     cleancss: true,
                     compress: true
                 }
+            },
+            build_docs: {
+                files: {
+                    '<%= build_dir %>/docs/docs.css': '<%= doc_files.less %>'
+                }
             }
         },
 
@@ -247,9 +262,11 @@ module.exports = function ( grunt ) {
             docs: {
                 files: [
                     '<%= doc_files.content %>',
-                    '<%= doc_files.template %>'
+                    '<%= doc_files.template %>',
+                    '<%= doc_files.less %>',
+                    '<%= doc_files.js %>'
                 ],
-                tasks: [ 'assemble' ]
+                tasks: [ 'assemble', 'less:build_docs', 'copy:doc_assets' ]
             }
         },
         assemble: {
@@ -282,7 +299,7 @@ module.exports = function ( grunt ) {
     ]);
 
     grunt.registerTask( 'docs', [
-        'clean:docs', 'assemble', 'copy:doc_assets'
+        'clean:docs', 'assemble', 'copy:doc_vendor_assets', 'copy:doc_assets', 'less:build_docs'
     ]);
     grunt.registerTask( 'watch-docs', [ 'docs', 'delta:docs' ] );
 };

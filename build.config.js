@@ -30,7 +30,9 @@ module.exports = {
         content: [ 'docs/**/*.md' ],
         template: [ 'docs/template/**/*' ],
         layoutdir: 'docs/template/layout',
-        layout: 'default.hbs'
+        layout: 'default.hbs',
+        less: 'docs/template/less/*.less',
+        js: 'docs/template/*.js'
     },
 
   /**
