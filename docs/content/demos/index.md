@@ -1,4 +1,8 @@
-# grid.js
+---
+title: Demo
+---
+
+# Demo
 
 ```javascript
 var mydata = [
@@ -17,19 +21,15 @@ $(document).ready(function () {
     $("#grid").jqGrid({
         datatype: "local",
         data: mydata,
-        height: 250,
-        width: 780,
         colModel: [
-            { label: 'Inv No', name: 'id', width: 75, key:true },
+            { label: 'Inv No', name: 'id', width: 75, key: true },
             { label: 'Date', name: 'invdate', width: 90 },
             { label: 'Client', name: 'name', width: 100 },
             { label: 'Amount', name: 'amount', width: 80 },
             { label: 'Tax', name: 'tax', width: 80 },
             { label: 'Total', name: 'total', width: 80 },
             { label: 'Notes', name: 'note', width: 150 }
-        ],
-        viewrecords: true, // show the current page, data range and total records on the toolbar
-        caption: "Load grid through Javascript Array",
+        ]
     });
 });
 ```

@@ -27,12 +27,14 @@ module.exports = {
   },
 
     doc_files: {
-        content: [ 'docs/**/*.md' ],
+        content: [ './**/*.md' ],
+        contentdir: 'docs/content',
         template: [ 'docs/template/**/*' ],
         layoutdir: 'docs/template/layout',
         layout: 'default.hbs',
         less: 'docs/template/less/*.less',
-        js: 'docs/template/*.js'
+        js: 'docs/template/*.js',
+        partials: 'docs/template/partials/*.hbs'
     },
 
   /**

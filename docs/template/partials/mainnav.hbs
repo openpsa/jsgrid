@@ -1,0 +1,24 @@
+<nav class="navbar navbar-default" role="navigation">
+<div class="container-fluid">
+<div class="navbar-header">
+<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a href="{{ assets }}/index.html" class="navbar-brand">{{package.name}}</a>
+</div>
+
+<div class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+<ul class="nav navbar-nav">
+<li{{#is title "Demo"}} class="active"{{/is}}> <a href="{{assets}}/demos/index.html">Demo</a> </li>
+</ul>
+<ul class="nav navbar-nav pull-right">
+<li> <a href="{{package.homepage}}">GitHub Repo</a> </li>
+</ul>
+</div>
+
+</div>
+</nav>
+
+{{ log page }}
