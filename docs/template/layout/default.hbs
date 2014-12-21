@@ -9,8 +9,9 @@ version: <%= pkg.version %>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>grid.js</title>
-<link href="{{ assets }}/{{ name }}-{{ version }}.min.css" rel="stylesheet">
+<link href="{{ assets }}/{{ name }}-{{ version }}.css" rel="stylesheet">
 <link href="{{ assets }}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css" rel="stylesheet">
 <link href="{{ assets }}/docs.css" rel="stylesheet">
 
 <script src="{{ assets }}/vendor/jquery.min.js"></script>
@@ -21,7 +22,7 @@ version: <%= pkg.version %>
 {{> body }}
 {{/markdown}}
 </div>
-<script src="{{ assets }}/{{ name }}-{{ version }}.min.js"></script>
+<script src="{{ assets }}/{{ name }}-{{ version }}.js"></script>
 <script src="{{ assets }}/bootstrap/js/bootstrap.min.js"></script>
 <script src="{{ assets }}/ui.js"></script>
 </body>

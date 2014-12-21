@@ -56,16 +56,6 @@ module.exports = function ( grunt ) {
         },
 
         copy: {
-            build_appjs: {
-                files: [
-                    {
-                        src: [ '<%= app_files.js %>' ],
-                        dest: '<%= build_dir %>/',
-                        cwd: '.',
-                        expand: true
-                    }
-                ]
-            },
             build_i18n: {
                 files: [
                     {
@@ -125,9 +115,15 @@ module.exports = function ( grunt ) {
                         expand: true
                     },
                     {
-                        src: [ '**/*' ],
+                        src: [ 'vendor/**/*' ],
                         dest: '<%= build_dir %>/docs',
-                        cwd: '<%= compile_dir %>/',
+                        cwd: '<%= build_dir %>/',
+                        expand: true
+                    },
+                    {
+                        src: [ '*.*' ],
+                        dest: '<%= build_dir %>/docs',
+                        cwd: '<%= build_dir %>/',
                         expand: true
                     }
                 ]
@@ -147,7 +143,7 @@ module.exports = function ( grunt ) {
                     banner: '<%= meta.banner %>'
                 },
                 src: [
-                    '<%= build_dir %>/src/**/*.js',
+                    'src/**/*.js',
                 ],
                 dest: '<%= build_dir %>/<%= pkg.name %>-<%= pkg.version %>.js'
             }
@@ -224,41 +220,30 @@ module.exports = function ( grunt ) {
         },
 
         delta: {
-            develop: {
+            options: {
+                livereload: true
+            },
+
+            gruntfile: {
+                files: 'Gruntfile.js',
+                tasks: [ 'jshint:gruntfile' ],
                 options: {
-                    livereload: true
-                },
-
-                gruntfile: {
-                    files: 'Gruntfile.js',
-                    tasks: [ 'jshint:gruntfile' ],
-                    options: {
-                        livereload: false
-                    }
-                },
-
-                jssrc: {
-                    files: [
-                        '<%= app_files.js %>'
-                    ],
-                    tasks: [ 'jshint:src', 'copy:build_i18n' ]
-                },
-
-                less: {
-                    files: [ 'less/*.less' ],
-                    tasks: [ 'less:build' ]
-                },
-
-                jsunit: {
-                    files: [
-                        '<%= app_files.jsunit %>'
-                    ],
-                    tasks: [ 'jshint:test' ],
-                    options: {
-                        livereload: false
-                    }
+                    livereload: false
                 }
             },
+
+            jssrc: {
+                files: [
+                    '<%= app_files.js %>'
+                ],
+                tasks: [ 'jshint:src', 'copy:build_i18n' ]
+            },
+
+            less: {
+                files: [ 'less/*.less' ],
+                tasks: [ 'less:build' ]
+            },
+
             docs: {
                 files: [
                     '<%= doc_files.content %>',
@@ -285,21 +270,20 @@ module.exports = function ( grunt ) {
     grunt.initConfig( grunt.util._.extend( taskConfig, userConfig ) );
 
     grunt.renameTask( 'watch', 'delta' );
-    grunt.registerTask( 'watch', [ 'build', 'delta:develop' ] );
+    grunt.registerTask( 'watch', [ 'build', 'docs', 'delta' ] );
 
     grunt.registerTask( 'default', [ 'build', 'compile' ] );
 
     grunt.registerTask( 'build', [
         'clean:build', 'jshint', 'less:build',
-        'copy:build_appjs', 'copy:build_i18n', 'copy:build_external', 'copy:build_vendorjs'
+        'copy:build_i18n', 'copy:build_external', 'copy:build_vendorjs', 'concat:compile_js'
     ]);
 
     grunt.registerTask( 'compile', [
-        'less:compile', 'concat:compile_css', 'concat:compile_js', 'copy:compile_vendorjs', 'uglify:compile', 'uglify:compile_i18n'
+        'less:compile', 'concat:compile_css', 'copy:compile_vendorjs', 'uglify:compile', 'uglify:compile_i18n'
     ]);
 
     grunt.registerTask( 'docs', [
         'clean:docs', 'assemble', 'copy:doc_vendor_assets', 'copy:doc_assets', 'less:build_docs'
     ]);
-    grunt.registerTask( 'watch-docs', [ 'docs', 'delta:docs' ] );
 };
