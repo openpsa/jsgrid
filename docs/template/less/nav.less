@@ -1,0 +1,26 @@
+#navigation
+{
+    .nav
+    {
+        ul
+        {
+            display: none;
+            padding-left: 15px;
+            li a
+            {
+                padding: 5px 15px;
+            }
+        }
+        li.active
+        {
+            & > ul
+            {
+                display: block
+            }
+            & > a
+            {
+                color: #333
+            }
+        }
+    }
+}

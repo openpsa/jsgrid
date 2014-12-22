@@ -32,7 +32,7 @@ module.exports = {
         template: [ 'docs/template/**/*' ],
         layoutdir: 'docs/template/layout',
         layout: 'default.hbs',
-        less: 'docs/template/less/*.less',
+        less: 'docs/template/less/docs.less',
         js: 'docs/template/*.js',
         partials: 'docs/template/partials/*.hbs'
     },

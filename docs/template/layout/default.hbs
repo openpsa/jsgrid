@@ -18,11 +18,20 @@ version: <%= pkg.version %>
 </head>
 <body>
 {{> mainnav }}
-<div class="container">
+<main class="container">
+<div class="col-md-9">
 {{#markdown}}
 {{> body }}
 {{/markdown}}
 </div>
+
+<div class="col-md-3">
+<div id="navigation" class="nav" data-spy="affix">
+  <!-- navigation -->
+</div>
+</div>
+</main>
+
 <script src="{{ assets }}/{{ name }}-{{ version }}.js"></script>
 <script src="{{ assets }}/bootstrap/js/bootstrap.min.js"></script>
 <script src="{{ assets }}/ui.js"></script>
