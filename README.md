@@ -1,18 +1,10 @@
-jqGrid
+grid.js
 ======
 
-jQuery grid plugin
+grid.js is a jQuery plugin for displaying and manipulating tabular data. It is a fork of jqGrid, or to be more specific, a fork of the last version before the licence change. Now you could argue that the licence change was invalid, since Trirand did not get permission of all the copyright holders and continue using it under the old licence, but this is really an inconvenient situation unless you're looking for a fight.
 
-jqGrid is an Ajax-enabled JavaScript control that provides solutions for 
-representing and manipulating tabular data on the web. Since the grid is a 
-client-side solution loading data dynamically through Ajax callbacks, it can be
-integrated with any server-side technology, including PHP, ASP, Java Servlets, 
-JSP, ColdFusion, and Perl.
+So as an alternative, the MIT/GPL-licenced version is available in this repo. It is currently a work in progress, in that there is no documentation/website yet (but since the code is unchanged, the original jqGrid documentation and demos can be used).
 
-jqGrid uses a jQuery JavaScript Library and is written as plugin for that 
-package. For more information on jQuery, please see <a href="http://jquery.com/">(jQuery.com)</a>.
+The idea is to turn this repo into a community-driven and free version of jqGrid. To facilitate this, we've switched to Grunt as it is much more common and easier to handle, and we'll keep documentation in the repo itself so it can be managed with Github workflows.
 
-jqGrid's Home page can be found at <a href="http://www.trirand.com/blog">trirand.com</a>.
-
-Working examples of jqGrid, with explanations, can be found
-<a href="http://www.trirand.com/jqgrid/jqgrid.html">here</a>.
+Enjoy!
