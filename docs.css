@@ -1,0 +1,39 @@
+body {
+  padding-top: 80px;
+}
+footer {
+  margin-top: 100px;
+  padding: 40px 0;
+  border-top: 1px solid #e5e5e5;
+  text-align: center;
+}
+#sub-navigation .nav ul {
+  display: none;
+  padding-left: 15px;
+}
+#sub-navigation .nav ul li a {
+  padding: 5px 15px;
+}
+#sub-navigation .nav li.active > ul {
+  display: block;
+}
+#sub-navigation .nav li.active > a {
+  color: #333333;
+}
+main.container h3 code,
+main.container h4 code {
+  color: #333333;
+}
+pre .string {
+  color: #df5000;
+}
+pre .number,
+pre .literal {
+  color: #0086b3;
+}
+pre .keyword {
+  color: #a71d5d;
+}
+pre .comment {
+  color: #969896;
+}
