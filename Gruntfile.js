@@ -248,6 +248,7 @@ module.exports = function ( grunt ) {
                 files: [
                     '<%= doc_files.contentdir %>/<%= doc_files.content %>',
                     '<%= doc_files.template %>',
+                    '<%= doc_files.helpers %>',
                     '<%= doc_files.less %>',
                     '<%= doc_files.js %>'
                 ],
@@ -260,10 +261,23 @@ module.exports = function ( grunt ) {
                 layout: '<%= doc_files.layout %>',
                 partials: '<%= doc_files.partials %>',
                 assets: '<%= build_dir %>/docs',
-                data: 'package.json'
+                data: 'package.json',
+                helpers: ['<%= doc_files.helpers %>']
             },
-            site: {
-                src: ['<%= doc_files.content %>'],
+            overview: {
+                options: {
+                    layout: 'overview.hbs'
+                },
+                src: ['*.md'],
+                dest: '<%= build_dir %>/docs/',
+                cwd: '<%= doc_files.contentdir %>/',
+                expand: true
+            },
+            subpage: {
+                options: {
+                    layout: 'subpage.hbs'
+                },
+                src: ['*/*.md'],
                 dest: '<%= build_dir %>/docs/',
                 cwd: '<%= doc_files.contentdir %>/',
                 expand: true

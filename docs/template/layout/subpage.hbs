@@ -1,0 +1,16 @@
+---
+layout: default.hbs
+---
+<div class="col-md-9">
+{{#rewrite_links}}
+{{#markdown}}
+{{> body }}
+{{/markdown}}
+{{/rewrite_links}}
+</div>
+
+<div class="col-md-3">
+<div id="sub-navigation" class="nav" data-spy="affix">
+  <!-- navigation injected via jquery -->
+</div>
+</div>

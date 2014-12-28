@@ -19,18 +19,14 @@ version: <%= pkg.version %>
 <body>
 {{> mainnav }}
 <main class="container">
-<div class="col-md-9">
-{{#markdown}}
 {{> body }}
-{{/markdown}}
-</div>
-
-<div class="col-md-3">
-<div id="navigation" class="nav" data-spy="affix">
-  <!-- navigation -->
-</div>
-</div>
 </main>
+
+<footer>
+  <div class="container">
+  <a href="https://github.com/flack/grid.js/tree/master/{{page.src}}">View Page Source</a>
+  </div>
+</footer>
 
 <script src="{{ assets }}/{{ name }}-{{ version }}.js"></script>
 <script src="{{ assets }}/bootstrap/js/bootstrap.min.js"></script>

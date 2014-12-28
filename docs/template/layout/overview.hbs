@@ -1,0 +1,20 @@
+---
+layout: default.hbs
+---
+<div class="col-md-9">
+{{#rewrite_links}}
+{{#markdown}}
+{{> body }}
+{{/markdown}}
+{{/rewrite_links}}
+</div>
+
+<div class="col-md-3">
+  <div class="nav">
+    <ul class="nav">
+  {{#each subpages}}
+  <li><a href="{{this.path}}">{{this.title}}</a></li>
+  {{/each}}
+    </ul>
+  </div>
+</div>

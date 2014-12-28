@@ -1,4 +1,8 @@
 # grid.js
 
-grid.s is a fork of the last jqGrid version before the (legally
-questionable) licence change
+grid.js is a jQuery plugin for displaying and manipulating tabular
+data. It is a fork of jqGrid, or to be more specific, a fork of the
+last version before the licence change.
+
+These pages are a work in progress. You can help out by submitting
+Pull Requests!

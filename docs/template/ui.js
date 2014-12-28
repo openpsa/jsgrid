@@ -68,12 +68,12 @@ $(document).ready(function()
             build_nav(active_node, $(this));
         });
 
-        nav.appendTo($('#navigation'));
-        $('body').scrollspy({target: '#navigation', offset: 80});
+        nav.appendTo($('#sub-navigation'));
+        $('body').scrollspy({target: '#sub-navigation', offset: 80});
 
         var offset = 60;
 
-         $('#navigation li a').click(function(event) {
+         $('#sub-navigation li a').click(function(event) {
              event.preventDefault();
              $($(this).attr('href'))[0].scrollIntoView();
              scrollBy(0, -offset);

@@ -1,5 +1,6 @@
 ---
 title: Configuration // Options
+section: Configuration
 ---
 
 # Options
