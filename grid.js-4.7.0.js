@@ -1,5 +1,5 @@
 /**
- * grid.js - v4.7.0 - 2014-12-28
+ * grid.js - v4.7.0 - 2014-12-29
  * https://github.com/flack/grid.js
  *
  * Copyright (c) 2014 CONTENT CONTROL GmbH
