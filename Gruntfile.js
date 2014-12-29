@@ -7,6 +7,7 @@ module.exports = function ( grunt ) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-gh-pages');
     grunt.loadNpmTasks('grunt-bump');
     grunt.loadNpmTasks('assemble');
 
@@ -283,6 +284,13 @@ module.exports = function ( grunt ) {
                 expand: true
             }
         },
+        'gh-pages': {
+            options: {
+                base: 'build/docs'
+            },
+            src: ['**']
+        },
+
     };
 
     grunt.initConfig( grunt.util._.extend( taskConfig, userConfig ) );
