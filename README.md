@@ -8,3 +8,46 @@ So as an alternative, the MIT/GPL-licenced version is available in this repo. It
 The idea is to turn this repo into a community-driven and free version of jqGrid. To facilitate this, we've switched to Grunt as it is much more common and easier to handle, and we'll keep documentation in the repo itself so it can be managed with Github workflows.
 
 Enjoy!
+
+
+## Development Setup
+
+To use grid.js, you can simply download the files from the `dist/` folder. For a deveploment setup, you will need `npm` and `bower` installed. Once you have them, clone this repo and change into the new directory:
+
+```bash
+git clone https://github.com/flack/grid.js
+cd grid.js/
+```
+
+Then, install the dependencies:
+
+```bash
+npm install
+bower install
+```
+
+Afterwards, you can build like this:
+
+```bash
+grunt --force
+```
+
+(The `force` switch is currently necessary because of some `jshint` warnings)
+
+You can generate the compressed files with
+
+```bash
+grunt compile
+```
+
+The documentation can be built with
+
+```bash
+grunt docs
+```
+
+For development, use `grunt watch` to build continuously (both documentation and code):
+
+```bash
+grunt watch --force
+```
