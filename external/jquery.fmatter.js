@@ -161,35 +161,20 @@
 		}
 		return $.fn.fmatter.defaultFormat(cellval,opts);
 	};
-	$.fn.fmatter.integer = function(cellval, opts) {
-		var op = $.extend({},opts.integer);
-		if(opts.colModel !== undefined && opts.colModel.formatoptions !== undefined) {
-			op = $.extend({},op,opts.colModel.formatoptions);
+	$.fn.fmatter.integer = function (cellval, opts, op, action) {
+		op = (action === undefined) ? op || $.extend({}, opts.integer) : $.extend({}, opts.integer);
+		if (opts.colModel !== undefined && opts.colModel.formatoptions !== undefined) {
+		    op = $.extend({}, op, opts.colModel.formatoptions);
 		}
-		if($.fmatter.isEmpty(cellval)) {
-			return op.defaultValue;
-		}
-		return $.fmatter.util.NumberFormat(cellval,op);
+		return ($.fmatter.isEmpty(cellval)) ? op.defaultValue : $.fmatter.util.NumberFormat(cellval, op);
 	};
 	$.fn.fmatter.number = function (cellval, opts) {
-		var op = $.extend({},opts.number);
-		if(opts.colModel !== undefined && opts.colModel.formatoptions !== undefined) {
-			op = $.extend({},op,opts.colModel.formatoptions);
-		}
-		if($.fmatter.isEmpty(cellval)) {
-			return op.defaultValue;
-		}
-		return $.fmatter.util.NumberFormat(cellval,op);
+		var op = $.extend({}, opts.number);
+		return $.fn.fmatter.integer(cellval, opts, op);
 	};
 	$.fn.fmatter.currency = function (cellval, opts) {
-		var op = $.extend({},opts.currency);
-		if(opts.colModel !== undefined && opts.colModel.formatoptions !== undefined) {
-			op = $.extend({},op,opts.colModel.formatoptions);
-		}
-		if($.fmatter.isEmpty(cellval)) {
-			return op.defaultValue;
-		}
-		return $.fmatter.util.NumberFormat(cellval,op);
+		var op = $.extend({}, opts.currency);
+		return $.fn.fmatter.integer(cellval, opts, op);
 	};
 	$.fn.fmatter.date = function (cellval, opts, rwd, act) {
 		var op = $.extend({},opts.date);
