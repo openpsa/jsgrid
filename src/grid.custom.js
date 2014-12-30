@@ -204,7 +204,7 @@
                         var $elem = $("#gs_"+$.jgrid.jqID(this.name), (this.frozen===true && $t.p.frozenColumns === true) ?  $t.grid.fhDiv : $t.grid.hDiv);
                         nm = this.index || this.name;
                         if(p.searchOperators ) {
-                            so = $elem.parent().prev().children("a").attr("soper") || p.defaultSearch;
+                            so = $elem.parent().prev("a").attr("soper") || p.defaultSearch;
                         } else {
                             so  = (this.searchoptions && this.searchoptions.sopt) ? this.searchoptions.sopt[0] : this.stype==='select'?  'eq' : p.defaultSearch;
                         }
@@ -404,15 +404,14 @@
                 var timeoutHnd;
                 $.each($t.p.colModel,function(ci){
                     var cm=this, soptions, surl, self, select = "", sot="=", so, i,
-                        th = $("<th role='columnheader' class='ui-state-default ui-th-column ui-th-"+$t.p.direction+"'></th>"),
-                        thd = $("<div style='position:relative;height:auto;padding-right:0.3em;padding-left:0.3em;'></div>"),
-                        stbl = $("<table class='ui-search-table' cellspacing='0'><tr><td class='ui-search-oper'></td><td class='ui-search-input'></td><td class='ui-search-clear'></td></tr></table>");
+                        th = $("<th role='columnheader' class='ui-state-default ui-th-column ui-th-"+$t.p.direction+"'></th>");
                     if(this.hidden===true) { $(th).css("display","none");}
                     this.search = this.search === false ? false : true;
-                    if(this.stype === undefined) {this.stype='text';}
                     soptions = $.extend({},this.searchoptions || {});
                     if(this.search){
-                        if(p.searchOperators) {
+			if(this.stype === undefined) {this.stype='text';}
+			var stbl = $("<div class='ui-search-box'><span class='ui-search-input'></span><span class='ui-search-clear'></span></div>");
+                        if(p.searchOperators && cm.edittype !== 'checkbox') {
                             so  = (soptions.sopt) ? soptions.sopt[0] : cm.stype==='select' ?  'eq' : p.defaultSearch;
                             for(i = 0;i<p.odata.length;i++) {
                                 if(p.odata[i].oper === so) {
@@ -420,18 +419,19 @@
                                     break;
                                 }
                             }
-                            var st = soptions.searchtitle != null ? soptions.searchtitle : p.operandTitle;
-                            select = "<a title='"+st+"' style='padding-right: 0.5em;' soper='"+so+"' class='soptclass' colname='"+this.name+"'>"+sot+"</a>";
+                            var st = soptions.searchtitle !== null ? soptions.searchtitle : p.operandTitle;
+                            select = "<a title='"+st+"' soper='"+so+"' class='soptclass' colname='"+this.name+"'>"+sot+"</a>";
+			    $(stbl).prepend(select);
                         }
-                        $("td:eq(0)",stbl).attr("colindex",ci).append(select);
+
                         if(soptions.clearSearch === undefined) {
                             soptions.clearSearch = true;
                         }
-                        if(soptions.clearSearch) {
+                        if(soptions.clearSearch && cm.stype !== 'select') {
                             var csv = p.resetTitle || 'Clear Search Value';
-                            $("td:eq(2)",stbl).append("<a title='"+csv+"' style='padding-right: 0.3em;padding-left: 0.3em;' class='clearsearchclass'>"+p.resetIcon+"</a>");
+                            $("span.ui-search-clear",stbl).append("<a title='Clear Search Value' class='clearsearchclass'>x</a>");
                         } else {
-                            $("td:eq(2)", stbl).hide();
+                            $("span.ui-search-clear", stbl).hide();
                         }
                         switch (this.stype)
                         {
@@ -440,25 +440,24 @@
                             if(surl) {
                                 // data returned should have already constructed html select
                                 // primitive jQuery load
-                                self = thd;
-                                $(self).append(stbl);
-                                $.ajax($.extend({
+                                self = th;
+                                 $.ajax($.extend({
                                     url: surl,
                                     dataType: "html",
                                     success: function(res) {
                                         if(soptions.buildSelect !== undefined) {
                                             var d = soptions.buildSelect(res);
                                             if (d) {
-                                                $("td:eq(1)",stbl).append(d);
+                                                $("span.ui-search-input",stbl).append(d);
                                             }
                                         } else {
-                                            $("td:eq(1)",stbl).append(res);
+                                            $("span.ui-search-input",stbl).append(res);
                                         }
+					$(self).append(stbl)
                                         if(soptions.defaultValue !== undefined) { $("select",self).val(soptions.defaultValue); }
                                         $("select",self).attr({name:cm.index || cm.name, id: "gs_"+cm.name});
                                         if(soptions.attr) {$("select",self).attr(soptions.attr);}
-                                        $("select",self).css({width: "100%"});
-                                        // preserve autoserch
+                                        // preserve autosearch
                                         $.jgrid.bindEv.call($t, $("select",self)[0], soptions);
                                         if(p.autosearch===true){
                                             $("select",self).change(function(){
@@ -472,17 +471,16 @@
                             } else {
                                 var oSv, sep, delim;
                                 if(cm.searchoptions) {
-                                    oSv = cm.searchoptions.value === undefined ? "" : cm.searchoptions.value;
+                                    oSv = cm.searchoptions.value === undefined ? false : cm.searchoptions.value;
                                     sep = cm.searchoptions.separator === undefined ? ":" : cm.searchoptions.separator;
                                     delim = cm.searchoptions.delimiter === undefined ? ";" : cm.searchoptions.delimiter;
                                 } else if(cm.editoptions) {
-                                    oSv = cm.editoptions.value === undefined ? "" : cm.editoptions.value;
+                                    oSv = cm.editoptions.value === undefined ? false : cm.editoptions.value;
                                     sep = cm.editoptions.separator === undefined ? ":" : cm.editoptions.separator;
                                     delim = cm.editoptions.delimiter === undefined ? ";" : cm.editoptions.delimiter;
                                 }
-                                if (oSv) {
+                                if (oSv !== false) {
                                     var elem = document.createElement("select");
-                                    elem.style.width = "100%";
                                     $(elem).attr({name:cm.index || cm.name, id: "gs_"+cm.name});
                                     var sv, ov, key, k;
                                     if(typeof oSv === "string") {
@@ -504,9 +502,9 @@
                                     }
                                     if(soptions.defaultValue !== undefined) { $(elem).val(soptions.defaultValue); }
                                     if(soptions.attr) {$(elem).attr(soptions.attr);}
-                                    $(thd).append(stbl);
+				    $("span.ui-search-input",stbl).append( elem );
+                                    $(th).append(stbl);
                                     $.jgrid.bindEv.call($t, elem , soptions);
-                                    $("td:eq(1)",stbl).append( elem );
                                     if(p.autosearch===true){
                                         $(elem).change(function(){
                                             triggerToolbar();
@@ -519,14 +517,14 @@
                             case "text":
                             var df = soptions.defaultValue !== undefined ? soptions.defaultValue: "";
 
-                            $("td:eq(1)",stbl).append("<input type='text' style='width:100%;padding:0px;' name='"+(cm.index || cm.name)+"' id='gs_"+cm.name+"' value='"+df+"'/>");
-                            $(thd).append(stbl);
+                            $("span.ui-search-input",stbl).append("<input type='text' name='"+(cm.index || cm.name)+"' id='gs_"+cm.name+"' value='"+df+"'/>");
+                            $(th).append(stbl);
 
-                            if(soptions.attr) {$("input",thd).attr(soptions.attr);}
-                            $.jgrid.bindEv.call($t, $("input",thd)[0], soptions);
+                            if(soptions.attr) {$("input",th).attr(soptions.attr);}
+                            $.jgrid.bindEv.call($t, $("input",th)[0], soptions);
                             if(p.autosearch===true){
                                 if(p.searchOnEnter) {
-                                    $("input",thd).keypress(function(e){
+                                    $("input",th).keypress(function(e){
                                         var key = e.charCode || e.keyCode || 0;
                                         if(key === 13){
                                             triggerToolbar();
@@ -535,7 +533,7 @@
                                         return this;
                                     });
                                 } else {
-                                    $("input",thd).keydown(function(e){
+                                    $("input",th).keydown(function(e){
                                         var key = e.which;
                                         switch (key) {
                                         case 13:
@@ -557,14 +555,14 @@
                             }
                             break;
                             case "custom":
-                            $("td:eq(1)",stbl).append("<span style='width:95%;padding:0px;' name='"+(cm.index || cm.name)+"' id='gs_"+cm.name+"'/>");
-                            $(thd).append(stbl);
+                            $("span.ui-search-input",stbl).append("<span style='width:95%;padding:0px;' name='"+(cm.index || cm.name)+"' id='gs_"+cm.name+"'/>");
+                            $(th).append(stbl);
                             try {
                                 if($.isFunction(soptions.custom_element)) {
                                     var celm = soptions.custom_element.call($t,soptions.defaultValue !== undefined ? soptions.defaultValue: "",soptions);
                                     if(celm) {
                                         celm = $(celm).addClass("customelement");
-                                        $(thd).find("span[name='" + (cm.index || cm.name) + "']").append(celm);
+                                        $(th).find("span[name='" + (cm.index || cm.name) + "']").append(celm);
                                     } else {
                                         throw "e2";
                                     }
@@ -579,10 +577,10 @@
                             break;
                         }
                     }
-                    $(th).append(thd);
+
                     $(tr).append(th);
                     if(!p.searchOperators) {
-                        $("td:eq(0)",stbl).hide();
+                        $("span:eq(0)",stbl).hide();
                     }
                 });
                 $("table thead",$t.grid.hDiv).append(tr);
@@ -778,7 +776,6 @@
                             }
                         } else {
                             // move the header to the next row
-                            //$th.css({"padding-top": "2px", height: "19px"});
                             $tr.append(th);
                             skip--;
                         }
