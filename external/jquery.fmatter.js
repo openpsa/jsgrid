@@ -49,13 +49,11 @@
 	});
 	$.fn.fmatter = function(formatType, cellval, opts, rwd, act) {
 		// build main options before element iteration
-		var v=cellval;
 		opts = $.extend({}, $.jgrid.formatter, opts);
-
 		try {
-			v = $.fn.fmatter[formatType].call(this, cellval, opts, rwd, act);
+			cellval = $.fn.fmatter[formatType].call(this, cellval, opts, rwd, act);
 		} catch(fe){}
-		return v;
+		return cellval;
 	};
 	$.fmatter.util = {
 		// Taken from YAHOO utils
@@ -125,11 +123,11 @@
 		return $.fn.fmatter.defaultFormat(cellval,opts );
 	};
 	$.fn.fmatter.checkbox =function(cval, opts) {
-		var op = $.extend({},opts.checkbox), ds;
+		var op = $.extend({},opts.checkbox), ds = "";
 		if(opts.colModel !== undefined && opts.colModel.formatoptions !== undefined) {
 			op = $.extend({},op,opts.colModel.formatoptions);
 		}
-		if(op.disabled===true) {ds = "disabled=\"disabled\"";} else {ds="";}
+		if(op.disabled===true) {ds = "disabled=\"disabled\"";}
 		if($.fmatter.isEmpty(cval) || cval === undefined ) {cval = $.fn.fmatter.defaultFormat(cval,op);}
 		cval=String(cval);
 		cval=(cval+"").toLowerCase();
