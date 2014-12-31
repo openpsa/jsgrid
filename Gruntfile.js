@@ -23,6 +23,7 @@ module.exports = function ( grunt ) {
                 ' * <%= pkg.homepage %>\n' +
                 ' *\n' +
                 ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
+                ' * Dual-licensed under the MIT and GPL-2.0 licenses.\n' +
                 ' */\n'
         },
 
