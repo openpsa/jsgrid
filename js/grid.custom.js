@@ -425,7 +425,7 @@ $.jgrid.extend({
 					}
 
 					if(soptions.clearSearch === undefined) {
-						soptions.clearSearch = true;
+						soptions.clearSearch = this.stype === "text" ? true : false;
 					}
 					if(soptions.clearSearch && cm.stype !== 'select') {
 						var csv = p.resetTitle || 'Clear Search Value';
