@@ -9,6 +9,7 @@ module.exports = function ( grunt ) {
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-gh-pages');
     grunt.loadNpmTasks('grunt-bump');
+    grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('assemble');
 
     var userConfig = require( './build.config.js' );
@@ -221,6 +222,29 @@ module.exports = function ( grunt ) {
             globals: {}
         },
 
+        karmaconfig: {
+            unit: {
+                dir: '<%= build_dir %>',
+                src: [
+                    '<%= app_files.jsunit %>'
+                ]
+            }
+        },
+
+        karma: {
+            options: {
+                configFile: '<%= build_dir %>/karma-unit.js'
+            },
+            unit: {
+                port: 9018,
+                background: true
+            },
+            continuous: {
+                singleRun: true,
+                background: true
+            }
+        },
+
         delta: {
             options: {
                 livereload: true
@@ -238,12 +262,22 @@ module.exports = function ( grunt ) {
                 files: [
                     '<%= app_files.js %>'
                 ],
-                tasks: [ 'jshint:src', 'copy:build_i18n' ]
+                tasks: [ 'jshint:src', 'karma:unit:run', 'copy:build_i18n' ]
             },
 
             less: {
                 files: [ 'less/*.less' ],
                 tasks: [ 'less:build' ]
+            },
+
+            jsunit: {
+                files: [
+                    '<%= app_files.jsunit %>'
+                ],
+                tasks: [ 'jshint:test', 'karma:unit:run' ],
+                options: {
+                    livereload: false
+                }
             },
 
             docs: {
@@ -297,13 +331,14 @@ module.exports = function ( grunt ) {
     grunt.initConfig( grunt.util._.extend( taskConfig, userConfig ) );
 
     grunt.renameTask( 'watch', 'delta' );
-    grunt.registerTask( 'watch', [ 'build', 'docs', 'delta' ] );
+    grunt.registerTask( 'watch', [ 'build', 'karma:unit', 'docs', 'delta' ] );
 
     grunt.registerTask( 'default', [ 'build', 'compile' ] );
 
     grunt.registerTask( 'build', [
         'clean:build', 'jshint', 'less:build',
-        'copy:build_i18n', 'copy:build_external', 'copy:build_vendorjs', 'concat:compile_js'
+        'copy:build_i18n', 'copy:build_external', 'copy:build_vendorjs', 'concat:compile_js',
+        'karmaconfig', 'karma:continuous'
     ]);
 
     grunt.registerTask( 'compile', [
@@ -313,4 +348,23 @@ module.exports = function ( grunt ) {
     grunt.registerTask( 'docs', [
         'clean:docs', 'assemble', 'copy:doc_vendor_assets', 'copy:doc_assets', 'less:build_docs'
     ]);
+
+    function filterForJS ( files ) {
+        return files.filter( function ( file ) {
+            return file.match( /\.js$/ );
+        });
+    }
+
+    grunt.registerMultiTask( 'karmaconfig', 'Process karma config templates', function () {
+        var jsFiles = filterForJS( this.filesSrc );
+        grunt.file.copy( 'karma/karma-unit.tpl.js', grunt.config( 'build_dir' ) + '/karma-unit.js', {
+            process: function ( contents, path ) {
+                return grunt.template.process( contents, {
+                    data: {
+                        scripts: jsFiles
+                    }
+                });
+            }
+        });
+    });
 };

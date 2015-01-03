@@ -9,7 +9,8 @@ module.exports = {
         js: [ 'src/**/*.js' ],
         external: [ 'external/**/*.js' ],
         i18n: [ 'i18n/**/*.js' ],
-        less: 'less/grid.less'
+        less: 'less/grid.less',
+        jsunit: [ 'test/**/*.js' ]
     },
 
     doc_files: {
