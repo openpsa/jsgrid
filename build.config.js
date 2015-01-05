@@ -6,7 +6,7 @@ module.exports = {
     compile_dir: 'dist',
 
     app_files: {
-        js: [ 'src/**/*.js' ],
+        js: [ 'js/**/*.js' ],
         external: [ 'external/**/*.js' ],
         i18n: [ 'i18n/**/*.js' ],
         less: 'less/grid.less',

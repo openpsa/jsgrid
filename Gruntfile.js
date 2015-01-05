@@ -146,7 +146,7 @@ module.exports = function ( grunt ) {
                     banner: '<%= meta.banner %>'
                 },
                 src: [
-                    'src/**/*.js',
+                    '<%= app_files.js %>',
                 ],
                 dest: '<%= build_dir %>/<%= pkg.name %>-<%= pkg.version %>.js'
             }
