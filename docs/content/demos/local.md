@@ -1,5 +1,5 @@
 ---
-title: Demos / Default
+title: Demos / Local
 ---
 
 # Default Options + Local Data
