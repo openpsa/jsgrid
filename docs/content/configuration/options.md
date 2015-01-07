@@ -875,3 +875,6 @@ Contains the id of the last selected row. If you sort or use paging, this is set
 **Changeable:** No
 
 Contains the loading time of the records - currently available only when we load xml or json data. The measurement begins when the request is complete and ends when the last row is added.
+
+***
+Content licensed under [Creative Commons Non Commercial Share Alike](http://creativecommons.org/licenses/by-nc-sa/3.0/). Original content taken from [jqGrid wiki](http://www.trirand.com/jqgridwiki/).
