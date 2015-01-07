@@ -1,12 +1,14 @@
 ---
 title: Demos / Grouping
+section: Demos
 ---
 # Default Options + Basic Grouping
 
+
 ```javascript
 	$(document).ready(function () {
-		$('#grouping').jqGrid({
-			url:'./grouping.json',
+		$('#grid').jqGrid({
+			url:'./data/grouping.json',
 			datatype: 'json',
 			colNames: ['Grouping value', 'Grouping title', 'Display name', 'Value'],
 			colModel: [{name: 'groupingValue', hidden: true},
