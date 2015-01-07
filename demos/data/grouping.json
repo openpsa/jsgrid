@@ -1,0 +1,11 @@
+{
+	"total": "1",
+	"page": "1",
+	"records": "4",
+	"rows": [
+		{ "id": "a", "cell": [ "groupA", "The group title", "group A", "foo"] },
+		{ "id": "b", "cell": [ "groupA", "The group title", "group A", "bar"] },
+		{ "id": "c", "cell": [ "groupB", "The second group title", "group B", "baz"] },
+		{ "id": "d", "cell": [ "groupB", "The second group title", "group B", "blort"] }
+	]
+}
