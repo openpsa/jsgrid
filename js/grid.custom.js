@@ -424,6 +424,9 @@ $.jgrid.extend({
 					$(stbl).prepend(select);
 					}
 
+					if (soptions.sopt == null || soptions.sopt.length === 1) {
+						$("td.ui-search-oper",stbl).hide();
+					}
 					if(soptions.clearSearch === undefined) {
 						soptions.clearSearch = this.stype === "text" ? true : false;
 					}
