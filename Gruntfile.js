@@ -106,7 +106,14 @@ module.exports = function ( grunt ) {
                         dest: '<%= build_dir %>/docs',
                         cwd: 'docs/template/',
                         expand: true
+                    },
+                    {
+                        src: [ '*.*' ],
+                        dest: '<%= build_dir %>/docs/demos/data',
+                        cwd: 'docs/content/demos/data/',
+                        expand: true
                     }
+
                 ]
             },
             doc_vendor_assets: {
