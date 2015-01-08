@@ -1,8 +1,8 @@
 {
   "name": "grid.js",
-  "version": "4.7.0",
+  "version": "0.1",
   "dependencies": {
-    "jquery": "~2.1.2"
+    "jquery": ">=1.7"
   },
   "devDependencies": {
     "bootstrap": "~3.3.1"
