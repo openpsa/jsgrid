@@ -1,5 +1,15 @@
 {
   "name": "grid.js",
+  "description": "jQuery based grid - MIT+GPL fork of jqGrid before licensing change"
+  "authors": [ "Tony Tomov", "Oleg Kiriljuk", "Andreas Flack", "Laurent Rajchenbach", "Matthew Hutton:", "other contributors to jqGrid before version 4.7.1"]
+  "homepage": "https://openpsa.github.com/grid.js",
+  "ignore": ["docs/", "i18n/", "js/", "karma/", "less/", "Gruntfile.js", "build.config.js", "package.json"],
+  "keywords": ["jqGrid", "jQuery grid", "grid", "table"],
+  "license": "MIT GPL-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/openpsa/grid.js.git"
+  }
   "version": "0.1",
   "dependencies": {
     "jquery": ">=1.7"
