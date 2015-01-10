@@ -630,14 +630,14 @@ The url of the file that returns the data needed to populate the grid. May be se
 **Default:** `false`
 **Changeable:** Yes
 
-Enables grouping in grid. Please refer to the [Grouping page](./grouping.html).
+Enables grouping in grid. Please refer to the [Grouping page](./grouping.md).
 
 ### `groupingView`
 **Type:** object
 **Default:** `null`
 **Changeable:** Yes
 
-The grouping view options, see the [Grouping page](./grouping.html) for more information.
+The grouping view options, see the [Grouping page](./grouping.md) for more information.
 
 ## Search
 

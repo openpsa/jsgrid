@@ -13,7 +13,11 @@ of properties. This is the most important part of the grid.
 	...
 	});
 
-The available `colModel` properties are listed here. The only required property is `name`. The `colModel` options can also be get or set using `getColProp` and `setColProp`.
+The only required property is `name`. The `colModel` options can also be get or set using `getColProp` and `setColProp`.
+
+The available `colModel` properties are listed below. Please note that
+certain modules like [Grouping](./grouping.md) can add additional
+options under certain conditions. Please refer to the respective pages
 
 ## Data Mapping
 
