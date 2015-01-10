@@ -19,6 +19,7 @@ module.exports = {
         template: [ 'docs/template/**/*' ],
         helpers: [ 'docs/template/helpers/*.js' ],
         layoutdir: 'docs/template/layout',
+        datadir: 'docs/template/data',
         layout: 'default.hbs',
         less: 'docs/template/less/docs.less',
         js: 'docs/template/*.js',

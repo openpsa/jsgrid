@@ -1,0 +1,20 @@
+---
+layout: default.hbs
+---
+<div class="col-md-9 demo-container">
+{{#rewrite_links}}
+{{#markdown}}
+{{> body }}
+{{/markdown}}
+{{/rewrite_links}}
+</div>
+
+<div class="col-md-3">
+<div id="sub-navigation" class="nav" data-spy="affix">
+    <ul class="nav">
+  {{#each demos}}
+  <li><a href="{{this.filename}}">{{this.title}}</a></li>
+  {{/each}}
+    </ul>
+</div>
+</div>

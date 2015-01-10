@@ -320,7 +320,17 @@ module.exports = function ( grunt ) {
                 options: {
                     layout: 'subpage.hbs'
                 },
-                src: ['*/*.md'],
+                src: ['configuration/*.md'],
+                dest: '<%= build_dir %>/docs/',
+                cwd: '<%= doc_files.contentdir %>/',
+                expand: true
+            },
+            demos: {
+                options: {
+                    layout: 'demos.hbs',
+                    data: ['package.json', '<%= doc_files.datadir %>/demos.json'],
+                },
+                src: ['demos/*.md'],
                 dest: '<%= build_dir %>/docs/',
                 cwd: '<%= doc_files.contentdir %>/',
                 expand: true
