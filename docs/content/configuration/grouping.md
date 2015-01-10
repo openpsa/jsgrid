@@ -36,14 +36,14 @@ The first option `grouping` is boolean and enables or disables the grouping feat
 The `groupingView` option is an object and has a lot of sub-options.
 Below is a example on how this should be used:
 
-```
+```javascript
 $("#grid").jqGrid({
-  ...
+  //...
   groupingView : {
 	 groupField : ['name', 'ínvdate'],
 	 groupOrder : ['asc', 'desc']
   }
-  ...
+  //...
 });
 ```
 
@@ -176,20 +176,20 @@ The option can be defined as function. If defined we pass three parameters to it
 
 Below is a example on using this function - simulating the `sum` function.
 
-```
+```javascript
 function mysum(val, name, record)
 {
     return parseFloat(val||0) + parseFloat((record[name]||0));
 }
 
 jQuery("#grid").jqGrid({
-  ...
+  //...
   colModel : [
-     {..},
-     {name:'amount',index:'amount', width:80, align:"right", sorttype:'number',formatter:'number',summaryType:mysum},
-     ...
+     //{..},
+     {name: 'amount', index: 'amount', width: 80, align: "right", sorttype: 'number', formatter: 'number', summaryType: mysum},
+     //...
   ],
-  ...
+  //...
 });
 ```
 

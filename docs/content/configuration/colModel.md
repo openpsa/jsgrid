@@ -7,11 +7,13 @@ section: Configuration
 The `colModel` property defines the individual grid columns as an array
 of properties. This is the most important part of the grid.
 
-	jQuery("#gridid").jqGrid({
-	...
-	   colModel: [ {name:'name1', index:'index1'...}, {...}, ... ],
-	...
-	});
+```javascript
+jQuery("#gridid").jqGrid({
+   //...
+   colModel: [ {name:'name1', index:'index1'...}, {...}, ... ],
+   //...
+});
+```
 
 The only required property is `name`. The `colModel` options can also be get or set using `getColProp` and `setColProp`.
 
