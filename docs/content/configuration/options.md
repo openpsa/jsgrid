@@ -12,7 +12,7 @@ section: Configuration
 **Default:** `[]`
 **Changeable:** No
 
-Array which describes the parameters of the columns. This is the most important part of the grid. For a full description of all valid values see colModel API.
+Array which describes the parameters of the columns. This is the most important part of the grid. For a full description of all valid values see the [colModel API](./colModel.html).
 
 #### `colNames`
 **Type:** array
@@ -630,7 +630,14 @@ The url of the file that returns the data needed to populate the grid. May be se
 **Default:** `false`
 **Changeable:** Yes
 
-Enables grouping in grid. Please refer to the Grouping page.
+Enables grouping in grid. Please refer to the [Grouping page](./grouping.html).
+
+### `groupingView`
+**Type:** object
+**Default:** `null`
+**Changeable:** Yes
+
+The grouping view options, see the [Grouping page](./grouping.html) for more information.
 
 ## Search
 
