@@ -12,7 +12,7 @@ section: Configuration
 **Default:** `[]`
 **Changeable:** No
 
-Array which describes the parameters of the columns. This is the most important part of the grid. For a full description of all valid values see the [colModel API](./colModel.html).
+Array which describes the parameters of the columns. This is the most important part of the grid. For a full description of all valid values see the [colModel API](./colModel.md).
 
 #### `colNames`
 **Type:** array
@@ -44,7 +44,7 @@ Defines in what format to expect the data that fills the grid. Valid options are
  - `function` custom defined function for retrieving data
  - `clientSide` to manually load data via the data array
 
-See colModel API and Retrieving Data
+See [colModel API](./colModel.md) and Retrieving Data
 
 #### `data`
 **Type:** array
@@ -248,7 +248,7 @@ When set to false the effect of mouse hovering over the grid data rows is disabl
 **Default:** `false`
 **Changeable:** No
 
-If this option is set to true, a new column at left of the grid is added. The purpose of this column is to count the number of available rows, beginning from 1. In this case `colModel` is extended automatically with new element with the name `rn`. Note: Do not to use the name `rn` in the colModel.
+If this option is set to true, a new column at left of the grid is added. The purpose of this column is to count the number of available rows, beginning from 1. In this case `colModel` is extended automatically with new element with the name `rn`. Note: Do not to use the name `rn` in the `colModel`.
 
 #### `rownumWidth`
 **Type:** integer
