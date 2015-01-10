@@ -35,7 +35,8 @@ $(document).ready(function()
         var nav = $('<ul class="nav">'),
             active_node = nav,
             level = 2,
-            previous_level = 2,
+            previous_level,
+            new_level,
             i;
 
         function build_nav(node, leaf)
@@ -47,8 +48,16 @@ $(document).ready(function()
 
         $('h2, h3, h4').each(function()
         {
-            previous_level = level;
-            level = parseInt(this.nodeName.substr(1));
+            new_level = parseInt(this.nodeName.substr(1));
+            if (previous_level === undefined)
+            {
+                previous_level = new_level;
+            }
+            else
+            {
+                previous_level = level;
+            }
+            level = new_level;
             if (previous_level > level)
             {
                 for (i = previous_level; i > level; i--)

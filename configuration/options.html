@@ -51,7 +51,7 @@
 <p><strong>Type:</strong> array
 <strong>Default:</strong> <code>[]</code>
 <strong>Changeable:</strong> No</p>
-<p>Array which describes the parameters of the columns. This is the most important part of the grid. For a full description of all valid values see colModel API.</p>
+<p>Array which describes the parameters of the columns. This is the most important part of the grid. For a full description of all valid values see the <a href="./colModel.html">colModel API</a>.</p>
 <h4 id="-colnames-"><code>colNames</code></h4>
 <p><strong>Type:</strong> array
 <strong>Default:</strong> <code>[]</code>
@@ -77,7 +77,7 @@
 <li><code>function</code> custom defined function for retrieving data</li>
 <li><code>clientSide</code> to manually load data via the data array</li>
 </ul>
-<p>See colModel API and Retrieving Data</p>
+<p>See <a href="./colModel.html">colModel API</a> and Retrieving Data</p>
 <h4 id="-data-"><code>data</code></h4>
 <p><strong>Type:</strong> array
 <strong>Default:</strong> <code>[]</code>
@@ -213,7 +213,7 @@
 <p><strong>Type:</strong> boolean
 <strong>Default:</strong> <code>false</code>
 <strong>Changeable:</strong> No</p>
-<p>If this option is set to true, a new column at left of the grid is added. The purpose of this column is to count the number of available rows, beginning from 1. In this case <code>colModel</code> is extended automatically with new element with the name <code>rn</code>. Note: Do not to use the name <code>rn</code> in the colModel.</p>
+<p>If this option is set to true, a new column at left of the grid is added. The purpose of this column is to count the number of available rows, beginning from 1. In this case <code>colModel</code> is extended automatically with new element with the name <code>rn</code>. Note: Do not to use the name <code>rn</code> in the <code>colModel</code>.</p>
 <h4 id="-rownumwidth-"><code>rownumWidth</code></h4>
 <p><strong>Type:</strong> integer
 <strong>Default:</strong> <code>25</code>
@@ -494,7 +494,12 @@ When the option is true the behavior is as follows:</p>
 <p><strong>Type:</strong> boolean
 <strong>Default:</strong> <code>false</code>
 <strong>Changeable:</strong> Yes</p>
-<p>Enables grouping in grid. Please refer to the Grouping page.</p>
+<p>Enables grouping in grid. Please refer to the <a href="./grouping.html">Grouping page</a>.</p>
+<h3 id="-groupingview-"><code>groupingView</code></h3>
+<p><strong>Type:</strong> object
+<strong>Default:</strong> <code>null</code>
+<strong>Changeable:</strong> Yes</p>
+<p>The grouping view options, see the <a href="./grouping.html">Grouping page</a> for more information.</p>
 <h2 id="search">Search</h2>
 <h3 id="-ignorecase-"><code>ignoreCase</code></h3>
 <p><strong>Type:</strong> boolean
@@ -666,6 +671,8 @@ When the option is true the behavior is as follows:</p>
 <strong>Default:</strong> <code>0</code>
 <strong>Changeable:</strong> No</p>
 <p>Contains the loading time of the records - currently available only when we load xml or json data. The measurement begins when the request is complete and ends when the last row is added.</p>
+<hr>
+<p>Content licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Non Commercial Share Alike</a>. Original content taken from <a href="http://www.trirand.com/jqgridwiki/">jqGrid wiki</a>.</p>
 
 
 </div>
