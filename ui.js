@@ -1,6 +1,7 @@
 $(document).ready(function()
 {
-    if ($('pre code.language-javascript').length > 0)
+    if (   $('.demo-container').length > 0
+        && $('pre code.language-javascript').length > 0)
     {
         var container = $('code.language-javascript')
             .parent()

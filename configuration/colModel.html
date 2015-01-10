@@ -31,7 +31,7 @@
    <a href="../configuration.html">Configuration</a>
 </li>
 
-<li> <a href="../demos.html">Demos</a> </li>
+<li> <a href="../demos/index.html">Demos</a> </li>
 </ul>
 <ul class="nav navbar-nav pull-right">
 <li> <a href="https://github.com/openpsa/grid.js">GitHub Repo</a> </li>
@@ -48,10 +48,10 @@
 <h1 id="column-model">Column Model</h1>
 <p>The <code>colModel</code> property defines the individual grid columns as an array
 of properties. This is the most important part of the grid.</p>
-<pre><code>jQuery(&quot;#gridid&quot;).jqGrid({
-...
-   colModel: [ {name:&#39;name1&#39;, index:&#39;index1&#39;...}, {...}, ... ],
-...
+<pre><code class="language-javascript">jQuery(<span class="string">"#gridid"</span>).jqGrid({
+   <span class="comment">//...</span>
+   colModel: [ {name:<span class="string">'name1'</span>, index:<span class="string">'index1'</span>...}, {...}, ... ],
+   <span class="comment">//...</span>
 });</code></pre>
 <p>The only required property is <code>name</code>. The <code>colModel</code> options can also be get or set using <code>getColProp</code> and <code>setColProp</code>.</p>
 <p>The available <code>colModel</code> properties are listed below. Please note that

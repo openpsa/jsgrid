@@ -31,7 +31,7 @@
    <a href="../configuration.html">Configuration</a>
 </li>
 
-<li> <a href="../demos.html">Demos</a> </li>
+<li> <a href="../demos/index.html">Demos</a> </li>
 </ul>
 <ul class="nav navbar-nav pull-right">
 <li> <a href="https://github.com/openpsa/grid.js">GitHub Repo</a> </li>
@@ -71,13 +71,13 @@ Two options are related to grouping:</p>
 <p>The first option <code>grouping</code> is boolean and enables or disables the grouping feature into the grid. The default value of this option is <code>false</code>. To enable grouping set it to <code>true</code>.</p>
 <p>The <code>groupingView</code> option is an object and has a lot of sub-options.
 Below is a example on how this should be used:</p>
-<pre><code>$(&quot;#grid&quot;).jqGrid({
-  ...
+<pre><code class="language-javascript">$(<span class="string">"#grid"</span>).jqGrid({
+  <span class="comment">//...</span>
   groupingView : {
-     groupField : [&#39;name&#39;, &#39;ínvdate&#39;],
-     groupOrder : [&#39;asc&#39;, &#39;desc&#39;]
+     groupField : [<span class="string">'name'</span>, <span class="string">'ínvdate'</span>],
+     groupOrder : [<span class="string">'asc'</span>, <span class="string">'desc'</span>]
   }
-  ...
+  <span class="comment">//...</span>
 });</code></pre>
 <p>Below is the list of the options that can be set in <code>groupingView</code>:</p>
 <h3 id="-groupfield-"><code>groupField</code></h3>
@@ -173,19 +173,19 @@ field.</p>
 </ul>
 <p>The option can be defined as function. If defined we pass three parameters to it - the current value, the name and the record object. The function should return value. Note that this value will be used again for the group value until it changes.</p>
 <p>Below is a example on using this function - simulating the <code>sum</code> function.</p>
-<pre><code>function mysum(val, name, record)
-{
-    return parseFloat(val||0) + parseFloat((record[name]||0));
+<pre><code class="language-javascript"><span class="function"><span class="keyword">function</span> <span class="title">mysum</span><span class="params">(val, name, record)</span>
+{</span>
+    <span class="keyword">return</span> parseFloat(val||<span class="number">0</span>) + parseFloat((record[name]||<span class="number">0</span>));
 }
 
-jQuery(&quot;#grid&quot;).jqGrid({
-  ...
+jQuery(<span class="string">"#grid"</span>).jqGrid({
+  <span class="comment">//...</span>
   colModel : [
-     {..},
-     {name:&#39;amount&#39;,index:&#39;amount&#39;, width:80, align:&quot;right&quot;, sorttype:&#39;number&#39;,formatter:&#39;number&#39;,summaryType:mysum},
-     ...
+     <span class="comment">//{..},</span>
+     {name: <span class="string">'amount'</span>, index: <span class="string">'amount'</span>, width: <span class="number">80</span>, align: <span class="string">"right"</span>, sorttype: <span class="string">'number'</span>, formatter: <span class="string">'number'</span>, summaryType: mysum},
+     <span class="comment">//...</span>
   ],
-  ...
+  <span class="comment">//...</span>
 });</code></pre>
 <h3 id="-summarytpl-"><code>summaryTpl</code></h3>
 <p><strong>Type:</strong> string
