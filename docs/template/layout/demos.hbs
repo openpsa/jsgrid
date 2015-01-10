@@ -13,7 +13,7 @@ layout: default.hbs
 <div id="sub-navigation" class="nav" data-spy="affix">
     <ul class="nav">
   {{#each demos}}
-  <li><a href="{{this.filename}}">{{this.title}}</a></li>
+  <li{{#is ../filename this.filename}} class="active"{{/is}}><a href="{{this.filename}}">{{this.title}}</a></li>
   {{/each}}
     </ul>
 </div>
