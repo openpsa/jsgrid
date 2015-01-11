@@ -7,6 +7,13 @@ footer {
   border-top: 1px solid #e5e5e5;
   text-align: center;
 }
+#sub-navigation {
+  margin-top: 60px;
+}
+#sub-navigation.affix {
+  margin-top: 0;
+  top: 50px;
+}
 #sub-navigation .nav ul {
   display: none;
   padding-left: 15px;

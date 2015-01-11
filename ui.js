@@ -81,6 +81,12 @@ $(document).ready(function()
         });
 
         nav.appendTo($('#sub-navigation'));
+        $('#sub-navigation').affix({
+            offset: {
+                top: 95
+            }
+        });
+
         $('body').scrollspy({target: '#sub-navigation', offset: 80});
 
         $('#sub-navigation li a').click(function(event) {
