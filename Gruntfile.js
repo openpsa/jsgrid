@@ -16,6 +16,7 @@ module.exports = function ( grunt ) {
 
     var taskConfig = {
         pkg: grunt.file.readJSON("package.json"),
+        filename: '<%= pkg.name %>-<%= pkg.version %>',
 
         meta: {
             banner:
@@ -77,6 +78,16 @@ module.exports = function ( grunt ) {
                         src: [ '**/*.js' ],
                         dest: '<%= build_dir %>/vendor',
                         cwd: 'bower_components/jquery/dist/',
+                        expand: true
+                    }
+                ]
+            },
+            compile_appjs: {
+                files: [
+                    {
+                        src: [ '<%= filename %>.js' ],
+                        dest: '<%= compile_dir %>/',
+                        cwd: '<%= build_dir %>/',
                         expand: true
                     }
                 ]
@@ -146,9 +157,9 @@ module.exports = function ( grunt ) {
             compile_css: {
                 src: [
                     '<%= vendor_files.css %>',
-                    '<%= build_dir %>/<%= pkg.name %>-<%= pkg.version %>.css'
+                    '<%= build_dir %>/<%= filename %>.css'
                 ],
-                dest: '<%= compile_dir %>/<%= pkg.name %>-<%= pkg.version %>.min.css'
+                dest: '<%= compile_dir %>/<%= filename %>.min.css'
             },
             compile_js: {
                 options: {
@@ -158,7 +169,7 @@ module.exports = function ( grunt ) {
                     '<%= app_files.js %>',
                     '<%= app_files.external %>'
                 ],
-                dest: '<%= build_dir %>/<%= pkg.name %>-<%= pkg.version %>.js'
+                dest: '<%= build_dir %>/<%= filename %>.js'
             }
         },
 
@@ -168,7 +179,7 @@ module.exports = function ( grunt ) {
                     banner: '<%= meta.banner %>'
                 },
                 files: {
-                    '<%= compile_dir %>/<%= pkg.name %>-<%= pkg.version %>.min.js': '<%= concat.compile_js.dest %>'
+                    '<%= compile_dir %>/<%= filename %>.min.js': '<%= concat.compile_js.dest %>'
                 }
             },
             compile_i18n: {
@@ -191,12 +202,12 @@ module.exports = function ( grunt ) {
         less: {
             build: {
                 files: {
-                    '<%= build_dir %>/<%= pkg.name %>-<%= pkg.version %>.css': '<%= app_files.less %>'
+                    '<%= build_dir %>/<%= filename %>.css': '<%= app_files.less %>'
                 }
             },
             compile: {
                 files: {
-                    '<%= build_dir %>/<%= pkg.name %>-<%= pkg.version %>.css': '<%= app_files.less %>'
+                    '<%= build_dir %>/<%= filename %>.css': '<%= app_files.less %>'
                 },
                 options: {
                     cleancss: true,
@@ -362,7 +373,7 @@ module.exports = function ( grunt ) {
     ]);
 
     grunt.registerTask( 'compile', [
-        'clean:compile', 'less:compile', 'concat:compile_css', 'copy:compile_vendorjs', 'uglify:compile', 'uglify:compile_i18n'
+        'clean:compile', 'less:compile', 'concat:compile_css', 'copy:compile_appjs', 'copy:compile_vendorjs', 'uglify:compile', 'uglify:compile_i18n'
     ]);
 
     grunt.registerTask( 'docs', [
