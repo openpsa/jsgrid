@@ -35,14 +35,14 @@ Defines a set of properties which override the default values in `colModel`. For
 
 Defines in what format to expect the data that fills the grid. Valid options are
 
- - `xml`: we expect data in XML format
- - `xmlstring`: we expect XML data as string
- - `json`: we expect data in JSON format
- - `jsonstring`: we expect JSON data as a string
- - `local`: we expect data defined at client side (array data)
- - `javascript` we expect javascript as data
+ - `'xml'`: we expect data in XML format
+ - `'xmlstring'`: we expect XML data as string
+ - `'json'`: we expect data in JSON format
+ - `'jsonstring'`: we expect JSON data as a string
+ - `'local'`: we expect data defined at client side (array data)
+ - `'javascript'` we expect Javascript as data
  - `function` custom defined function for retrieving data
- - `clientSide` to manually load data via the data array
+ - `'clientSide'` to manually load data via the data array
 
 See [colModel API](./colModel.md) and Retrieving Data
 
@@ -58,21 +58,21 @@ An array that stores the local data passed to the grid. You can directly point t
 **Default:** `null`
 **Changeable:** Yes
 
-The string of data when datatype parameter is set to `xmlstring` or `jsonstring`
+The string of data when `datatype` parameter is set to `'xmlstring'` or `'jsonstring'`
 
 #### `jsonReader`
 **Type:** object
 **Default:** `{}`
 **Changeable:** No
 
-Describes the structure of the expected json data. For a full description and default setting, see Retrieving Data JSON Data
+Describes the structure of the expected JSON data. For a full description and default setting, see Retrieving Data JSON Data
 
 #### `xmlReader`
 **Type:** object
 **Default:** `{}`
 **Changeable:** No
 
-Describes the structure of the expected xml data. For a full description refer to Retrieving Data in XML Format.
+Describes the structure of the expected XML data. For a full description refer to Retrieving Data in XML Format.
 
 
 ## Rendering
@@ -105,7 +105,7 @@ When set to `true`, the grid width is recalculated automatically to the width of
 **Default:** `5`
 **Changeable:** No
 
-This option determines the padding + border width of the cell. Usually this should not be changed, but if custom changes to the td element are made in the grid css file, this will need to be changed. The initial value of 5 means
+This option determines the padding + border width of the cell. Usually this should not be changed, but if custom changes to the td element are made in the grid CSS file, this will need to be changed. The initial value of `5` means
 
 ```
 paddingLeft (2) + paddingRight (2) + borderLeft (1) = 5
@@ -158,7 +158,7 @@ Assigns a class to columns that are resizable so that we can show a resize handl
 **Default:** `20`
 **Changeable:** Yes
 
-Sets how many records we want to view in the grid. This parameter is passed to the url for use by the server routine retrieving the data. Note that if you set this parameter to 10 (i.e. retrieve 10 records) and your server return 15 then only 10 records will be loaded. Set this parameter to -1 (unlimited) to disable this checking.
+Sets how many records we want to view in the grid. This parameter is passed to the URL for use by the server routine retrieving the data. Note that if you set this parameter to `10` (i.e. retrieve 10 records) and your server returns 15 then only 10 records will be loaded. Set this parameter to -1 (unlimited) to disable this checking.
 
 ### `shrinkToFit`
 **Type:** boolean or integer
@@ -206,7 +206,7 @@ Defines the caption for the grid. This caption appears in the caption layer, whi
 **Default:** `true`
 **Changeable:** No
 
-Enables or disables the show/hide grid button, which appears on the right side of the caption layer (see How It Works). Takes effect only if the caption property is not empty.
+Enables or disables the show/hide grid button, which appears on the right side of the caption layer (see How It Works). Takes effect only if the `caption` property is not empty.
 
 #### `hiddengrid`
 **Type:** boolean
@@ -302,7 +302,7 @@ This option is only used when the `multiselect` is set to `true`.
 **Default:** `true`
 **Changeable:** Yes
 
-Applicable only when we use datatype : local. Deselects currently selected row(s) when a sort is applied.
+Applicable only when we use `datatype: 'local'`. Deselects currently selected row(s) when a sort is applied.
 
 #### `multiSort`
 **Type:** boolean
@@ -328,14 +328,14 @@ When set to `true`, this option allows reordering columns by dragging and droppi
 **Default:** `''`
 **Changeable:** Yes
 
-The column according to which the data is to be sorted when it is initially loaded from the server (note that you will have to use datatypes `xml` or `json` to load remote data). This parameter is appended to the url. If this value is set and the index (name) matches the name from `colModel`, then an icon indicating that the grid is sorted according to this column is added to the column header. This icon also indicates the sorting order - descending or ascending (see the parameter `sortorder`). Also see `prmNames`.
+The column according to which the data is to be sorted when it is initially loaded from the server (note that you will have to use datatypes `'xml'` or `'json'` to load remote data). This parameter is appended to the URL. If this value is set and the index (name) matches the name from `colModel`, then an icon indicating that the grid is sorted according to this column is added to the column header. This icon also indicates the sorting order - descending or ascending (see the parameter `sortorder`). Also see `prmNames`.
 
 #### `sortorder`
 **Type:** string
 **Default:** `'asc'`
 **Changeable:** Yes
 
-The initial sorting order (ascending or descending) when we fetch data from the server using datatypes `xml` or `json`. This parameter is appended to the url - see `prnNames`. The two allowed values are `asc` or `desc`
+The initial sorting order (ascending or descending) when we fetch data from the server using datatypes `'xml'` or `'json'`. This parameter is appended to the URL - see `prnNames`. The two allowed values are `asc` or `desc`
 
 #### `viewsortcols`
 **Type:** string
@@ -367,7 +367,7 @@ Creates dynamic scrolling grids. When enabled, the pager elements are disabled a
 
 When `scroll` is set to an integer value (e.g. `1`), the grid will just hold the visible lines. This allow us to load the data in portions whitout caring about memory leaks. In addition to this we have an optional extension to the server protocol: npage (see `prmNames` array). If you set the `npage` option in `prmNames`, then the grid will sometimes request more than one page at a time; if not, it will just perform multiple GET requests.
 
-Note that this option is not compatible when `height` is set to `auto` or `100%`.
+Note that this option is not available when `height` is set to `'auto'` or `'100%'`.
 
 #### `scrollOffset`
 **Type:** integer
@@ -395,7 +395,7 @@ When enabled, selecting a row with setSelection scrolls the grid so that the sel
 **Default:** `[false, '']`
 **Changeable:** No
 
-This option defines the toolbar of the grid. This is an array with two elements in which the first element's value enables the toolbar and the second defines the position relative to the body layer (table data). Possible values are top, bottom, and both. When we set it like
+This option defines the toolbar of the grid. This is an array with two elements in which the first element's value enables the toolbar and the second defines the position relative to the body layer (table data). Possible values are `'top'`, `'bottom'`, and `'both'`. When we set it like
 
 ```
 toolbar: [true,”both”]
@@ -451,7 +451,7 @@ Show information about current page status. The first value is the current loade
 **Default:** `[]`
 **Changeable:** No
 
-An array to construct a select box element in the pager for changing the number of the visible rows. When changed during the execution, this parameter replaces the `rowNum` parameter that is passed to the url. If the array is empty, this element does not appear in the pager. Typically you can set this like `[10, 20, 30]`. If the `rowNum` parameter is set to 30 then the selected value in the select box is 30.
+An array to construct a select box element in the pager for changing the number of the visible rows. When changed during the execution, this parameter replaces the `rowNum` parameter that is passed to the URL. If the array is empty, this element does not appear in the pager. Typically you can set this like `[10, 20, 30]`. If the `rowNum` parameter is set to 30 then the selected value in the select box is 30.
 
 ### `toppager`
 **Type:** boolean
@@ -501,14 +501,16 @@ Text that can be shown in the pager. This text appears only if the total number 
 **Default:** `{}`
 **Changeable:** Yes
 
-This option allows to set global ajax settings for the grid when requesting data. Note that with this option it is possible to overwrite all current ajax settings in the grid including the `error`, `complete` and `beforeSend` events.
+This option allows to set global AJAX settings for the grid when
+requesting data. Note that with this option it is possible to
+overwrite all current AJAX settings in the grid including the `error`, `complete` and `beforeSend` events.
 
 ### `ajaxSelectOptions`
 **Type:** object
 **Default:** `{}`
 **Changeable:** Yes
 
-This option allows to set global ajax settings for the select element when the select is obtained via `dataUrl` option in `editoptions` or `searchoptions` objects
+This option allows to set global AJAX settings for the select element when the select is obtained via `dataUrl` option in `editoptions` or `searchoptions` objects
 
 ### `autoencode`
 **Type:** boolean
@@ -537,11 +539,11 @@ The text which appears when requesting and sorting data. This parameter is locat
 **Default:** `'enable'`
 **Changeable:** Yes
 
-This option controls what to do when an ajax operation is in progress.
+This option controls what to do when an AJAX operation is in progress.
 
  - `'disable'`: disables the jqGrid progress indicator. This way you can use your own indicator.
  - `'enable'`: shows the text set in the `loadtext` property in the center of the grid.
- - `'block'`: displays the text set in the `loadtext` property and blocks all actions in the grid until the ajax request completes. Note that this disables paging, sorting and all actions on toolbar, if any.
+ - `'block'`: displays the text set in the `loadtext` property and blocks all actions in the grid until the AJAX request completes. Note that this disables paging, sorting and all actions on toolbar, if any.
 
 ### `mtype`
 **Type:** string
@@ -555,7 +557,7 @@ Defines the type of request to make (“POST” or “GET”)
 **Default:** `1`
 **Changeable:** Yes
 
-Set the initial page number when we make the request. This parameter is passed to the url for use by the server routine retrieving the data.
+Set the initial page number when we make the request. This parameter is passed to the URL for use by the server routine retrieving the data.
 
 ### `prmNames`
 **Type:** object
@@ -580,10 +582,10 @@ rather than
 myurl.php?page=1&rows=10&sidx=myindex&sord=asc
 ```
 
-So the value of the column on which to sort upon can be obtained by looking at `$POST['mysort']` in PHP. When some parameter is set to `null`, it will be not sent to the server. For example if we set
+So the value of the column on which to sort upon can be obtained by looking at `$_POST['mysort']` in PHP. When some parameter is set to `null`, it will be not sent to the server. For example if we set
 
 ```
-prmNames: {nd:null}
+prmNames: {nd: null}
 ```
 
 the `nd` parameter will not be sent to the server. For `npage` option see the `scroll` option.
@@ -609,7 +611,7 @@ These options have the following meaning and default values:
 **Default:** `{}`
 **Changeable:** Yes
 
-This array is appended directly to the url. This is an associative array and can be used this way: `{name1: value1…}`. See API methods for manipulation.
+This array is appended directly to the URL. This is an associative array and can be used this way: `{name1: value1…}`. See API methods for manipulation.
 
 ### `rowTotal`
 **Type:** integer
@@ -623,7 +625,7 @@ This parameter can instruct the server to load the total number of rows needed t
 **Default:** `null`
 **Changeable:** Yes
 
-The url of the file that returns the data needed to populate the grid. May be set to `'clientArray'` to manually post data to server; see Inline Editing.
+The URL of the file that returns the data needed to populate the grid. May be set to `'clientArray'` to manually post data to server; see Inline Editing.
 
 ## Grouping
 
@@ -678,14 +680,14 @@ Determines where the contents of the cell are saved. Possible values are `'remot
 **Default:** `null`
 **Changeable:** Yes
 
-The url where the cell is to be saved. See Cell Editing for more details
+The URL where the cell is to be saved. See Cell Editing for more details
 
 ### `editurl`
 **Type:** string
 **Default:** `null`
 **Changeable:** Yes
 
-Defines the url for inline and form editing. May be set to `'clientArray'` to manually post data to server, see Inline Editing.
+Defines the URL for inline and form editing. May be set to `'clientArray'` to manually post data to server, see Inline Editing.
 
 ### `inlineData`
 **Type:** object
@@ -708,7 +710,7 @@ This is a readonly property and is used in inline and cell editing modules to st
 **Default:** `true`
 **Changeable:** No
 
-When `true`, the tree grid (see treeGrid) is expanded and/or collapsed when we click anywhere on the text in the expanded column. In this case it is not necessary to click exactly on the icon.
+When `true`, the node is expanded or collapsed when we click anywhere on the text in the expanded column. In this case it is not necessary to click exactly on the icon.
 
 ### `ExpandColumn`
 **Type:** string
@@ -722,7 +724,7 @@ Indicates which column (name from `colModel`) should be used to expand the tree 
 **Default:** `null`
 **Changeable:** No
 
-Gives the initial datatype (see datatype option). Usually this should not be changed. During the reading process this option is equal to the datatype option.
+Gives the initial data type (see `datatype` option). Usually this should not be changed. During the reading process this option is equal to the `datatype` option.
 
 ### `treeGrid`
 **Type:** boolean
@@ -745,7 +747,7 @@ Determines the method used for the treeGrid. The value can be either nested or a
 
 This array sets the icons used in the tree grid. The icons should be a valid names from UI theme roller images. The default values are:
 
-```json
+```javascript
 {
     plus: 'ui-icon-triangle-1-e',
     minus: 'ui-icon-triangle-1-s',
@@ -795,7 +797,7 @@ This property, which describes the model of the subgrid, has an effect only if t
 **Default:** `null`
 **Changeable:** Yes
 
-This option allows loading a subgrid as a service. If not set, the datatype parameter of the parent grid is used.
+This option allows loading a subgrid as a service. If not set, the `datatype` parameter of the parent grid is used.
 
 ### `subGridUrl`
 **Type:** string
@@ -803,7 +805,7 @@ This option allows loading a subgrid as a service. If not set, the datatype para
 **Changeable:** Yes
 
 This option has effect only if the `subGrid` option is set to
-`true`. This option points to the url from which we get the data for
+`true`. This option points to the URL from which we get the data for
 the subgrid. jqGrid adds the id of the row to this URL as parameter. If there is a need to pass additional parameters, use the `params` option in `subGridModel`. See Subgrid
 
 ### `subGridWidth`
@@ -811,7 +813,7 @@ the subgrid. jqGrid adds the id of the row to this URL as parameter. If there is
 **Default:** `20`
 **Changeable:** No
 
-Defines the width of the sub-grid column if subgrid is enabled.
+Defines the width of the subgrid column if subgrid is enabled.
 
 ## Performance
 
@@ -843,7 +845,7 @@ Contains the current state of the grid (i.e. when used with `hiddengrid`, `hideg
 **Default:** `0`
 **Changeable:** No
 
-Contains the total number of pages returned from the request. If you use a function as datatype, your_grid.setGridParam({lastpage: your_number}) can be used to specify the max pages in the pager.
+Contains the total number of pages returned from the request. If you use a function as `datatype`, `your_grid.setGridParam({lastpage: your_number})` can be used to specify the max pages in the pager.
 
 ### `lastsort`
 **Type:** integer
@@ -857,7 +859,7 @@ Contains the index of last sorted column beginning from 0.
 **Default:** `0`
 **Changeable:** No
 
-Contains the exact number of rows in the grid. Do not confuse this with `records` parameter. Although in many cases they may be equal, there are cases where they are not. For example, if you define `rowNum` to be 15, but the request to the server returns 20 records, the `records` parameter will be 20, but the `reccount` parameter will be 15 (the grid you will have 15 records and not 20).
+Contains the exact number of rows in the grid. Do not confuse this with `records` parameter. Although in many cases they may be equal, there are cases where they are not. For example, if you define `rowNum` to be `15`, but the request to the server returns 20 records, the `records` parameter will be `20`, but the `reccount` parameter will be `15` (the grid you will have 15 records and not 20).
 
 ### `records`
 **Type:** integer
@@ -878,14 +880,15 @@ Contains the currently selected rows when `multiselect` is set to `true`. This i
 **Default:** `null`
 **Changeable:** No
 
-Contains the id of the last selected row. If you sort or use paging, this is set to null.
+Contains the id of the last selected row. If you sort or use paging, this is set to `null`.
 
 ### `totaltime`
 **Type:** integer
 **Default:** `0`
 **Changeable:** No
 
-Contains the loading time of the records - currently available only when we load xml or json data. The measurement begins when the request is complete and ends when the last row is added.
+Contains the loading time of the records - currently available only
+when we load XML or JSON data. The measurement begins when the request is complete and ends when the last row is added.
 
 ***
 Content licensed under [Creative Commons Non Commercial Share Alike](http://creativecommons.org/licenses/by-nc-sa/3.0/). Original content taken from [jqGrid wiki](http://www.trirand.com/jqgridwiki/).
