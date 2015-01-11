@@ -109,7 +109,8 @@ $(document).ready(function()
         })
     }
 
-    if (window.location.hash)
+    if (   window.location.hash
+        && Math.abs(Math.round($(window).scrollTop() - $(window.location.hash).offset().top)) < 1)
     {
         scrollBy(0, -header_height);
     }
