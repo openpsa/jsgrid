@@ -1,4 +1,5 @@
-;(function($){
+(function($){
+"use strict";
 /**
  * jqGrid Thai Translation
  * Kittituch Manakul m.kittituch@Gmail.com
@@ -8,7 +9,7 @@
  * http://www.gnu.org/licenses/gpl.html
 **/
 $.jgrid = $.jgrid || {};
-$.extend($.jgrid,{
+$.extend(true,$.jgrid,{
 	defaults : {
 		recordtext: "แสดง {0} - {1} จาก {2}",
 		emptyrecords: "ไม่พบข้อมูล",
@@ -107,31 +108,19 @@ $.extend($.jgrid,{
 				"มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฏาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"
 			],
 			AmPm : ["am","pm","AM","PM"],
-			S: function (j) {return ''},
+			S: function () {return '';},
 			srcformat: 'Y-m-d',
 			newformat: 'd/m/Y',
-			parseRe : /[#%\\\/:_;.,\t\s-]/,
 			masks : {
-				ISO8601Long:"Y-m-d H:i:s",
-				ISO8601Short:"Y-m-d",
 				ShortDate: "n/j/Y",
 				LongDate: "l, F d, Y",
 				FullDateTime: "l, F d, Y g:i:s A",
 				MonthDay: "F d",
 				ShortTime: "g:i A",
 				LongTime: "g:i:s A",
-				SortableDateTime: "Y-m-d\\TH:i:s",
-				UniversalSortableDateTime: "Y-m-d H:i:sO",
 				YearMonth: "F, Y"
-			},
-			reformatAfterEdit : false,
-			userLocalTime : false
-		},
-		baseLinkUrl: '',
-		showAction: '',
-		target: '',
-		checkbox : {disabled:true},
-		idName : 'id'
+			}
+		}
 	}
 });
-})(jQuery);
+}(jQuery));

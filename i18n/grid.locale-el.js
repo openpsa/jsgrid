@@ -1,4 +1,5 @@
-;(function($){
+(function($){
+"use strict";
 /**
  * jqGrid Greek (el) Translation
  * Alex Cicovic
@@ -8,7 +9,7 @@
  * http://www.gnu.org/licenses/gpl.html
 **/
 $.jgrid = $.jgrid || {};
-$.extend($.jgrid,{
+$.extend(true,$.jgrid,{
 	defaults : {
 		recordtext: "View {0} - {1} of {2}",
 	    emptyrecords: "No records to view",
@@ -105,31 +106,19 @@ $.extend($.jgrid,{
 				"Ιανουάριος", "Φεβρουάριος", "Μάρτιος", "Απρίλιος", "Μάιος", "Ιούνιος", "Ιούλιος", "Αύγουστος", "Σεπτέμβριος", "Οκτώβριος", "Νοέμβριος", "Δεκέμβριος"
 			],
 			AmPm : ["πμ","μμ","ΠΜ","ΜΜ"],
-			S: function (j) {return j == 1 || j > 1 ? ['η'][Math.min((j - 1) % 10, 3)] : ''},
+			S: function (j) {return j === 1 || j > 1 ? ['η'][Math.min((j - 1) % 10, 3)] : '';},
 			srcformat: 'Y-m-d',
 			newformat: 'd/m/Y',
-			parseRe : /[#%\\\/:_;.,\t\s-]/,
 			masks : {
-	            ISO8601Long:"Y-m-d H:i:s",
-	            ISO8601Short:"Y-m-d",
 	            ShortDate: "n/j/Y",
 	            LongDate: "l, F d, Y",
 	            FullDateTime: "l, F d, Y g:i:s A",
 	            MonthDay: "F d",
 	            ShortTime: "g:i A",
 	            LongTime: "g:i:s A",
-	            SortableDateTime: "Y-m-d\\TH:i:s",
-	            UniversalSortableDateTime: "Y-m-d H:i:sO",
 	            YearMonth: "F, Y"
-	        },
-	        reformatAfterEdit : false,
-			userLocalTime : false
-		},
-		baseLinkUrl: '',
-		showAction: '',
-	    target: '',
-	    checkbox : {disabled:true},
-		idName : 'id'
+	        }
+		}
 	}
 });
-})(jQuery);
+}(jQuery));

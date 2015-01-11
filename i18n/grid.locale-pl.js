@@ -1,4 +1,5 @@
-;(function($){
+(function($){
+"use strict";
 /**
  * jqGrid Polish Translation
  * Łukasz Schab lukasz@freetree.pl
@@ -13,7 +14,7 @@
  * http://www.gnu.org/licenses/gpl.html
 **/
 $.jgrid = $.jgrid || {};
-$.extend($.jgrid,{
+$.extend(true,$.jgrid,{
 	defaults : {
 		recordtext: "Pokaż {0} - {1} z {2}",
 		emptyrecords: "Brak rekordów do pokazania",
@@ -111,31 +112,19 @@ $.extend($.jgrid,{
 				"styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień"
 				],
 			AmPm : ["","","",""],
-			S: function (j) {return '';},
+			S: function () {return '';},
 			srcformat: 'Y-m-d',
 			newformat: 'd.m.Y',
-			parseRe : /[#%\\\/:_;.,\t\s-]/,
 			masks : {
-				ISO8601Long: "Y-m-d H:i:s",
-				ISO8601Short: "Y-m-d",
 				ShortDate: "d.m.y",
 				LongDate: "l, j F Y",
 				FullDateTime: "l, j F Y H:i:s",
 				MonthDay: "j F",
 				ShortTime: "H:i",
 				LongTime: "H:i:s",
-				SortableDateTime: "Y-m-d\\TH:i:s",
-				UniversalSortableDateTime: "Y-m-d H:i:sO",
 				YearMonth: "F Y"
-			},
-			reformatAfterEdit : false,
-			userLocalTime : false
-		},
-		baseLinkUrl: '',
-		showAction: '',
-		target: '',
-		checkbox : {disabled:true},
-		idName : 'id'
+			}
+		}
 	}
 });
-})(jQuery);
+}(jQuery));

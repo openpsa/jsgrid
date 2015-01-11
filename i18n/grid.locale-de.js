@@ -1,4 +1,5 @@
-;(function($){
+(function($){
+"use strict";
 /**
  * jqGrid German Translation
  * Version 1.0.0 (developed for jQuery Grid 3.3.1)
@@ -19,18 +20,18 @@
  * http://www.gnu.org/licenses/gpl.html
 **/
 $.jgrid = $.jgrid || {};
-$.extend($.jgrid,{
+$.extend(true,$.jgrid,{
 	defaults : {
 		recordtext: "Zeige {0} - {1} von {2}",
 		emptyrecords: "Keine Datensätze vorhanden",
 		loadtext: "Lädt...",
 		pgtext : "Seite {0} von {1}",
-		pgfirst : "First Page",
-		pglast : "Last Page",
-		pgnext : "Next Page",
-		pgprev : "Previous Page",
-		pgrecs : "Records per Page",
-		showhide: "Toggle Expand Collapse Grid"
+		pgfirst : "Erste Seite",
+		pglast : "Letzte Seite",
+		pgnext : "Nächste Seite",
+		pgprev : "Vorherige Seite",
+		pgrecs : "Datensätze pro Seite",
+		showhide: "Tabelle auf- oder zuklappen"
 	},
 	search : {
 		caption: "Suche...",
@@ -38,8 +39,8 @@ $.extend($.jgrid,{
 		Reset: "Zurücksetzen",
 		odata: [{ oper:'eq', text:"gleich"},{ oper:'ne', text:"ungleich"},{ oper:'lt', text:"kleiner"},{ oper:'le', text:"kleiner gleich"},{ oper:'gt', text:"größer"},{ oper:'ge', text:"größer gleich"},{ oper:'bw', text:"beginnt mit"},{ oper:'bn', text:"beginnt nicht mit"},{ oper:'in', text:"ist in"},{ oper:'ni', text:"ist nicht in"},{ oper:'ew', text:"endet mit"},{ oper:'en', text:"endet nicht mit"},{ oper:'cn', text:"enthält"},{ oper:'nc', text:"enthält nicht"}, { oper:'nu', text:"ist Null" }, { oper:'nn', text:"ist nicht Null" }],
 		groupOps: [{ op: "AND", text: "alle" },{ op: "OR", text: "mindestens eine" }],
-		operandTitle : "Click to select search operation.",
-		resetTitle : "Reset Search Value"
+		operandTitle : "Klicken Sie, um die Suchoperation zu wählen.",
+		resetTitle : "Suchwert zurücksetzen"
 	},
 	edit : {
 		addCaption: "Datensatz hinzufügen",
@@ -120,13 +121,10 @@ $.extend($.jgrid,{
 			S: function () {return '.';}, // one can also use 'er' instead of '.' but one have to use additional word like 'der' or 'den' before
 			srcformat: 'Y-m-d',
 			newformat: 'd.m.Y',
-			parseRe : /[#%\\\/:_;.,\t\s-]/,
 			masks : {
 				// see http://php.net/manual/en/function.date.php for PHP format used in jqGrid
 				// and see http://docs.jquery.com/UI/Datepicker/formatDate
 				// and https://github.com/jquery/globalize#dates for alternative formats used frequently
-				ISO8601Long: "Y-m-d H:i:s",
-				ISO8601Short: "Y-m-d",
 				// short date:
 				//    d - Day of the month, 2 digits with leading zeros
 				//    m - Numeric representation of a month, with leading zeros
@@ -160,21 +158,12 @@ $.extend($.jgrid,{
 				//    i - Minutes with leading zeros
 				//    s - Seconds, with leading zeros
 				LongTime: "H:i:s", // in jQuery UI Datepicker: "HH:mm:ss"
-				SortableDateTime: "Y-m-d\\TH:i:s",
-				UniversalSortableDateTime: "Y-m-d H:i:sO",
 				// month with year
 				//    F - A full textual representation of a month
 				//    Y - A full numeric representation of a year, 4 digits
 				YearMonth: "F Y" // in jQuery UI Datepicker: "MMMM yyyy"
-			},
-			reformatAfterEdit : false,
-			userLocalTime : false
-		},
-		baseLinkUrl: '',
-		showAction: '',
-		target: '',
-		checkbox : {disabled:true},
-		idName : 'id'
+			}
+		}
 	}
 });
-})(jQuery);
+}(jQuery));

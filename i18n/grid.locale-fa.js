@@ -1,4 +1,5 @@
-;(function ($) {
+(function ($) {
+"use strict";
 /**
  * jqGrid Persian Translation
  * Dual licensed under the MIT and GPL licenses:
@@ -6,7 +7,7 @@
  * http://www.gnu.org/licenses/gpl.html
 **/
 	$.jgrid = $.jgrid || {};
-	$.extend($.jgrid,{
+	$.extend(true,$.jgrid,{
         defaults: {
             recordtext: "نمابش {0} - {1} از {2}",
             emptyrecords: "رکوردی یافت نشد",
@@ -121,34 +122,20 @@
                 monthNames: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "ژانويه", "فوريه", "مارس", "آوريل", "مه", "ژوئن", "ژوئيه", "اوت", "سپتامبر", "اکتبر", "نوامبر", "December"],
                 AmPm: ["ب.ظ", "ب.ظ", "ق.ظ", "ق.ظ"],
                 S: function (b) {
-                    return b < 11 || b > 13 ? ["st", "nd", "rd", "th"][Math.min((b - 1) % 10, 3)] : "th"
+                    return b < 11 || b > 13 ? ["st", "nd", "rd", "th"][Math.min((b - 1) % 10, 3)] : "th";
                 },
                 srcformat: "Y-m-d",
                 newformat: "d/m/Y",
-				parseRe : /[#%\\\/:_;.,\t\s-]/,
                 masks: {
-                    ISO8601Long: "Y-m-d H:i:s",
-                    ISO8601Short: "Y-m-d",
                     ShortDate: "n/j/Y",
                     LongDate: "l, F d, Y",
                     FullDateTime: "l, F d, Y g:i:s A",
                     MonthDay: "F d",
                     ShortTime: "g:i A",
                     LongTime: "g:i:s A",
-                    SortableDateTime: "Y-m-d\\TH:i:s",
-                    UniversalSortableDateTime: "Y-m-d H:i:sO",
                     YearMonth: "F, Y"
-                },
-                reformatAfterEdit: false,
-				userLocalTime : false
-            },
-            baseLinkUrl: "",
-            showAction: "نمايش",
-            target: "",
-            checkbox: {
-                disabled: true
-            },
-            idName: "id"
+                }
+            }
         }
     });
-})(jQuery);
+}(jQuery));

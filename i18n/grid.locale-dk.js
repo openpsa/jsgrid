@@ -1,4 +1,5 @@
-;(function($){
+(function($){
+"use strict";
 /**
  * jqGrid Danish Translation
  * Kaare Rasmussen kjs@jasonic.dk
@@ -7,7 +8,8 @@
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
 **/
-$.jgrid = {
+$.jgrid = $.jgrid || {};
+$.extend(true,$.jgrid,{
 	defaults : {
 		recordtext: "View {0} - {1} of {2}",
 	    emptyrecords: "No records to view",
@@ -105,32 +107,19 @@ $.jgrid = {
 				"Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"
 			],
 			AmPm : ["","","",""],
-			S: function (j) {return '.'},
+			S: function () {return '.';},
 			srcformat: 'Y-m-d',
 			newformat: 'd/m/Y',
-			parseRe : /[#%\\\/:_;.,\t\s-]/,
 			masks : {
-	            ISO8601Long:"Y-m-d H:i:s",
-	            ISO8601Short:"Y-m-d",
 	            ShortDate: "j/n/Y",
 	            LongDate: "l d. F Y",
 	            FullDateTime: "l d F Y G:i:s",
 	            MonthDay: "d. F",
 	            ShortTime: "G:i",
 	            LongTime: "G:i:s",
-	            SortableDateTime: "Y-m-d\\TH:i:s",
-	            UniversalSortableDateTime: "Y-m-d H:i:sO",
 	            YearMonth: "F Y"
-	        },
-	        reformatAfterEdit : false,
-			userLocalTime : false
-		},
-		baseLinkUrl: '',
-		showAction: '',
-	    target: '',
-	    checkbox : {disabled:true},
-		idName : 'id'
+	        }
+		}
 	}
-};
-// DK
-})(jQuery);
+});
+}(jQuery));

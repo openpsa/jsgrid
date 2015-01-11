@@ -1,4 +1,5 @@
-;(function($){
+(function($){
+"use strict";
 /**
  * jqGrid Ukrainian Translation v1.0 02.07.2009
  * Sergey Dyagovchenko
@@ -8,10 +9,10 @@
  * http://www.gnu.org/licenses/gpl.html
 **/
 $.jgrid = $.jgrid || {};
-$.extend($.jgrid,{
+$.extend(true,$.jgrid,{
 	defaults : {
 		recordtext: "Перегляд {0} - {1} з {2}",
-	  emptyrecords: "Немає записів для перегляду",
+		emptyrecords: "Немає записів для перегляду",
 		loadtext: "Завантаження...",
 		pgtext : "Стор. {0} з {1}",
 		pgfirst : "First Page",
@@ -106,31 +107,19 @@ $.extend($.jgrid,{
 				"Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень"
 			],
 			AmPm : ["am","pm","AM","PM"],
-			S: function (j) {return j < 11 || j > 13 ? ['st', 'nd', 'rd', 'th'][Math.min((j - 1) % 10, 3)] : 'th'},
+			S: function (j) {return j < 11 || j > 13 ? ['st', 'nd', 'rd', 'th'][Math.min((j - 1) % 10, 3)] : 'th';},
 			srcformat: 'Y-m-d',
 			newformat: 'd.m.Y',
-			parseRe : /[#%\\\/:_;.,\t\s-]/,
 			masks : {
-	            ISO8601Long:"Y-m-d H:i:s",
-	            ISO8601Short:"Y-m-d",
 	            ShortDate: "n.j.Y",
 	            LongDate: "l, F d, Y",
 	            FullDateTime: "l, F d, Y G:i:s",
 	            MonthDay: "F d",
 	            ShortTime: "G:i",
 	            LongTime: "G:i:s",
-	            SortableDateTime: "Y-m-d\\TH:i:s",
-	            UniversalSortableDateTime: "Y-m-d H:i:sO",
 	            YearMonth: "F, Y"
-	        },
-	        reformatAfterEdit : false,
-			userLocalTime : false
-		},
-		baseLinkUrl: '',
-		showAction: '',
-	  target: '',
-	  checkbox : {disabled:true},
-		idName : 'id'
+	        }
+		}
 	}
 });
-})(jQuery);
+}(jQuery));

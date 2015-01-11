@@ -1,16 +1,16 @@
 /*jshint eqeqeq:false, eqnull:true, devel:true */
 /*global jQuery, xmlJsonClass */
 (function($){
-    /*
-     * jqGrid extension for constructing Grid Data from external file
-     * Tony Tomov tony@trirand.com
-     * http://trirand.com/blog/
-     * Dual licensed under the MIT and GPL licenses:
-     * http://www.opensource.org/licenses/mit-license.php
-     * http://www.gnu.org/licenses/gpl-2.0.html
-     **/
+/*
+ * jqGrid extension for constructing Grid Data from external file
+ * Tony Tomov tony@trirand.com
+ * http://trirand.com/blog/ 
+ * Dual licensed under the MIT and GPL licenses:
+ * http://www.opensource.org/licenses/mit-license.php
+ * http://www.gnu.org/licenses/gpl-2.0.html
+**/ 
 
-    "use strict";
+"use strict";
     $.jgrid.extend({
         jqGridImport : function(o) {
             o = $.extend({
@@ -43,7 +43,7 @@
                             }
                         }
                         if(xmldata) {
-                            // save the datatype
+                        // save the datatype
                             var svdatatype = jstr.grid.datatype;
                             jstr.grid.datatype = 'xmlstring';
                             jstr.grid.datastr = xml;
@@ -58,13 +58,13 @@
                 };
                 var jsonConvert = function (jsonstr,o){
                     if (jsonstr && typeof jsonstr === 'string') {
-                        var _jsonparse = false;
-                        if($.jgrid.useJSON) {
-                            $.jgrid.useJSON = false;
-                            _jsonparse = true;
-                        }
+						var _jsonparse = false;
+						if($.jgrid.useJSON) {
+							$.jgrid.useJSON = false;
+							_jsonparse = true;
+						}
                         var json = $.jgrid.parse(jsonstr);
-                        if(_jsonparse) { $.jgrid.useJSON = true; }
+						if(_jsonparse) { $.jgrid.useJSON = true; }
                         var gprm = json[o.jsonGrid.config];
                         var jdata = json[o.jsonGrid.data];
                         if(jdata) {
@@ -78,67 +78,67 @@
                     }
                 };
                 switch (o.imptype){
-                case 'xml':
-                    $.ajax($.extend({
-                        url:o.impurl,
-                        type:o.mtype,
-                        data: o.impData,
-                        dataType:"xml",
-                        complete: function(xml,stat) {
-                            if(stat === 'success') {
-                                xmlConvert(xml.responseXML,o);
-                                $($t).triggerHandler("jqGridImportComplete", [xml, o]);
-                                if($.isFunction(o.importComplete)) {
-                                    o.importComplete(xml);
+                    case 'xml':
+                        $.ajax($.extend({
+                            url:o.impurl,
+                            type:o.mtype,
+                            data: o.impData,
+                            dataType:"xml",
+                            complete: function(xml,stat) {
+                                if(stat === 'success') {
+                                    xmlConvert(xml.responseXML,o);
+                                    $($t).triggerHandler("jqGridImportComplete", [xml, o]);
+                                    if($.isFunction(o.importComplete)) {
+                                        o.importComplete(xml);
+                                    }
                                 }
+                                xml=null;
                             }
-                            xml=null;
+                        }, o.ajaxOptions));
+                        break;
+                    case 'xmlstring' :
+                        // we need to make just the conversion and use the same code as xml
+                        if(o.impstring && typeof o.impstring === 'string') {
+                            var xmld = $.parseXML(o.impstring);
+                            if(xmld) {
+                                xmlConvert(xmld,o);
+                                $($t).triggerHandler("jqGridImportComplete", [xmld, o]);
+                                if($.isFunction(o.importComplete)) {
+                                    o.importComplete(xmld);
+                                }
+                                o.impstring = null;
+                            }
+                            xmld = null;
                         }
-                    }, o.ajaxOptions));
-                    break;
-                case 'xmlstring' :
-                    // we need to make just the conversion and use the same code as xml
-                    if(o.impstring && typeof o.impstring === 'string') {
-                        var xmld = $.parseXML(o.impstring);
-                        if(xmld) {
-                            xmlConvert(xmld,o);
-                            $($t).triggerHandler("jqGridImportComplete", [xmld, o]);
+                        break;
+                    case 'json':
+                        $.ajax($.extend({
+                            url:o.impurl,
+                            type:o.mtype,
+                            data: o.impData,
+                            dataType:"json",
+                            complete: function(json) {
+                                try {
+                                    jsonConvert(json.responseText,o );
+                                    $($t).triggerHandler("jqGridImportComplete", [json, o]);
+                                    if($.isFunction(o.importComplete)) {
+                                        o.importComplete(json);
+                                    }
+                                } catch (ee){}
+                                json=null;
+                            }
+                        }, o.ajaxOptions ));
+                        break;
+                    case 'jsonstring' :
+                        if(o.impstring && typeof o.impstring === 'string') {
+                            jsonConvert(o.impstring,o );
+                            $($t).triggerHandler("jqGridImportComplete", [o.impstring, o]);
                             if($.isFunction(o.importComplete)) {
-                                o.importComplete(xmld);
+                                o.importComplete(o.impstring);
                             }
                             o.impstring = null;
                         }
-                        xmld = null;
-                    }
-                    break;
-                case 'json':
-                    $.ajax($.extend({
-                        url:o.impurl,
-                        type:o.mtype,
-                        data: o.impData,
-                        dataType:"json",
-                        complete: function(json) {
-                            try {
-                                jsonConvert(json.responseText,o );
-                                $($t).triggerHandler("jqGridImportComplete", [json, o]);
-                                if($.isFunction(o.importComplete)) {
-                                    o.importComplete(json);
-                                }
-                            } catch (ee){}
-                            json=null;
-                        }
-                    }, o.ajaxOptions ));
-                    break;
-                case 'jsonstring' :
-                    if(o.impstring && typeof o.impstring === 'string') {
-                        jsonConvert(o.impstring,o );
-                        $($t).triggerHandler("jqGridImportComplete", [o.impstring, o]);
-                        if($.isFunction(o.importComplete)) {
-                            o.importComplete(o.impstring);
-                        }
-                        o.impstring = null;
-                    }
-                    break;
+                        break;
                 }
             });
         },
@@ -176,16 +176,16 @@
                     }
                 }
                 switch (o.exptype) {
-                case 'xmlstring' :
-                    ret = "<"+o.root+">"+xmlJsonClass.json2xml(gprm,o.ident)+"</"+o.root+">";
-                    break;
-                case 'jsonstring' :
-                    ret = "{"+ xmlJsonClass.toJson(gprm,o.root,o.ident,false)+"}";
-                    if(gprm.postData.filters !== undefined) {
-                        ret=ret.replace(/filters":"/,'filters":');
-                        ret=ret.replace(/}]}"/,'}]}');
-                    }
-                    break;
+                    case 'xmlstring' :
+                        ret = "<"+o.root+">"+xmlJsonClass.json2xml(gprm,o.ident)+"</"+o.root+">";
+                        break;
+                    case 'jsonstring' :
+                        ret = "{"+ xmlJsonClass.toJson(gprm,o.root,o.ident,false)+"}";
+                        if(gprm.postData.filters !== undefined) {
+                            ret=ret.replace(/filters":"/,'filters":');
+                            ret=ret.replace(/}]}"/,'}]}');
+                        }
+                        break;
                 }
             });
             return ret;

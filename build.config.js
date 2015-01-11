@@ -6,10 +6,11 @@ module.exports = {
     compile_dir: 'dist',
 
     app_files: {
-        js: [ 'src/**/*.js' ],
+        js: [ 'js/**/*.js' ],
         external: [ 'external/**/*.js' ],
         i18n: [ 'i18n/**/*.js' ],
-        less: 'less/grid.less'
+        less: 'less/grid.less',
+        jsunit: [ 'test/**/*.js' ]
     },
 
     doc_files: {
@@ -18,6 +19,7 @@ module.exports = {
         template: [ 'docs/template/**/*' ],
         helpers: [ 'docs/template/helpers/*.js' ],
         layoutdir: 'docs/template/layout',
+        datadir: 'docs/template/data',
         layout: 'default.hbs',
         less: 'docs/template/less/docs.less',
         js: 'docs/template/*.js',
