@@ -156,6 +156,7 @@ module.exports = function ( grunt ) {
                 },
                 src: [
                     '<%= app_files.js %>',
+                    '<%= app_files.external %>'
                 ],
                 dest: '<%= build_dir %>/<%= pkg.name %>-<%= pkg.version %>.js'
             }
