@@ -24,6 +24,9 @@ main.container h3 code,
 main.container h4 code {
   color: #333333;
 }
+main.container .internal-link {
+  cursor: pointer;
+}
 pre .string {
   color: #df5000;
 }
