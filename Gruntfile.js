@@ -50,7 +50,9 @@ module.exports = function ( grunt ) {
 
         clean: {
             build: [
-            '<%= build_dir %>',
+            '<%= build_dir %>'
+            ],
+            compile: [
             '<%= compile_dir %>'
             ],
             docs: [
@@ -359,7 +361,7 @@ module.exports = function ( grunt ) {
     ]);
 
     grunt.registerTask( 'compile', [
-        'less:compile', 'concat:compile_css', 'copy:compile_vendorjs', 'uglify:compile', 'uglify:compile_i18n'
+        'clean:compile', 'less:compile', 'concat:compile_css', 'copy:compile_vendorjs', 'uglify:compile', 'uglify:compile_i18n'
     ]);
 
     grunt.registerTask( 'docs', [
