@@ -503,7 +503,7 @@ $.jgrid.extend({
 								if(soptions.defaultValue !== undefined) { $(elem).val(soptions.defaultValue); }
 								if(soptions.attr) {$(elem).attr(soptions.attr);}
 								$("span.ui-search-input",stbl).append( elem );
-								$(thd).append(stbl);
+								$(th).append(stbl);
 								$.jgrid.bindEv.call($t, elem , soptions);
 								if(p.autosearch===true){
 									$(elem).change(function(){
