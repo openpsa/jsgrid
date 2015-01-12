@@ -1239,7 +1239,7 @@ $.fn.jqGrid = function( pin ) {
 				if (field.name !== 'cb' && field.name !=='subgrid' && field.name !=='rn') {
 					f[j] = (datatype === "xml" || datatype === "xmlstring") ?
 							field.xmlmap || field.name :
-							(datatype === "local" && !ts.p.skipUsageOfJsonMap ? field.jsonmap || field.name : field.name);
+							(datatype === "local" && !ts.p.dataTypeOrg ? field.jsonmap || field.name : field.name);
 					if(ts.p.keyName !== false && field.key===true ) {
 						ts.p.keyName = f[j];
 					}
@@ -2135,7 +2135,6 @@ $.fn.jqGrid = function( pin ) {
 											if (ts.p.loadonce || ts.p.treeGrid) {
 												ts.p.dataTypeOrg = ts.p.datatype;
 												ts.p.datatype = "local";
-												ts.p.skipUsageOfJsonMap = true;
 											}
                                             data=null;
                                             if (npage === 1) { endReq(); }
@@ -2972,6 +2971,7 @@ $.fn.jqGrid = function( pin ) {
 			}
 			if (p.datatype === "local" && p.dataTypeOrg && p.loadonce) {
 				p.datatype = String(p.dataTypeOrg);
+				delete p.dataTypeOrg;
 			}
 			if (opts && opts.current) {
 				grid.selectionPreserver(this);
@@ -3178,7 +3178,7 @@ $.fn.jqGrid = function( pin ) {
 				}
 			}
 
-			if (doAutoresize && (resizerOffset.left - 1 <= e.pageX && e.pageX <= resizerOffset.left + $resizer.outerWidth() + 1)) {
+			if (doAutoresize && (resizerOffset.left - 1 <= e.pageX && e.pageX <= resizerOffset.left + $resizer.outerWidth() + 1) && cm != null && cm.autoResizable) {
 				$(ts).jqGrid("autoResizeColumn", iCol);
 			}
 			return false;
