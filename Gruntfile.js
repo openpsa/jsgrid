@@ -144,6 +144,12 @@ module.exports = function ( grunt ) {
                         expand: true
                     },
                     {
+                        src: [ 'i18n/grid.locale-en.js' ],
+                        dest: '<%= build_dir %>/docs',
+                        cwd: '<%= build_dir %>/',
+                        expand: true
+                    },
+                    {
                         src: [ '*.*' ],
                         dest: '<%= build_dir %>/docs',
                         cwd: '<%= build_dir %>/',

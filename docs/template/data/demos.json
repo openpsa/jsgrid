@@ -2,5 +2,7 @@
     {"filename": "local.html", "title": "Local Data"},
     {"filename": "grouping.html", "title": "Grouping"},
     {"filename": "groupingDisplay.html", "title": "Grouping Custom Display Value"},
-    {"filename": "groupingTitle.html", "title": "Grouping Custom Title"}
+    {"filename": "groupingTitle.html", "title": "Grouping Custom Title"},
+	{"filename": "searchFilter.html", "title": "Search Filter"},
+	{"filename": "searchFilterOperator.html", "title": "Search Filter with Operators"}
 ]
