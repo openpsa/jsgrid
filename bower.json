@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git://github.com/openpsa/grid.js.git"
   },
-  "version": "0.1",
+  "version": "0.1.0",
   "dependencies": {
     "jquery": ">=1.7"
   },
