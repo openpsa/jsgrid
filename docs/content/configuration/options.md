@@ -38,9 +38,10 @@ Defines in what format to expect the data that fills the grid. Valid options are
  - `'xml'`: we expect data in XML format
  - `'xmlstring'`: we expect XML data as string
  - `'json'`: we expect data in JSON format
+ - `'jsonp'`: we expect data in JSON format from a different server
  - `'jsonstring'`: we expect JSON data as a string
  - `'local'`: we expect data defined at client side (array data)
- - `'javascript'` we expect Javascript as data
+ - `'script'` we expect Javascript as data
  - `function` custom defined function for retrieving data
  - `'clientSide'` to manually load data via the data array
 
