@@ -1152,21 +1152,19 @@ $.fn.jqGrid = function( pin ) {
 			return val == null || val === "" ? "&#160;" : (ts.p.autoencode ? $.jgrid.htmlEncode(val) : String(val));
 		},
 		formatter = function (rowId, cellval , colpos, rwdat, _act){
-			var cm = ts.p.colModel[colpos],v;
+			var cm = ts.p.colModel[colpos];
 			if(cm.formatter !== undefined) {
-				rowId = String(ts.p.idPrefix) !== "" ? $.jgrid.stripPref(ts.p.idPrefix, rowId) : rowId;
-				var opts= {rowId: rowId, colModel:cm, gid:ts.p.id, pos:colpos };
-				if($.isFunction( cm.formatter ) ) {
-					v = cm.formatter.call(ts,cellval,opts,rwdat,_act);
-				} else if($.fmatter){
-					v = $.fn.fmatter.call(ts,cm.formatter,cellval,opts,rwdat,_act);
-				} else {
-					v = cellVal(cellval);
-				}
-			} else {
-				v = cellVal(cellval);
+                            rowId = String(ts.p.idPrefix) !== "" ? $.jgrid.stripPref(ts.p.idPrefix, rowId) : rowId;
+                            var opts= {rowId: rowId, colModel:cm, gid:ts.p.id, pos:colpos };
+                            if($.isFunction( cm.formatter ) ) {
+                                return cm.formatter.call(ts,cellval,opts,rwdat,_act);
+                            } else if($.fmatter){
+                                return $.fn.fmatter.call(ts,cm.formatter,cellval,opts,rwdat,_act);
+                            }
+			} else if(cm.name === ts.p.jsonReader.id){
+                            return String(ts.p.idPrefix) !== "" ? $.jgrid.stripPref(ts.p.idPrefix, rowId) : rowId;
 			}
-			return v;
+			return cellVal(cellval);
 		},
 		addCell = function(rowId,cell,pos,irow, srvr, rdata) {
 			var v,prp;
@@ -2042,90 +2040,107 @@ $.fn.jqGrid = function( pin ) {
 					if(bfr === undefined) { bfr = true; }
 					if ( bfr === false ) { return; }
 				}
-				dt = ts.p.datatype.toLowerCase();
-				switch(dt)
-				{
-				case "json":
-				case "jsonp":
-				case "xml":
-				case "script":
-					$.ajax($.extend({
-						url:ts.p.url,
-						type:ts.p.mtype,
-						dataType: dt ,
-						data: $.isFunction(ts.p.serializeGridData)? ts.p.serializeGridData.call(ts,ts.p.postData) : ts.p.postData,
-						success:function(data,st, xhr) {
-							if ($.isFunction(ts.p.beforeProcessing)) {
-								if (ts.p.beforeProcessing.call(ts, data, st, xhr) === false) {
-									endReq();
-									return;
-								}
-							}
-							if(dt === "xml") { addXmlData(data,ts.grid.bDiv,rcnt,npage>1,adjust); }
-							else { addJSONData(data,ts.grid.bDiv,rcnt,npage>1,adjust); }
-							$(ts).triggerHandler("jqGridLoadComplete", [data]);
-							if(lc) { lc.call(ts,data); }
-							$(ts).triggerHandler("jqGridAfterLoadComplete", [data]);
-							if (pvis) { ts.grid.populateVisible(); }
-							if( ts.p.loadonce || ts.p.treeGrid) {ts.p.datatype = "local";}
-							data=null;
-							if (npage === 1) { endReq(); }
-						},
-						error:function(xhr,st,err){
-							if($.isFunction(ts.p.loadError)) { ts.p.loadError.call(ts,xhr,st,err); }
-							if (npage === 1) { endReq(); }
-							xhr=null;
-						},
-						beforeSend: function(xhr, settings ){
-							var gotoreq = true;
-							if($.isFunction(ts.p.loadBeforeSend)) {
-								gotoreq = ts.p.loadBeforeSend.call(ts,xhr, settings); 
-							}
-							if(gotoreq === undefined) { gotoreq = true; }
-							if(gotoreq === false) {
-								return false;
-							}
-								beginReq();
-							}
-					},$.jgrid.ajaxOptions, ts.p.ajaxGridOptions));
-				break;
-				case "xmlstring":
-					beginReq();
-					dstr = typeof ts.p.datastr !== 'string' ? ts.p.datastr : $.parseXML(ts.p.datastr);
-					addXmlData(dstr,ts.grid.bDiv);
-					$(ts).triggerHandler("jqGridLoadComplete", [dstr]);
-					if(lcf) {ts.p.loadComplete.call(ts,dstr);}
-					$(ts).triggerHandler("jqGridAfterLoadComplete", [dstr]);
-					ts.p.datatype = "local";
-					ts.p.datastr = null;
-					endReq();
-				break;
-				case "jsonstring":
-					beginReq();
-					if(typeof ts.p.datastr === 'string') { dstr = $.jgrid.parse(ts.p.datastr); }
-					else { dstr = ts.p.datastr; }
-					addJSONData(dstr,ts.grid.bDiv);
-					$(ts).triggerHandler("jqGridLoadComplete", [dstr]);
-					if(lcf) {ts.p.loadComplete.call(ts,dstr);}
-					$(ts).triggerHandler("jqGridAfterLoadComplete", [dstr]);
-					ts.p.datatype = "local";
-					ts.p.datastr = null;
-					endReq();
-				break;
-				case "local":
-				case "clientside":
-					beginReq();
-					ts.p.datatype = "local";
-					var req = addLocalData();
-					addJSONData(req,ts.grid.bDiv,rcnt,npage>1,adjust);
-					$(ts).triggerHandler("jqGridLoadComplete", [req]);
-					if(lc) { lc.call(ts,req); }
-					$(ts).triggerHandler("jqGridAfterLoadComplete", [req]);
-					if (pvis) { ts.grid.populateVisible(); }
-					endReq();
-				break;
-				}
-			}
+				if(ts.p.url != null){
+                                    $.ajax($.extend({
+                                        url:ts.p.url,
+                                        type:ts.p.mtype,
+                                        data: $.isFunction(ts.p.serializeGridData)? ts.p.serializeGridData.call(ts,ts.p.postData) : ts.p.postData,
+                                        success:function(data,st, xhr) {
+                                            if ($.isFunction(ts.p.beforeProcessing)) {
+                                                if (ts.p.beforeProcessing.call(ts, data, st, xhr) === false) {
+                                                    endReq();
+                                                    return;
+                                                }
+                                            }
+                                    
+                                            if(xhr.responseJSON !== undefined){
+                                                ts.p.datatype = 'json';
+                                                addJSONData(data, ts.grid.bDiv, rcnt, npage > 1, adjust);
+                                            } else if(xhr.responseXML !== undefined){
+                                                ts.p.datatype = 'xml';
+                                                addXmlData(data, ts.grid.bDiv, rcnt, npage > 1, adjust);
+                                            } else {
+                                                try{
+                                                    data = $.parseJSON(data);
+                                                    ts.p.datatype = 'json';
+                                                    addJSONData(data, ts.grid.bDiv, rcnt, npage > 1, adjust);
+                                                }catch(e){
+                                                    try{
+                                                        data = $.parseXML(data);
+                                                        ts.p.datatype = 'xml';
+                                                        addXmlData(data, ts.grid.bDiv, rcnt, npage > 1, adjust);
+                                                    } catch(er){
+                                                        //TODO: alert user
+                                                    }
+                                                }
+                                            }
+                                    
+                                            $(ts).triggerHandler("jqGridLoadComplete", [data]);
+                                            if(lc) { lc.call(ts,data); }
+                                            $(ts).triggerHandler("jqGridAfterLoadComplete", [data]);
+                                            if (pvis) { ts.grid.populateVisible(); }
+                                            if( ts.p.loadonce || ts.p.treeGrid) {ts.p.datatype = "local";}
+                                            data=null;
+                                            if (npage === 1) { endReq(); }
+                                        },
+                                        error:function(xhr,st,err){
+                                            if($.isFunction(ts.p.loadError)) { ts.p.loadError.call(ts,xhr,st,err); }
+                                            if (npage === 1) { endReq(); }
+                                            xhr=null;
+                                        },
+                                        beforeSend: function(xhr, settings ){
+                                            var gotoreq = true;
+                                            if($.isFunction(ts.p.loadBeforeSend)) {
+                                                gotoreq = ts.p.loadBeforeSend.call(ts,xhr, settings);
+                                            }
+                                            if(gotoreq === undefined) { gotoreq = true; }
+                                            if(gotoreq === false) {
+                                                return false;
+                                            }
+                                            beginReq();
+                                        }
+                                    },$.jgrid.ajaxOptions, ts.p.ajaxGridOptions));
+                                } else {
+                                    dt = ts.p.datatype.toLowerCase();
+                                    switch(dt) {
+                                        case "xmlstring":
+                                            beginReq();
+                                            dstr = typeof ts.p.datastr !== 'string' ? ts.p.datastr : $.parseXML(ts.p.datastr);
+                                            addXmlData(dstr,ts.grid.bDiv);
+                                            $(ts).triggerHandler("jqGridLoadComplete", [dstr]);
+                                            if(lcf) {ts.p.loadComplete.call(ts,dstr);}
+                                            $(ts).triggerHandler("jqGridAfterLoadComplete", [dstr]);
+                                            ts.p.datatype = "local";
+                                            ts.p.datastr = null;
+                                            endReq();
+                                            break;
+                                        case "jsonstring":
+                                            beginReq();
+                                            if(typeof ts.p.datastr === 'string') { dstr = $.jgrid.parse(ts.p.datastr); }
+                                            else { dstr = ts.p.datastr; }
+                                            addJSONData(dstr,ts.grid.bDiv);
+                                            $(ts).triggerHandler("jqGridLoadComplete", [dstr]);
+                                            if(lcf) {ts.p.loadComplete.call(ts,dstr);}
+                                            $(ts).triggerHandler("jqGridAfterLoadComplete", [dstr]);
+                                            ts.p.datatype = "local";
+                                            ts.p.datastr = null;
+                                            endReq();
+                                            break;
+                                        case "local":
+                                        case "clientside":
+                                            beginReq();
+                                            ts.p.datatype = "local";
+                                            var req = addLocalData();
+                                            addJSONData(req,ts.grid.bDiv,rcnt,npage>1,adjust);
+                                            $(ts).triggerHandler("jqGridLoadComplete", [req]);
+                                            if(lc) { lc.call(ts,req); }
+                                            $(ts).triggerHandler("jqGridAfterLoadComplete", [req]);
+                                            if (pvis) { ts.grid.populateVisible(); }
+                                            endReq();
+                                            break;
+                                    } 
+                                }
+                            }
 		},
 		setHeadCheckBox = function ( checked ) {
 			$('#cb_'+$.jgrid.jqID(ts.p.id),ts.grid.hDiv)[ts.p.useProp ? 'prop': 'attr']("checked", checked);
@@ -2895,7 +2910,7 @@ $.fn.jqGrid = function( pin ) {
 		grid.bDiv = document.createElement("div");
 		if(isMSIE) { if(String(ts.p.height).toLowerCase() === "auto") { ts.p.height = "100%"; } }
 		$(grid.bDiv)
-			.append($('<div style="position:relative;'+(isMSIE && $.jgrid.msiever() < 8 ? "height:0.01%;" : "")+'"></div>').append('<div></div>').append(this))
+			.append($('<div style="position:relative;"></div>').append('<div></div>').append(this))
 			.addClass("ui-jqgrid-bdiv")
 			.css({ height: ts.p.height+(isNaN(ts.p.height)?"":"px"), width: (grid.width)+"px"})
 			.scroll(grid.scrollGrid);

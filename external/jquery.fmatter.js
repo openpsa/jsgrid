@@ -159,20 +159,24 @@
 		}
 		return $.fn.fmatter.defaultFormat(cellval,opts);
 	};
-	$.fn.fmatter.integer = function (cellval, opts, op, action) {
-		op = (action === undefined) ? op || $.extend({}, opts.integer) : $.extend({}, opts.integer);
-		if (opts.colModel !== undefined && opts.colModel.formatoptions !== undefined) {
-		    op = $.extend({}, op, opts.colModel.formatoptions);
+	var numberHelper = function(cellval, opts, formatType) {
+		var op = $.extend({},opts[formatType]);
+		if(opts.colModel !== undefined && opts.colModel.formatoptions !== undefined) {
+		    op = $.extend({},op,opts.colModel.formatoptions);
 		}
-		return ($.fmatter.isEmpty(cellval)) ? op.defaultValue : $.fmatter.util.NumberFormat(cellval, op);
+		if($.fmatter.isEmpty(cellval)) {
+		    return op.defaultValue;
+		}
+		return $.fmatter.util.NumberFormat(cellval,op);
+	};
+	$.fn.fmatter.integer = function(cellval, opts) {
+	    return numberHelper(cellval,opts,"integer");
 	};
 	$.fn.fmatter.number = function (cellval, opts) {
-		var op = $.extend({}, opts.number);
-		return $.fn.fmatter.integer(cellval, opts, op);
+	    return numberHelper(cellval,opts,"number");
 	};
 	$.fn.fmatter.currency = function (cellval, opts) {
-		var op = $.extend({}, opts.currency);
-		return $.fn.fmatter.integer(cellval, opts, op);
+	    return numberHelper(cellval,opts,"currency");
 	};
 	$.fn.fmatter.date = function (cellval, opts, rwd, act) {
 		var op = $.extend({},opts.date);
