@@ -2040,7 +2040,7 @@ $.fn.jqGrid = function( pin ) {
 					if(bfr === undefined) { bfr = true; }
 					if ( bfr === false ) { return; }
 				}
-				if(ts.p.url != null){
+				if(ts.p.url != null && ts.p.datatype != 'local'){
                                     $.ajax($.extend({
                                         url:ts.p.url,
                                         type:ts.p.mtype,
