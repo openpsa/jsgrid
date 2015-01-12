@@ -3740,7 +3740,7 @@ $.jgrid.extend({
 			this.p.caption=newcap;
 			$("span.ui-jqgrid-title, span.ui-jqgrid-title-rtl",this.grid.cDiv).html(newcap);
 			$(this.grid.cDiv).show();
-			$(grid.cDiv).nextAll("div").removeClass('ui-corner-top');
+			$(this.grid.cDiv).nextAll("div").removeClass('ui-corner-top');
 		});
 	},
 	setLabel : function(colname, nData, prop, attrp ){
