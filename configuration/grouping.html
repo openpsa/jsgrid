@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>grid.js</title>
+<link href="../grid.js-4.7.0.css" rel="stylesheet">
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css" rel="stylesheet">
+<link href="../docs.css" rel="stylesheet">
+
+<script src="../vendor/jquery.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="container-fluid">
+<div class="navbar-header">
+<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a href="../index.html" class="navbar-brand">grid.js</a>
+</div>
+
+<div class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+<ul class="nav navbar-nav">
+<li class="active">
+   <a href="../configuration.html">Configuration</a>
+</li>
+
+<li> <a href="../demos/index.html">Demos</a> </li>
+</ul>
+<ul class="nav navbar-nav pull-right">
+<li> <a href="https://github.com/openpsa/grid.js">GitHub Repo</a> </li>
+</ul>
+</div>
+
+</div>
+</nav>
+
+<main class="container">
+
+<div class="col-md-9">
+
+<h1 id="grouping">Grouping</h1>
+<p>The simplest way to group in grid.js is to enable grouping with the
+grid option <code>grouping</code> and define a field name on which grouping
+occurs. The name value specified should correspond to the name in the
+<code>colModel</code> The definition is done with the <code>groupField</code> array which is a part of the grid option <code>groupingView</code>.</p>
+<p>It is important to note that if you want the grouping to be correct, then the data should come from server to the grid sorted by that field. When we are in local mode (the data is an array) the data is grouped (sorted) automatically so there is no need to define any additional sort column.</p>
+<p>In order to inform the server that we want to have a grouped data, jqGrid adds to the <code>sidx</code> parameter the groupField name on which we group. This done only if we have enabled the grouping and the data is remote.</p>
+<h2 id="limitations">Limitations</h2>
+<p>When the grouping is enabled, the following options will be set explicitly in the code:</p>
+<ul>
+<li><code>scroll</code> = <code>false</code></li>
+<li><code>rownumbers</code> = <code>false</code></li>
+<li><code>treeGrid</code> = <code>false</code></li>
+<li><code>gridview</code> = <code>true</code> (The <code>afterInsertRow</code> event also does not fire)</li>
+</ul>
+<p>Please refer to the <a href="./options.html">options</a> page for more information.</p>
+<h2 id="grouping-options">Grouping options</h2>
+<p>All options in grouping are set as grid options and can be changed dynamically using the <code>setGridParam</code> method.
+Two options are related to grouping:</p>
+<ul>
+<li><code>grouping</code></li>
+<li><code>groupingView</code></li>
+</ul>
+<p>The first option <code>grouping</code> is boolean and enables or disables the grouping feature into the grid. The default value of this option is <code>false</code>. To enable grouping set it to <code>true</code>.</p>
+<p>The <code>groupingView</code> option is an object and has a lot of sub-options.
+Below is a example on how this should be used:</p>
+<pre><code class="language-javascript">$(<span class="string">"#grid"</span>).jqGrid({
+  <span class="comment">//...</span>
+  groupingView : {
+     groupField : [<span class="string">'name'</span>, <span class="string">'ínvdate'</span>],
+     groupOrder : [<span class="string">'asc'</span>, <span class="string">'desc'</span>]
+  }
+  <span class="comment">//...</span>
+});</code></pre>
+<p>Below is the list of the options that can be set in <code>groupingView</code>:</p>
+<h3 id="-groupfield-"><code>groupField</code></h3>
+<p><strong>Type:</strong> array
+<strong>Default:</strong> <code>[]</code></p>
+<p>Defines the name from <a href="./colModel.html">Column model</a> on which we group. The first value is the first level, the second value is the second level and so on.</p>
+<h3 id="-displayfield-"><code>displayField</code></h3>
+<p><strong>Type:</strong> array
+<strong>Default:</strong> <code>null</code></p>
+<p>Defines the column we use for the display data for the group.</p>
+<h3 id="-titlefield-"><code>titleField</code></h3>
+<p><strong>Type:</strong> array
+<strong>Default:</strong> <code>null</code></p>
+<p>If specified defines the column we use for the title for the group - otherwise there is no title for the group header. This allows us to truncate the display value and still display the full value to the user if they hover.</p>
+<h3 id="-grouporder-"><code>groupOrder</code></h3>
+<p><strong>Type:</strong> array
+<strong>Default:</strong> <code>[]</code></p>
+<p>Defines the initial sort order of the group level. Can be <code>&#39;asc&#39;</code> for ascending or <code>&#39;desc&#39;</code> for descending order. If the grouping is enabled the default value is <code>&#39;asc&#39;</code>.</p>
+<h3 id="-grouptext-"><code>groupText</code></h3>
+<p><strong>Type:</strong> array
+<strong>Default:</strong> <code>[]</code></p>
+<p>Defines the grouping header text for the group level that will be
+displayed in the grid. By default if defined the value is <code>&#39;{0}&#39;</code>,
+which means that the group value name will be displayed.  It is
+possible to specify another value <code>{1}</code> which means that the total
+count of this group will be displayed, too. It is possible to set
+any valid HTML content.</p>
+<h3 id="-groupcolumnshow-"><code>groupColumnShow</code></h3>
+<p><strong>Type:</strong> array
+<strong>Default:</strong> <code>[]</code></p>
+<p>Shows or hides the column on which we group. The value here should be a boolean <code>true</code>/<code>false</code> for the group level. If the grouping is enabled we set this value to <code>true</code>.</p>
+<h3 id="-groupsummary-"><code>groupSummary</code></h3>
+<p><strong>Type:</strong> array
+<strong>Default:</strong> <code>[]</code></p>
+<p>Enable or disable the summary (footer) row of the current group level. If grouping is set, the default value for the group is <code>false</code>.</p>
+<h3 id="-groupsummarypos-"><code>groupSummaryPos</code></h3>
+<p><strong>Type:</strong> array
+<strong>Default:</strong> <code>[]</code></p>
+<p>Set the position of the summary row at current group level. Possible
+ values are:</p>
+<ul>
+<li><code>&#39;header&#39;</code> - The summary values are placed at the same row where the
+group values are.</li>
+<li><code>&#39;footer&#39;</code> - An additional row at end of the group level is built and the summary values are placed here</li>
+</ul>
+<h3 id="-hidefirstgroupcol-"><code>hideFirstGroupCol</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code></p>
+<p>If set to <code>true</code> the values in the first column are replaced with empty ones so that we have a pretty view. This usually is set if the first column is a group column.</p>
+<h3 id="-showsummaryonhide-"><code>showSummaryOnHide</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code></p>
+<p>Show or hide the summary (footer) row when we collapse the group.</p>
+<h3 id="-groupcollapse-"><code>groupCollapse</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code></p>
+<p>Defines if the grid should initially show or hide the rows in the group.</p>
+<h3 id="-plusicon-"><code>plusicon</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>&#39;ui-icon-circlesmall-plus&#39;</code></p>
+<p>Set the icon from jQuery UI theme that will be used if the grouped row is collapsed.</p>
+<h3 id="-minusicon-"><code>minusicon</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>&#39;ui-icon-circlesmall-minus&#39;</code></p>
+<p>Set the icon from jQuery UI theme that will be used if the grouped row is expanded.</p>
+<h3 id="-isinthesamegroup-"><code>isInTheSameGroup</code></h3>
+<p><strong>Type:</strong> array
+<strong>Default:</strong> <code>null</code></p>
+<p>The elements of the array correspond to the number of the
+groups. Every element of this array is a function which should return
+<code>true</code> or <code>false</code>. In case if it returns <code>false</code>, the element will not
+be added to the group. Parameters passed to this function are : previous value, current value, group index, group object.</p>
+<h3 id="-formatdisplayfield-"><code>formatDisplayField</code></h3>
+<p><strong>Type:</strong> array
+<strong>Default:</strong> <code>null</code></p>
+<p>The elements of the array correspond to the number of the
+groups. Every element should return a value which will be displayed as
+the grouped value. Parameters passed to this function are: current value, source value, <code>colModel</code> option, group index and group object.</p>
+<h2 id="-colmodel-options"><code>colModel</code> Options</h2>
+<p>If the group summary footer row is enabled, we use additional options
+in the  <a href="./colModel.html">Column model</a> to configure the summary
+field.</p>
+<h3 id="-summarytype-"><code>summaryType</code></h3>
+<p><strong>Type:</strong> mixed
+<strong>Default:</strong> <code>null</code></p>
+<p>The option determines what type of calculation we should do with the current group value applied to column. Currently we support the following build in functions:</p>
+<ul>
+<li><code>&#39;sum&#39;</code> - apply the sum function to the current group value and return the result</li>
+<li><code>&#39;count&#39;</code> - apply the count function to the current group value and return the result</li>
+<li><code>&#39;avg&#39;</code> - apply the average function to the current group value and return the result</li>
+<li><code>&#39;min&#39;</code> - apply the min function to the current group value and return the result</li>
+<li><code>&#39;max&#39;</code> - apply the max function to the current group value and return the result</li>
+</ul>
+<p>The option can be defined as function. If defined we pass three parameters to it - the current value, the name and the record object. The function should return value. Note that this value will be used again for the group value until it changes.</p>
+<p>Below is a example on using this function - simulating the <code>sum</code> function.</p>
+<pre><code class="language-javascript"><span class="function"><span class="keyword">function</span> <span class="title">mysum</span><span class="params">(val, name, record)</span>
+{</span>
+    <span class="keyword">return</span> parseFloat(val||<span class="number">0</span>) + parseFloat((record[name]||<span class="number">0</span>));
+}
+
+jQuery(<span class="string">"#grid"</span>).jqGrid({
+  <span class="comment">//...</span>
+  colModel : [
+     <span class="comment">//{..},</span>
+     {name: <span class="string">'amount'</span>, index: <span class="string">'amount'</span>, width: <span class="number">80</span>, align: <span class="string">"right"</span>, sorttype: <span class="string">'number'</span>, formatter: <span class="string">'number'</span>, summaryType: mysum},
+     <span class="comment">//...</span>
+  ],
+  <span class="comment">//...</span>
+});</code></pre>
+<h3 id="-summarytpl-"><code>summaryTpl</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>&#39;{0}&#39;</code></p>
+<p>This option acts as a template which can be used in the summary footer
+row. The default means that this will print the summary value. The parameter can contain any valid HTML code.</p>
+<h3 id="-summaryround-"><code>summaryRound</code></h3>
+<p><strong>Type:</strong> integer
+<strong>Default:</strong> <code>undefined</code></p>
+<p>This option determines the length of the remaining part after the
+decimal point.</p>
+<h3 id="-summaryroundtype-"><code>summaryRoundType</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>&#39;round&#39;</code></p>
+<p>This is the rounding method selector. Possible values are:</p>
+<ul>
+<li><code>&#39;round&#39;</code> - just round it and do not keep trailing zeroes</li>
+<li><code>&#39;fixed&#39;</code> - round it and keep the given fixed number of digits even zeroes</li>
+</ul>
+<p>This parameter works only if the <code>summaryRound</code> is defined.</p>
+<hr>
+<p>Content licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Non Commercial Share Alike</a>. Original content taken from <a href="http://www.trirand.com/jqgridwiki/">jqGrid wiki</a>.</p>
+
+
+</div>
+
+<div class="col-md-3">
+<div id="sub-navigation" class="nav">
+  <!-- navigation injected via jquery -->
+</div>
+</div>
+
+</main>
+
+<footer>
+  <div class="container">
+  <a href="https://github.com/flack/grid.js/tree/master/docs/content/configuration/grouping.md">View Page Source</a>
+  </div>
+</footer>
+
+<script src="../grid.js-4.7.0.js"></script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../ui.js"></script>
+</body>
+</html>

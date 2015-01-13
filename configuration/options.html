@@ -1,0 +1,705 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>grid.js</title>
+<link href="../grid.js-4.7.0.css" rel="stylesheet">
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css" rel="stylesheet">
+<link href="../docs.css" rel="stylesheet">
+
+<script src="../vendor/jquery.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="container-fluid">
+<div class="navbar-header">
+<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a href="../index.html" class="navbar-brand">grid.js</a>
+</div>
+
+<div class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+<ul class="nav navbar-nav">
+<li class="active">
+   <a href="../configuration.html">Configuration</a>
+</li>
+
+<li> <a href="../demos/index.html">Demos</a> </li>
+</ul>
+<ul class="nav navbar-nav pull-right">
+<li> <a href="https://github.com/openpsa/grid.js">GitHub Repo</a> </li>
+</ul>
+</div>
+
+</div>
+</nav>
+
+<main class="container">
+
+<div class="col-md-9">
+
+<h1 id="options">Options</h1>
+<h2 id="data">Data</h2>
+<h3 id="-colmodel-"><code>colModel</code></h3>
+<p><strong>Type:</strong> array
+<strong>Default:</strong> <code>[]</code>
+<strong>Changeable:</strong> No</p>
+<p>Array which describes the parameters of the columns. This is the most important part of the grid. For a full description of all valid values see the <a href="./colModel.html">colModel API</a>.</p>
+<h4 id="-colnames-"><code>colNames</code></h4>
+<p><strong>Type:</strong> array
+<strong>Default:</strong> <code>[]</code>
+<strong>Changeable:</strong> No</p>
+<p>An array in which we place the names of the columns. This is the text that appears in the head of the grid (header layer). The names are separated with commas. Note that the number of elements in this array should be equal of the number elements in the <code>colModel</code> array.</p>
+<h4 id="-cmtemplate-"><code>cmTemplate</code></h4>
+<p><strong>Type:</strong> object
+<strong>Default:</strong> <code>null</code>
+<strong>Changeable:</strong> No</p>
+<p>Defines a set of properties which override the default values in <code>colModel</code>. For example if you want to make all columns not sortable, then only one propery here can be specified instead of specifying it in all columns in <code>colModel</code></p>
+<h3 id="-datatype-"><code>datatype</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>&#39;xml&#39;</code>
+<strong>Changeable:</strong> Yes</p>
+<p>Defines in what format to expect the data that fills the grid. Valid options are</p>
+<ul>
+<li><code>&#39;xml&#39;</code>: we expect data in XML format</li>
+<li><code>&#39;xmlstring&#39;</code>: we expect XML data as string</li>
+<li><code>&#39;json&#39;</code>: we expect data in JSON format</li>
+<li><code>&#39;jsonstring&#39;</code>: we expect JSON data as a string</li>
+<li><code>&#39;local&#39;</code>: we expect data defined at client side (array data)</li>
+<li><code>&#39;javascript&#39;</code> we expect Javascript as data</li>
+<li><code>function</code> custom defined function for retrieving data</li>
+<li><code>&#39;clientSide&#39;</code> to manually load data via the data array</li>
+</ul>
+<p>See <a href="./colModel.html">colModel API</a> and Retrieving Data</p>
+<h4 id="-data-"><code>data</code></h4>
+<p><strong>Type:</strong> array
+<strong>Default:</strong> <code>[]</code>
+<strong>Changeable:</strong> Yes</p>
+<p>An array that stores the local data passed to the grid. You can directly point to this variable in case you want to load an array data. It can replace the <code>addRowData</code> method which is slow on relatively big data</p>
+<h4 id="-datastr-"><code>datastr</code></h4>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>null</code>
+<strong>Changeable:</strong> Yes</p>
+<p>The string of data when <code>datatype</code> parameter is set to <code>&#39;xmlstring&#39;</code> or <code>&#39;jsonstring&#39;</code></p>
+<h4 id="-jsonreader-"><code>jsonReader</code></h4>
+<p><strong>Type:</strong> object
+<strong>Default:</strong> <code>{}</code>
+<strong>Changeable:</strong> No</p>
+<p>Describes the structure of the expected JSON data. For a full description and default setting, see Retrieving Data JSON Data</p>
+<h4 id="-xmlreader-"><code>xmlReader</code></h4>
+<p><strong>Type:</strong> object
+<strong>Default:</strong> <code>{}</code>
+<strong>Changeable:</strong> No</p>
+<p>Describes the structure of the expected XML data. For a full description refer to Retrieving Data in XML Format.</p>
+<h2 id="rendering">Rendering</h2>
+<h3 id="-altrows-"><code>altRows</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code>
+<strong>Changeable:</strong> Yes. Requires reload</p>
+<p>Set a zebra-striped grid (alternate rows have different styles)</p>
+<h4 id="-altclass-"><code>altclass</code></h4>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>&#39;ui-priority-secondary&#39;</code>
+<strong>Changeable:</strong> Yes. Requires reload</p>
+<p>The class that is used for applying different styles to alternate (zebra) rows in the grid. You can construct your own class and replace this value.</p>
+<p>This option is valid only if the <code>altRows</code> option is set to <code>true</code></p>
+<h3 id="-autowidth-"><code>autowidth</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code>
+<strong>Changeable:</strong> No</p>
+<p>When set to <code>true</code>, the grid width is recalculated automatically to the width of the parent element. This is done only initially when the grid is created. In order to resize the grid when the parent element changes width you should apply custom code and use the <code>setGridWidth</code> method for this purpose</p>
+<h3 id="-celllayout-"><code>cellLayout</code></h3>
+<p><strong>Type:</strong> integer
+<strong>Default:</strong> <code>5</code>
+<strong>Changeable:</strong> No</p>
+<p>This option determines the padding + border width of the cell. Usually this should not be changed, but if custom changes to the td element are made in the grid CSS file, this will need to be changed. The initial value of <code>5</code> means</p>
+<pre><code>paddingLeft (2) + paddingRight (2) + borderLeft (1) = 5</code></pre>
+<h3 id="-direction-"><code>direction</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>&#39;ltr&#39;</code>
+<strong>Changeable:</strong> No</p>
+<p>Determines the direction of text in the grid. The default is <code>ltr</code> (Left To Right). When set to <code>rtl</code> (Right To Left) the grid automatically changes the direction of the text. It is important to note that in one page we can have two (or more) grids where the one can have direction <code>ltr</code> while the other can have direction <code>rtl</code>.</p>
+<h3 id="-forcefit-"><code>forceFit</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code>
+<strong>Changeable:</strong> No</p>
+<p>If set to <code>true</code>, and a column&#39;s width is changed, the adjacent column (to the right) will resize so that the overall grid width is maintained (e.g., reducing the width of column 2 by 30px will increase the size of column 3 by 30px). In this case there is no horizontal scrollbar. Note: This option is not compatible with <code>shrinkToFit</code> option - i.e if <code>shrinkToFit</code> is set to <code>false</code>, <code>forceFit</code> is ignored.</p>
+<h3 id="-headertitles-"><code>headertitles</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code>
+<strong>Changeable:</strong> No</p>
+<p>If the option is set to <code>true</code> the <code>title</code> attribute is added to the column headers.</p>
+<h3 id="-height-"><code>height</code></h3>
+<p><strong>Type:</strong> mixed
+<strong>Default:</strong> <code>150</code>
+<strong>Changeable:</strong> No. Method available</p>
+<p>The height of the grid. Can be set as number (in this case we mean pixels) or as percentage (only <code>100%</code> is accepted) or <code>auto</code>.</p>
+<h3 id="-idprefix-"><code>idPrefix</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>&#39;&#39;</code>
+<strong>Changeable:</strong> Yes</p>
+<p>When set, this string is added as prefix to the id of the row when it is built.</p>
+<h3 id="-resizeclass-"><code>resizeclass</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>&#39;&#39;</code>
+<strong>Changeable:</strong> No</p>
+<p>Assigns a class to columns that are resizable so that we can show a resize handle only for ones that are resizable.</p>
+<h3 id="-rownum-"><code>rowNum</code></h3>
+<p><strong>Type:</strong> integer
+<strong>Default:</strong> <code>20</code>
+<strong>Changeable:</strong> Yes</p>
+<p>Sets how many records we want to view in the grid. This parameter is passed to the URL for use by the server routine retrieving the data. Note that if you set this parameter to <code>10</code> (i.e. retrieve 10 records) and your server returns 15 then only 10 records will be loaded. Set this parameter to -1 (unlimited) to disable this checking.</p>
+<h3 id="-shrinktofit-"><code>shrinkToFit</code></h3>
+<p><strong>Type:</strong> boolean or integer
+<strong>Default:</strong> <code>true</code>
+<strong>Changeable:</strong> No</p>
+<p>Defines if the the width of the columns of the grid should be recalculated, taking into consideration the width of the grid. If this value is <code>true</code>, and the width of the columns is also set, then every column is scaled in proportion to its width.</p>
+<p>For example, if we define two columns with widths 80 and 120 pixels, but want the grid to have a width of 300 pixels, then the columns will stretch to fit the entire grid, and the extra width assigned to them will depend on the width of the columns themselves and the extra width available.</p>
+<p>The recalculation is done as follows: the first column gets the width</p>
+<pre><code>(300(new width)/200(sum of all widths))*80(first column width) = 120</code></pre>
+<p>and the second column gets the width</p>
+<pre><code>(300(new width)/200(sum of all widths))*120(second column width) = 180</code></pre>
+<p>Now the widths of the columns sum up to 300 pixels, which is the width of the grid.</p>
+<p>If the value is <code>false</code> and the <code>width</code> option is set, then no re-sizing happens whatsoever. So in this example, if <code>shrinkToFit</code> is set to <code>false</code>, column one will have a width of 80 pixels, column two will have a width of 120 pixels and the grid will retain the width of 300 pixels. If the value of <code>shrinkToFit</code> is an integer, the width is calculated according to it.</p>
+<h3 id="-width-"><code>width</code></h3>
+<p><strong>Type:</strong> integer
+<strong>Default:</strong> <em>none</em>
+<strong>Changeable:</strong> No. Method available</p>
+<p>If this option is not set, the width of the grid is the sum of the widths of the columns defined in the <code>colModel</code> (in pixels). If this option is set, the initial width of each column is set according to the value of the <code>shrinkToFit</code> option.</p>
+<h2 id="user-interface">User Interface</h2>
+<h3 id="-caption-"><code>caption</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>&#39;&#39;</code>
+<strong>Changeable:</strong> No. Method available</p>
+<p>Defines the caption for the grid. This caption appears in the caption layer, which is above the header layer (see How It Works). If the string is empty the caption does not appear.</p>
+<h4 id="-hidegrid-"><code>hidegrid</code></h4>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>true</code>
+<strong>Changeable:</strong> No</p>
+<p>Enables or disables the show/hide grid button, which appears on the right side of the caption layer (see How It Works). Takes effect only if the <code>caption</code> property is not empty.</p>
+<h4 id="-hiddengrid-"><code>hiddengrid</code></h4>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code>
+<strong>Changeable:</strong> No</p>
+<p>If set to <code>true</code> the grid is initially is hidden. The data is not loaded (no request is sent) and only the caption layer is shown. When the show/hide button is clicked for the first time to show grid, the request is sent to the server, the data is loaded, and grid is shown. From this point we have a regular grid. This option has effect only if the <code>caption</code> property is not empty and the <code>hidegrid</code> property is set to <code>true</code>.</p>
+<h3 id="-footerrow-"><code>footerrow</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code>
+<strong>Changeable:</strong> No</p>
+<p>If set to <code>true</code> this will place a footer table with one row below the grid records and above the pager. The number of columns equals what is specified in <code>colModel</code></p>
+<h4 id="-userdata-"><code>userData</code></h4>
+<p><strong>Type:</strong> object
+<strong>Default:</strong> <code>{}</code>
+<strong>Changeable:</strong> No</p>
+<p>Contains custom information from the request. Can be used at any time.</p>
+<h4 id="-userdataonfooter-"><code>userDataOnFooter</code></h4>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code>
+<strong>Changeable:</strong> Yes</p>
+<p>When set to <code>true</code> we directly place the user data array <code>userData</code> in the footer. The rules are as follows: If the <code>userData</code> array contains a name which matches any name defined in <code>colModel</code>, then the value is placed in that column. If there are no such values nothing is placed. Note that if this option is used we use the current formatter options (if available) for that column.</p>
+<h3 id="-hoverrows-"><code>hoverrows</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>true</code>
+<strong>Changeable:</strong> Yes</p>
+<p>When set to <code>false</code> the effect of mouse hovering over the grid data rows is disabled.</p>
+<h3 id="-rownumbers-"><code>rownumbers</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code>
+<strong>Changeable:</strong> No</p>
+<p>If this option is set to <code>true</code>, a new column at left of the grid is added. The purpose of this column is to count the number of available rows, beginning from 1. In this case <code>colModel</code> is extended automatically with new element with the name <code>rn</code>. Note: Do not to use the name <code>rn</code> in the <code>colModel</code>.</p>
+<h4 id="-rownumwidth-"><code>rownumWidth</code></h4>
+<p><strong>Type:</strong> integer
+<strong>Default:</strong> <code>25</code>
+<strong>Changeable:</strong> No</p>
+<p>Determines the width of the row number column if <code>rownumbers</code> option is set to <code>true</code>.</p>
+<h3 id="-multiselect-"><code>multiselect</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code>
+<strong>Changeable:</strong> No. See HOWTO</p>
+<p>If this flag is set to <code>true</code> a multi selection of rows is enabled. A new column at left side containing checkboxes is added. Can be used with any <code>datatype</code> option.</p>
+<h4 id="-multikey-"><code>multikey</code></h4>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>&#39;&#39;</code>
+<strong>Changeable:</strong> Yes</p>
+<p>Defines the key which should be pressed when we make multiselection. The possible values are:</p>
+<ul>
+<li><code>shiftKey</code>: the user should press Shift Key</li>
+<li><code>altKey</code>: the user should press Alt Key</li>
+<li><code>ctrlKey</code>: the user should press Ctrl Key</li>
+</ul>
+<p>This option is only used when the <code>multiselect</code> is set to <code>true</code>.</p>
+<h4 id="-multiboxonly-"><code>multiboxonly</code></h4>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code>
+<strong>Changeable:</strong> Yes</p>
+<p>When <code>multiboxonly</code> is also to <code>true</code>, the multiselection is done only when the checkbox is clicked. Clicking in any other row (suppose the checkbox is not clicked) deselects all rows and selects the current row.</p>
+<p>This option is only used when the <code>multiselect</code> is set to <code>true</code>.</p>
+<h4 id="-multiselectwidth-"><code>multiselectWidth</code></h4>
+<p><strong>Type:</strong> integer
+<strong>Default:</strong> <code>20</code>
+<strong>Changeable:</strong> No</p>
+<p>Determines the width of the checkbox column created</p>
+<p>This option is only used when the <code>multiselect</code> is set to <code>true</code>.</p>
+<h3 id="sorting">Sorting</h3>
+<h4 id="-deselectaftersort-"><code>deselectAfterSort</code></h4>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>true</code>
+<strong>Changeable:</strong> Yes</p>
+<p>Applicable only when we use <code>datatype: &#39;local&#39;</code>. Deselects currently selected row(s) when a sort is applied.</p>
+<h4 id="-multisort-"><code>multiSort</code></h4>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code>
+<strong>Changeable:</strong> Yes</p>
+<p>If set to <code>true</code> enables the multisorting. The options works if the <code>datatype</code> is <code>&#39;local&#39;</code>. In case when the data is obtained from the server the <code>sidx</code> parameter contains the <code>order</code> clause. It is a comma separated string in format <code>field1 asc, field2 desc …, fieldN</code>. Note that the last field does not not have <code>asc</code> or <code>desc</code>. It should be obtained from <code>sord</code> parameter
+When the option is <code>true</code> the behavior is as follows:</p>
+<ul>
+<li>The first click of the header field sorts the field depending on the <code>firstsortoption</code> parameter in <code>colModel</code> or <code>sortorder</code> grid parameter.</li>
+<li>The next click reverses the sort order.</li>
+<li>The third click removes the sorting from this field</li>
+</ul>
+<h4 id="-sortable-"><code>sortable</code></h4>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code>
+<strong>Changeable:</strong> No</p>
+<p>When set to <code>true</code>, this option allows reordering columns by dragging and dropping them with the mouse. Since this option uses the jQuery UI sortable widget, be sure to load this widget and its related files. Also, be sure to select the jQuery UI Addons option under the jQuery UI Addon Methods section while downloading jqGrid if you want to use this facility. Note: The <code>colModel</code> object also has a property called <code>sortable</code>, which specifies if the grid data can be sorted on a particular column or not.</p>
+<h4 id="-sortname-"><code>sortname</code></h4>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>&#39;&#39;</code>
+<strong>Changeable:</strong> Yes</p>
+<p>The column according to which the data is to be sorted when it is initially loaded from the server (note that you will have to use datatypes <code>&#39;xml&#39;</code> or <code>&#39;json&#39;</code> to load remote data). This parameter is appended to the URL. If this value is set and the index (name) matches the name from <code>colModel</code>, then an icon indicating that the grid is sorted according to this column is added to the column header. This icon also indicates the sorting order - descending or ascending (see the parameter <code>sortorder</code>). Also see <code>prmNames</code>.</p>
+<h4 id="-sortorder-"><code>sortorder</code></h4>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>&#39;asc&#39;</code>
+<strong>Changeable:</strong> Yes</p>
+<p>The initial sorting order (ascending or descending) when we fetch data from the server using datatypes <code>&#39;xml&#39;</code> or <code>&#39;json&#39;</code>. This parameter is appended to the URL - see <code>prnNames</code>. The two allowed values are <code>asc</code> or <code>desc</code></p>
+<h4 id="-viewsortcols-"><code>viewsortcols</code></h4>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>[false, &#39;vertical&#39;, true]</code>
+<strong>Changeable:</strong> No</p>
+<p>The purpose of this parameter is to define a different look and behavior for the sorting icons (up/down arrows) that appear in the column headers. This parameter is an array:</p>
+<ul>
+<li>The first parameter determines if sorting icons should be visible on all the columns that have the <code>sortable</code> property set to <code>true</code>.<ul>
+<li><code>true</code> causes all icons in all sortable columns to be visible</li>
+<li><code>false</code> sets the icon to be visible only on the column on which that data has been last sorted.</li>
+</ul>
+</li>
+<li>The second parameter determines how icons should be placed<ul>
+<li><code>&#39;vertical&#39;</code> means that the sorting arrows are one under the other.</li>
+<li><code>&#39;horizontal&#39;</code> means that the arrows should be next to one another.</li>
+</ul>
+</li>
+<li>The third parameter determines the click functionality.<ul>
+<li><code>true</code> means the data is sorted if the user clicks anywhere in the column&#39;s header, not only the icons.</li>
+<li><code>false</code> means the data is sorted only when the sorting icons in the headers are clicked.</li>
+</ul>
+</li>
+</ul>
+<p>Important: If you are setting the third element to <code>false</code>, make sure that you set the first element to <code>true</code>; if you don&#39;t, the icons will not be visible and the user will not know where to click to be able to sort since clicking just anywhere in the header will not guarantee a sort.</p>
+<h3 id="scrolling">Scrolling</h3>
+<h4 id="-scroll-"><code>scroll</code></h4>
+<p><strong>Type:</strong> boolean or integer
+<strong>Default:</strong> <code>false</code>
+<strong>Changeable:</strong> No</p>
+<p>Creates dynamic scrolling grids. When enabled, the pager elements are disabled and we can use the vertical scrollbar to load data. When set to <code>true</code> the grid will always hold all the items from the start through to the latest point ever visited.</p>
+<p>When <code>scroll</code> is set to an integer value (e.g. <code>1</code>), the grid will just hold the visible lines. This allow us to load the data in portions whitout caring about memory leaks. In addition to this we have an optional extension to the server protocol: npage (see <code>prmNames</code> array). If you set the <code>npage</code> option in <code>prmNames</code>, then the grid will sometimes request more than one page at a time; if not, it will just perform multiple GET requests.</p>
+<p>Note that this option is not available when <code>height</code> is set to <code>&#39;auto&#39;</code> or <code>&#39;100%&#39;</code>.</p>
+<h4 id="-scrolloffset-"><code>scrollOffset</code></h4>
+<p><strong>Type:</strong> integer
+<strong>Default:</strong> <code>18</code>
+<strong>Changeable:</strong> No. Method available</p>
+<p>Determines the width of the vertical scrollbar. Since different browsers interpret this width differently (and it is difficult to calculate it in all browsers) this can be changed.</p>
+<h4 id="-scrolltimeout-"><code>scrollTimeout</code></h4>
+<p><strong>Type:</strong> integer
+<strong>Default:</strong> <code>200</code> (milliseconds)
+<strong>Changeable:</strong> Yes</p>
+<p>This controls the timeout handler when <code>scroll</code> is set to <code>1</code>.</p>
+<h4 id="-scrollrows-"><code>scrollrows</code></h4>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code>
+<strong>Changeable:</strong> Yes</p>
+<p>When enabled, selecting a row with setSelection scrolls the grid so that the selected row is visible. This is especially useful when we have a verticall scrolling grid and we use form editing with navigation buttons (next or previous row). On navigating to a hidden row, the grid scrolls so that the selected row becomes visible.</p>
+<h3 id="-toolbar-"><code>toolbar</code></h3>
+<p><strong>Type:</strong> array
+<strong>Default:</strong> <code>[false, &#39;&#39;]</code>
+<strong>Changeable:</strong> No</p>
+<p>This option defines the toolbar of the grid. This is an array with two elements in which the first element&#39;s value enables the toolbar and the second defines the position relative to the body layer (table data). Possible values are <code>&#39;top&#39;</code>, <code>&#39;bottom&#39;</code>, and <code>&#39;both&#39;</code>. When we set it like</p>
+<pre><code>toolbar: [true,”both”]</code></pre>
+<p>two toolbars are created – one on the top of table data and the other at the bottom of the table data. When we have two toolbars, then we create two elements (div). The id of the top bar is constructed by concatenating the string <code>“t_”</code> and the id of the grid, like <code>“t_” + id_of_the_grid</code> and the id of the bottom toolbar is constructed by concatenating the string <code>“tb_”</code> and the id of the grid, like <code>“tb_” + id_of_the grid</code>. In the case where only one toolbar is created, we have the id as <code>“t_” + id_of_the_grid</code>, independent of where this toolbar is located (top or bottom)</p>
+<h2 id="pager">Pager</h2>
+<h3 id="-pager-"><code>pager</code></h3>
+<p><strong>Type:</strong> mixed
+<strong>Default:</strong> <code>&#39;&#39;</code>
+<strong>Changeable:</strong> No</p>
+<p>Defines that we want to use a pager bar to navigate through the records. This must be a valid HTML element. Note that the navigation layer (the “pager” div) can be positioned anywhere you want, determined by your HTML; in  most examples, the pager will appear after the body layer. Valid values are</p>
+<ul>
+<li>Javascript object, e.g. <code>pager</code></li>
+<li>jQuery selector, e.g. <code>#pager</code> (recommended)</li>
+<li>jQuery object, e.g. <code>$(&#39;#pager&#39;)</code></li>
+</ul>
+<p>See Pager. Currently only one pagebar is possible.</p>
+<h3 id="-pagerpos-"><code>pagerpos</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>&#39;center&#39;</code>
+<strong>Changeable:</strong> No</p>
+<p>Determines the position of the pager in the grid. By default the pager element when created is divided in 3 parts (one part for pager, one part for navigator buttons and one part for record information).</p>
+<h3 id="-pgbuttons-"><code>pgbuttons</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>true</code>
+<strong>Changeable:</strong> No</p>
+<p>Determines if the pager buttons should be shown in the pager bar.</p>
+<h3 id="-pginput-"><code>pginput</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>true</code>
+<strong>Changeable:</strong> No</p>
+<p>Determines if the input box, where the user can change the number of the requested page, should be shown in the pager bar.</p>
+<h3 id="-pgtext-"><code>pgtext</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <em>See lang file</em>
+<strong>Changeable:</strong> Yes</p>
+<p>Show information about current page status. The first value is the current loaded page. The second value is the total number of pages.</p>
+<h3 id="-rowlist-"><code>rowList</code></h3>
+<p><strong>Type:</strong> array
+<strong>Default:</strong> <code>[]</code>
+<strong>Changeable:</strong> No</p>
+<p>An array to construct a select box element in the pager for changing the number of the visible rows. When changed during the execution, this parameter replaces the <code>rowNum</code> parameter that is passed to the URL. If the array is empty, this element does not appear in the pager. Typically you can set this like <code>[10, 20, 30]</code>. If the <code>rowNum</code> parameter is set to 30 then the selected value in the select box is 30.</p>
+<h3 id="-toppager-"><code>toppager</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code>
+<strong>Changeable:</strong> No</p>
+<p>When enabled this option places a pager element at top of the grid, below the caption (if available). If another pager is defined, both can coexist and are kept in sync. The id of the newly created pager is the combination <code>grid_id + “_toppager”</code>.</p>
+<h3 id="-viewrecords-"><code>viewrecords</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code>
+<strong>Changeable:</strong> No</p>
+<p>If <code>true</code>, jqGrid displays the beginning and ending record number in the grid, out of the total number of records in the query. This information is shown in the pager bar (bottom right by default) in this format: “View X to Y out of Z”. If this value is <code>true</code>, there are other parameters that can be adjusted:</p>
+<h4 id="-emptyrecords-"><code>emptyrecords</code></h4>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <em>see lang file</em>
+<strong>Changeable:</strong> No</p>
+<p>The string to display when the returned (or the current) number of
+records in the grid is zero. This option is valid only if the <code>viewrecords</code> option is set to <code>true</code>.</p>
+<h4 id="-recordpos-"><code>recordpos</code></h4>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>&#39;right&#39;</code>
+<strong>Changeable:</strong> No</p>
+<p>Determines the position of the record information in the pager. Can be <code>left</code>, <code>center</code> or <code>right</code>.</p>
+<h4 id="-recordtext-"><code>recordtext</code></h4>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <em>See lang file</em>
+<strong>Changeable:</strong> Yes</p>
+<p>Text that can be shown in the pager. This text appears only if the total number of records is greater then zero. In order to show or hide some information the items in <code>{}</code> mean the following:</p>
+<ul>
+<li><code>{0}</code>: the start position of the records depending on page number and number of requested records</li>
+<li><code>{1}</code>: the end position</li>
+<li><code>{2}</code>: total records returned from the server.</li>
+</ul>
+<h2 id="ajax">AJAX</h2>
+<h3 id="-ajaxgridoptions-"><code>ajaxGridOptions</code></h3>
+<p><strong>Type:</strong> object
+<strong>Default:</strong> <code>{}</code>
+<strong>Changeable:</strong> Yes</p>
+<p>This option allows to set global AJAX settings for the grid when
+requesting data. Note that with this option it is possible to
+overwrite all current AJAX settings in the grid including the <code>error</code>, <code>complete</code> and <code>beforeSend</code> events.</p>
+<h3 id="-ajaxselectoptions-"><code>ajaxSelectOptions</code></h3>
+<p><strong>Type:</strong> object
+<strong>Default:</strong> <code>{}</code>
+<strong>Changeable:</strong> Yes</p>
+<p>This option allows to set global AJAX settings for the select element when the select is obtained via <code>dataUrl</code> option in <code>editoptions</code> or <code>searchoptions</code> objects</p>
+<h3 id="-autoencode-"><code>autoencode</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code>
+<strong>Changeable:</strong> Yes</p>
+<p>When set to <code>true</code>, incoming data from the server and posted data from
+editing modules are HTML encoded. For example <code>&lt;</code> will be converted to <code>&amp;lt;</code>.</p>
+<h3 id="-loadonce-"><code>loadonce</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code>
+<strong>Changeable:</strong> No</p>
+<p>If this flag is set to <code>true</code>, the grid loads the data from the server only once (using the appropriate <code>datatype</code>). After the first request, the <code>datatype</code> parameter is automatically changed to <code>&#39;local&#39;</code> and all further manipulations are done on the client side. The functions of the pager (if present) are disabled.</p>
+<h3 id="-loadtext-"><code>loadtext</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>&#39;Loading…&#39;</code>
+<strong>Changeable:</strong> No</p>
+<p>The text which appears when requesting and sorting data. This parameter is located in language file.</p>
+<h3 id="-loadui-"><code>loadui</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>&#39;enable&#39;</code>
+<strong>Changeable:</strong> Yes</p>
+<p>This option controls what to do when an AJAX operation is in progress.</p>
+<ul>
+<li><code>&#39;disable&#39;</code>: disables the jqGrid progress indicator. This way you can use your own indicator.</li>
+<li><code>&#39;enable&#39;</code>: shows the text set in the <code>loadtext</code> property in the center of the grid.</li>
+<li><code>&#39;block&#39;</code>: displays the text set in the <code>loadtext</code> property and blocks all actions in the grid until the AJAX request completes. Note that this disables paging, sorting and all actions on toolbar, if any.</li>
+</ul>
+<h3 id="-mtype-"><code>mtype</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>&#39;GET&#39;</code>
+<strong>Changeable:</strong> Yes</p>
+<p>Defines the type of request to make (“POST” or “GET”)</p>
+<h3 id="-page-"><code>page</code></h3>
+<p><strong>Type:</strong> integer
+<strong>Default:</strong> <code>1</code>
+<strong>Changeable:</strong> Yes</p>
+<p>Set the initial page number when we make the request. This parameter is passed to the URL for use by the server routine retrieving the data.</p>
+<h3 id="-prmnames-"><code>prmNames</code></h3>
+<p><strong>Type:</strong> object
+<strong>Default:</strong> <em>see below</em>
+<strong>Changeable:</strong> Yes</p>
+<p>This customizes names of the fields sent to the server on a POST request. For example, with this setting, you can change the sort order element from <code>sidx</code> to <code>mysort</code> by setting</p>
+<pre><code>prmNames: {sort: “mysort”}</code></pre>
+<p>The string that will be POST-ed to the server will then be</p>
+<pre><code>myurl.php?page=1&amp;rows=10&amp;mysort=myindex&amp;sord=asc</code></pre>
+<p>rather than</p>
+<pre><code>myurl.php?page=1&amp;rows=10&amp;sidx=myindex&amp;sord=asc</code></pre>
+<p>So the value of the column on which to sort upon can be obtained by looking at <code>$_POST[&#39;mysort&#39;]</code> in PHP. When some parameter is set to <code>null</code>, it will be not sent to the server. For example if we set</p>
+<pre><code>prmNames: {nd: null}</code></pre>
+<p>the <code>nd</code> parameter will not be sent to the server. For <code>npage</code> option see the <code>scroll</code> option.</p>
+<p>These options have the following meaning and default values:</p>
+<ul>
+<li><code>page</code>: the requested page (default value <code>&#39;page&#39;</code>)</li>
+<li><code>rows</code>: the number of rows requested (default value <code>&#39;rows&#39;</code>)</li>
+<li><code>sort</code>: the sorting column (default value <code>&#39;sidx&#39;</code>)</li>
+<li><code>order</code>: the sort order (default value <code>&#39;sord&#39;</code>)</li>
+<li><code>search</code>: the search indicator (default value <code>&#39;_search&#39;</code>)</li>
+<li><code>nd</code>: the time passed to the request (for IE browsers not to cache the request) (default value <code>&#39;nd&#39;</code>)</li>
+<li><code>id</code>: the name of the id when posting data in editing modules (default value <code>&#39;id&#39;</code>)</li>
+<li><code>oper</code>: the operation parameter (default value <code>&#39;oper&#39;</code>)</li>
+<li><code>editoper</code>: the name of operation when the data is posted in edit mode (default value <code>&#39;edit&#39;</code>)</li>
+<li><code>addoper</code>: the name of operation when the data is posted in add mode (default value <code>&#39;add&#39;</code>)</li>
+<li><code>deloper</code>: the name of operation when the data is posted in delete mode (default value <code>&#39;del&#39;</code>)</li>
+<li><code>totalrows</code>: the number of the total rows to be obtained from server - see <code>rowTotal</code> (default value <code>&#39;totalrows&#39;</code>)</li>
+<li><code>subgridid</code>: the name passed when we click to load data in the subgrid (default value <code>&#39;id&#39;</code>)</li>
+</ul>
+<h3 id="-postdata-"><code>postData</code></h3>
+<p><strong>Type:</strong> object
+<strong>Default:</strong> <code>{}</code>
+<strong>Changeable:</strong> Yes</p>
+<p>This array is appended directly to the URL. This is an associative array and can be used this way: <code>{name1: value1…}</code>. See API methods for manipulation.</p>
+<h3 id="-rowtotal-"><code>rowTotal</code></h3>
+<p><strong>Type:</strong> integer
+<strong>Default:</strong> <code>null</code>
+<strong>Changeable:</strong> Yes</p>
+<p>This parameter can instruct the server to load the total number of rows needed to work on. Note that <code>rowNum</code> determines the total records displayed in the grid, while <code>rowTotal</code> determines the total number of rows on which we can operate. When this parameter is set, we send an additional parameter to the server named <code>totalrows</code>. You can check for this parameter, and if it is available you can replace the <code>rows</code> parameter with it. Mostly this parameter can be combined with <code>loadonce</code> set to <code>true</code>.</p>
+<h3 id="-url-"><code>url</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>null</code>
+<strong>Changeable:</strong> Yes</p>
+<p>The URL of the file that returns the data needed to populate the grid. May be set to <code>&#39;clientArray&#39;</code> to manually post data to server; see Inline Editing.</p>
+<h2 id="grouping">Grouping</h2>
+<h3 id="-grouping-"><code>grouping</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code>
+<strong>Changeable:</strong> Yes</p>
+<p>Enables grouping in grid. Please refer to the <a href="./grouping.html">Grouping page</a>.</p>
+<h3 id="-groupingview-"><code>groupingView</code></h3>
+<p><strong>Type:</strong> object
+<strong>Default:</strong> <code>null</code>
+<strong>Changeable:</strong> Yes</p>
+<p>The grouping view options, see the <a href="./grouping.html">Grouping page</a> for more information.</p>
+<h2 id="search">Search</h2>
+<h3 id="-ignorecase-"><code>ignoreCase</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code>
+<strong>Changeable:</strong> Yes</p>
+<p>By default the local searching is case-sensitive. To make the local search and sorting not case-insensitive set this options to <code>true</code></p>
+<h3 id="-searchdata-"><code>searchdata</code></h3>
+<p><strong>Type:</strong> object
+<strong>Default:</strong> <code>{}</code>
+<strong>Changeable:</strong> Yes</p>
+<p>This property contains the searched data in <code>name: value</code> pairs.</p>
+<h2 id="editing">Editing</h2>
+<h3 id="-celledit-"><code>cellEdit</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code>
+<strong>Changeable:</strong> Yes</p>
+<p>Enables (disables) cell editing. See Cell Editing for more details</p>
+<h3 id="-cellsubmit-"><code>cellsubmit</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>&#39;remote&#39;</code>
+<strong>Changeable:</strong> Yes</p>
+<p>Determines where the contents of the cell are saved. Possible values are <code>&#39;remote&#39;</code> and <code>&#39;clientArray&#39;</code>. See Cell Editing for more details.</p>
+<h3 id="-cellurl-"><code>cellurl</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>null</code>
+<strong>Changeable:</strong> Yes</p>
+<p>The URL where the cell is to be saved. See Cell Editing for more details</p>
+<h3 id="-editurl-"><code>editurl</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>null</code>
+<strong>Changeable:</strong> Yes</p>
+<p>Defines the URL for inline and form editing. May be set to <code>&#39;clientArray&#39;</code> to manually post data to server, see Inline Editing.</p>
+<h3 id="-inlinedata-"><code>inlineData</code></h3>
+<p><strong>Type:</strong> object
+<strong>Default:</strong> <code>{}</code>
+<strong>Changeable:</strong> Yes</p>
+<p>An array used to add content to the data posted to the server when we are in inline editing.</p>
+<h3 id="-savedrow-"><code>savedRow</code></h3>
+<p><strong>Type:</strong> object
+<strong>Default:</strong> <code>{}</code>
+<strong>Changeable:</strong> No</p>
+<p>This is a readonly property and is used in inline and cell editing modules to store the data, before editing the row or cell. See Cell Editing and Inline Editing.</p>
+<h2 id="tree-grid">Tree Grid</h2>
+<h3 id="-expandcolclick-"><code>ExpandColClick</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>true</code>
+<strong>Changeable:</strong> No</p>
+<p>When <code>true</code>, the node is expanded or collapsed when we click anywhere on the text in the expanded column. In this case it is not necessary to click exactly on the icon.</p>
+<h3 id="-expandcolumn-"><code>ExpandColumn</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>null</code>
+<strong>Changeable:</strong> No</p>
+<p>Indicates which column (name from <code>colModel</code>) should be used to expand the tree grid. If not set the first one is used. Valid only when the <code>treeGrid</code> option is set to <code>true</code>.</p>
+<h3 id="-treedatatype-"><code>treedatatype</code></h3>
+<p><strong>Type:</strong> mixed
+<strong>Default:</strong> <code>null</code>
+<strong>Changeable:</strong> No</p>
+<p>Gives the initial data type (see <code>datatype</code> option). Usually this should not be changed. During the reading process this option is equal to the <code>datatype</code> option.</p>
+<h3 id="-treegrid-"><code>treeGrid</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code>
+<strong>Changeable:</strong> No</p>
+<p>Enables (disables) the tree grid format. For more details see Tree Grid</p>
+<h3 id="-treegridmodel-"><code>treeGridModel</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>nested</code>
+<strong>Changeable:</strong> No</p>
+<p>Determines the method used for the treeGrid. The value can be either nested or adjacency. See Tree Grid</p>
+<h3 id="-treeicons-"><code>treeIcons</code></h3>
+<p><strong>Type:</strong> array
+<strong>Default:</strong> <em>see below</em>
+<strong>Changeable:</strong> No</p>
+<p>This array sets the icons used in the tree grid. The icons should be a valid names from UI theme roller images. The default values are:</p>
+<pre><code class="language-javascript">{
+    plus: <span class="string">'ui-icon-triangle-1-e'</span>,
+    minus: <span class="string">'ui-icon-triangle-1-s'</span>,
+    leaf: <span class="string">'ui-icon-radio-off'</span>
+}</code></pre>
+<h3 id="-treereader-"><code>treeReader</code></h3>
+<p><strong>Type:</strong> array
+<strong>Default:</strong> <em>see below</em>
+<strong>Changeable:</strong> No</p>
+<p>Extends the <code>colModel</code> defined in the basic grid. The fields described here are appended to end of the <code>colModel</code> array and are hidden. This means that the data returned from the server should have values for these fields. For a full description of all valid values see Tree Grid.</p>
+<h3 id="-tree_root_level-"><code>tree_root_level</code></h3>
+<p><strong>Type:</strong> integer
+<strong>Default:</strong> <code>0</code>
+<strong>Changeable:</strong> No</p>
+<p>Defines the level where the root element begins when treeGrid is enabled.</p>
+<h2 id="subgrid">Subgrid</h2>
+<h3 id="-subgrid-"><code>subGrid</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code>
+<strong>Changeable:</strong> No</p>
+<p>If the <code>subGrid</code> option is enabled, an additional column at left side is added to the basic grid. This column contains a &#39;plus&#39; image which indicates that the user can click on it to expand the row. By default all rows are collapsed. See Subgrid</p>
+<h3 id="-subgridoptions-"><code>subGridOptions</code></h3>
+<p><strong>Type:</strong> object
+<strong>Default:</strong> <em>see Subgrid</em>
+<strong>Changeable:</strong> Yes</p>
+<p>A set of additional options for the subgrid. For more information and default values see Subgrid.</p>
+<h3 id="-subgridmodel-"><code>subGridModel</code></h3>
+<p><strong>Type:</strong> array
+<strong>Default:</strong> <code>[]</code>
+<strong>Changeable:</strong> No</p>
+<p>This property, which describes the model of the subgrid, has an effect only if the <code>subGrid</code> property is set to <code>true</code>. It is an array in which we describe the column model for the subgrid data. For more information see Subgrid.</p>
+<h3 id="-subgridtype-"><code>subGridType</code></h3>
+<p><strong>Type:</strong> mixed
+<strong>Default:</strong> <code>null</code>
+<strong>Changeable:</strong> Yes</p>
+<p>This option allows loading a subgrid as a service. If not set, the <code>datatype</code> parameter of the parent grid is used.</p>
+<h3 id="-subgridurl-"><code>subGridUrl</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>&#39;&#39;</code>
+<strong>Changeable:</strong> Yes</p>
+<p>This option has effect only if the <code>subGrid</code> option is set to
+<code>true</code>. This option points to the URL from which we get the data for
+the subgrid. jqGrid adds the id of the row to this URL as parameter. If there is a need to pass additional parameters, use the <code>params</code> option in <code>subGridModel</code>. See Subgrid</p>
+<h3 id="-subgridwidth-"><code>subGridWidth</code></h3>
+<p><strong>Type:</strong> integer
+<strong>Default:</strong> <code>20</code>
+<strong>Changeable:</strong> No</p>
+<p>Defines the width of the subgrid column if subgrid is enabled.</p>
+<h2 id="performance">Performance</h2>
+<h3 id="-deepempty-"><code>deepempty</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code>
+<strong>Changeable:</strong> Yes</p>
+<p>This option should be set to <code>true</code> if an event or a plugin is attached to the table cell. The option uses jQuery empty for the row and all its child elements. This of course has speed overhead, but prevents memory leaks. This option should be set to <code>true</code> if sortable rows and/or columns are activated.</p>
+<h3 id="-gridview-"><code>gridview</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code>
+<strong>Changeable:</strong> Yes</p>
+<p>Reading a relatively large data set can cause performance problems, because every row is inserted into the grid separately. With the <code>gridview</code> option (set to <code>true</code>), the rows can be inserted all at once. The result is a grid that is 5 to 10 times faster. Of course, there are some limitations: If set to <code>true</code> we can not use <code>treeGrid</code>, <code>subGrid</code>, or the <code>afterInsertRow</code> event.</p>
+<h2 id="information">Information</h2>
+<h3 id="-gridstate-"><code>gridstate</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>visible</code>
+<strong>Changeable:</strong> No</p>
+<p>Contains the current state of the grid (i.e. when used with <code>hiddengrid</code>, <code>hidegrid</code> and <code>caption</code> options). Can have either of two states: <code>visible</code> or <code>hidden</code>.</p>
+<h3 id="-lastpage-"><code>lastpage</code></h3>
+<p><strong>Type:</strong> integer
+<strong>Default:</strong> <code>0</code>
+<strong>Changeable:</strong> No</p>
+<p>Contains the total number of pages returned from the request. If you use a function as <code>datatype</code>, <code>your_grid.setGridParam({lastpage: your_number})</code> can be used to specify the max pages in the pager.</p>
+<h3 id="-lastsort-"><code>lastsort</code></h3>
+<p><strong>Type:</strong> integer
+<strong>Default:</strong> <code>0</code>
+<strong>Changeable:</strong> No</p>
+<p>Contains the index of last sorted column beginning from 0.</p>
+<h3 id="-reccount-"><code>reccount</code></h3>
+<p><strong>Type:</strong> integer
+<strong>Default:</strong> <code>0</code>
+<strong>Changeable:</strong> No</p>
+<p>Contains the exact number of rows in the grid. Do not confuse this with <code>records</code> parameter. Although in many cases they may be equal, there are cases where they are not. For example, if you define <code>rowNum</code> to be <code>15</code>, but the request to the server returns 20 records, the <code>records</code> parameter will be <code>20</code>, but the <code>reccount</code> parameter will be <code>15</code> (the grid you will have 15 records and not 20).</p>
+<h3 id="-records-"><code>records</code></h3>
+<p><strong>Type:</strong> integer
+<strong>Default:</strong> <code>0</code>
+<strong>Changeable:</strong> No</p>
+<p>Contains the number of records returned as a result of a query to the server.</p>
+<h3 id="-selarrrow-"><code>selarrrow</code></h3>
+<p><strong>Type:</strong> array
+<strong>Default:</strong> <code>[]</code>
+<strong>Changeable:</strong> No</p>
+<p>Contains the currently selected rows when <code>multiselect</code> is set to <code>true</code>. This is a one-dimensional array and the values in the array correspond to the selected ids in the grid.</p>
+<h3 id="-selrow-"><code>selrow</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>null</code>
+<strong>Changeable:</strong> No</p>
+<p>Contains the id of the last selected row. If you sort or use paging, this is set to <code>null</code>.</p>
+<h3 id="-totaltime-"><code>totaltime</code></h3>
+<p><strong>Type:</strong> integer
+<strong>Default:</strong> <code>0</code>
+<strong>Changeable:</strong> No</p>
+<p>Contains the loading time of the records - currently available only
+when we load XML or JSON data. The measurement begins when the request is complete and ends when the last row is added.</p>
+<hr>
+<p>Content licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Non Commercial Share Alike</a>. Original content taken from <a href="http://www.trirand.com/jqgridwiki/">jqGrid wiki</a>.</p>
+
+
+</div>
+
+<div class="col-md-3">
+<div id="sub-navigation" class="nav">
+  <!-- navigation injected via jquery -->
+</div>
+</div>
+
+</main>
+
+<footer>
+  <div class="container">
+  <a href="https://github.com/flack/grid.js/tree/master/docs/content/configuration/options.md">View Page Source</a>
+  </div>
+</footer>
+
+<script src="../grid.js-4.7.0.js"></script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../ui.js"></script>
+</body>
+</html>

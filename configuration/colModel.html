@@ -1,0 +1,274 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>grid.js</title>
+<link href="../grid.js-4.7.0.css" rel="stylesheet">
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css" rel="stylesheet">
+<link href="../docs.css" rel="stylesheet">
+
+<script src="../vendor/jquery.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="container-fluid">
+<div class="navbar-header">
+<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a href="../index.html" class="navbar-brand">grid.js</a>
+</div>
+
+<div class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+<ul class="nav navbar-nav">
+<li class="active">
+   <a href="../configuration.html">Configuration</a>
+</li>
+
+<li> <a href="../demos/index.html">Demos</a> </li>
+</ul>
+<ul class="nav navbar-nav pull-right">
+<li> <a href="https://github.com/openpsa/grid.js">GitHub Repo</a> </li>
+</ul>
+</div>
+
+</div>
+</nav>
+
+<main class="container">
+
+<div class="col-md-9">
+
+<h1 id="column-model">Column Model</h1>
+<p>The <code>colModel</code> property defines the individual grid columns as an array
+of properties. This is the most important part of the grid.</p>
+<pre><code class="language-javascript">jQuery(<span class="string">"#gridid"</span>).jqGrid({
+   <span class="comment">//...</span>
+   colModel: [ {name:<span class="string">'name1'</span>, index:<span class="string">'index1'</span>...}, {...}, ... ],
+   <span class="comment">//...</span>
+});</code></pre>
+<p>The only required property is <code>name</code>. The <code>colModel</code> options can also be get or set using <code>getColProp</code> and <code>setColProp</code>.</p>
+<p>The available <code>colModel</code> properties are listed below. Please note that
+certain modules like <a href="./grouping.html">Grouping</a> can add additional
+options under certain conditions. Please refer to the respective pages</p>
+<h2 id="data-mapping">Data Mapping</h2>
+<h3 id="-name-"><code>name</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> Required field</p>
+<p>Set the unique name in the grid for the column. This property is
+required. As well as other words used as property/event names, the
+reserved words (which cannot be used for names) include <code>subgrid</code>, <code>cb</code>
+and <code>rn</code>.</p>
+<h3 id="-key-"><code>key</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code></p>
+<p>Overwrite the id (defined in readers) from server. Can be set as id
+for the unique row id. Only one column can have this property. This
+option has higher priority than the one from the reader. If there is
+more than one key set, the grid finds the first one and the second is
+ignored.</p>
+<h3 id="-jsonmap-"><code>jsonmap</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> none</p>
+<p>Defines the mapping for the column in the incoming JSON
+string. See Retrieving Data</p>
+<h3 id="-xmlmap-"><code>xmlmap</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>null</code></p>
+<p>Defines the xml mapping for the column in the incoming XML file. Use
+a CSS selector for this.</p>
+<h3 id="-formatter-"><code>formatter</code></h3>
+<p><strong>Type:</strong> mixed
+<strong>Default:</strong> <code>{}</code></p>
+<p>The predefined types (string) or custom function name that controls the format of this field.</p>
+<h3 id="-formatoptions-"><code>formatoptions</code></h3>
+<p><strong>Type:</strong> array
+<strong>Default:</strong> <code>null</code></p>
+<p>Format options can be defined for particular columns, overwriting the defaults from the language file.</p>
+<h3 id="-datefmt-"><code>datefmt</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> ISO 8601 Date (yyyy-mm-dd)</p>
+<p>Governs format of <code>sorttype: &#39;date&#39;</code> (when <code>datetype</code> is set to
+<code>&#39;local&#39;</code>) and <code>editrules: {date: true}</code> fields. Determines the
+expected date format for that column. Uses a PHP-like date
+formatting. Currently <code>”/”</code>, <code>”-”</code>, and <code>”.”</code> are supported as date
+separators. Valid formats are:</p>
+<ul>
+<li><code>y</code>, <code>Y</code>, <code>yyyy</code> for four digit years</li>
+<li><code>yy</code>, <code>YY</code> for two digit years</li>
+<li><code>m</code>, <code>mm</code> for months</li>
+<li><code>d</code>, <code>dd</code> for days.</li>
+</ul>
+<h3 id="-unformat-"><code>unformat</code></h3>
+<p><strong>Type:</strong> function
+<strong>Default:</strong> <code>null</code></p>
+<p>Custom function to &quot;unformat&quot; a value of the cell when used in editing. Unformat is also called during sort operations. The value returned by unformat is the value compared during the sort.</p>
+<h2 id="rendering">Rendering</h2>
+<h3 id="-align-"><code>align</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>left</code></p>
+<p>Defines the alignment of the cell in the Body layer, not in header cell. Possible values: <code>&#39;left&#39;</code>, <code>&#39;center&#39;</code>, <code>&#39;right&#39;</code>.</p>
+<h3 id="-classes-"><code>classes</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>&#39;&#39;</code></p>
+<p>This option allow to add classes to the column. If more than one class
+will be used a space should be set. For example <code>classes: &#39;class1 class2&#39;</code>
+will add <code>class1</code> and <code>class2</code> to every cell on that column. In the grid
+CSS there is a predefined class <code>ui-ellipsis</code> which allows to attach
+ellipsis to a particular row.</p>
+<h3 id="-title-"><code>title</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>true</code></p>
+<p>If this option is <code>false</code> the title is not displayed in that column when we hover a cell with the mouse.</p>
+<h3 id="-width-"><code>width</code></h3>
+<p><strong>Type:</strong> number
+<strong>Default:</strong> <code>150</code></p>
+<p>Set the initial width of the column, in pixels. This value currently cannot be set as a percentage.</p>
+<h3 id="-cellattr-"><code>cellattr</code></h3>
+<p><strong>Type:</strong> function
+<strong>Default:</strong> <code>null</code></p>
+<p>This function adds attributes dynamically to the cell during the rendering of the data. For example all valid attributes for the table cell can be used or a style attribute with different properties. The function should return string.
+Parameters passed to this function are:</p>
+<ul>
+<li><code>rowId</code>  - the id of the row</li>
+<li><code>val</code>  - the value which will be added in the cell</li>
+<li><code>rawObject</code> - the raw object of the data row, i.e if <code>datatype</code> is <code>&#39;json&#39;</code> an array, if <code>datatype</code> is <code>&#39;xml&#39;</code> an XML node.</li>
+<li><code>cm</code> - all the properties of this column listed in the colModel</li>
+<li><code>rdata</code> - the data row which will be inserted in the row. This parameter is array of type <code>name</code>:<code>value</code>, where name is the name in colModel.</li>
+</ul>
+<h2 id="ui">UI</h2>
+<h3 id="-fixed-"><code>fixed</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code></p>
+<p>If set to <code>true</code> this option does not allow recalculation of the width of the column if <code>shrinkToFit</code> option is set to <code>true</code>. Also the width does not change if a <code>setGridWidth</code> method is used to change the grid width.</p>
+<h3 id="-frozen-"><code>frozen</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code></p>
+<p>If set to <code>true</code> determines that this column will be frozen after
+calling the <code>setFrozenColumns</code> method</p>
+<h3 id="-hidedlg-"><code>hidedlg</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code></p>
+<p>If set to <code>true</code> this column will not appear in the modal dialog where
+users can choose which columns to show or hide. See Show/Hide Columns.</p>
+<h3 id="-hidden-"><code>hidden</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code></p>
+<p>Defines if this column is hidden at initialization.</p>
+<h3 id="-label-"><code>label</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>null</code></p>
+<p>When <code>colNames</code> array is empty, defines the heading for this column. If
+both the <code>colNames</code> array and this setting are empty, the heading for
+this column comes from the name property.</p>
+<h3 id="-resizable-"><code>resizable</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>true</code></p>
+<p>Defines if the column can be resized.</p>
+<h3 id="-viewable-"><code>viewable</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>true</code></p>
+<p>This option is valid only when the <code>viewGridRow</code> method is activated. When the option is set to <code>false</code> the column does not appear in the view form.</p>
+<h2 id="search">Search</h2>
+<h3 id="-defval-"><code>defval</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>&#39;&#39;</code></p>
+<p>The default value for the search field. This option is used only in Custom Searching and will be set as the initial search.</p>
+<h3 id="-search-"><code>search</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>true</code></p>
+<p>When used in search modules, disables or enables searching on that column.</p>
+<h3 id="-searchoptions-"><code>searchoptions</code></h3>
+<p><strong>Type:</strong> array
+<strong>Default:</strong> <code>[]</code></p>
+<p>Defines the search options used searching.</p>
+<h3 id="-stype-"><code>stype</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>&#39;text&#39;</code></p>
+<p>Determines the type of the element when searching.</p>
+<h3 id="-surl-"><code>surl</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>&#39;&#39;</code></p>
+<p>Valid only in Custom Searching and <code>edittype : &#39;select&#39;</code>. Describes
+the URL from where we can get an already-constructed select element.</p>
+<h2 id="editing">Editing</h2>
+<h3 id="-editoptions-"><code>editoptions</code></h3>
+<p><strong>Type:</strong> array
+<strong>Default:</strong> <code>[]</code></p>
+<p>Array of allowed options (attributes) for <code>edittype</code> option.</p>
+<h3 id="-editrules-"><code>editrules</code></h3>
+<p><strong>Type:</strong> array
+<strong>Default:</strong> <code>[]</code></p>
+<p>Sets additional rules for the editable field.</p>
+<h3 id="-edittype-"><code>edittype</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>&#39;text&#39;</code></p>
+<p>Defines the edit type for inline and form editing. Possible values: <code>&#39;text&#39;</code>, <code>&#39;textarea&#39;</code>, <code>&#39;select&#39;</code>, <code>&#39;checkbox&#39;</code>, <code>&#39;password&#39;</code>, <code>&#39;button&#39;</code>, <code>&#39;image&#39;</code> and <code>&#39;file&#39;</code>.</p>
+<h3 id="-formoptions-"><code>formoptions</code></h3>
+<p><strong>Type:</strong> array
+<strong>Default:</strong> <code>[]</code></p>
+<p>Defines various options for form editing.</p>
+<h2 id="sorting">Sorting</h2>
+<h3 id="-firstsortorder-"><code>firstsortorder</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>null</code></p>
+<p>If set to <code>&#39;asc&#39;</code> or <code>&#39;desc&#39;</code>, the column will be sorted in that
+direction on first sort. Subsequent sorts of the column will toggle as
+usual</p>
+<h3 id="-index-"><code>index</code></h3>
+<p><strong>Type:</strong> string
+<strong>Default:</strong> <code>&#39;&#39;</code></p>
+<p>The index name when sorting. Passed as <code>sidx</code> parameter.</p>
+<h3 id="-sortable-"><code>sortable</code></h3>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>true</code></p>
+<p>Defines if this column can be sorted.</p>
+<h3 id="-sortfunc-"><code>sortfunc</code></h3>
+<p><strong>Type:</strong> function
+<strong>Default:</strong> <code>null</code></p>
+<p>Custom function to make custom sorting when <code>datatype</code> is <code>&#39;local&#39;</code>. Three
+parameters <code>a</code>, <code>b</code> and <code>direction</code> are passed. The <code>a</code> and <code>b</code>
+parameters are values to be compared. <code>direction</code> is numeric <code>1</code> or <code>-1</code> for ascending or descending order. The function should return <code>1</code>, <code>-1</code> or <code>0</code></p>
+<h3 id="-sorttype-"><code>sorttype</code></h3>
+<p><strong>Type:</strong> mixed
+<strong>Default:</strong> <code>&#39;text&#39;</code></p>
+<p>Used when <code>datatype</code> is <code>&#39;local&#39;</code>. Defines the type of the column for appropriate sorting.
+Possible values:</p>
+<ul>
+<li><code>&#39;int&#39;</code>/<code>&#39;integer&#39;</code> - for sorting integers</li>
+<li><code>&#39;float&#39;</code>/<code>&#39;number&#39;</code>/<code>&#39;currency&#39;</code> - for sorting decimal numbers</li>
+<li><code>&#39;date&#39;</code> - for sorting dates</li>
+<li><code>&#39;text&#39;</code> - for text sorting</li>
+<li><code>function</code> - defines a custom function for sorting. To this function we pass the value to be sorted and it should return a value, too.</li>
+</ul>
+<hr>
+<p>Content licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Non Commercial Share Alike</a>. Original content taken from <a href="http://www.trirand.com/jqgridwiki/">jqGrid wiki</a>.</p>
+
+
+</div>
+
+<div class="col-md-3">
+<div id="sub-navigation" class="nav">
+  <!-- navigation injected via jquery -->
+</div>
+</div>
+
+</main>
+
+<footer>
+  <div class="container">
+  <a href="https://github.com/flack/grid.js/tree/master/docs/content/configuration/colModel.md">View Page Source</a>
+  </div>
+</footer>
+
+<script src="../grid.js-4.7.0.js"></script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../ui.js"></script>
+</body>
+</html>
