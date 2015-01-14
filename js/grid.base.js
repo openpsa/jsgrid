@@ -3028,11 +3028,7 @@ $.fn.jqGrid = function( pin ) {
 		this.appendChild(tbody);
 		$(this).addClass('ui-jqgrid-btable').append(firstr);
 		firstr = null;
-<<<<<<< HEAD
-		var hTable = $("<table class='ui-jqgrid-htable' style='width:"+ts.p.tblwidth+"px' role='presentation' aria-labelledby='gbox_"+this.id+"' cellspacing='0' cellpadding='0' border='0'></table>").append(thead),
-=======
 		var hTable = $("<table class='ui-jqgrid-htable' style='width:"+ts.p.tblwidth+"px' role='presentation' aria-labelledby='gbox_"+this.id+"'"+(isMSIE8 ? " cellspacing='0'" : "")+"></table>").append(thead),
->>>>>>> cda5503... declarations of better local variables, it saves 6863 byte of jquery.jqGrid.min.js file
 		hg = (ts.p.caption && ts.p.hiddengrid===true) ? true : false,
 		hb = $("<div class='ui-jqgrid-hbox" + (dir==="rtl" ? "-rtl" : "" )+"'></div>");
 		thead = null;
@@ -3212,11 +3208,7 @@ $.fn.jqGrid = function( pin ) {
 		grid.bDiv = document.createElement("div");
 		if(isMSIE) { if(String(ts.p.height).toLowerCase() === "auto") { ts.p.height = "100%"; } }
 		$(grid.bDiv)
-<<<<<<< HEAD
 			.append($('<div style="position:relative;"></div>').append('<div></div>').append(this))
-=======
-			.append($('<div style="position:relative;'+(isMSIE8 ? "height:0.01%;" : "")+'"></div>').append('<div></div>').append(this))
->>>>>>> cda5503... declarations of better local variables, it saves 6863 byte of jquery.jqGrid.min.js file
 			.addClass("ui-jqgrid-bdiv")
 			.css({ height: ts.p.height+(isNaN(ts.p.height)?"":"px"), width: (grid.width)+"px"})
 			.scroll(grid.scrollGrid);
