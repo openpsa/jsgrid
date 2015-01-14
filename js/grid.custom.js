@@ -417,7 +417,7 @@ $.jgrid.extend({
 								break;
 							}
 						}
-						var st = soptions.searchtitle !== null ? soptions.searchtitle : p.operandTitle;
+						var st = soptions.searchtitle != null ? soptions.searchtitle : p.operandTitle;
 						select = "<a title='"+st+"' soper='"+so+"' class='soptclass' colname='"+this.name+"'>"+sot+"</a>";
 					$(stbl).prepend(select);
 					}
