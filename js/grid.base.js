@@ -2318,7 +2318,6 @@ $.fn.jqGrid = function( pin ) {
 					}
 					prm[pN.sort] = gs + prm[pN.sort];
 				}
-<<<<<<< HEAD
 				$.extend(p.postData,prm);
 				var rcnt = !p.scroll ? 1 : self.rows.length-1;
 				if (!feedback.call(self, "beforeRequest")) { return; }
