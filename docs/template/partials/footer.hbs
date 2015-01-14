@@ -1,0 +1,16 @@
+<footer>
+  <div class="container">
+  <a href="https://github.com/flack/grid.js/tree/master/{{page.src}}">View Page Source</a>
+  </div>
+</footer>
+
+{{#is section "Demos"}}
+      <script src="{{ assets }}/{{ name }}-{{ version }}.js"></script>
+      <script src="{{ assets }}/i18n/grid.locale-en.js"></script>
+{{/is}}
+<script src="{{ assets }}/bootstrap/js/bootstrap.min.js"></script>
+<script src="{{ assets }}/ui.js"></script>
+{{#is section "Download"}}
+      <script src="{{ assets }}/download.js"></script>
+      <script src="{{ assets }}/FileSaver.js"></script>
+{{/is}}

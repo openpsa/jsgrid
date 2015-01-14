@@ -354,6 +354,16 @@ module.exports = function ( grunt ) {
                 dest: '<%= build_dir %>/docs/',
                 cwd: '<%= doc_files.contentdir %>/',
                 expand: true
+            },
+            download: {
+                options: {
+                    layout: 'download.hbs',
+                    data: ['package.json'],
+                },
+                src: ['download/*.*'],
+                dest: '<%= build_dir %>/docs/',
+                cwd: '<%= doc_files.contentdir %>/',
+                expand: true
             }
         },
         'gh-pages': {
