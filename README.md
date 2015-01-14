@@ -5,7 +5,7 @@ grid.js
 
 So as an alternative, the MIT/GPL-licenced version is available in this repo. It is currently a work in progress, so  the [documentation/website](http://openpsa.github.io/grid.js/) is very incomplete (but since the code is based on jqGrid, the original jqGrid documentation and demos can still be used).
 
-The idea is to turn this repo into a community-driven and free version of jqGrid. To facilitate this, we've switched to Grunt as it is much more common and easier to handle, and we'll keep documentation in the repo itself so it can be managed with Github workflows. On the same note please feel free to take on any of our outstanding [issues](https://github.com/openpsa/grid.js/issues).
+The idea is to turn this repo into a community-driven and free (meaning open-source AND free of charge) version of jqGrid. To facilitate this, we've switched to Grunt as it is much more common and easier to handle, and we'll keep documentation in the repo itself so it can be managed with Github workflows. On the same note please feel free to take on any of our outstanding [issues](https://github.com/openpsa/grid.js/issues).
 
 Enjoy!
 
