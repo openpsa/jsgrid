@@ -197,6 +197,7 @@ $.jgrid.extend({
 		});
 	},
 	filterToolbar : function(p){
+            var body = $('body');
 		p = $.extend({
 			autosearch: true,
 			autosearchDelay: 500,
@@ -395,7 +396,7 @@ $.jgrid.extend({
 				}
                                 
 				str += "</div>";
-				$('body').append(str);
+				body.append(str);
 				var sopt_menu = $("#sopt_menu");
                                 sopt_menu.addClass("ui-menu ui-widget");
 				$("a", sopt_menu).hover(
@@ -473,13 +474,14 @@ $.jgrid.extend({
 										$("span.ui-search-input",stbl).append(res);
 									}
 									$(self).append(stbl);
-									if(soptions.defaultValue !== undefined) { $("select",self).val(soptions.defaultValue); }
-									$("select",self).attr({name:cm.index || cm.name, id: "gs_"+cm.name});
-									if(soptions.attr) {$("select",self).attr(soptions.attr);}
+                                                                        var select = $("select",self);
+									if(soptions.defaultValue !== undefined) { select.val(soptions.defaultValue); }
+									select.attr({name:cm.index || cm.name, id: "gs_"+cm.name});
+									if(soptions.attr) {select.attr(soptions.attr);}
 									// preserve autosearch
-									$.jgrid.bindEv.call($t, $("select",self)[0], soptions);
+									$.jgrid.bindEv.call($t, select[0], soptions);
 									if(p.autosearch===true){
-										$("select",self).change(function(){
+										select.change(function(){
 											triggerToolbar();
 											return false;
 										});
@@ -538,12 +540,13 @@ $.jgrid.extend({
 
 						$("span.ui-search-input",stbl).append("<input type='text' name='"+(cm.index || cm.name)+"' id='gs_"+cm.name+"' value='"+df+"'/>");
 						$(th).append(stbl);
+                                                var input = $("input",th);
 
-						if(soptions.attr) {$("input",th).attr(soptions.attr);}
-						$.jgrid.bindEv.call($t, $("input",th)[0], soptions);
+						if(soptions.attr) {input.attr(soptions.attr);}
+						$.jgrid.bindEv.call($t, input[0], soptions);
 						if(p.autosearch===true){
 							if(p.searchOnEnter) {
-								$("input",th).keypress(function(e){
+								input.keypress(function(e){
 									var key1 = e.charCode || e.keyCode || 0;
 									if(key1 === 13){
 										triggerToolbar();
@@ -552,7 +555,7 @@ $.jgrid.extend({
 									return this;
 								});
 							} else {
-								$("input",th).keydown(function(e){
+								input.keydown(function(e){
 									var key1 = e.which;
 									switch (key1) {
 										case 13:
@@ -611,7 +614,7 @@ $.jgrid.extend({
 					buildRuleMenu(this, left, top );
 					e.stopPropagation();
 				});
-				$("body").on('click', function(e){
+				body.on('click', function(e){
 					if(e.target.className !== "soptclass") {
 						$("#sopt_menu").hide();
 					}

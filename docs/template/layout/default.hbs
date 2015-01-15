@@ -22,15 +22,7 @@ version: <%= pkg.version %>
 {{> body }}
 </main>
 
-<footer>
-  <div class="container">
-  <a href="https://github.com/flack/grid.js/tree/master/{{page.src}}">View Page Source</a>
-  </div>
-</footer>
+{{> footer }}
 
-<script src="{{ assets }}/{{ name }}-{{ version }}.js"></script>
-<script src="{{ assets }}/i18n/grid.locale-en.js"></script>
-<script src="{{ assets }}/bootstrap/js/bootstrap.min.js"></script>
-<script src="{{ assets }}/ui.js"></script>
 </body>
 </html>
