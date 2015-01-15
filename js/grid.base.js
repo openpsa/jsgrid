@@ -1713,7 +1713,7 @@ $.fn.jqGrid = function( pin ) {
 						if(!p.groupingView._locgr) {
 							groupingPrepare.call($self, rd, j );
 						}
-						clearArray(rowData); //rowData = [];
+						rowData = [];
 					}
 					if(locdata || p.treeGrid === true) {
 						rd[xmlid] = stripPref(p.idPrefix, rid);
@@ -1911,7 +1911,7 @@ $.fn.jqGrid = function( pin ) {
 					if(!p.groupingView._locgr) {
 						groupingPrepare.call($self, rd, i);
 					}
-					clearArray(rowData); // rowData = [];
+					rowData = [];
 				}
 				if(locdata || p.treeGrid===true) {
 					rd[locid] = stripPref(p.idPrefix, idr);
