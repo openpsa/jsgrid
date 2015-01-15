@@ -138,6 +138,12 @@ module.exports = function ( grunt ) {
                         expand: true
                     },
                     {
+                        src: [ 'jszip.min.js' ],
+                        dest: '<%= build_dir %>/docs',
+                        cwd: 'bower_components/jszip/dist/',
+                        expand: true
+                    },
+                    {
                         src: [ 'vendor/**/*' ],
                         dest: '<%= build_dir %>/docs',
                         cwd: '<%= build_dir %>/',

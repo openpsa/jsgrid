@@ -23,8 +23,10 @@ $(document).ready(function()
         })
         .done(function(e)
         {
-            var blob = new Blob([e], {type: "text/javascript;charset=utf-8"});
-            saveAs(blob, "grid-custom.js");
+            var zip = new JSZip();
+            zip.file("grid-custom.min.js", e);
+            var content = zip.generate({type: "blob"});
+            saveAs(content, "grid-custom.zip");
         })
         .always(function(e)
         {
