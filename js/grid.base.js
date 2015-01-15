@@ -2325,7 +2325,7 @@ $.fn.jqGrid = function( pin ) {
 				if(p.url != null && p.datatype != 'local'){
                                     $.ajax($.extend({
                                         url:p.url,
-                                        type:tp.mtype,
+                                        type:p.mtype,
                                         data: $.isFunction(p.serializeGridData)? p.serializeGridData.call(self,p.postData) : p.postData,
                                         success:function(data,st, xhr) {
                                             if ($.isFunction(p.beforeProcessing)) {
