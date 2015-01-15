@@ -3028,7 +3028,7 @@ $.fn.jqGrid = function( pin ) {
 		this.appendChild(tbody);
 		$(this).addClass('ui-jqgrid-btable').append(firstr);
 		firstr = null;
-		var hTable = $("<table class='ui-jqgrid-htable' style='width:"+ts.p.tblwidth+"px' role='presentation' aria-labelledby='gbox_"+this.id+"'"+(isMSIE8 ? " cellspacing='0'" : "")+"></table>").append(thead),
+		var hTable = $("<table class='ui-jqgrid-htable' style='width:"+ts.p.tblwidth+"px' role='presentation' aria-labelledby='gbox_"+this.id+"' cellspacing='0' cellpadding='0' border='0'></table>").append(thead),
 		hg = (ts.p.caption && ts.p.hiddengrid===true) ? true : false,
 		hb = $("<div class='ui-jqgrid-hbox" + (dir==="rtl" ? "-rtl" : "" )+"'></div>");
 		thead = null;
