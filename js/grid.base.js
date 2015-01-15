@@ -1384,8 +1384,8 @@ $.fn.jqGrid = function( pin ) {
 					} else {
 						p.page = page;
 						if (empty) {
-							gridSelf.selectionPreserver.call(table[0]);
-							gridSelf.emptyRows.call(table[0], false, false);
+							gridSelf.selectionPreserver.call(self);
+							gridSelf.emptyRows.call(self, false, false);
 						}
 						gridSelf.populate.call(self,npage);
 					}
