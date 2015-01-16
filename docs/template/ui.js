@@ -99,7 +99,8 @@ $(document).ready(function()
         {
             var hash = '#-' + $(element).text().toLowerCase() + '-';
 
-            if ($('#sub-navigation li a[href="' + hash + '"]').length > 0)
+            if (   hash.match(/^a-z-+$/)
+                && $('#sub-navigation li a[href="' + hash + '"]').length > 0)
             {
                 $(element).addClass('internal-link');
             }
