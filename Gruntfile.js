@@ -82,6 +82,16 @@ module.exports = function ( grunt ) {
                     }
                 ]
             },
+            compile_compressed: {
+                files: [
+                    {
+                        src: [ '<%= filename %>.min.*' ],
+                        dest: '<%= compile_dir %>/',
+                        cwd: '<%= build_dir %>/',
+                        expand: true
+                    }
+                ]
+            },
             compile_uncompressed: {
                 files: [
                     {
@@ -166,13 +176,6 @@ module.exports = function ( grunt ) {
         },
 
         concat: {
-            compile_css: {
-                src: [
-                    '<%= vendor_files.css %>',
-                    '<%= build_dir %>/<%= filename %>.css'
-                ],
-                dest: '<%= compile_dir %>/<%= filename %>.min.css'
-            },
             compile_js: {
                 options: {
                     banner: '<%= meta.banner %>'
@@ -219,7 +222,7 @@ module.exports = function ( grunt ) {
             },
             compile: {
                 files: {
-                    '<%= build_dir %>/<%= filename %>.css': '<%= app_files.less %>'
+                    '<%= build_dir %>/<%= filename %>.min.css': '<%= app_files.less %>'
                 },
                 options: {
                     cleancss: true,
@@ -395,7 +398,7 @@ module.exports = function ( grunt ) {
     ]);
 
     grunt.registerTask( 'compile', [
-        'clean:compile', 'less:compile', 'concat:compile_css', 'copy:compile_uncompressed', 'copy:compile_vendorjs', 'uglify:compile', 'uglify:compile_i18n'
+        'clean:compile', 'less:compile', 'copy:compile_uncompressed', 'copy:compile_compressed', 'copy:compile_vendorjs', 'uglify:compile', 'uglify:compile_i18n'
     ]);
 
     grunt.registerTask( 'docs', [
