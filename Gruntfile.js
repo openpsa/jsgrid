@@ -82,10 +82,10 @@ module.exports = function ( grunt ) {
                     }
                 ]
             },
-            compile_appjs: {
+            compile_uncompressed: {
                 files: [
                     {
-                        src: [ '<%= filename %>.js' ],
+                        src: [ '<%= filename %>.*' ],
                         dest: '<%= compile_dir %>/',
                         cwd: '<%= build_dir %>/',
                         expand: true
@@ -395,7 +395,7 @@ module.exports = function ( grunt ) {
     ]);
 
     grunt.registerTask( 'compile', [
-        'clean:compile', 'less:compile', 'concat:compile_css', 'copy:compile_appjs', 'copy:compile_vendorjs', 'uglify:compile', 'uglify:compile_i18n'
+        'clean:compile', 'less:compile', 'concat:compile_css', 'copy:compile_uncompressed', 'copy:compile_vendorjs', 'uglify:compile', 'uglify:compile_i18n'
     ]);
 
     grunt.registerTask( 'docs', [
