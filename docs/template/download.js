@@ -29,7 +29,7 @@ $(document).ready(function()
         {
             report_error('JS compilation', e);
         })
-        .pipe(function(e)
+        .then(function(e)
         {
             var zip = new JSZip();
             zip.file("grid-custom.min.js", e);
@@ -37,29 +37,68 @@ $(document).ready(function()
         });
     }
 
-    function build_css(zip)
+    function load_file(url, operation)
     {
         return $.ajax({
-            url: proxy_prefix + 'grid.js-0.1.0.min.css',
+            url: url,
             type: 'GET',
             dataType: 'text',
             crossDomain: true
         })
         .fail(function(e)
         {
-            report_error('CSS download', e);
+            report_error(operation, e);
         })
-        .pipe(function(e)
+    }
+
+    function build_css(zip)
+    {
+        return load_file(proxy_prefix + 'grid.js-0.1.0.min.css', 'CSS download')
+            .then(function(e)
+            {
+                zip.file("grid.js-0.1.0.min.css", e);
+                return zip;
+            });
+    }
+
+    function build_i18n(zip)
+    {
+        var requests = [],
+            paths = [];
+
+        $('.locale input[type="checkbox"]:checked').each(function(index, element)
         {
-            zip.file("grid.js-0.1.0.min.css", e);
-            return zip;
+            paths.push($(this).val().replace(/\.js$/, '.min.js'));
+            requests.push(load_file(proxy_prefix + paths[index], 'Locales download'));
         });
+
+        return $.when.apply($, requests)
+            .then(function()
+            {
+                var i18n = (paths.length > 0) ? zip.folder("i18n") : null,
+                    i;
+
+                /* jquery passes different parameters to callback when it's only called with one deferred */
+                if (paths.length === 1)
+                {
+                    i18n.file(paths[0].replace(/.+\//, ''), arguments[0]);
+                }
+                else
+                {
+                    for (i = 0; i < arguments.length; i++)
+                    {
+                        i18n.file(paths[i].replace(/.+\//, ''), arguments[i][0]);
+                    }
+                }
+                return zip;
+            });
     }
 
     function build(files)
     {
         return build_jsfile(files)
-            .pipe(build_css);
+            .then(build_css)
+            .then(build_i18n);
     }
 
     $('#download-button').on('click', function()
@@ -67,7 +106,7 @@ $(document).ready(function()
         var files = [];
 
         $('#download-button').prop('disabled', true);
-        $('input[type="checkbox"]:checked').each(function(index, element)
+        $('.module input[type="checkbox"]:checked').each(function(index, element)
         {
             files.push(urlprefix + $(this).val());
         });

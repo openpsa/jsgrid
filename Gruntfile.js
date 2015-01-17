@@ -368,6 +368,7 @@ module.exports = function ( grunt ) {
                 options: {
                     layout: 'download.hbs',
                     data: ['package.json'],
+                    locales: grunt.file.expand('i18n/**/*.js')
                 },
                 src: ['download/*.*'],
                 dest: '<%= build_dir %>/docs/',

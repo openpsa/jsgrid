@@ -11,19 +11,19 @@ layout: default.hbs
 <form id="downloadbuilder">
 <fieldset>
 <legend>Base</legend>
-<div class="checkbox">
+<div class="checkbox module">
   <label>
     <input type="checkbox" value="js/grid.base.js" checked>
     Base grid
   </label>
 </div>
-<div class="checkbox">
+<div class="checkbox module">
   <label>
     <input type="checkbox" value="external/jquery.fmatter.js">
     Formatter
   </label>
 </div>
-<div class="checkbox">
+<div class="checkbox module">
   <label>
     <input type="checkbox" value="js/grid.custom.js">
     Additional methods
@@ -33,43 +33,43 @@ layout: default.hbs
 
 <fieldset>
 <legend>Editing</legend>
-<div class="checkbox">
+<div class="checkbox module">
   <label>
     <input type="checkbox" value="js/grid.common.js">
     Common
   </label>
 </div>
-<div class="checkbox">
+<div class="checkbox module">
   <label>
     <input type="checkbox" value="js/grid.formedit.js">
     Form Editing
   </label>
 </div>
-<div class="checkbox">
+<div class="checkbox module">
   <label>
     <input type="checkbox" value="js/grid.filter.js">
     Filter
   </label>
 </div>
-<div class="checkbox">
+<div class="checkbox module">
   <label>
     <input type="checkbox" value="js/grid.inlinedit.js">
     Inline Editing
   </label>
 </div>
-<div class="checkbox">
+<div class="checkbox module">
   <label>
     <input type="checkbox" value="js/grid.celledit.js">
     Cell Editing
   </label>
 </div>
-<div class="checkbox">
+<div class="checkbox module">
   <label>
     <input type="checkbox" value="external/jqModal.js">
     Modal Dialog
   </label>
 </div>
-<div class="checkbox">
+<div class="checkbox module">
   <label>
     <input type="checkbox" value="external/jqDnR.js">
     Dragging and Resizing
@@ -79,25 +79,25 @@ layout: default.hbs
 
 <fieldset>
 <legend>Specialized Views</legend>
-<div class="checkbox">
+<div class="checkbox module">
   <label>
     <input type="checkbox" value="js/grid.subgrid.js">
     Subgrid
   </label>
 </div>
-<div class="checkbox">
+<div class="checkbox module">
   <label>
     <input type="checkbox" value="js/grid.grouping.js">
     Grouping
   </label>
 </div>
-<div class="checkbox">
+<div class="checkbox module">
   <label>
     <input type="checkbox" value="js/grid.treegrid.js">
     Tree Grid
   </label>
 </div>
-<div class="checkbox">
+<div class="checkbox module">
   <label>
     <input type="checkbox" value="js/grid.pivot.js">
     Pivot Grid
@@ -107,13 +107,13 @@ layout: default.hbs
 
 <fieldset>
 <legend>Import / Export</legend>
-<div class="checkbox">
+<div class="checkbox module">
   <label>
     <input type="checkbox" value="js/grid.import.js">
     Import
   </label>
 </div>
-<div class="checkbox">
+<div class="checkbox module">
   <label>
     <input type="checkbox" value="external/JsonXml.js">
     XML and JSON utilities
@@ -123,13 +123,13 @@ layout: default.hbs
 
 <fieldset>
 <legend>Other</legend>
-<div class="checkbox">
+<div class="checkbox module">
   <label>
     <input type="checkbox" value="js/grid.tbltogrid.js">
     Table to Grid
   </label>
 </div>
-<div class="checkbox">
+<div class="checkbox module">
   <label>
     <input type="checkbox" value="js/grid.jqueryui.js">
     jQuery UI addons
@@ -137,12 +137,23 @@ layout: default.hbs
 </div>
 </fieldset>
 
-<button type="button" class="btn btn-primary btn-lg" id="download-button">Download</button>
-</form>
+<fieldset>
+<legend>Internationalization</legend>
+{{#locale_list locales}}
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="{{this.path}}">
+    {{this.label}}
+  </label>
+</div>
+{{/locale_list}}
+</fieldset>
 
 </div>
 
 <div class="col-md-3">
 <div id="sub-navigation" class="nav">
+<button type="button" class="btn btn-primary btn-lg" id="download-button" autocomplete="off">Download</button>
 </div>
+</form>
 </div>
