@@ -1641,7 +1641,7 @@ module.exports.register = function (Handlebars, options)  {
         }
     ];
 
-    function find_locale_label(path)
+    function find_locale_info(path)
     {
         var code = path.replace(/.+?\/grid.locale-(.+?)\.js/, '$1'),
             i;
@@ -1650,10 +1650,10 @@ module.exports.register = function (Handlebars, options)  {
         {
             if (locale_labels[i].code === code)
             {
-                return locale_labels[i].fullname;
+                return {label: locale_labels[i].fullname, helptext: locale_labels[i].nativename};
             }
         }
-        return "Unknown language code: " + code;
+        return {label: code, helptext: "Unknown language code"};
     }
 
     Handlebars.registerHelper('locale_list', function (locales, block)  {
@@ -1663,11 +1663,11 @@ module.exports.register = function (Handlebars, options)  {
 
         for (i = 0; i < locales.length; i++)
         {
-            locale_data.push({path: locales[i], label: find_locale_label(locales[i])});
+            locale_data.push({path: locales[i], info: find_locale_info(locales[i])});
         }
         locale_data.sort(function(a, b)
         {
-            return a.label.localeCompare(b.label);
+            return a.info.label.localeCompare(b.info.label);
         })
         for (i = 0; i < locale_data.length; i++)
         {

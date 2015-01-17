@@ -143,17 +143,17 @@ layout: default.hbs
 <div class="checkbox locale">
   <label>
     <input type="checkbox" value="{{this.path}}">
-    {{this.label}}
+    {{this.info.label}} <span class="helptext"> &ndash; {{this.info.helptext}}</span>
   </label>
 </div>
 {{/locale_list}}
 </fieldset>
 
+</form>
 </div>
 
 <div class="col-md-3">
 <div id="sub-navigation" class="nav">
 <button type="button" class="btn btn-primary btn-lg btn-block" data-compiling-text="Compiling" data-css-text="Adding CSS" data-locale-text="Adding locales" id="download-button" autocomplete="off">Download</button>
 </div>
-</form>
 </div>
