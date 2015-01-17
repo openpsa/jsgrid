@@ -3,6 +3,12 @@ $(document).ready(function()
     var urlprefix = 'https://raw.githubusercontent.com/openpsa/grid.js/master/',
         proxy_prefix = 'https://rawgit.com/openpsa/grid.js/master/dist/';
 
+    function report_error(source, error)
+    {
+        $('<div class="alert alert-danger" role="alert"><strong>Error during ' + source + '</strong>' + error.responseText + '</div>')
+            .insertAfter($('#download-button'));
+    }
+
     function build_jsfile(files)
     {
         var postdata = 'compilation_level=SIMPLE_OPTIMIZATIONS&output_format=text&output_info=compiled_code';
@@ -15,13 +21,13 @@ $(document).ready(function()
         return $.ajax({
             url: 'http://closure-compiler.appspot.com/compile',
             type: 'POST',
+            dataType: 'text',
             data: postdata,
             crossDomain: true
         })
         .fail(function(e)
         {
-            $('<div class="alert alert-danger" role="alert">' + e.responseText + '</div>')
-                .insertAfter($('#download-button'));
+            report_error('JS compilation', e);
         })
         .pipe(function(e)
         {
@@ -36,12 +42,12 @@ $(document).ready(function()
         return $.ajax({
             url: proxy_prefix + 'grid.js-0.1.0.min.css',
             type: 'GET',
+            dataType: 'text',
             crossDomain: true
         })
         .fail(function(e)
         {
-            $('<div class="alert alert-danger" role="alert">' + e.responseText + '</div>')
-                .insertAfter($('#download-button'));
+            report_error('CSS download', e);
         })
         .pipe(function(e)
         {
