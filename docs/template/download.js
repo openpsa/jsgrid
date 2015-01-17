@@ -1,18 +1,19 @@
 $(document).ready(function()
 {
     var urlprefix = 'https://raw.githubusercontent.com/openpsa/grid.js/master/',
-        proxy_prefix = 'https://rawgit.com/openpsa/grid.js/master/dist/';
+        proxy_prefix = 'https://rawgit.com/openpsa/grid.js/master/dist/',
+        button = $('#download-button');
 
-    function report_error(source, error)
+    function report_error(error)
     {
-        $('<div class="alert alert-danger" role="alert"><strong>Error during ' + source + '</strong>' + error.responseText + '</div>')
+        $('<div class="alert alert-danger" role="alert"><strong>Error:</strong>' + error.responseText + '</div>')
             .insertAfter($('#download-button'));
     }
 
     function build_jsfile(files)
     {
         var postdata = 'compilation_level=SIMPLE_OPTIMIZATIONS&output_format=text&output_info=compiled_code';
-
+        button.button('compiling');
         $.each(files, function(index, url)
         {
             postdata += '&code_url=' + url;
@@ -27,7 +28,7 @@ $(document).ready(function()
         })
         .fail(function(e)
         {
-            report_error('JS compilation', e);
+            report_error(e);
         })
         .then(function(e)
         {
@@ -37,7 +38,7 @@ $(document).ready(function()
         });
     }
 
-    function load_file(url, operation)
+    function load_file(url)
     {
         return $.ajax({
             url: url,
@@ -47,12 +48,14 @@ $(document).ready(function()
         })
         .fail(function(e)
         {
-            report_error(operation, e);
+            report_error(e);
         })
     }
 
     function build_css(zip)
     {
+        button.button('css');
+
         return load_file(proxy_prefix + 'grid.js-0.1.0.min.css', 'CSS download')
             .then(function(e)
             {
@@ -66,10 +69,12 @@ $(document).ready(function()
         var requests = [],
             paths = [];
 
+        button.button('locale');
+
         $('.locale input[type="checkbox"]:checked').each(function(index, element)
         {
             paths.push($(this).val().replace(/\.js$/, '.min.js'));
-            requests.push(load_file(proxy_prefix + paths[index], 'Locales download'));
+            requests.push(load_file(proxy_prefix + paths[index]));
         });
 
         return $.when.apply($, requests)
@@ -101,11 +106,11 @@ $(document).ready(function()
             .then(build_i18n);
     }
 
-    $('#download-button').on('click', function()
+    button.on('click', function()
     {
         var files = [];
 
-        $('#download-button').prop('disabled', true);
+        button.prop('disabled', true);
         $('.module input[type="checkbox"]:checked').each(function(index, element)
         {
             files.push(urlprefix + $(this).val());
@@ -119,7 +124,7 @@ $(document).ready(function()
             .always(function(e)
             {
                 $('#download-button').prop('disabled', false);
+                button.button('reset');
             });
-
     })
 });

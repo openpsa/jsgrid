@@ -10,7 +10,7 @@ layout: default.hbs
 
 <form id="downloadbuilder">
 <fieldset>
-<legend>Base</legend>
+<h3>Base</h3>
 <div class="checkbox module">
   <label>
     <input type="checkbox" value="js/grid.base.js" checked>
@@ -32,7 +32,7 @@ layout: default.hbs
 </fieldset>
 
 <fieldset>
-<legend>Editing</legend>
+<h3>Editing</h3>
 <div class="checkbox module">
   <label>
     <input type="checkbox" value="js/grid.common.js">
@@ -78,7 +78,7 @@ layout: default.hbs
 </fieldset>
 
 <fieldset>
-<legend>Specialized Views</legend>
+<h3>Specialized Views</h3>
 <div class="checkbox module">
   <label>
     <input type="checkbox" value="js/grid.subgrid.js">
@@ -106,7 +106,7 @@ layout: default.hbs
 </fieldset>
 
 <fieldset>
-<legend>Import / Export</legend>
+<h3>Import / Export</h3>
 <div class="checkbox module">
   <label>
     <input type="checkbox" value="js/grid.import.js">
@@ -122,7 +122,7 @@ layout: default.hbs
 </fieldset>
 
 <fieldset>
-<legend>Other</legend>
+<h3>Other</h3>
 <div class="checkbox module">
   <label>
     <input type="checkbox" value="js/grid.tbltogrid.js">
@@ -138,7 +138,7 @@ layout: default.hbs
 </fieldset>
 
 <fieldset>
-<legend>Internationalization</legend>
+<h3>Internationalization</h3>
 {{#locale_list locales}}
 <div class="checkbox locale">
   <label>
@@ -153,7 +153,7 @@ layout: default.hbs
 
 <div class="col-md-3">
 <div id="sub-navigation" class="nav">
-<button type="button" class="btn btn-primary btn-lg" id="download-button" autocomplete="off">Download</button>
+<button type="button" class="btn btn-primary btn-lg btn-block" data-compiling-text="Compiling" data-css-text="Adding CSS" data-locale-text="Adding locales" id="download-button" autocomplete="off">Download</button>
 </div>
 </form>
 </div>

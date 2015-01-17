@@ -49,7 +49,7 @@ $(document).ready(function()
         }
 
 
-        $('h2, h3, h4').each(function()
+        $('h2, h3, h4').each(function(index)
         {
             new_level = parseInt(this.nodeName.substr(1));
             if (previous_level === undefined)
@@ -77,10 +77,15 @@ $(document).ready(function()
                 }
             }
 
+            if ($(this).attr('id') === undefined)
+            {
+                $(this).attr('id', 'heading-' + index);
+            }
+
             build_nav(active_node, $(this));
         });
 
-        nav.appendTo($('#sub-navigation'));
+        nav.prependTo($('#sub-navigation'));
 
         $('body').scrollspy({target: '#sub-navigation', offset: 80});
 
