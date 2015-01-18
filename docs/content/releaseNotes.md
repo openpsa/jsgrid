@@ -51,6 +51,7 @@ Most of the changes correspond to recent tendencies of web development. Local Ja
 * **`jsonmap` works with local data:** The only exception is when you use the `dataTypeOrg` option. The option will be set automatically after loading the data from the server and changing the `datatype` to `"local"`. It allows you to use `jsonmap` for the data loaded from the server and then skip it in later processing of the local data.
 * **jqGrid can run without locale file:** Content from `grid.locale-en.js` is included directly in the code. If you want to use a different default locale (or none at all), you can use the [Download Builder](download/index.md)
 * **additional option `fromServer: true` in `.trigger("reloadGrid")`:** This allows reloading the data from the server when `loadonce` is set to `true`.
+* **new `singleSelectClickMode` option:** It allows to control deselection of previously selected rows on clicking on the row. Default behaviour is to toggle the selection. You can restore the previous behavior (i.e. disallow deselection) by specifying `singleSelectClickMode: "selectonly"` or `singleSelectClickMode: ""`. Note that the behaviour of `setSelection` method is not changed. Multiple calls of `setSelection` will not deselect the row.
 
 ### New Options
 
