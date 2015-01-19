@@ -1,3 +1,8 @@
+---
+subpages:
+ - {path: './releaseNotes.html', title: 'Release Notes'}
+---
+
 # grid.js
 
 grid.js is a jQuery plugin for displaying and manipulating tabular
