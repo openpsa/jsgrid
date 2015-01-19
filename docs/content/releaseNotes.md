@@ -35,7 +35,7 @@ The default values of some jqGrid options are changed.
 * `autoencode` defaults to `false`: The old default `autoencode: false` combined with JSON or local data produced strange side effects sometimes if the data contained symbols like `&`, `;`, `>`.
 * `height` defaults to `"auto"`: Improves the visibility of small grids or grids having a small number of rows. `scrollOffset: 0` is no longer required to remove free space which one sees on some grids without vertical scrollbars.
 * `rowNum` now uses a dynamic default value: The default value `rowNum: 20` will be changed to 10000 (the value of the new `maxRowNum` property) if no pager exists (i.e. `pager` and `toppager: true` options are not used) or pagination is disabled (e.g. by setting `treeGrid: true`). The new option `maxRowNum` can be used to change the maximum value of rows displayed in the grid.
-* `datatype` defaults to `"local"`: If you use XML data, you should add `datatype: "xml"` to override the default.
+* `datatype` now uses a dynamic default value: If `data` is set or if no `url` is set, `datatype` will be initialized to `"local"`. If `data` is not used and `url` is set, `datatype` will be `"json"` if the input option `jsonReader` is used. For any other combination of input parameters the option `datatype` will be set to `"xml"` to stay compatible with jqGrid 4.7.0 and older.
 * `editurl` defaults to `"clientArray"`: It allows local editing with minimal additional efforts.
 * `cellsubmit` default to `"clientArray"`: It allows local editing with minimal additional efforts.
 
@@ -57,7 +57,7 @@ Most of the changes correspond to recent tendencies of web development. Local Ja
 * `widthOrg`: Saves the value of `width` during creation of the grid. It will be used internally mostly to detect when jqGrid was created without specifying the `width` explicitly. In this case, the width of the grid might be adjusted when the width of the columns changes.
 * `dataTypeOrg`: Will be used internally when a remote `datatype` (`"json"` and `"xml"`) is used together with `loadonce: true`. The option will be deleted by `.trigger("reloadGrid")`.
 * `doubleClickSensitivity`: The resizer will stay visible at least this long after the first click so that the user can click again, which will be detected as a double-click on the resizer. The default value is `250` (ms).
-* `autoresizeOnLoad`: Used in combination with the `colModel` property `autoResizable: true`. If `autoresizeOnLoad` is `true`, then jqGrid auto-resizes all columns having the `autoResizable: true` property directly after `loadComplete`.
+* `autoresizeOnLoad`: Used in combination with the `colModel` property `autoResizable: true`. If `autoresizeOnLoad` is `true`, then jqGrid auto-resizes all columns having the `autoResizable: true` property directly after `loadComplete`. **Note:** Auto-resizing of hidden grids doesn't work. So if you fill the grid on a hidden jQuery UI Tab for example, then you should call `autoResizeAllColumns` method directly after the tab is activated.
 * `autoResizing`: A map of properties (like `groupingView`) used. It allows to tune some behaviour of auto-resizing.
   * `compact` - default value `false`. When set to `true`, the width of the column header is calculated without reserving space for the sorting icons
   * `widthOfVisiblePartOfSortIcon`: default value `12`. Should be used only if you don't use the default jQuery UI icons.
@@ -79,6 +79,7 @@ Most of the changes correspond to recent tendencies of web development. Local Ja
 
 * `setColWidth` - allows changing the width of the column after the grid is created.
 * `autoResizeColumn` - has no parameters. It resizes all columns having `autoResizable: true`
+* `autoResizeAllColumns` - has integer iCol as parameter. It resizes all columns having `autoResizable: true`. Note: Auto-resizing doesn't work with hidden grids.
 * `getGridComponent` - allows to get different components of jqGrid like `"bTable"`, `"hTable"`, `"fTable"`, `"bDiv"` and others. The method will be extended later.
 
 ### New Callbacks and Events
