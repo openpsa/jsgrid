@@ -1376,6 +1376,12 @@ module.exports.register = function (Handlebars, options)  {
             "nativename":"srpski (Srbija i Crna Gora)"
         },
         {
+            "code":"sr-ME",
+            "fullname":"Montenegrin",
+            "shortname":"Montenegrin",
+            "nativename":"Montenegrin"
+        },
+        {
             "code":"sv",
             "fullname":"Swedish",
             "shortname":"Swedish",
