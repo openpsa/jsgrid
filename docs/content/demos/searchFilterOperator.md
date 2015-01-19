@@ -1,8 +1,9 @@
 ---
-title: Demos / Default
+title: Demos / Search Filter with Operators
+section: Demos
 ---
 
-# Default Options + Local Data
+# Default Options + Search Filter with Operators
 
 ```javascript
 var mydata = [
@@ -30,6 +31,9 @@ $(document).ready(function () {
             { label: 'Total', name: 'total', width: 80 },
             { label: 'Notes', name: 'note', width: 150 }
         ]
+    }).filterToolbar({
+    	"stringResult": true,
+    	"searchOperators": true
     });
 });
 ```

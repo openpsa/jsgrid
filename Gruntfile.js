@@ -16,6 +16,7 @@ module.exports = function ( grunt ) {
 
     var taskConfig = {
         pkg: grunt.file.readJSON("package.json"),
+        filename: '<%= pkg.name %>-<%= pkg.version %>',
 
         meta: {
             banner:
@@ -50,7 +51,9 @@ module.exports = function ( grunt ) {
 
         clean: {
             build: [
-            '<%= build_dir %>',
+            '<%= build_dir %>'
+            ],
+            compile: [
             '<%= compile_dir %>'
             ],
             docs: [
@@ -75,6 +78,26 @@ module.exports = function ( grunt ) {
                         src: [ '**/*.js' ],
                         dest: '<%= build_dir %>/vendor',
                         cwd: 'bower_components/jquery/dist/',
+                        expand: true
+                    }
+                ]
+            },
+            compile_compressed: {
+                files: [
+                    {
+                        src: [ '<%= filename %>.min.*' ],
+                        dest: '<%= compile_dir %>/',
+                        cwd: '<%= build_dir %>/',
+                        expand: true
+                    }
+                ]
+            },
+            compile_uncompressed: {
+                files: [
+                    {
+                        src: [ '<%= filename %>.*' ],
+                        dest: '<%= compile_dir %>/',
+                        cwd: '<%= build_dir %>/',
                         expand: true
                     }
                 ]
@@ -106,7 +129,14 @@ module.exports = function ( grunt ) {
                         dest: '<%= build_dir %>/docs',
                         cwd: 'docs/template/',
                         expand: true
+                    },
+                    {
+                        src: [ '*.*' ],
+                        dest: '<%= build_dir %>/docs/demos/data',
+                        cwd: 'docs/content/demos/data/',
+                        expand: true
                     }
+
                 ]
             },
             doc_vendor_assets: {
@@ -118,7 +148,19 @@ module.exports = function ( grunt ) {
                         expand: true
                     },
                     {
+                        src: [ 'jszip.min.js' ],
+                        dest: '<%= build_dir %>/docs',
+                        cwd: 'bower_components/jszip/dist/',
+                        expand: true
+                    },
+                    {
                         src: [ 'vendor/**/*' ],
+                        dest: '<%= build_dir %>/docs',
+                        cwd: '<%= build_dir %>/',
+                        expand: true
+                    },
+                    {
+                        src: [ 'i18n/grid.locale-en.js' ],
                         dest: '<%= build_dir %>/docs',
                         cwd: '<%= build_dir %>/',
                         expand: true
@@ -134,21 +176,15 @@ module.exports = function ( grunt ) {
         },
 
         concat: {
-            compile_css: {
-                src: [
-                    '<%= vendor_files.css %>',
-                    '<%= build_dir %>/<%= pkg.name %>-<%= pkg.version %>.css'
-                ],
-                dest: '<%= compile_dir %>/<%= pkg.name %>-<%= pkg.version %>.min.css'
-            },
             compile_js: {
                 options: {
                     banner: '<%= meta.banner %>'
                 },
                 src: [
                     '<%= app_files.js %>',
+                    '<%= app_files.external %>'
                 ],
-                dest: '<%= build_dir %>/<%= pkg.name %>-<%= pkg.version %>.js'
+                dest: '<%= build_dir %>/<%= filename %>.js'
             }
         },
 
@@ -158,7 +194,7 @@ module.exports = function ( grunt ) {
                     banner: '<%= meta.banner %>'
                 },
                 files: {
-                    '<%= compile_dir %>/<%= pkg.name %>-<%= pkg.version %>.min.js': '<%= concat.compile_js.dest %>'
+                    '<%= compile_dir %>/<%= filename %>.min.js': '<%= concat.compile_js.dest %>'
                 }
             },
             compile_i18n: {
@@ -181,12 +217,12 @@ module.exports = function ( grunt ) {
         less: {
             build: {
                 files: {
-                    '<%= build_dir %>/<%= pkg.name %>-<%= pkg.version %>.css': '<%= app_files.less %>'
+                    '<%= build_dir %>/<%= filename %>.css': '<%= app_files.less %>'
                 }
             },
             compile: {
                 files: {
-                    '<%= build_dir %>/<%= pkg.name %>-<%= pkg.version %>.css': '<%= app_files.less %>'
+                    '<%= build_dir %>/<%= filename %>.min.css': '<%= app_files.less %>'
                 },
                 options: {
                     cleancss: true,
@@ -313,7 +349,28 @@ module.exports = function ( grunt ) {
                 options: {
                     layout: 'subpage.hbs'
                 },
-                src: ['*/*.md'],
+                src: ['configuration/*.md'],
+                dest: '<%= build_dir %>/docs/',
+                cwd: '<%= doc_files.contentdir %>/',
+                expand: true
+            },
+            demos: {
+                options: {
+                    layout: 'demos.hbs',
+                    data: ['package.json', '<%= doc_files.datadir %>/demos.json'],
+                },
+                src: ['demos/*.md'],
+                dest: '<%= build_dir %>/docs/',
+                cwd: '<%= doc_files.contentdir %>/',
+                expand: true
+            },
+            download: {
+                options: {
+                    layout: 'download.hbs',
+                    data: ['package.json'],
+                    locales: grunt.file.expand('i18n/**/*.js')
+                },
+                src: ['download/*.*'],
                 dest: '<%= build_dir %>/docs/',
                 cwd: '<%= doc_files.contentdir %>/',
                 expand: true
@@ -342,7 +399,7 @@ module.exports = function ( grunt ) {
     ]);
 
     grunt.registerTask( 'compile', [
-        'less:compile', 'concat:compile_css', 'copy:compile_vendorjs', 'uglify:compile', 'uglify:compile_i18n'
+        'clean:compile', 'less:compile', 'copy:compile_uncompressed', 'copy:compile_compressed', 'copy:compile_vendorjs', 'uglify:compile', 'uglify:compile_i18n'
     ]);
 
     grunt.registerTask( 'docs', [

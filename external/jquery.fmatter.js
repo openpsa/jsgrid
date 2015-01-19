@@ -21,9 +21,6 @@
 	//opts can be id:row id for the row, rowdata:the data for the row, colmodel:the column model for this column
 	//example {id:1234,}
 	$.extend($.fmatter,{
-		isBoolean : function(o) {
-			return typeof o === 'boolean';
-		},
 		isObject : function(o) {
 			return (o && (typeof o === 'object' || $.isFunction(o))) || false;
 		},
@@ -34,7 +31,7 @@
 			return typeof o === 'number' && isFinite(o);
 		},
 		isValue : function (o) {
-			return (this.isObject(o) || this.isString(o) || this.isNumber(o) || this.isBoolean(o));
+			return (this.isObject(o) || this.isString(o) || this.isNumber(o) || typeof o === 'boolean');
 		},
 		isEmpty : function(o) {
 			if(!this.isString(o) && this.isValue(o)) {
@@ -58,15 +55,16 @@
 	$.fmatter.util = {
 		// Taken from YAHOO utils
 		NumberFormat : function(nData,opts) {
-			if(!$.fmatter.isNumber(nData)) {
+			var isNumber = $.fmatter.isNumber;
+			if(!isNumber(nData)) {
 				nData *= 1;
 			}
-			if($.fmatter.isNumber(nData)) {
+			if(isNumber(nData)) {
 				var bNegative = (nData < 0);
 				var sOutput = String(nData);
 				var sDecimalSeparator = opts.decimalSeparator || ".";
 				var nDotIndex;
-				if($.fmatter.isNumber(opts.decimalPlaces)) {
+				if(isNumber(opts.decimalPlaces)) {
 					// Round to the correct decimal place
 					var nDecimalPlaces = opts.decimalPlaces;
 					var nDecimal = Math.pow(10, nDecimalPlaces);
@@ -159,20 +157,24 @@
 		}
 		return $.fn.fmatter.defaultFormat(cellval,opts);
 	};
-	$.fn.fmatter.integer = function (cellval, opts, op, action) {
-		op = (action === undefined) ? op || $.extend({}, opts.integer) : $.extend({}, opts.integer);
-		if (opts.colModel !== undefined && opts.colModel.formatoptions !== undefined) {
-		    op = $.extend({}, op, opts.colModel.formatoptions);
+	var numberHelper = function(cellval, opts, formatType) {
+		var op = $.extend({},opts[formatType]);
+		if(opts.colModel !== undefined && opts.colModel.formatoptions !== undefined) {
+		    op = $.extend({},op,opts.colModel.formatoptions);
 		}
-		return ($.fmatter.isEmpty(cellval)) ? op.defaultValue : $.fmatter.util.NumberFormat(cellval, op);
+		if($.fmatter.isEmpty(cellval)) {
+		    return op.defaultValue;
+		}
+		return $.fmatter.util.NumberFormat(cellval,op);
+	};
+	$.fn.fmatter.integer = function(cellval, opts) {
+	    return numberHelper(cellval,opts,"integer");
 	};
 	$.fn.fmatter.number = function (cellval, opts) {
-		var op = $.extend({}, opts.number);
-		return $.fn.fmatter.integer(cellval, opts, op);
+	    return numberHelper(cellval,opts,"number");
 	};
 	$.fn.fmatter.currency = function (cellval, opts) {
-		var op = $.extend({}, opts.currency);
-		return $.fn.fmatter.integer(cellval, opts, op);
+	    return numberHelper(cellval,opts,"currency");
 	};
 	$.fn.fmatter.date = function (cellval, opts, rwd, act) {
 		var op = $.extend({},opts.date);
@@ -314,7 +316,7 @@
 		}
 	};
 	$.fn.fmatter.actions = function(cellval,opts) {
-		var op={keys:false, editbutton:true, delbutton:true, editformbutton: false},
+		var op={keys:false, editbutton:true, delbutton:true, editformbutton: false}, nav = $.jgrid.nav, edit = $.jgrid.edit,
 			rowid=opts.rowId, str="",ocl;
 		if(opts.colModel.formatoptions !== undefined) {
 			op = $.extend(op,opts.colModel.formatoptions);
@@ -322,19 +324,19 @@
 		if(rowid === undefined || $.fmatter.isEmpty(rowid)) {return "";}
 		if(op.editformbutton){
 			ocl = "id='jEditButton_"+rowid+"' onclick=jQuery.fn.fmatter.rowactions.call(this,'formedit'); onmouseover=jQuery(this).addClass('ui-state-hover'); onmouseout=jQuery(this).removeClass('ui-state-hover'); ";
-			str += "<div title='"+$.jgrid.nav.edittitle+"' style='float:left;cursor:pointer;' class='ui-pg-div ui-inline-edit' "+ocl+"><span class='ui-icon ui-icon-pencil'></span></div>";
+			str += "<div title='"+nav.edittitle+"' style='float:left;cursor:pointer;' class='ui-pg-div ui-inline-edit' "+ocl+"><span class='ui-icon ui-icon-pencil'></span></div>";
 		} else if(op.editbutton){
 			ocl = "id='jEditButton_"+rowid+"' onclick=jQuery.fn.fmatter.rowactions.call(this,'edit'); onmouseover=jQuery(this).addClass('ui-state-hover'); onmouseout=jQuery(this).removeClass('ui-state-hover') ";
-			str += "<div title='"+$.jgrid.nav.edittitle+"' style='float:left;cursor:pointer;' class='ui-pg-div ui-inline-edit' "+ocl+"><span class='ui-icon ui-icon-pencil'></span></div>";
+			str += "<div title='"+nav.edittitle+"' style='float:left;cursor:pointer;' class='ui-pg-div ui-inline-edit' "+ocl+"><span class='ui-icon ui-icon-pencil'></span></div>";
 		}
 		if(op.delbutton) {
 			ocl = "id='jDeleteButton_"+rowid+"' onclick=jQuery.fn.fmatter.rowactions.call(this,'del'); onmouseover=jQuery(this).addClass('ui-state-hover'); onmouseout=jQuery(this).removeClass('ui-state-hover'); ";
-			str += "<div title='"+$.jgrid.nav.deltitle+"' style='float:left;margin-left:5px;' class='ui-pg-div ui-inline-del' "+ocl+"><span class='ui-icon ui-icon-trash'></span></div>";
+			str += "<div title='"+nav.deltitle+"' style='float:left;margin-left:5px;' class='ui-pg-div ui-inline-del' "+ocl+"><span class='ui-icon ui-icon-trash'></span></div>";
 		}
 		ocl = "id='jSaveButton_"+rowid+"' onclick=jQuery.fn.fmatter.rowactions.call(this,'save'); onmouseover=jQuery(this).addClass('ui-state-hover'); onmouseout=jQuery(this).removeClass('ui-state-hover'); ";
-		str += "<div title='"+$.jgrid.edit.bSubmit+"' style='float:left;display:none' class='ui-pg-div ui-inline-save' "+ocl+"><span class='ui-icon ui-icon-disk'></span></div>";
+		str += "<div title='"+edit.bSubmit+"' style='float:left;display:none' class='ui-pg-div ui-inline-save' "+ocl+"><span class='ui-icon ui-icon-disk'></span></div>";
 		ocl = "id='jCancelButton_"+rowid+"' onclick=jQuery.fn.fmatter.rowactions.call(this,'cancel'); onmouseover=jQuery(this).addClass('ui-state-hover'); onmouseout=jQuery(this).removeClass('ui-state-hover'); ";
-		str += "<div title='"+$.jgrid.edit.bCancel+"' style='float:left;display:none;margin-left:5px;' class='ui-pg-div ui-inline-cancel' "+ocl+"><span class='ui-icon ui-icon-cancel'></span></div>";
+		str += "<div title='"+edit.bCancel+"' style='float:left;display:none;margin-left:5px;' class='ui-pg-div ui-inline-cancel' "+ocl+"><span class='ui-icon ui-icon-cancel'></span></div>";
 		return "<div style='margin-left:8px;'>" + str + "</div>";
 	};
 	$.unformat = function (cellval,options,pos,cnt) {
@@ -343,6 +345,12 @@
 		op =options.colModel.formatoptions || {}, sep,
 		re = /([\.\*\_\'\(\)\{\}\+\?\\])/g,
 		unformatFunc = options.colModel.unformat||($.fn.fmatter[formatType] && $.fn.fmatter[formatType].unformat);
+		if (cellval instanceof jQuery && cellval.length > 0) {
+			cellval = cellval[0];
+		}
+		if (options.colModel.autoResizable && cellval != null && $(cellval.firstChild).hasClass(this.p.autoResizing.wrapperClassName)) {
+			cellval = cellval.firstChild;
+		}
 		if(unformatFunc !== undefined && $.isFunction(unformatFunc) ) {
 			ret = unformatFunc.call(this, $(cellval).text(), options, cellval);
 		} else if(formatType !== undefined && $.fmatter.isString(formatType) ) {
@@ -374,7 +382,9 @@
 					ret = ret.replace(stripTag,'').replace(op.decimalSeparator,'.');
 					break;
 				case 'checkbox':
-					var cbv = (options.colModel.editoptions) ? options.colModel.editoptions.value.split(":") : ["Yes","No"];
+					var cbv = (options.colModel.editoptions != null && typeof options.colModel.editoptions.value === "string") ?
+							options.colModel.editoptions.value.split(":") :
+							["Yes","No"];
 					ret = $('input',cellval).is(":checked") ? cbv[0] : cbv[1];
 					break;
 				case 'select' :
@@ -386,7 +396,8 @@
 					ret= $(cellval).text();
 			}
 		}
-		return ret !== undefined ? ret : cnt===true ? $(cellval).text() : $.jgrid.htmlDecode($(cellval).html());
+		ret = ret !== undefined ? ret : cnt===true ? $(cellval).text() : $.jgrid.htmlDecode($(cellval).html());
+		return ret;
 	};
 	$.unformat.select = function (cellval,options,pos,cnt) {
 		// Spacial case when we have local data and perform a sort

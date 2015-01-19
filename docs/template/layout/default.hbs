@@ -8,7 +8,7 @@ version: <%= pkg.version %>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>grid.js</title>
+<title>grid.js{{#if title}} - {{title}}{{/if}}</title>
 <link href="{{ assets }}/{{ name }}-{{ version }}.css" rel="stylesheet">
 <link href="{{ assets }}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css" rel="stylesheet">
@@ -22,14 +22,7 @@ version: <%= pkg.version %>
 {{> body }}
 </main>
 
-<footer>
-  <div class="container">
-  <a href="https://github.com/flack/grid.js/tree/master/{{page.src}}">View Page Source</a>
-  </div>
-</footer>
+{{> footer }}
 
-<script src="{{ assets }}/{{ name }}-{{ version }}.js"></script>
-<script src="{{ assets }}/bootstrap/js/bootstrap.min.js"></script>
-<script src="{{ assets }}/ui.js"></script>
 </body>
 </html>
