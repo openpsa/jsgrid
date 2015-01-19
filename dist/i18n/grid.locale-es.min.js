@@ -1,5 +1,5 @@
 /**
- * grid.js - v0.1.0 - 2015-01-16
+ * grid.js - v0.1.0 - 2015-01-19
  * https://openpsa.github.com/grid.js
  *
  * Copyright (c) 2015 Tony Tomov, Oleg Kiriljuk, Andreas Flack, Laurent Rajchenbach, Matthew Hutton and other contributors to jqGrid before version 4.7.1
