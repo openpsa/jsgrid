@@ -6,7 +6,8 @@ $(document).ready(function()
 
     function report_error(error)
     {
-        $('<div class="alert alert-danger" role="alert"><strong>Error:</strong>' + error.responseText + '</div>')
+        var message = error.responseText || error.statusText;
+        $('<div class="alert alert-danger" role="alert"><strong>Error:</strong> ' + message + '</div>')
             .insertAfter($('#download-button'));
     }
 
@@ -120,11 +121,21 @@ $(document).ready(function()
              {
                  var content = zip.generate({type: "blob"});
                  saveAs(content, "grid-custom.zip");
+                 button.button('reset');
              })
             .always(function(e)
             {
                 $('#download-button').prop('disabled', false);
-                button.button('reset');
             });
-    })
+    });
+
+    $('h3')
+        .addClass('checkbox')
+        .prepend(
+            $('<input type="checkbox">')
+                .on('change', function()
+                    {
+                        $(this).closest('fieldset').find('div.checkbox input[type="checkbox"]').prop('checked', $(this).is(':checked'));
+                    }))
+        .wrapInner('<label>');
 });
