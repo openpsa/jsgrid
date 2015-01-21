@@ -8,7 +8,7 @@ $(document).ready(function()
         var container = $('code.language-javascript')
             .parent()
             .hide();
-        $('<table id="grid"></table><div id="jqGridPager"></div>')
+        $('<table id="grid"></table><div id="pager"></div>')
             .insertBefore(container);
         eval($('pre code.language-javascript').text());
         $('<label class="btn btn-primary" id="show-code">Show Code</label>')
