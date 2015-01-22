@@ -176,7 +176,7 @@ module.exports = function ( grunt ) {
         },
 
         concat: {
-            compile_js: {
+            build_js: {
                 options: {
                     banner: '<%= meta.banner %>'
                 },
@@ -194,7 +194,7 @@ module.exports = function ( grunt ) {
                     banner: '<%= meta.banner %>'
                 },
                 files: {
-                    '<%= compile_dir %>/<%= filename %>.min.js': '<%= concat.compile_js.dest %>'
+                    '<%= compile_dir %>/<%= filename %>.min.js': '<%= concat.build_js.dest %>'
                 }
             },
             compile_i18n: {
@@ -298,7 +298,7 @@ module.exports = function ( grunt ) {
                 files: [
                     '<%= app_files.js %>'
                 ],
-                tasks: [ 'jshint:src', 'karma:unit:run', 'copy:build_i18n', 'copy:doc_vendor_assets' ]
+                tasks: [ 'jshint:src', 'concat:build_js', 'karma:unit:run', 'copy:build_i18n', 'copy:doc_vendor_assets' ]
             },
 
             less: {
@@ -394,7 +394,7 @@ module.exports = function ( grunt ) {
 
     grunt.registerTask( 'build', [
         'clean:build', 'jshint', 'less:build',
-        'copy:build_i18n', 'copy:build_external', 'copy:build_vendorjs', 'concat:compile_js',
+        'copy:build_i18n', 'copy:build_external', 'copy:build_vendorjs', 'concat:build_js',
         'karmaconfig', 'karma:continuous'
     ]);
 
