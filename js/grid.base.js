@@ -2418,7 +2418,7 @@ $.fn.jqGrid = function( pin ) {
                                                 addJSONData.call(self, data, rcnt, npage > 1, adjust);
                                             } else if(xhr.responseXML !== undefined){
                                                 p.datatype = 'xml';
-                                                addXmlData.call(self, data, gridSelf.bDiv, rcnt, npage > 1, adjust);
+                                                addXmlData.call(self, data, rcnt, npage > 1, adjust);
                                             } else {
                                                 try{
                                                     data = $.parseJSON(data);
@@ -2428,7 +2428,7 @@ $.fn.jqGrid = function( pin ) {
                                                     try{
                                                         data = $.parseXML(data);
                                                         p.datatype = 'xml';
-                                                        addXmlData.call(self, data, gridSelf.bDiv, rcnt, npage > 1, adjust);
+                                                        addXmlData.call(self, data, rcnt, npage > 1, adjust);
                                                     } catch(er){
                                                         //TODO: alert user
                                                     }
