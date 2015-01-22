@@ -98,15 +98,22 @@ $(document).ready(function()
             scrollBy(0, -header_height);
         });
 
-        $('code').each(function(index, element)
+        $.expr[':'].noheadlines = function(a)
         {
-            var hash = '#-' + $(element).text().toLowerCase() + '-';
-            if (   hash.match(/^#-[a-z]+-$/)
-                && $('#sub-navigation li a[href="' + hash + '"]').length > 0)
+            return jQuery(a).parents('h1, h2, h3, h4, h5, h6').length < 1;
+        };
+
+        $('code')
+            .filter(':noheadlines')
+            .each(function(index, element)
             {
-                $(element).addClass('internal-link');
-            }
-        });
+                var hash = '#-' + $(element).text().toLowerCase() + '-';
+                if (   hash.match(/^#-[a-z]+-$/)
+                    && $('#sub-navigation li a[href="' + hash + '"]').length > 0)
+                {
+                    $(element).addClass('internal-link');
+                }
+            });
         $('main').on('click', '.internal-link', function(e)
         {
             e.preventDefault();
