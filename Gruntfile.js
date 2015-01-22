@@ -298,7 +298,7 @@ module.exports = function ( grunt ) {
                 files: [
                     '<%= app_files.js %>'
                 ],
-                tasks: [ 'jshint:src', 'karma:unit:run', 'copy:build_i18n' ]
+                tasks: [ 'jshint:src', 'karma:unit:run', 'copy:build_i18n', 'copy:doc_vendor_assets' ]
             },
 
             less: {
