@@ -101,8 +101,7 @@ $(document).ready(function()
         $('code').each(function(index, element)
         {
             var hash = '#-' + $(element).text().toLowerCase() + '-';
-
-            if (   hash.match(/^a-z-+$/)
+            if (   hash.match(/^#-[a-z]+-$/)
                 && $('#sub-navigation li a[href="' + hash + '"]').length > 0)
             {
                 $(element).addClass('internal-link');
