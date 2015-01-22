@@ -24,11 +24,11 @@ $(document).ready(function () {
     });
 
     $('button#buttonJSON').on('click', function(){
-	$('table#articles').jqGrid('setGridParam',{url: './data/basic.json'}).trigger('reloadGrid');
+	$('#grid').jqGrid('setGridParam',{url: './data/basic.json'}).trigger('reloadGrid');
     });
 
     $('button#buttonXML').on('click', function(){
-	$('table#articles').jqGrid('setGridParam',{url: './data/basic.xml'}).trigger('reloadGrid');
+	$('#grid').jqGrid('setGridParam',{url: './data/basic.xml'}).trigger('reloadGrid');
     });
 });
 ```
