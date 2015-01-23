@@ -48,7 +48,7 @@ Most of the changes correspond to recent tendencies of web development. Local Ja
 * **Configurable alignment of the column headers:** See the description of the `colModel` properties `labelAlign` and `labelClasses` below.
 * **Better integration with alternative CSS frameworks:** CSS is changed to simplify integration into projects which use frameworks other then jQuery UI, for example Bootstrap.
 * **`jsonmap` works with local data:** The only exception is when you use the `dataTypeOrg` option. The option will be set automatically after loading the data from the server and changing the `datatype` to `"local"`. It allows you to use `jsonmap` for the data loaded from the server and then skip it in later processing of the local data.
-* **jqGrid can run without locale file:** Content from `grid.locale-en.js` is included directly in the code.
+* **jqGrid can run without locale file:** Content from `grid.locale-en.js` is included directly in the code. If you want to use a different default locale (or none at all), you can use the [Download Builder](download/index.md)
 * **additional option `fromServer: true` in `.trigger("reloadGrid")`:** This allows reloading the data from the server when `loadonce` is set to `true`.
 
 ### New Options
