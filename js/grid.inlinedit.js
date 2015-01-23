@@ -426,6 +426,10 @@ $.jgrid.extend({
 					},0);
 				}
 			}
+                        
+                        $("#"+$.jgrid.jqID(ind.id)).find("div.ui-inline-edit,div.ui-inline-del").show();
+			$("#"+$.jgrid.jqID(ind.id)).find("div.ui-inline-save,div.ui-inline-cancel").hide();
+                        
 			$($t).triggerHandler("jqGridInlineAfterRestoreRow", [rowid]);
 			if ($.isFunction(o.afterrestorefunc))
 			{
