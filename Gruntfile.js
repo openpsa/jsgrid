@@ -160,12 +160,6 @@ module.exports = function ( grunt ) {
                         expand: true
                     },
                     {
-                        src: [ 'i18n/grid.locale-en.js' ],
-                        dest: '<%= build_dir %>/docs',
-                        cwd: '<%= build_dir %>/',
-                        expand: true
-                    },
-                    {
                         src: [ '*.*' ],
                         dest: '<%= build_dir %>/docs',
                         cwd: '<%= build_dir %>/',
@@ -298,7 +292,7 @@ module.exports = function ( grunt ) {
                 files: [
                     '<%= app_files.js %>'
                 ],
-                tasks: [ 'jshint:src', 'concat:build_js', 'karma:unit:run', 'copy:build_i18n', 'copy:doc_vendor_assets' ]
+                tasks: [ 'jshint:src', 'concat:build_js', 'insertlocale', 'karma:unit:run', 'copy:build_i18n', 'copy:doc_vendor_assets' ]
             },
 
             less: {
@@ -394,7 +388,7 @@ module.exports = function ( grunt ) {
 
     grunt.registerTask( 'build', [
         'clean:build', 'jshint', 'less:build',
-        'copy:build_i18n', 'copy:build_external', 'copy:build_vendorjs', 'concat:build_js',
+        'copy:build_i18n', 'copy:build_external', 'copy:build_vendorjs', 'concat:build_js', 'insertlocale',
         'karmaconfig', 'karma:continuous'
     ]);
 
@@ -423,5 +417,15 @@ module.exports = function ( grunt ) {
                 });
             }
         });
+    });
+
+    grunt.registerTask('insertlocale', 'Insert locale into build file', function () {
+        var filename = grunt.config('concat.build_js.dest'),
+            buildfile = grunt.file.read(filename),
+            locale = grunt.file.read(grunt.config('uglify.compile_i18n.files.0.cwd') + 'grid.locale-en.js');
+
+        buildfile = buildfile.replace(/\/\/::grunt-insert-locale/, locale);
+
+        grunt.file.write(filename, buildfile);
     });
 };
