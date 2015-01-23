@@ -17,6 +17,7 @@ module.exports = function ( grunt ) {
     var taskConfig = {
         pkg: grunt.file.readJSON("package.json"),
         filename: '<%= pkg.name %>-<%= pkg.version %>',
+        default_locale: 'en',
 
         meta: {
             banner:
@@ -422,7 +423,7 @@ module.exports = function ( grunt ) {
     grunt.registerTask('insertlocale', 'Insert locale into build file', function () {
         var filename = grunt.config('concat.build_js.dest'),
             buildfile = grunt.file.read(filename),
-            locale = grunt.file.read(grunt.config('uglify.compile_i18n.files.0.cwd') + 'grid.locale-en.js');
+            locale = grunt.file.read(grunt.config('uglify.compile_i18n.files.0.cwd') + 'grid.locale-' + grunt.config('default_locale') + '.js');
 
         buildfile = buildfile.replace(/\/\/::grunt-insert-locale/, locale);
 
