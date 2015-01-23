@@ -24,7 +24,21 @@
 
 (function ($) {
 "use strict";
-var englishLanguageDefaults = {
+
+$.jgrid = $.jgrid || {};
+if ($.jgrid.defaults == null) {
+(function($){
+"use strict";
+/**
+ * jqGrid English Translation
+ * Tony Tomov tony@trirand.com
+ * http://trirand.com/blog/ 
+ * Dual licensed under the MIT and GPL licenses:
+ * http://www.opensource.org/licenses/mit-license.php
+ * http://www.gnu.org/licenses/gpl.html
+**/
+$.jgrid = $.jgrid || {};
+$.extend(true,$.jgrid,{
 	defaults : {
 		recordtext: "View {0} - {1} of {2}",
 		emptyrecords: "No records to view",
@@ -69,7 +83,7 @@ var englishLanguageDefaults = {
 			novalue : " return value is required!",
 			customarray : "Custom function should return array!",
 			customfcheck : "Custom function should be present in case of custom checking!"
-
+			
 		}
 	},
 	view : {
@@ -177,9 +191,10 @@ var englishLanguageDefaults = {
 			}
 		}
 	}
-};
+});
+}(jQuery));
 
-$.jgrid = $.jgrid || {};
+}
 $.extend(true,$.jgrid,{
 	version : "4.7.0-post",
 	cmTemplate : {
@@ -1065,11 +1080,8 @@ $.fn.jqGrid = function( pin ) {
 			pin.data = []; // don't clear the array, just change the value of data property
 		}
 		if (jgrid.defaults == null) {
-			//fatalErrorFunction("FATAL ERROR!!!\n\nthe locale file \"grid.locale-en.js\" or other are not included. It should be included before jquery.jqGrid.min.js\n");
-			//return;
-
-			// set English options only if no grid.locale-XX.js file are included.
-			$.extend(true, $.jgrid, englishLanguageDefaults);
+			fatalErrorFunction("FATAL ERROR!!!\n\nNo locale file was found. It should be included before this file\n");
+			return false;
 		}
 		if (jgrid.formatter == null || jgrid.formatter.unused == null) {
 			// detect old locale file grid.locale-XX.js are included (without DEEP extend).
