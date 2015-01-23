@@ -1,8 +1,10 @@
 $(document).ready(function()
 {
     var urlprefix = 'https://raw.githubusercontent.com/openpsa/grid.js/master/',
-        proxy_prefix = 'https://rawgit.com/openpsa/grid.js/master/dist/',
-        button = $('#download-button');
+        proxy_prefix = 'https://rawgit.com/openpsa/grid.js/master/',
+        button = $('#download-button'),
+        defaultlocale = $('#default-locale');
+
 
     function report_error(error)
     {
@@ -11,20 +13,67 @@ $(document).ready(function()
             .insertAfter($('#download-button'));
     }
 
-    function build_jsfile(files)
+    function build_base()
     {
-        var postdata = 'compilation_level=SIMPLE_OPTIMIZATIONS&output_format=text&output_info=compiled_code';
         button.button('compiling');
-        $.each(files, function(index, url)
+
+        var promise = load_file(proxy_prefix + 'js/grid.base.js')
+            .then(function(e)
+            {
+                return e;
+            });
+
+        if ($('#default-locale').val() !== '')
         {
-            postdata += '&code_url=' + url;
+            return promise.then(insert_locale);
+        }
+        return promise;
+    }
+
+    function insert_locale(js)
+    {
+        return load_file(proxy_prefix + $('#default-locale').val())
+            .then(function(e)
+            {
+                return js.replace(/\/\/::grunt-insert-locale/, e);
+            });
+    }
+
+    function build_jsfile(js)
+    {
+        var requests = [];
+
+        $('.module input[type="checkbox"]:checked').each(function(index, element)
+        {
+            requests.push(load_file(proxy_prefix + $(this).val()));
         });
 
+        return $.when.apply($, requests)
+            .then(function()
+            {
+                /* jquery passes different parameters to callback when it's only called with one deferred */
+                if (requests.length === 1)
+                {
+                    js += arguments[0];
+                }
+                else
+                {
+                    for (i = 0; i < arguments.length; i++)
+                    {
+                        js += arguments[i][0];
+                    }
+                }
+                return js;
+            });
+    }
+
+    function compile(js)
+    {
         return $.ajax({
             url: 'http://closure-compiler.appspot.com/compile',
             type: 'POST',
             dataType: 'text',
-            data: postdata,
+            data: 'compilation_level=SIMPLE_OPTIMIZATIONS&output_format=text&output_info=compiled_code&js_code=' + encodeURIComponent(js),
             crossDomain: true
         })
         .fail(function(e)
@@ -57,7 +106,7 @@ $(document).ready(function()
     {
         button.button('css');
 
-        return load_file(proxy_prefix + 'grid.js-0.1.0.min.css', 'CSS download')
+        return load_file(proxy_prefix + 'dist/grid.js-0.1.0.min.css')
             .then(function(e)
             {
                 zip.file("grid.js-0.1.0.min.css", e);
@@ -75,7 +124,7 @@ $(document).ready(function()
         $('.locale input[type="checkbox"]:checked').each(function(index, element)
         {
             paths.push($(this).val().replace(/\.js$/, '.min.js'));
-            requests.push(load_file(proxy_prefix + paths[index]));
+            requests.push(load_file(proxy_prefix + 'dist/' + paths[index]));
         });
 
         return $.when.apply($, requests)
@@ -100,23 +149,20 @@ $(document).ready(function()
             });
     }
 
-    function build(files)
+    function build()
     {
-        return build_jsfile(files)
+        return build_base()
+            .then(build_jsfile)
+            .then(compile)
             .then(build_css)
             .then(build_i18n);
     }
 
     button.on('click', function()
     {
-        var files = [];
-
         button.prop('disabled', true);
-        $('.module input[type="checkbox"]:checked').each(function(index, element)
-        {
-            files.push(urlprefix + $(this).val());
-        });
-        build(files)
+
+        build()
             .done(function(zip)
              {
                  var content = zip.generate({type: "blob"});
@@ -129,13 +175,18 @@ $(document).ready(function()
             });
     });
 
+    $('.locale input[type="checkbox"]').each(function()
+    {
+        defaultlocale.append('<option value="' + $(this).attr('value') + '">' + $(this).parent().text() + '</option>');
+    });
+
     $('h3')
         .addClass('checkbox')
         .prepend(
             $('<input type="checkbox">')
                 .on('change', function()
                     {
-                        $(this).closest('fieldset').find('div.checkbox input[type="checkbox"]').prop('checked', $(this).is(':checked'));
+                        $(this).closest('fieldset').find('div.checkbox input[type="checkbox"]:not([disabled])').prop('checked', $(this).is(':checked'));
                     }))
         .wrapInner('<label>');
 });
