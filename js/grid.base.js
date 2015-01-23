@@ -1161,6 +1161,9 @@ $.fn.jqGrid = function( pin ) {
 						self.sDiv.scrollLeft = self.bDiv.scrollLeft;
 					}
 				}
+                                
+                                $(self).resizeFilterToolbarInput($('tr.ui-search-toolbar th:eq('+idx+') input',$(self.hDiv)));
+                                
 				if (!skipCallbacks) {
 					feedback.call(ts, "resizeStop", nw, idx);
 				}

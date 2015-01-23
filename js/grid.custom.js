@@ -644,8 +644,16 @@ $.jgrid.extend({
 			this.triggerToolbar = triggerToolbar;
 			this.clearToolbar = clearToolbar;
 			this.toggleToolbar = toggleToolbar;
+                        
+                        var self = this;
+                        $("span.ui-search-input input",tr).each(function(){
+                            $(self).resizeFilterToolbarInput($(this));
+                        });
 		});
 	},
+        resizeFilterToolbarInput: function(input){
+            input.css('width', input.parents('th').width() - 20);
+        },
 	destroyFilterToolbar: function () {
 		return this.each(function () {
 			if (!this.ftoolbar) {
