@@ -1,9 +1,8 @@
 ---
-title: Configuration // Column Model
+title: Column Model
 section: Configuration
 ---
 
-# Column Model
 The `colModel` property defines the individual grid columns as an array
 of properties. This is the most important part of the grid.
 

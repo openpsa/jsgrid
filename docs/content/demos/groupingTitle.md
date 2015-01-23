@@ -1,8 +1,7 @@
 ---
-title: Demos / Grouping Title
+title: Grouping with custom display value and title columns
 section: Demos
 ---
-# Default Options + Grouping with custom display value and title columns
 
 ```javascript
 	$(document).ready(function () {

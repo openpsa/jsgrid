@@ -1,9 +1,7 @@
 ---
-title: Demos / Local
+title: Default Options + Local Data
 section: Demos
 ---
-
-# Default Options + Local Data
 
 ```javascript
 var mydata = [

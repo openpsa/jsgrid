@@ -19,6 +19,9 @@ version: <%= pkg.version %>
 <body>
 {{> mainnav }}
 <main class="container">
+<div class="page-header">
+<h1>{{title}}{{#if subtitle}} <small>&ndash; {{subtitle}}</small>{{/if}}</h1>
+</div>
 {{> body }}
 </main>
 

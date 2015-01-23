@@ -1,8 +1,7 @@
 ---
-title: Demos / Grouping
+title: Basic Grouping
 section: Demos
 ---
-# Default Options + Basic Grouping
 
 
 ```javascript

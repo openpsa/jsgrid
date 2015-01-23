@@ -132,7 +132,7 @@ $(document).ready(function()
 
     $('#sub-navigation').affix({
         offset: {
-            top: 95
+            top: 150
         }
     });
 });

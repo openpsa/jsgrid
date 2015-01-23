@@ -1,9 +1,7 @@
 ---
-title: Configuration // Grouping
+title: Grouping
 section: Configuration
 ---
-
-# Grouping
 
 The simplest way to group in grid.js is to enable grouping with the
 grid option `grouping` and define a field name on which grouping

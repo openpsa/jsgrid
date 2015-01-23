@@ -1,9 +1,7 @@
 ---
-title: Demos / Search Filter with Operators
+title: Search Filter with Operators
 section: Demos
 ---
-
-# Default Options + Search Filter with Operators
 
 ```javascript
 var mydata = [

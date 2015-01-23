@@ -1,9 +1,7 @@
 ---
-title: Demos / Pager
+title: Default Pager
 section: Demos
 ---
-
-# Default Pager
 
 ```javascript
 var mydata = [

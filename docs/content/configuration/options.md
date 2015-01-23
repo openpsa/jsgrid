@@ -1,9 +1,7 @@
 ---
-title: Configuration // Options
+title: Options
 section: Configuration
 ---
-
-# Options
 
 ## Data
 

@@ -1,9 +1,7 @@
 ---
-title: Demos / Search Filter
+title: Search Filter
 section: Demos
 ---
-
-# Default Options + Search Filter
 
 ```javascript
 var mydata = [

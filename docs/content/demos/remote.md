@@ -1,9 +1,7 @@
 ---
-title: Demos / Remote
+title: Remote Data
 section: Demos
 ---
-
-# Default Options + Remote Data
 
 ```javascript
 $(document).ready(function () {
