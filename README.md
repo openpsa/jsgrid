@@ -32,14 +32,6 @@ Afterwards, you can build like this:
 grunt
 ```
 
-(The `force` switch is currently necessary because of some `jshint` warnings)
-
-You can generate the compressed files with
-
-```bash
-grunt compile
-```
-
 The documentation can be built with
 
 ```bash
