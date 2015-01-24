@@ -1494,7 +1494,7 @@ $.fn.jqGrid = function( pin ) {
 				p._index[val] = i;
 			}
 		},
-		constructTr = function(id, hide, altClass, rd, cur, selected) {
+                constructTr = function(id, hide, altClass, rd, cur, selected) {
 			var tabindex = '-1', restAttr = '', attrName, style = hide ? 'display:none;' : '', self = this,
 				classes = 'ui-widget-content jqgrow ui-row-' + p.direction + (altClass ? ' ' + altClass : '') + (selected ? ' ui-state-highlight' : ''),
 				rowAttrObj = $(self).triggerHandler("jqGridRowAttr", [rd, cur, id]);
@@ -1531,6 +1531,29 @@ $.fn.jqGrid = function( pin ) {
 			return '<tr role="row" id="' + id + '" tabindex="' + tabindex + '" class="' + classes + '"' +
 				(style === '' ? '' : ' style="' + style + '"') + restAttr + '>';
 		},
+                activateInlineButtons = function(){
+                    $('.ui-inline-button').on('mouseover', function(){
+                        $(this).addClass('ui-state-hover');
+                    });
+                    $('.ui-inline-button').on('mouseout', function(){
+                        $(this).removeClass('ui-state-hover');
+                    });
+                    $('.ui-inline-edit:not(.ui-inline-edit-form)').on('click', function(){
+                        $.fn.fmatter.rowactions.call(this,'edit');
+                    });
+                    $('.ui-inline-edit.ui-inline-edit-form').on('click', function(){
+                        $.fn.fmatter.rowactions.call(this,'formedit');
+                    });
+                    $('.ui-inline-del').on('click', function(){
+                        $.fn.fmatter.rowactions.call(this,'del');
+                    });
+                    $('.ui-inline-save').on('click', function(){
+                        $.fn.fmatter.rowactions.call(this,'save');
+                    });
+                    $('.ui-inline-cancel').on('click', function(){
+                        $.fn.fmatter.rowactions.call(this,'cancel');
+                    });
+                },
 		addXmlData = function (xml, rcnt, more, adjust) {
 			var self = this, $self = $(this), startReq = new Date(), getXmlData = jgrid.getXmlData,
 			locdata = (p.datatype !== "local" && p.loadonce) || p.datatype === "xmlstring",
@@ -1726,6 +1749,8 @@ $.fn.jqGrid = function( pin ) {
 					grpdata = null;
 				}
 			}
+                        
+                        activateInlineButtons.call();
 		},
 		addJSONData = function(data, rcnt, more, adjust) {
 			var self = this, $self = $(self), startReq = new Date();
@@ -1925,6 +1950,8 @@ $.fn.jqGrid = function( pin ) {
 					grpdata = null;
 				}
 			}
+                        
+                        activateInlineButtons.call();
 		},
 		addLocalData = function() {
 			var $self = $(this), st = p.multiSort ? [] : "", sto=[], fndsort=false, cmtypes={}, grtypes=[], grindexes=[], srcformat, sorttype, newformat;
@@ -2114,6 +2141,9 @@ $.fn.jqGrid = function( pin ) {
 			retresult[localReader.records] = total;
 			retresult[localReader.root] = p.lastSelectedData.slice((page-1)*recordsperpage, page*recordsperpage);
 			retresult[localReader.userdata] = p.userData;
+                        
+                        activateInlineButtons.call();
+                        
 			return retresult;
 		},
 		updatepager = function(rn, dnd) {
@@ -3111,7 +3141,7 @@ $.fn.jqGrid = function( pin ) {
 			if (p.treeGrid === true) {
 				p.datatype = p.treedatatype;
 			}
-			if (p.datatype === "local" && p.dataTypeOrg && p.loadonce) {
+			if (p.datatype === "local" && p.dataTypeOrg && p.loadonce && opts.fromServer) {
 				p.datatype = String(p.dataTypeOrg);
 				delete p.dataTypeOrg;
 			}

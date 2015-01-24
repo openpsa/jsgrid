@@ -1592,7 +1592,7 @@ $.jgrid.extend({
 				bC  = "<a id='eData' class='fm-button ui-state-default ui-corner-all'>"+o.bCancel+"</a>";
 				tbl += "<table cellspacing='0' cellpadding='0' border='0' class='EditTable' id='"+dtblID+"_2'><tbody><tr><td><hr class='ui-widget-content' style='margin:1px'/></td></tr><tr><td class='DelButton EditButton'>"+bS+"&#160;"+bC+"</td></tr></tbody></table>";
 				o.gbox = gboxSelector;
-				jgrid.createModal(IDs,tbl,p,"#gview_"+jqID(gID),$("#gview_"+jqID(gID))[0]);
+				jgrid.createModal(ids,tbl,p,"#gview_"+jqID(gID),$("#gview_"+jqID(gID))[0]);
 				if(onBeforeInit) {
 					showFrm = onBeforeInit.call($t,$(tbl));
 					if(showFrm === undefined) {
