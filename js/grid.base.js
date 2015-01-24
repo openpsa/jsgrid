@@ -1532,52 +1532,27 @@ $.fn.jqGrid = function( pin ) {
 				(style === '' ? '' : ' style="' + style + '"') + restAttr + '>';
 		},
                 activateInlineButtons = function(){
-                    if($('.ui-inline-button').length){
-                            $('.ui-inline-button').each(function(){
-                                $(this).on('mouseover', function(){
-                                    $(this).addClass('ui-state-hover');
-                                });
-                                $(this).on('mouseout', function(){
-                                    $(this).removeClass('ui-state-hover');
-                                });
-                            });
-                        }
-                        if($('.ui-inline-edit:not(.ui-inline-edit-form)').length){
-                            $('.ui-inline-edit:not(.ui-inline-edit-form)').each(function(){
-                                $(this).on('click', function(){
-                                    $.fn.fmatter.rowactions.call(this,'edit');
-                                });
-                            });
-                        }
-                        if($('.ui-inline-edit.ui-inline-edit-form').length){
-                            $('.ui-inline-edit.ui-inline-edit-form').each(function(){
-                                $(this).on('click', function(){
-                                    $.fn.fmatter.rowactions.call(this,'formedit');
-                                });
-                            });
-                        }
-                        if($('.ui-inline-del').length){
-                            $('.ui-inline-del').each(function(){
-                                $(this).on('click', function(){
-                                    $.fn.fmatter.rowactions.call(this,'del');
-                                });
-                            });
-                        }
-                        if($('.ui-inline-save').length){
-                            $('.ui-inline-save').each(function(){
-                                $(this).on('click', function(){
-                                    $.fn.fmatter.rowactions.call(this,'save');
-                                });
-                            });
-                        }
-                        if($('.ui-inline-cancel').length){
-                            $('.ui-inline-cancel').each(function(){
-                                $(this).on('click', function(){
-                                    console.log('toto');
-                                    $.fn.fmatter.rowactions.call(this,'cancel');
-                                });
-                            });
-                        }
+                    $('.ui-inline-button').on('mouseover', function(){
+                        $(this).addClass('ui-state-hover');
+                    });
+                    $('.ui-inline-button').on('mouseout', function(){
+                        $(this).removeClass('ui-state-hover');
+                    });
+                    $('.ui-inline-edit:not(.ui-inline-edit-form)').on('click', function(){
+                        $.fn.fmatter.rowactions.call(this,'edit');
+                    });
+                    $('.ui-inline-edit.ui-inline-edit-form').on('click', function(){
+                        $.fn.fmatter.rowactions.call(this,'formedit');
+                    });
+                    $('.ui-inline-del').on('click', function(){
+                        $.fn.fmatter.rowactions.call(this,'del');
+                    });
+                    $('.ui-inline-save').on('click', function(){
+                        $.fn.fmatter.rowactions.call(this,'save');
+                    });
+                    $('.ui-inline-cancel').on('click', function(){
+                        $.fn.fmatter.rowactions.call(this,'cancel');
+                    });
                 },
 		addXmlData = function (xml, rcnt, more, adjust) {
 			var self = this, $self = $(this), startReq = new Date(), getXmlData = jgrid.getXmlData,
@@ -3159,7 +3134,7 @@ $.fn.jqGrid = function( pin ) {
 			if (p.treeGrid === true) {
 				p.datatype = p.treedatatype;
 			}
-			if (p.datatype === "local" && p.dataTypeOrg && !p.loadonce) {
+			if (p.datatype === "local" && p.dataTypeOrg && p.loadonce && opts.fromServer) {
 				p.datatype = String(p.dataTypeOrg);
 				delete p.dataTypeOrg;
 			}
