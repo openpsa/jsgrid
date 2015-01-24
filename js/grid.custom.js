@@ -597,7 +597,7 @@ $.jgrid.extend({
 
 				$(tr).append(th);
 				if(!p.searchOperators) {
-					$("a:eq(0)",th).hide();
+					$("a:first-child)",th).hide();
 				}
 			});
 			$("table thead",$t.grid.hDiv).append(tr);
