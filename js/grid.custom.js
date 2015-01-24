@@ -427,7 +427,7 @@ $.jgrid.extend({
 				soptions = $.extend({},this.searchoptions || {});
 				if(this.search){
 					if(this.stype === undefined) {this.stype='text';}
-					var stbl = $("<div class='ui-search-box'><span class='ui-search-input'></span><span class='ui-search-clear'></span></div>");
+					var stbl = $("<div class='ui-search-box'><span class='ui-search-input'></span></div>");
 					if(p.searchOperators && cm.edittype !== 'checkbox') {
 						so  = (soptions.sopt) ? soptions.sopt[0] : cm.stype==='select' ?  'eq' : p.defaultSearch;
 						for(i = 0;i<p.odata.length;i++) {
@@ -449,9 +449,7 @@ $.jgrid.extend({
 					}
 					if(soptions.clearSearch && cm.stype !== 'select') {
 						var csv = p.resetTitle || 'Clear Search Value';
-						$("span.ui-search-clear",stbl).append("<a title='Clear Search Value' class='clearsearchclass'>x</a>");
-					} else {
-						$("span.ui-search-clear", stbl).hide();
+						$(stbl).append("<a title='Clear Search Value' class='clearsearchclass'>x</a>");
 					}
 					switch (this.stype)
 					{
