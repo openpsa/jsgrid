@@ -300,34 +300,37 @@ $.jgrid.extend({
 				var fdata = findGroupIdx(i, ik, grp),
 				cm = $t.p.colModel,
 				grlen = fdata.cnt, strTd="", k, tmpdata, tplfld;
+				
+				var groupingBuildFunc = function(){
+					var vv;
+					if(this.nm === cm[k].name) {
+						if(cm[k].summaryTpl)  {
+							tplfld = cm[k].summaryTpl;
+						}
+						if(typeof this.st === 'string' && this.st.toLowerCase() === 'avg') {
+							if(this.sd && this.vd) { 
+								this.v = (this.v/this.vd);
+							} else if(this.v && grlen > 0) {
+								this.v = (this.v/grlen);
+							}
+						}
+						try {
+							this.groupCount = fdata.cnt;
+							this.groupIndex = fdata.dataIndex;
+							this.groupValue = fdata.value;
+							vv = $t.formatter('', this.v, k, this);
+						} catch (ef) {
+							vv = this.v;
+						}
+						tmpdata= "<td "+$t.formatCol(k,1,'')+">"+$.jgrid.format(tplfld,vv)+ "</td>";
+						return false;
+					}
+				};
+				
 				for(k=foffset; k<colspans;k++) {
 					tmpdata = "<td "+$t.formatCol(k,1,'')+">&#160;</td>";
 					tplfld = "{0}";
-					$.each(fdata.summary,function(){
-						var vv;
-						if(this.nm === cm[k].name) {
-							if(cm[k].summaryTpl)  {
-								tplfld = cm[k].summaryTpl;
-							}
-							if(typeof this.st === 'string' && this.st.toLowerCase() === 'avg') {
-								if(this.sd && this.vd) { 
-									this.v = (this.v/this.vd);
-								} else if(this.v && grlen > 0) {
-									this.v = (this.v/grlen);
-								}
-							}
-							try {
-								this.groupCount = fdata.cnt;
-								this.groupIndex = fdata.dataIndex;
-								this.groupValue = fdata.value;
-								vv = $t.formatter('', this.v, k, this);
-							} catch (ef) {
-								vv = this.v;
-							}
-							tmpdata= "<td "+$t.formatCol(k,1,'')+">"+$.jgrid.format(tplfld,vv)+ "</td>";
-							return false;
-						}
-					});
+					$.each(fdata.summary,groupingBuildFunc);
 					strTd += tmpdata;
 				}
 				return strTd;

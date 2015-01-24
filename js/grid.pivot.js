@@ -20,15 +20,21 @@ function _pivotfilter (fn, context) {
 		result = [],
 		length;
 
+ 	/*jshint validthis:true */
 	if (!this || typeof fn !== 'function' || (fn instanceof RegExp)) {
 		throw new TypeError();
 	}
 
+ 	/*jshint validthis:true */
 	length = this.length;
 
 	for (i = 0; i < length; i++) {
+		/*jshint validthis:true */
 		if (this.hasOwnProperty(i)) {
+			/*jshint validthis:true */
 			value = this[i];
+			
+			/*jshint validthis:true */
 			if (fn.call(context, value, i, this)) {
 				result.push(value);
 				// We need break in order to cancel loop 
@@ -108,11 +114,14 @@ $.jgrid.extend({
 				var j = 0, ret = true, i;
 				for(i in item) {
 					if (item.hasOwnProperty(i)) {
+						/*jshint validthis:true */
 						if(item[i] != this[j]) {
 							ret =  false;
 							break;
 						}
 						j++;
+						
+						 /*jshint validthis:true */
 						if(j>=this.length) {
 							break;
 						}

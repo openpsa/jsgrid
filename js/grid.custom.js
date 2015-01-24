@@ -397,8 +397,8 @@ $.jgrid.extend({
                                 
 				str += "</div>";
 				body.append(str);
-				var sopt_menu = $("#sopt_menu");
-                                sopt_menu.addClass("ui-menu ui-widget");
+				sopt_menu = $("#sopt_menu");
+                sopt_menu.addClass("ui-menu ui-widget");
 				$("a", sopt_menu).hover(
 					function(){ $(this).addClass("ui-state-hover").css('font-weight', 'normal'); },
 					function(){ $(this).removeClass("ui-state-hover"); }
@@ -420,14 +420,14 @@ $.jgrid.extend({
 			var tr = $("<tr class='ui-search-toolbar' role='row'></tr>");
 			var timeoutHnd;
 			$.each($t.p.colModel,function(ci){
-				var cm=this, soptions, surl, self, select = "", sot="=", so, i,
+				var cm=this, soptions, surl, self, select = "", sot="=", so, i, stbl,
 				th = $("<th role='columnheader' class='ui-state-default ui-th-column ui-th-"+$t.p.direction+"'></th>");
 				if(this.hidden===true) { $(th).css("display","none");}
 				this.search = this.search === false ? false : true;
 				soptions = $.extend({},this.searchoptions || {});
 				if(this.search){
 					if(this.stype === undefined) {this.stype='text';}
-					var stbl = $("<div class='ui-search-box'><span class='ui-search-input'></span><span class='ui-search-clear'></span></div>");
+					stbl = $("<div class='ui-search-box'><span class='ui-search-input'></span><span class='ui-search-clear'></span></div>");
 					if(p.searchOperators && cm.edittype !== 'checkbox') {
 						so  = (soptions.sopt) ? soptions.sopt[0] : cm.stype==='select' ?  'eq' : p.defaultSearch;
 						for(i = 0;i<p.odata.length;i++) {

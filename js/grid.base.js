@@ -328,7 +328,7 @@ $.extend(true,$.jgrid,{
 		return id ? "#" + jgrid.jqID(id) : "";
 	},
 	getGridComponent: function (componentName, $p, p1) {
-		if (!($p instanceof jQuery) || $p.length == 0) {
+		if (!($p instanceof jQuery) || $p.length === 0) {
 			return $(); // return empty jQuery object
 		}
 		var p = $p[0];
@@ -1059,7 +1059,7 @@ $.fn.jqGrid = function( pin ) {
 			fatalErrorFunction("Element is not a table!");
 			return;
 		}
-		if (ts.id == "") {
+		if (ts.id === "") {
 			$(ts).attr("id", jgrid.randId());
 		}
 		if(document.documentMode !== undefined ) { // IE only
@@ -1244,7 +1244,7 @@ $.fn.jqGrid = function( pin ) {
 				// TODO get ts from this bDiv
 				var bDiv = this, $bTable = getGridComponent("bTable", $(this)), gridSelf;
 				if (e) { e.stopPropagation(); }
-				if ($bTable.length == 0) { return true; }
+				if ($bTable.length === 0) { return true; }
 				gridSelf = $bTable[0].grid;
 				if (p.scroll) {
 					var scrollTop = bDiv.scrollTop;
@@ -1591,6 +1591,15 @@ $.fn.jqGrid = function( pin ) {
 			var $tbody = $(self.tBodies[0]); //$self.children("tbody").filter(":first");
 			if(gxml && gl){
 				if (adjust) { rn *= adjust+1; }
+				
+				var xmlFunc = function (k) {
+					var cell = cells[this];
+					if (!cell) { return false; }
+					v = cell.textContent || cell.text;
+					rd[colModel[k+gi+si+ni].name] = v;
+					rowData.push( addCell(rid,v,k+gi+si+ni,j+rcnt,xmlr, rd) );
+				};
+				
 				while (j<gl) {
 					xmlr = gxml[j];
 					rid = getId(xmlr,br+j);
@@ -1611,13 +1620,7 @@ $.fn.jqGrid = function( pin ) {
 					if(xmlRd.repeatitems){
 						if (!F) { F=orderedCols(gi+si+ni); }
 						cells = getXmlData( xmlr, xmlRd.cell, true);
-						$.each(F, function (k) {
-							var cell = cells[this];
-							if (!cell) { return false; }
-							v = cell.textContent || cell.text;
-							rd[colModel[k+gi+si+ni].name] = v;
-							rowData.push( addCell(rid,v,k+gi+si+ni,j+rcnt,xmlr, rd) );
-						});
+						$.each(F, xmlFunc);
 					} else {
 						for(i = 0; i < f.length;i++) {
 							v = getXmlData( xmlr, f[i]);
@@ -1688,6 +1691,12 @@ $.fn.jqGrid = function( pin ) {
 			}
 			if (!more) { self.updatepager(false,true); }
 			if(locdata) {
+				var xmlFunc2 = function (k) {
+					var cell = cells2[this];
+					if (!cell) { return false; }
+					v = cell.textContent || cell.text;
+					rd[colModel[k+gi+si+ni].name] = v;
+				};
 				while (ir<gl) {
 					xmlr = gxml[ir];
 					rid = getId(xmlr,ir+br);
@@ -1695,12 +1704,7 @@ $.fn.jqGrid = function( pin ) {
 					if(xmlRd.repeatitems){
 						if (!F) { F=orderedCols(gi+si+ni); }
 						var cells2 = getXmlData( xmlr, xmlRd.cell, true);
-						$.each(F, function (k) {
-							var cell = cells2[this];
-							if (!cell) { return false; }
-							v = cell.textContent || cell.text;
-							rd[colModel[k+gi+si+ni].name] = v;
-						});
+						$.each(F, xmlFunc2);
 					} else {
 						for(i = 0; i < f.length;i++) {
 							v = getXmlData( xmlr, f[i]);
@@ -2234,13 +2238,16 @@ $.fn.jqGrid = function( pin ) {
 				if(p.grouping) {
 					$self.jqGrid('groupingSetup');
 					var grp = p.groupingView, gi, gs="", index;
+					
+					var groupingFunc = function(cmIndex, cmValue) {
+						if (cmValue.name === index && cmValue.index){
+							index = cmValue.index;
+						}
+					};
+					
 					for(gi=0;gi<grp.groupField.length;gi++) {
 						index = grp.groupField[gi];
-						$.each(p.colModel, function(cmIndex, cmValue) {
-							if (cmValue.name === index && cmValue.index){
-								index = cmValue.index;
-							}
-						} );
+						$.each(p.colModel, groupingFunc);
 						gs += index +" "+grp.groupOrder[gi]+", ";
 					}
 					prm[pN.sort] = gs + prm[pN.sort];
@@ -3535,23 +3542,25 @@ $.jgrid.extend({
 				ind = $($t).jqGrid('getGridRowById', rowid);
 				if(!ind) { return res; }
 			}
+			var rowFunc = function(i) {
+				var cm = p.colModel[i], nm = cm.name;
+				if ( nm !== 'cb' && nm !== 'subgrid' && nm !== 'rn') {
+					if(p.treeGrid===true && nm === p.ExpandColumn) {
+						res[nm] = $.jgrid.htmlDecode($("span",this).filter(":first").html());
+					} else {
+						try {
+							res[nm] = $.unformat.call($t,this,{rowId:ind.id, colModel:cm},i);
+						} catch (exception){
+							res[nm] = $.jgrid.htmlDecode($(this).html());
+						}
+					}
+				}
+			};
+			
 			while(j<len){
 				if(getall) { ind = rows[j]; }
 				if( $(ind).hasClass('jqgrow') ) {
-					$('td[role="gridcell"]',ind).each( function(i) {
-						var cm = p.colModel[i], nm = cm.name;
-						if ( nm !== 'cb' && nm !== 'subgrid' && nm !== 'rn') {
-							if(p.treeGrid===true && nm === p.ExpandColumn) {
-								res[nm] = $.jgrid.htmlDecode($("span",this).filter(":first").html());
-							} else {
-								try {
-									res[nm] = $.unformat.call($t,this,{rowId:ind.id, colModel:cm},i);
-								} catch (exception){
-									res[nm] = $.jgrid.htmlDecode($(this).html());
-								}
-							}
-						}
-					});
+					$('td[role="gridcell"]',ind).each(rowFunc);
 					if(getall) { resall.push(res); res={}; }
 				}
 				j++;
