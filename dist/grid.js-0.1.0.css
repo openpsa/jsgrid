@@ -570,10 +570,20 @@
   font-style: normal;
   border-left: 0 none;
 }
-.ui-inline-del.ui-state-hover span,
-.ui-inline-edit.ui-state-hover span,
-.ui-inline-save.ui-state-hover span,
-.ui-inline-cancel.ui-state-hover span {
+.ui-inline-button {
+  float: left;
+  cursor: pointer;
+}
+.ui-inline-del,
+.ui-inline-cancel,
+.ui-inline-save {
+  margin-left: 5px;
+}
+.ui-inline-save,
+.ui-inline-cancel {
+  display: none;
+}
+.ui-inline-button.ui-state-hover span {
   margin: -1px;
 }
 .ui-jqgrid .tree-wrap {
@@ -642,9 +652,6 @@
 .ui-search-toolbar {
   padding: 2px 5px;
 }
-.ui-search-toolbar .ui search-box > * {
-  display: inline-block;
-}
 .ui-search-toolbar .ui-search-oper {
   width: 20px;
   padding-right: 0.5em;
@@ -654,6 +661,8 @@
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+}
+.ui-search-toolbar .ui-search-input > select {
   width: 100%;
 }
 a.g-menu-item,
