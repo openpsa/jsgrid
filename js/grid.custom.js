@@ -622,17 +622,17 @@ $.jgrid.extend({
 			}
 			$(".clearsearchclass",tr).click(function(){
 				var ptr = $(this).parents("tr:first"),
-				coli = parseInt($("td.ui-search-oper", ptr).data('colindex'),10),
-				sval  = $.extend({},$t.p.colModel[coli].searchoptions || {}),
+				col = $('th',ptr).index($(this).parents('th:first')),
+				sval  = $.extend({},$t.p.colModel[col].searchoptions || {}),
 				dval = sval.defaultValue || "";
-				if($t.p.colModel[coli].stype === "select") {
+				if($t.p.colModel[col].stype === "select") {
 					if(dval) {
-						$("td.ui-search-input select", ptr).val( dval );
+						$(".ui-search-input select", ptr).val( dval );
 					} else {
-						$("td.ui-search-input select", ptr)[0].selectedIndex = 0;
+						$(".ui-search-input select", ptr)[0].selectedIndex = 0;
 					}
 				} else {
-					$("td.ui-search-input input", ptr).val( dval );
+					$(".ui-search-input input", ptr).val( dval );
 				}
 				// ToDo custom search type
 				if(p.autosearch===true){
