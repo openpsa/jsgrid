@@ -3104,7 +3104,7 @@ $.fn.jqGrid = function( pin ) {
 			if (p.treeGrid === true) {
 				p.datatype = p.treedatatype;
 			}
-			if (p.datatype === "local" && p.dataTypeOrg && p.loadonce) {
+			if (p.datatype === "local" && p.dataTypeOrg && !p.loadonce) {
 				p.datatype = String(p.dataTypeOrg);
 				delete p.dataTypeOrg;
 			}
