@@ -8,29 +8,32 @@ $(document).ready(function()
         var container = $('code.language-javascript')
             .parent()
             .hide();
-        $('<table id="grid"></table><div id="jqGridPager"></div>')
+        $('<table id="grid"></table><div id="pager"></div>')
             .insertBefore(container);
-        eval($('pre code.language-javascript').text());
-        $('<label class="btn btn-primary" id="show-code">Show Code</label>')
+        $('<div class="btn-group"></div>')
             .insertBefore(container)
-            .on('click', function()
-            {
-                var button = $(this);
-                if (container.is(':visible'))
-                {
-                    container.slideUp(300, function()
+            .append(
+                $('<label class="btn btn-primary" id="show-code">Show Code</label>')
+                    .on('click', function()
                     {
-                        button.removeClass('active');
-                    });
-                }
-                else
-                {
-                    container.slideDown(300, function()
-                    {
-                        button.addClass('active');
-                    });
-                }
-            });
+                        var button = $(this);
+                        if (container.is(':visible'))
+                        {
+                            container.slideUp(300, function()
+                            {
+                                button.removeClass('active');
+                            });
+                        }
+                        else
+                        {
+                            container.slideDown(300, function()
+                            {
+                                button.addClass('active');
+                            });
+                        }
+                    })
+            );
+        eval($('pre code.language-javascript').text());
     }
 
     if ($('h2, h3, h4').length > 5)
@@ -49,7 +52,7 @@ $(document).ready(function()
         }
 
 
-        $('h2, h3, h4').each(function()
+        $('h2, h3, h4').each(function(index)
         {
             new_level = parseInt(this.nodeName.substr(1));
             if (previous_level === undefined)
@@ -77,15 +80,15 @@ $(document).ready(function()
                 }
             }
 
+            if ($(this).attr('id') === undefined)
+            {
+                $(this).attr('id', 'heading-' + index);
+            }
+
             build_nav(active_node, $(this));
         });
 
-        nav.appendTo($('#sub-navigation'));
-        $('#sub-navigation').affix({
-            offset: {
-                top: 95
-            }
-        });
+        nav.prependTo($('#sub-navigation'));
 
         $('body').scrollspy({target: '#sub-navigation', offset: 80});
 
@@ -95,15 +98,22 @@ $(document).ready(function()
             scrollBy(0, -header_height);
         });
 
-        $('code').each(function(index, element)
+        $.expr[':'].noheadlines = function(a)
         {
-            var hash = '#-' + $(element).text().toLowerCase() + '-';
+            return jQuery(a).parents('h1, h2, h3, h4, h5, h6').length < 1;
+        };
 
-            if ($('#sub-navigation li a[href="' + hash + '"]').length > 0)
+        $('code')
+            .filter(':noheadlines')
+            .each(function(index, element)
             {
-                $(element).addClass('internal-link');
-            }
-        });
+                var hash = '#-' + $(element).text().toLowerCase() + '-';
+                if (   hash.match(/^#-[a-z]+-$/)
+                    && $('#sub-navigation li a[href="' + hash + '"]').length > 0)
+                {
+                    $(element).addClass('internal-link');
+                }
+            });
         $('main').on('click', '.internal-link', function(e)
         {
             e.preventDefault();
@@ -113,11 +123,16 @@ $(document).ready(function()
                 $('#sub-navigation li a[href="' + hash + '"]').click();
             }
         })
+        if (   window.location.hash
+            && Math.abs(Math.round($(window).scrollTop() - $(window.location.hash).offset().top)) < 1)
+        {
+            scrollBy(0, -header_height);
+        }
     }
 
-    if (   window.location.hash
-        && Math.abs(Math.round($(window).scrollTop() - $(window.location.hash).offset().top)) < 1)
-    {
-        scrollBy(0, -header_height);
-    }
+    $('#sub-navigation').affix({
+        offset: {
+            top: 150
+        }
+    });
 });

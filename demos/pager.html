@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>grid.js - Default Options + Local Data</title>
+<title>grid.js - Default Pager</title>
 <link href="../grid.js-0.1.0.css" rel="stylesheet">
 <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css" rel="stylesheet">
@@ -44,7 +44,7 @@
 
 <main class="container">
 <div class="page-header">
-<h1>Default Options + Local Data</h1>
+<h1>Default Pager</h1>
 </div>
 
 <div class="col-md-9 demo-container">
@@ -65,6 +65,8 @@ $(document).ready(<span class="function"><span class="keyword">function</span> <
     $(<span class="string">"#grid"</span>).jqGrid({
         datatype: <span class="string">"local"</span>,
         data: mydata,
+        pager: <span class="string">'#pager'</span>,
+        rowNum: <span class="number">5</span>,
         colModel: [
             { label: <span class="string">'Inv No'</span>, name: <span class="string">'id'</span>, width: <span class="number">75</span>, key: <span class="literal">true</span> },
             { label: <span class="string">'Date'</span>, name: <span class="string">'invdate'</span>, width: <span class="number">90</span> },
@@ -84,7 +86,7 @@ $(document).ready(<span class="function"><span class="keyword">function</span> <
 <div id="sub-navigation" class="nav">
     <ul class="nav">
   
-  <li class="active"><a href="local.html">Local Data</a></li>
+  <li><a href="local.html">Local Data</a></li>
   
   <li><a href="grouping.html">Grouping</a></li>
   
@@ -96,7 +98,7 @@ $(document).ready(<span class="function"><span class="keyword">function</span> <
   
   <li><a href="searchFilterOperator.html">Search Filter with Operators</a></li>
   
-  <li><a href="pager.html">Pagination</a></li>
+  <li class="active"><a href="pager.html">Pagination</a></li>
   
     </ul>
 </div>
@@ -106,7 +108,7 @@ $(document).ready(<span class="function"><span class="keyword">function</span> <
 
 <footer>
   <div class="container">
-  Page generated on 2015-01-23 22:59 | <a href="https://github.com/openpsa/grid.js/tree/master/docs/content/demos/local.md">View Page Source</a>
+  Page generated on 2015-01-23 22:59 | <a href="https://github.com/openpsa/grid.js/tree/master/docs/content/demos/pager.md">View Page Source</a>
   </div>
 </footer>
 

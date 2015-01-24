@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>grid.js - Release Notes</title>
+<link href="./grid.js-0.1.0.css" rel="stylesheet">
+<link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css" rel="stylesheet">
+<link href="./docs.css" rel="stylesheet">
+
+<script src="./vendor/jquery.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="container-fluid">
+<div class="navbar-header">
+<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a href="./index.html" class="navbar-brand">grid.js</a>
+</div>
+
+<div class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+<ul class="nav navbar-nav">
+<li>
+   <a href="./configuration.html">Configuration</a>
+</li>
+
+<li> <a href="./demos/index.html">Demos</a> </li>
+<li> <a href="./download/index.html">Download</a> </li>
+</ul>
+<ul class="nav navbar-nav pull-right">
+<li> <a href="https://github.com/openpsa/grid.js">GitHub Repo</a> </li>
+</ul>
+</div>
+
+</div>
+</nav>
+
+<main class="container">
+<div class="page-header">
+<h1>Release Notes</h1>
+</div>
+
+<div class="col-md-9">
+
+<h2 id="1-0-unreleased-">1.0 (Unreleased)</h2>
+<p>1.0 is the first release of grid.js.</p>
+<h3 id="compatibility-with-jqgrid-4-7-0">Compatibility with jqGrid 4.7.0</h3>
+<p>The following are the important changes since jqGrid 4.7.</p>
+<h4 id="locales">Locales</h4>
+<p>All locale files are now encoded in UTF-8. File names are updated to use standard ISO language codes - this leads to the following changes:</p>
+<ul>
+<li>For Catalan <code>grid.locale-cat.js</code> becomes <code>grid.locale-ca.js</code></li>
+<li>For Chinese (Mainland China or Simplified) <code>grid.locale-cn.js</code> becomes <code>grid.locale-zh-CN.js</code></li>
+<li>For Chinese (Taiwan or Traditional) <code>grid.locale-tw.js</code> becomes <code>grid.locale-zh-TW.js</code></li>
+<li>For Danish the duplicae <code>grid.locale-dk.js</code> has been removed, use <code>grid.locale-da.js</code> instead</li>
+<li>For Korean <code>grid.locale-kr.js</code> becomes <code>grid.locale-ko.js</code></li>
+<li>For Portuguese (Brazil) <code>grid.locale-pt-br.js</code> becomes <code>grid.locale-pt-BR.js</code></li>
+<li>For Montenegrin <code>grid.locale-mne.js</code> becomes <code>grid.locale-sr-ME.js</code></li>
+<li>For Ukrainian <code>grid.locale-ua.js</code> becomes <code>grid.locale-uk.js</code></li>
+</ul>
+<p>If you&#39;ve added any custom code to handle the incorrect language codes you&#39;ll need to remove this for this release.</p>
+<p>Some common properties which have no relation to the language are moved to the <code>grid.base.js</code> module. Please note that this means that old locale files from jqGrid 4.7.0 will not work.</p>
+<h4 id="changed-defaults">Changed Defaults</h4>
+<p>The default values of some jqGrid options are changed.</p>
+<ul>
+<li><code>gridview</code> defaults to <code>true</code>: This improves the rendering performance. If you use <code>afterInsertRow</code> instead of <code>cellatr</code> and <code>rowattr</code> (which is very ineffective) in old projects, you will have to need to specify <code>gridview: true</code> explicitly.</li>
+<li><code>autoencode</code> defaults to <code>false</code>: The old default <code>autoencode: false</code> combined with JSON or local data produced strange side effects sometimes if the data contained symbols like <code>&amp;</code>, <code>;</code>, <code>&gt;</code>.</li>
+<li><code>height</code> defaults to <code>&quot;auto&quot;</code>: Improves the visibility of small grids or grids having a small number of rows. <code>scrollOffset: 0</code> is no longer required to remove free space which one sees on some grids without vertical scrollbars.</li>
+<li><code>rowNum</code> now uses a dynamic default value: The default value <code>rowNum: 20</code> will be changed to 10000 (the value of the new <code>maxRowNum</code> property) if no pager exists (i.e. <code>pager</code> and <code>toppager: true</code> options are not used) or pagination is disabled (e.g. by setting <code>treeGrid: true</code>). The new option <code>maxRowNum</code> can be used to change the maximum value of rows displayed in the grid.</li>
+<li><code>datatype</code> now uses a dynamic default value: If <code>data</code> is set or if no <code>url</code> is set, <code>datatype</code> will be initialized to <code>&quot;local&quot;</code>. If <code>data</code> is not used and <code>url</code> is set, <code>datatype</code> will be <code>&quot;json&quot;</code> if the input option <code>jsonReader</code> is used. For any other combination of input parameters the option <code>datatype</code> will be set to <code>&quot;xml&quot;</code> to stay compatible with jqGrid 4.7.0 and older.</li>
+<li><code>editurl</code> defaults to <code>&quot;clientArray&quot;</code>: It allows local editing with minimal additional efforts.</li>
+<li><code>cellsubmit</code> default to <code>&quot;clientArray&quot;</code>: It allows local editing with minimal additional efforts.</li>
+</ul>
+<p>Most of the changes correspond to recent tendencies of web development. Local JavaScript data and JSON data loaded from the server (especially in combination with <code>loadonce: true</code>) are used now much more frequently.</p>
+<h3 id="new-features">New Features</h3>
+<ul>
+<li><strong>Auto-adjustment of the column width based on column and header content:</strong> To use this feature, specify <code>autoResizable: true</code> in the column (you can use <code>cmTemplate: {autoResizable: true}</code> to set the property for all columns). After that, a double-click in the resizer (in the column header close to vertical line between columns) will adjust the width of the column. You can use <code>autoresizeOnLoad: true</code> to autoresize all columns having <code>autoResizable: true</code> property directly after loading/sorting/paging.</li>
+<li><strong>Configurable alignment of the column headers:</strong> See the description of the <code>colModel</code> properties <code>labelAlign</code> and <code>labelClasses</code> below.</li>
+<li><strong>Better integration with alternative CSS frameworks:</strong> CSS is changed to simplify integration into projects which use frameworks other then jQuery UI, for example Bootstrap.</li>
+<li><strong><code>jsonmap</code> works with local data:</strong> The only exception is when you use the <code>dataTypeOrg</code> option. The option will be set automatically after loading the data from the server and changing the <code>datatype</code> to <code>&quot;local&quot;</code>. It allows you to use <code>jsonmap</code> for the data loaded from the server and then skip it in later processing of the local data.</li>
+<li><strong>jqGrid can run without locale file:</strong> Content from <code>grid.locale-en.js</code> is included directly in the code. If you want to use a different default locale (or none at all), you can use the <a href="download/index.html">Download Builder</a></li>
+<li><strong>additional option <code>fromServer: true</code> in <code>.trigger(&quot;reloadGrid&quot;)</code>:</strong> This allows reloading the data from the server when <code>loadonce</code> is set to <code>true</code>.</li>
+</ul>
+<h3 id="new-options">New Options</h3>
+<ul>
+<li><code>lastSelectedData</code>: option for sorted and filtered <code>data</code>. See <a href="http://stackoverflow.com/a/9831125/315935">the old answer</a> for details. No &quot;subclassing&quot; of <code>$.jgrid.from</code> is required anymore. The name of the internal option <code>lastSelected</code> is changed to <code>lastSelectedData</code>.</li>
+<li><code>widthOrg</code>: Saves the value of <code>width</code> during creation of the grid. It will be used internally mostly to detect when jqGrid was created without specifying the <code>width</code> explicitly. In this case, the width of the grid might be adjusted when the width of the columns changes.</li>
+<li><code>dataTypeOrg</code>: Will be used internally when a remote <code>datatype</code> (<code>&quot;json&quot;</code> and <code>&quot;xml&quot;</code>) is used together with <code>loadonce: true</code>. The option will be deleted by <code>.trigger(&quot;reloadGrid&quot;)</code>.</li>
+<li><code>doubleClickSensitivity</code>: The resizer will stay visible at least this long after the first click so that the user can click again, which will be detected as a double-click on the resizer. The default value is <code>250</code> (ms).</li>
+<li><code>autoresizeOnLoad</code>: Used in combination with the <code>colModel</code> property <code>autoResizable: true</code>. If <code>autoresizeOnLoad</code> is <code>true</code>, then jqGrid auto-resizes all columns having the <code>autoResizable: true</code> property directly after <code>loadComplete</code>. <strong>Note:</strong> Auto-resizing of hidden grids doesn&#39;t work. So if you fill the grid on a hidden jQuery UI Tab for example, then you should call <code>autoResizeAllColumns</code> method directly after the tab is activated.</li>
+<li><code>autoResizing</code>: A map of properties (like <code>groupingView</code>) used. It allows to tune some behaviour of auto-resizing.<ul>
+<li><code>compact</code> - default value <code>false</code>. When set to <code>true</code>, the width of the column header is calculated without reserving space for the sorting icons</li>
+<li><code>widthOfVisiblePartOfSortIcon</code>: default value <code>12</code>. Should be used only if you don&#39;t use the default jQuery UI icons.</li>
+<li><code>minColWidth</code>: <code>33</code> - minimum width of column after resizing</li>
+<li><code>maxColWidth</code>: <code>300</code> - maximum width of column after resizing</li>
+<li><code>wrapperClassName</code>: <code>&quot;ui-jqgrid-cell-wrapper&quot;</code> - the name of the class assigned to <code>&lt;span&gt;</code> included in every cell of the grid</li>
+<li><code>adjustGridWidth</code>: <code>true</code> - means that the width of the grid will be adjusted after resizing the column</li>
+<li><code>fixWidthOnShrink</code>: <code>false</code> - will be removed later. It will be not included in the release</li>
+</ul>
+</li>
+</ul>
+<h3 id="new-colmodel-properties">New <code>colModel</code> properties</h3>
+<ul>
+<li><code>template: &quot;integer&quot;</code>, <code>template: &quot;number&quot;</code>, and <code>template: &quot;actions&quot;</code> can be used to simplify the usage of <code>formatter: &quot;integer&quot;</code>, <code>formatter: &quot;number&quot;</code> and <code>formatter: &quot;actions&quot;</code> in <code>colModel</code>. The list of the standard templates will be extended in future versions. You can use <code>$.extend(true, $.jgrid.cmTemplate, { myDataTemplate: {...}}</code> to define custom column templates which can be used like this: <code>template: &quot;myDataTemplate&quot;</code>. See <a href="http://www.trirand.com/blog/?page_id=393/bugs/bug-in-cmtemplate-new-feature">the post</a> and <a href="http://stackoverflow.com/a/6047856/315935">the old answer</a> for more information about column templates.</li>
+<li><code>autoResizable</code> which will be used for auto-adjustment of the column width based on the column and header content</li>
+<li><code>autoResizingOption</code> property is an object like <code>editoptions</code>, <code>searchoptions</code> or <code>formatoptions</code>. It can be used to change some common <code>autoResizing</code> grid options for the column only. The properties of <code>autoResizingOption</code> are <code>minColWidth</code>, <code>maxColWidth</code> and <code>compact</code>.</li>
+<li><code>labelAlign</code> property with <code>&quot;left&quot;</code>, <code>&quot;center&quot;</code> (default), <code>&quot;right&quot;</code> and <code>&quot;likeData&quot;</code> values,</li>
+<li><code>labelClasses</code> property allows to add CSS class to the column header.</li>
+</ul>
+<h3 id="new-methods">New methods</h3>
+<ul>
+<li><code>setColWidth</code> - allows changing the width of the column after the grid is created.</li>
+<li><code>autoResizeColumn</code> - has no parameters. It resizes all columns having <code>autoResizable: true</code></li>
+<li><code>autoResizeAllColumns</code> - has integer iCol as parameter. It resizes all columns having <code>autoResizable: true</code>. Note: Auto-resizing doesn&#39;t work with hidden grids.</li>
+<li><code>getGridComponent</code> - allows to get different components of jqGrid like <code>&quot;bTable&quot;</code>, <code>&quot;hTable&quot;</code>, <code>&quot;fTable&quot;</code>, <code>&quot;bDiv&quot;</code> and others. The method will be extended later.</li>
+</ul>
+<h3 id="new-callbacks-and-events">New Callbacks and Events</h3>
+<ul>
+<li><code>fatalError</code> - callback which can be used to change the display of critical errors. One can use the feature in unit tests for example.</li>
+<li><code>resizeDblClick</code> callback and <code>jqGridResizeDblClick</code> event will be called when double-clicking the column resizer. It&#39;s important to note that the callbacks will be called even if <code>autoResizable</code> is set to <code>false</code> in the <code>colModel</code>. It allows implementing custom actions on double-click on the column resizer. Returning <code>false</code> or <code>&quot;stop&quot;</code> from the <code>resizeDblClick</code> callback or the <code>jqGridResizeDblClick</code> event in case of <code>autoResizable: true</code> will prevent resizing on the column.</li>
+<li>the callbacks <code>onShowHideCol</code> and <code>onRemapColumns</code> have been added. The corresponding <code>jqGridShowHideCol</code> and <code>jqGridRemapColumns</code> events already exist in jqGrid 4.7.</li>
+</ul>
+<h3 id="some-demos">Some demos</h3>
+<ul>
+<li><a href="http://www.ok-soft-gmbh.com/jqGrid/OK/GetFilteredData.htm">GetFilteredData</a> - demonstrates how to use new <code>lastSelectedData</code> option which returns, in contrast to <code>data</code>, <em>filtered</em> and <em>sorted</em> data items from all pages of jqGrid. Try to set some filter in the demo, make sorting by some column and set the page size to 2 for example. Click the button above the grid and see the displayed results.</li>
+<li><a href="http://www.ok-soft-gmbh.com/jqGrid/OK/autoresizeOnDoubleClickOnColumnResizer.htm">autoResizing</a> - demonstrates the default behaviour of auto-resizing feature. Double-click on the column resizer (in the header close to the right border which divides the columns). You will see the default behaviour of column resizing.</li>
+<li><a href="http://www.ok-soft-gmbh.com/jqGrid/OK/autoresizeOnDoubleClickOnColumnResizer1.htm">autoResizingCompact</a> - demonstrates the default behaviour of auto-resizing feature. Double-click on the column resizer (in the header close to the right border which divides the columns). You will see the behaviour of column resizing in case of usage <code>autoResizing: { compact: true }</code>.</li>
+<li><a href="http://www.ok-soft-gmbh.com/jqGrid/OK/autoresizeOnDoubleClickOnColumnResizerWithShrink.htm">autoResizingWithShrinkCompact</a> - modification of the previous demo. It uses no <code>shrinkToFit: false</code> option and <code>width: 518</code> instead.</li>
+<li><a href="http://www.ok-soft-gmbh.com/jqGrid/OK/autoresizeOnLoad1.htm">autoresizeOnLoad</a> - demonstrates auto-resizing on loading. Try to use sorting, paging the grid, and see the results.</li>
+<li><a href="http://www.ok-soft-gmbh.com/jqGrid/OK/autoresizeOnLoad2.htm">autoresizeOnLoadCompact</a> - the same demo as before (auto-resizing on loading), but with the usage of <code>autoResizing: { compact: true }</code> additionally.</li>
+<li><a href="http://www.ok-soft-gmbh.com/jqGrid/OK/performane-1000.htm">autoResizingPerformane1000</a> - the demo create the grid with 1000 rows. By double-click on resizer you can see the performance of resizing for relatively large number of rows.</li>
+<li><a href="http://www.ok-soft-gmbh.com/jqGrid/OK/alignLabel.htm">alignLabel</a> - demonstrates the usage of new <code>labelAlign</code> and <code>labelClasses</code> properties of <code>colModel</code>.</li>
+<li><a href="http://www.ok-soft-gmbh.com/jqGrid/OK/grouping1.htm">autoResizingGrouping</a> - demonstrates then auto-resizing on loading works with grouping too.</li>
+<li><a href="http://www.ok-soft-gmbh.com/jqGrid/OK/groupingRtl1.htm">autoResizingGroupingRtl</a> - the same as the previous demo, but it uses RTL.</li>
+</ul>
+
+
+</div>
+
+<div class="col-md-3">
+  <div id="sub-navigation" class="nav">
+    <ul class="nav">
+  
+    </ul>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <div class="container">
+  Page generated on 2015-01-23 22:59 | <a href="https://github.com/openpsa/grid.js/tree/master/docs/content/releaseNotes.md">View Page Source</a>
+  </div>
+</footer>
+
+<script src="./bootstrap/js/bootstrap.min.js"></script>
+<script src="./ui.js"></script>
+
+
+
+</body>
+</html>

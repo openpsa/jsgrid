@@ -1,0 +1,490 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>grid.js - Download Builder</title>
+<link href="../grid.js-0.1.0.css" rel="stylesheet">
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css" rel="stylesheet">
+<link href="../docs.css" rel="stylesheet">
+
+<script src="../vendor/jquery.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="container-fluid">
+<div class="navbar-header">
+<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a href="../index.html" class="navbar-brand">grid.js</a>
+</div>
+
+<div class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+<ul class="nav navbar-nav">
+<li>
+   <a href="../configuration.html">Configuration</a>
+</li>
+
+<li> <a href="../demos/index.html">Demos</a> </li>
+<li class="active"> <a href="../download/index.html">Download</a> </li>
+</ul>
+<ul class="nav navbar-nav pull-right">
+<li> <a href="https://github.com/openpsa/grid.js">GitHub Repo</a> </li>
+</ul>
+</div>
+
+</div>
+</nav>
+
+<main class="container">
+<div class="page-header">
+<h1>Download Builder</h1>
+</div>
+
+<div class="col-md-9 download-container">
+
+<p>This page is a work in progress. You can help out by submitting a
+<a href="https://github.com/openpsa/grid.js/pulls">pull request</a>.</p>
+
+
+
+<form id="downloadbuilder">
+<fieldset>
+<h3>Base</h3>
+<div class="checkbox default-locale">
+  <label>
+  Default locale <select id="default-locale"><option value="">none</option></select>
+  </label>
+</div>
+<div class="checkbox module">
+  <label>
+    <input type="checkbox" value="external/jquery.fmatter.js">
+    Formatter <span class="helptext"> &ndash; Custom and predefined formatters for cell content</span>
+  </label>
+</div>
+<div class="checkbox module">
+  <label>
+    <input type="checkbox" value="js/grid.custom.js">
+    Additional methods
+  </label>
+</div>
+</fieldset>
+
+<fieldset>
+<h3>Editing</h3>
+<div class="checkbox module">
+  <label>
+    <input type="checkbox" value="js/grid.common.js">
+    Common <span class="helptext"> &ndash; Base module for editing modes</span>
+  </label>
+</div>
+<div class="checkbox module">
+  <label>
+    <input type="checkbox" value="js/grid.formedit.js">
+    Form Editing <span class="helptext"> &ndash; Edit a row in a dedicated form</span>
+  </label>
+</div>
+<div class="checkbox module">
+  <label>
+    <input type="checkbox" value="js/grid.filter.js">
+    Filter <span class="helptext"> &ndash; Search functionality</span>
+  </label>
+</div>
+<div class="checkbox module">
+  <label>
+    <input type="checkbox" value="js/grid.inlinedit.js">
+    Inline Editing <span class="helptext"> &ndash; Edit a row directly in the grid</span>
+  </label>
+</div>
+<div class="checkbox module">
+  <label>
+    <input type="checkbox" value="js/grid.celledit.js">
+    Cell Editing <span class="helptext"> &ndash; Edit individual cells</span>
+  </label>
+</div>
+<div class="checkbox module">
+  <label>
+    <input type="checkbox" value="external/jqModal.js">
+    Modal Dialog <span class="helptext"> &ndash; Modal dialogs for Form Editing</span>
+  </label>
+</div>
+<div class="checkbox module">
+  <label>
+    <input type="checkbox" value="external/jqDnR.js">
+    Dragging and Resizing <span class="helptext"> &ndash; Drag and resize modal Form Editing dialogs</span>
+  </label>
+</div>
+</fieldset>
+
+<fieldset>
+<h3>Specialized Views</h3>
+<div class="checkbox module">
+  <label>
+    <input type="checkbox" value="js/grid.subgrid.js">
+    Subgrid <span class="helptext"> &ndash; Add nested grid instances to rows</span>
+  </label>
+</div>
+<div class="checkbox module">
+  <label>
+    <input type="checkbox" value="js/grid.grouping.js">
+    Grouping <span class="helptext"> &ndash; Group rows by column values</span>
+  </label>
+</div>
+<div class="checkbox module">
+  <label>
+    <input type="checkbox" value="js/grid.treegrid.js">
+    Tree Grid <span class="helptext"> &ndash; Organize rows in hierarchical structures</span>
+  </label>
+</div>
+<div class="checkbox module">
+  <label>
+    <input type="checkbox" value="js/grid.pivot.js">
+    Pivot Grid <span class="helptext"> &ndash; Reorganize and summarize selected columns and rows</span>
+  </label>
+</div>
+</fieldset>
+
+<fieldset>
+<h3>Import / Export</h3>
+<div class="checkbox module">
+  <label>
+    <input type="checkbox" value="js/grid.import.js">
+    Import <span class="helptext"> &ndash; Import and export data and configuration</span>
+  </label>
+</div>
+<div class="checkbox module">
+  <label>
+    <input type="checkbox" value="external/JsonXml.js">
+    XML and JSON utilities <span class="helptext"> &ndash; Helper library for Import/Export</span>
+  </label>
+</div>
+</fieldset>
+
+<fieldset>
+<h3>Other</h3>
+<div class="checkbox module">
+  <label>
+    <input type="checkbox" value="js/grid.tbltogrid.js">
+    Table to Grid <span class="helptext"> &ndash; Convert HTML tables to grids</span>
+  </label>
+</div>
+<div class="checkbox module">
+  <label>
+    <input type="checkbox" value="js/grid.jqueryui.js">
+    jQuery UI addons <span class="helptext"> &ndash; Integrations with jQuery UI widgets</span>
+  </label>
+</div>
+</fieldset>
+
+<fieldset>
+<h3>Internationalization</h3>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-ar.js">
+    Arabic‎ <span class="helptext"> &ndash; العربية‏</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-bg.js">
+    Bulgarian <span class="helptext"> &ndash; български</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-ca.js">
+    Catalan <span class="helptext"> &ndash; català</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-zh-CN.js">
+    Chinese (People&#x27;s Republic of China) <span class="helptext"> &ndash; 中文(中华人民共和国)</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-zh-TW.js">
+    Chinese (Taiwan) <span class="helptext"> &ndash; 中文(台灣)</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-hr.js">
+    Croatian <span class="helptext"> &ndash; hrvatski</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-cs.js">
+    Czech <span class="helptext"> &ndash; čeština</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-da.js">
+    Danish <span class="helptext"> &ndash; dansk</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-nl.js">
+    Dutch <span class="helptext"> &ndash; Nederlands</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-en.js">
+    English <span class="helptext"> &ndash; English</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-fi.js">
+    Finnish <span class="helptext"> &ndash; suomi</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-fr.js">
+    French <span class="helptext"> &ndash; français</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-gl.js">
+    Galician <span class="helptext"> &ndash; galego</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-de.js">
+    German <span class="helptext"> &ndash; Deutsch</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-el.js">
+    Greek <span class="helptext"> &ndash; ελληνικά</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-he.js">
+    Hebrew‎ <span class="helptext"> &ndash; עברית‏</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-hu.js">
+    Hungarian <span class="helptext"> &ndash; magyar</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-is.js">
+    Icelandic <span class="helptext"> &ndash; íslenska</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-id.js">
+    Indonesian <span class="helptext"> &ndash; Bahasa Indonesia</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-it.js">
+    Italian <span class="helptext"> &ndash; italiano</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-ja.js">
+    Japanese <span class="helptext"> &ndash; 日本語</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-ko.js">
+    Korean <span class="helptext"> &ndash; 한국어</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-lt.js">
+    Lithuanian <span class="helptext"> &ndash; lietuvių</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-sr-ME.js">
+    Montenegrin <span class="helptext"> &ndash; Montenegrin</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-no.js">
+    Norwegian <span class="helptext"> &ndash; norsk</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-fa.js">
+    Persian‎ <span class="helptext"> &ndash; فارسى‏</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-pl.js">
+    Polish <span class="helptext"> &ndash; polski</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-pt.js">
+    Portuguese <span class="helptext"> &ndash; Português</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-pt-BR.js">
+    Portuguese (Brazil) <span class="helptext"> &ndash; Português (Brasil)</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-ro.js">
+    Romanian <span class="helptext"> &ndash; română</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-ru.js">
+    Russian <span class="helptext"> &ndash; русский</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-sr.js">
+    Serbian <span class="helptext"> &ndash; srpski</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-sk.js">
+    Slovak <span class="helptext"> &ndash; slovenčina</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-es.js">
+    Spanish <span class="helptext"> &ndash; español</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-sv.js">
+    Swedish <span class="helptext"> &ndash; svenska</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-th.js">
+    Thai <span class="helptext"> &ndash; ไทย</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-tr.js">
+    Turkish <span class="helptext"> &ndash; Türkçe</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-uk.js">
+    Ukrainian <span class="helptext"> &ndash; україньска</span>
+  </label>
+</div>
+
+<div class="checkbox locale">
+  <label>
+    <input type="checkbox" value="i18n/grid.locale-vi.js">
+    Vietnamese <span class="helptext"> &ndash; Tiếng Việt</span>
+  </label>
+</div>
+
+</fieldset>
+
+</form>
+</div>
+
+<div class="col-md-3">
+<div id="sub-navigation" class="nav">
+<button type="button" class="btn btn-primary btn-lg btn-block" data-compiling-text="Compiling" data-css-text="Adding CSS" data-locale-text="Adding locales" id="download-button" autocomplete="off">Download</button>
+</div>
+</div>
+
+</main>
+
+<footer>
+  <div class="container">
+  Page generated on 2015-01-23 22:59 | <a href="https://github.com/openpsa/grid.js/tree/master/docs/content/download/index.md">View Page Source</a>
+  </div>
+</footer>
+
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../ui.js"></script>
+
+      <script src="../download.js"></script>
+      <script src="../FileSaver.js"></script>
+      <script src="../jszip.min.js"></script>
+
+
+
+</body>
+</html>

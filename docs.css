@@ -6,12 +6,9 @@ footer {
   padding: 40px 0;
   border-top: 1px solid #e5e5e5;
   text-align: center;
-}
-#sub-navigation {
-  margin-top: 60px;
+  color: #777777;
 }
 #sub-navigation.affix {
-  margin-top: 0;
   top: 50px;
 }
 #sub-navigation .nav ul {
@@ -46,4 +43,13 @@ pre .keyword {
 }
 pre .comment {
   color: #969896;
+}
+#downloadbuilder fieldset {
+  margin-bottom: 5px;
+}
+#downloadbuilder .helptext {
+  color: #777777;
+}
+.demo-container .btn-group {
+  margin-top: 1em;
 }
