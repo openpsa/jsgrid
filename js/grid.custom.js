@@ -421,13 +421,12 @@ $.jgrid.extend({
 			var timeoutHnd;
 			$.each($t.p.colModel,function(ci){
 				var cm=this, soptions, surl, self, select = "", sot="=", so, i,
-				th = $("<th role='columnheader' class='ui-state-default ui-th-column ui-th-"+$t.p.direction+"'></th>");
+				th = $("<th role='columnheader' class='ui-state-default ui-th-column ui-th-"+$t.p.direction+"'><span class='ui-search-input'></span></th>");
 				if(this.hidden===true) { $(th).css("display","none");}
 				this.search = this.search === false ? false : true;
 				soptions = $.extend({},this.searchoptions || {});
 				if(this.search){
 					if(this.stype === undefined) {this.stype='text';}
-					var stbl = $("<div class='ui-search-box'><span class='ui-search-input'></span><span class='ui-search-clear'></span></div>");
 					if(p.searchOperators && cm.edittype !== 'checkbox') {
 						so  = (soptions.sopt) ? soptions.sopt[0] : cm.stype==='select' ?  'eq' : p.defaultSearch;
 						for(i = 0;i<p.odata.length;i++) {
@@ -438,20 +437,18 @@ $.jgrid.extend({
 						}
 						var st = soptions.searchtitle != null ? soptions.searchtitle : p.operandTitle;
 						select = "<a title='"+st+"' soper='"+so+"' class='soptclass' colname='"+this.name+"'>"+sot+"</a>";
-					$(stbl).prepend(select);
+					$(th).prepend(select);
 					}
 
 					if (soptions.sopt == null || soptions.sopt.length === 1) {
-						$("td.ui-search-oper",stbl).hide();
+						$("td.ui-search-oper",th).hide();
 					}
 					if(soptions.clearSearch === undefined) {
 						soptions.clearSearch = this.stype === "text" ? true : false;
 					}
 					if(soptions.clearSearch && cm.stype !== 'select') {
 						var csv = p.resetTitle || 'Clear Search Value';
-						$("span.ui-search-clear",stbl).append("<a title='Clear Search Value' class='clearsearchclass'>x</a>");
-					} else {
-						$("span.ui-search-clear", stbl).hide();
+						$(th).append("<a title='Clear Search Value' class='clearsearchclass'>x</a>");
 					}
 					switch (this.stype)
 					{
@@ -468,10 +465,10 @@ $.jgrid.extend({
 									if(soptions.buildSelect !== undefined) {
 										var d = soptions.buildSelect(res);
 										if (d) {
-											$("span.ui-search-input",stbl).append(d);
+											$("span.ui-search-input",th).append(d);
 										}
 									} else {
-										$("span.ui-search-input",stbl).append(res);
+										$("span.ui-search-input",th).append(res);
 									}
 									$(self).append(stbl);
                                                                         var select = $("select",self);
@@ -523,8 +520,8 @@ $.jgrid.extend({
 								}
 								if(soptions.defaultValue !== undefined) { $(elem).val(soptions.defaultValue); }
 								if(soptions.attr) {$(elem).attr(soptions.attr);}
-								$("span.ui-search-input",stbl).append( elem );
-								$(th).append(stbl);
+								$("span.ui-search-input",th).append( elem );
+								$(th).append(th);
 								$.jgrid.bindEv.call($t, elem , soptions);
 								if(p.autosearch===true){
 									$(elem).change(function(){
@@ -538,8 +535,7 @@ $.jgrid.extend({
 					case "text":
 						var df = soptions.defaultValue !== undefined ? soptions.defaultValue: "";
 
-						$("span.ui-search-input",stbl).append("<input type='text' name='"+(cm.index || cm.name)+"' id='gs_"+cm.name+"' value='"+df+"'/>");
-						$(th).append(stbl);
+						$("span.ui-search-input",th).append("<input type='text' name='"+(cm.index || cm.name)+"' id='gs_"+cm.name+"' value='"+df+"'/>");
                                                 var input = $("input",th);
 
 						if(soptions.attr) {input.attr(soptions.attr);}
@@ -577,8 +573,7 @@ $.jgrid.extend({
 						}
 						break;
 					case "custom":
-						$("span.ui-search-input",stbl).append("<span style='width:95%;padding:0;' name='"+(cm.index || cm.name)+"' id='gs_"+cm.name+"'/>");
-						$(th).append(stbl);
+						$("span.ui-search-input",th).append("<span style='width:95%;padding:0;' name='"+(cm.index || cm.name)+"' id='gs_"+cm.name+"'/>");
 						try {
 							if($.isFunction(soptions.custom_element)) {
 								var celm = soptions.custom_element.call($t,soptions.defaultValue !== undefined ? soptions.defaultValue: "",soptions);
@@ -602,7 +597,7 @@ $.jgrid.extend({
 
 				$(tr).append(th);
 				if(!p.searchOperators) {
-					$("a:eq(0)",stbl).hide();
+					$("a:first-child)",th).hide();
 				}
 			});
 			$("table thead",$t.grid.hDiv).append(tr);
@@ -622,17 +617,17 @@ $.jgrid.extend({
 			}
 			$(".clearsearchclass",tr).click(function(){
 				var ptr = $(this).parents("tr:first"),
-				coli = parseInt($("td.ui-search-oper", ptr).data('colindex'),10),
-				sval  = $.extend({},$t.p.colModel[coli].searchoptions || {}),
+				col = $('th',ptr).index($(this).parents('th:first')),
+				sval  = $.extend({},$t.p.colModel[col].searchoptions || {}),
 				dval = sval.defaultValue || "";
-				if($t.p.colModel[coli].stype === "select") {
+				if($t.p.colModel[col].stype === "select") {
 					if(dval) {
-						$("td.ui-search-input select", ptr).val( dval );
+						$(".ui-search-input select", ptr).val( dval );
 					} else {
-						$("td.ui-search-input select", ptr)[0].selectedIndex = 0;
+						$(".ui-search-input select", ptr)[0].selectedIndex = 0;
 					}
 				} else {
-					$("td.ui-search-input input", ptr).val( dval );
+					$(".ui-search-input input", ptr).val( dval );
 				}
 				// ToDo custom search type
 				if(p.autosearch===true){
