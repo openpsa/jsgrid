@@ -397,8 +397,8 @@ $.jgrid.extend({
                                 
 				str += "</div>";
 				body.append(str);
-				var sopt_menu = $("#sopt_menu");
-                                sopt_menu.addClass("ui-menu ui-widget");
+				sopt_menu = $("#sopt_menu");
+                sopt_menu.addClass("ui-menu ui-widget");
 				$("a", sopt_menu).hover(
 					function(){ $(this).addClass("ui-state-hover").css('font-weight', 'normal'); },
 					function(){ $(this).removeClass("ui-state-hover"); }

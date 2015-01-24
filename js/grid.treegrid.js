@@ -23,6 +23,40 @@ $.jgrid.extend({
 			icon = $t.p.treeReader.icon_field,
 			loaded = $t.p.treeReader.loaded,  lft, rgt, curLevel, ident,lftpos, twrap,
 			ldat, lf;
+			
+			var expandColClick = function(e) {
+				var target = e.target || e.srcElement,
+				ind2 =$.jgrid.stripPref($t.p.idPrefix,$(target,$t.rows).closest("tr.jqgrow")[0].id),
+				pos = $t.p._index[ind2];
+				if(!$t.p.data[pos][isLeaf]){
+					if($t.p.data[pos][expanded]){
+						$($t).jqGrid("collapseRow",$t.p.data[pos]);
+						$($t).jqGrid("collapseNode",$t.p.data[pos]);
+					} else {
+						$($t).jqGrid("expandRow",$t.p.data[pos]);
+						$($t).jqGrid("expandNode",$t.p.data[pos]);
+					}
+				}
+				$($t).jqGrid("setSelection",ind2);
+				return false;
+			};
+			
+			var expandClick = function(e){
+				var target = e.target || e.srcElement,
+				ind2 =$.jgrid.stripPref($t.p.idPrefix,$(target,$t.rows).closest("tr.jqgrow")[0].id),
+				pos = $t.p._index[ind2];
+				if(!$t.p.data[pos][isLeaf]){
+					if($t.p.data[pos][expanded]){
+						$($t).jqGrid("collapseRow",$t.p.data[pos]);
+						$($t).jqGrid("collapseNode",$t.p.data[pos]);
+					} else {
+						$($t).jqGrid("expandRow",$t.p.data[pos]);
+						$($t).jqGrid("expandNode",$t.p.data[pos]);
+					}
+				}
+				return false;
+			};
+			
 			while(i<len) {
 				var ind = $.jgrid.stripPref($t.p.idPrefix, $t.rows[i].id), dind = $t.p._index[ind], expan;
 				ldat = $t.p.data[dind];
@@ -85,41 +119,12 @@ $.jgrid.extend({
 				}
 				$($t.rows[i].cells[expCol])
 					.find("div.treeclick")
-					.bind("click",function(e){
-						var target = e.target || e.srcElement,
-						ind2 =$.jgrid.stripPref($t.p.idPrefix,$(target,$t.rows).closest("tr.jqgrow")[0].id),
-						pos = $t.p._index[ind2];
-						if(!$t.p.data[pos][isLeaf]){
-							if($t.p.data[pos][expanded]){
-								$($t).jqGrid("collapseRow",$t.p.data[pos]);
-								$($t).jqGrid("collapseNode",$t.p.data[pos]);
-							} else {
-								$($t).jqGrid("expandRow",$t.p.data[pos]);
-								$($t).jqGrid("expandNode",$t.p.data[pos]);
-							}
-						}
-						return false;
-					});
+					.bind("click", expandClick);
 				if($t.p.ExpandColClick === true) {
 					$($t.rows[i].cells[expCol])
 						.find("span.cell-wrapper")
 						.css("cursor","pointer")
-						.bind("click",function(e) {
-							var target = e.target || e.srcElement,
-							ind2 =$.jgrid.stripPref($t.p.idPrefix,$(target,$t.rows).closest("tr.jqgrow")[0].id),
-							pos = $t.p._index[ind2];
-							if(!$t.p.data[pos][isLeaf]){
-								if($t.p.data[pos][expanded]){
-									$($t).jqGrid("collapseRow",$t.p.data[pos]);
-									$($t).jqGrid("collapseNode",$t.p.data[pos]);
-								} else {
-									$($t).jqGrid("expandRow",$t.p.data[pos]);
-									$($t).jqGrid("expandNode",$t.p.data[pos]);
-								}
-							}
-							$($t).jqGrid("setSelection",ind2);
-							return false;
-						});
+						.bind("click", expandColClick);
 				}
 				i++;
 			}

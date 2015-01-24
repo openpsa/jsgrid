@@ -1815,6 +1815,111 @@ $.jgrid.extend({
 				$(this).removeClass("ui-state-hover");
 			};
 			if(o.cloneToTop && p.toppager) {clone = 2;}
+			
+			var addClickFunc = function(){
+				if (!$(this).hasClass('ui-state-disabled')) {
+					if ($.isFunction( o.addfunc )) {
+						o.addfunc.call($t);
+					} else {
+						$($t).jqGrid("editGridRow","new",pAdd);
+					}
+				}
+				return false;
+			};
+			
+			var editClickFunc = function(){
+				if (!$(this).hasClass('ui-state-disabled')) {
+					var sr = p.selrow;
+					if (sr) {
+						if($.isFunction( o.editfunc ) ) {
+							o.editfunc.call($t, sr);
+						} else {
+							$($t).jqGrid("editGridRow",sr,pEdit);
+						}
+					} else {
+						viewModalAlert();
+					}
+				}
+				return false;
+			};
+			
+			var viewClickFunc = function(){
+				if (!$(this).hasClass('ui-state-disabled')) {
+					var sr = p.selrow;
+					if (sr) {
+						if($.isFunction( o.viewfunc ) ) {
+							o.viewfunc.call($t, sr);
+						} else {
+							$($t).jqGrid("viewGridRow",sr,pView);
+						}
+					} else {
+						viewModalAlert();
+					}
+				}
+				return false;
+			};
+			
+			var deleteClickFunc = function(){
+				if (!$(this).hasClass('ui-state-disabled')) {
+					var dr;
+					if(p.multiselect) {
+						dr = p.selarrrow;
+						if(dr.length===0) {dr = null;}
+					} else {
+						dr = p.selrow;
+					}
+					if(dr){
+						if($.isFunction( o.delfunc )){
+							o.delfunc.call($t, dr);
+						}else{
+							$($t).jqGrid("delGridRow",dr,pDel);
+						}
+					} else  {
+						viewModalAlert();
+					}
+				}
+				return false;
+			};
+			
+			var searchClickFunc = function(){
+				if (!$(this).hasClass('ui-state-disabled')) {
+					if($.isFunction( o.searchfunc )) {
+						o.searchfunc.call($t, pSearch);
+					} else {
+						$($t).jqGrid("searchGrid",pSearch);
+					}
+				}
+				return false;
+			};
+			
+			var refreshClickFunc = function(){
+				if (!$(this).hasClass('ui-state-disabled')) {
+					if($.isFunction(o.beforeRefresh)) {o.beforeRefresh.call($t);}
+					p.search = false;
+					p.resetsearch =  true;
+					try {
+						if( o.refreshstate !== 'currentfilter') {
+							p.postData.filters ="";
+							try {
+								$("#fbox_"+gridIdEscaped).jqFilter('resetFilter');
+							} catch(ef) {}
+							if($.isFunction($t.clearToolbar)) {$t.clearToolbar.call($t,false);}
+						}
+					} catch (e) {}
+					switch (o.refreshstate) {
+						case 'firstpage':
+							$($t).trigger("reloadGrid", [{page:1}]);
+							break;
+						case 'current':
+						case 'currentfilter':
+							$($t).trigger("reloadGrid", [{current:true}]);
+							break;
+					}
+					if($.isFunction(o.afterRefresh)) {o.afterRefresh.call($t);}
+				}
+				return false;
+			};
+			
 			for(i = 0; i<clone; i++) {
 				var tbd,
 				navtbl = $("<table cellspacing='0' cellpadding='0' border='0' class='ui-pg-table navtable' style='float:left;table-layout:auto;'><tbody><tr></tr></tbody></table>"),
@@ -1839,16 +1944,7 @@ $.jgrid.extend({
 					$("tr",navtbl).append(tbd);
 					$(tbd,navtbl)
 					.attr({"title":o.addtitle || "",id : pAdd.id || "add_"+elemids})
-					.click(function(){
-						if (!$(this).hasClass('ui-state-disabled')) {
-							if ($.isFunction( o.addfunc )) {
-								o.addfunc.call($t);
-							} else {
-								$($t).jqGrid("editGridRow","new",pAdd);
-							}
-						}
-						return false;
-					}).hover(onHoverIn, onHoverOut);
+					.click(addClickFunc).hover(onHoverIn, onHoverOut);
 					tbd = null;
 				}
 				if (o.edit) {
@@ -1858,21 +1954,7 @@ $.jgrid.extend({
 					$("tr",navtbl).append(tbd);
 					$(tbd,navtbl)
 					.attr({"title":o.edittitle || "",id: pEdit.id || "edit_"+elemids})
-					.click(function(){
-						if (!$(this).hasClass('ui-state-disabled')) {
-							var sr = p.selrow;
-							if (sr) {
-								if($.isFunction( o.editfunc ) ) {
-									o.editfunc.call($t, sr);
-								} else {
-									$($t).jqGrid("editGridRow",sr,pEdit);
-								}
-							} else {
-								viewModalAlert();
-							}
-						}
-						return false;
-					}).hover(onHoverIn, onHoverOut);
+					.click(editClickFunc).hover(onHoverIn, onHoverOut);
 					tbd = null;
 				}
 				if (o.view) {
@@ -1882,21 +1964,7 @@ $.jgrid.extend({
 					$("tr",navtbl).append(tbd);
 					$(tbd,navtbl)
 					.attr({"title":o.viewtitle || "",id: pView.id || "view_"+elemids})
-					.click(function(){
-						if (!$(this).hasClass('ui-state-disabled')) {
-							var sr = p.selrow;
-							if (sr) {
-								if($.isFunction( o.viewfunc ) ) {
-									o.viewfunc.call($t, sr);
-								} else {
-									$($t).jqGrid("viewGridRow",sr,pView);
-								}
-							} else {
-								viewModalAlert();
-							}
-						}
-						return false;
-					}).hover(onHoverIn, onHoverOut);
+					.click(viewClickFunc).hover(onHoverIn, onHoverOut);
 					tbd = null;
 				}
 				if (o.del) {
@@ -1906,27 +1974,7 @@ $.jgrid.extend({
 					$("tr",navtbl).append(tbd);
 					$(tbd,navtbl)
 					.attr({"title":o.deltitle || "",id: pDel.id || "del_"+elemids})
-					.click(function(){
-						if (!$(this).hasClass('ui-state-disabled')) {
-							var dr;
-							if(p.multiselect) {
-								dr = p.selarrrow;
-								if(dr.length===0) {dr = null;}
-							} else {
-								dr = p.selrow;
-							}
-							if(dr){
-								if($.isFunction( o.delfunc )){
-									o.delfunc.call($t, dr);
-								}else{
-									$($t).jqGrid("delGridRow",dr,pDel);
-								}
-							} else  {
-								viewModalAlert();
-							}
-						}
-						return false;
-					}).hover(onHoverIn, onHoverOut);
+					.click(deleteClickFunc).hover(onHoverIn, onHoverOut);
 					tbd = null;
 				}
 				if(o.add || o.edit || o.del || o.view) {$("tr",navtbl).append(sep);}
@@ -1937,16 +1985,7 @@ $.jgrid.extend({
 					$("tr",navtbl).append(tbd);
 					$(tbd,navtbl)
 					.attr({"title":o.searchtitle  || "",id:pSearch.id || "search_"+elemids})
-					.click(function(){
-						if (!$(this).hasClass('ui-state-disabled')) {
-							if($.isFunction( o.searchfunc )) {
-								o.searchfunc.call($t, pSearch);
-							} else {
-								$($t).jqGrid("searchGrid",pSearch);
-							}
-						}
-						return false;
-					}).hover(onHoverIn, onHoverOut);
+					.click(searchClickFunc).hover(onHoverIn, onHoverOut);
 					if (pSearch.showOnLoad && pSearch.showOnLoad === true) {
 						$(tbd,navtbl).click();
 					}
@@ -1958,33 +1997,7 @@ $.jgrid.extend({
 					$("tr",navtbl).append(tbd);
 					$(tbd,navtbl)
 					.attr({"title":o.refreshtitle  || "",id: "refresh_"+elemids})
-					.click(function(){
-						if (!$(this).hasClass('ui-state-disabled')) {
-							if($.isFunction(o.beforeRefresh)) {o.beforeRefresh.call($t);}
-							p.search = false;
-							p.resetsearch =  true;
-							try {
-								if( o.refreshstate !== 'currentfilter') {
-									p.postData.filters ="";
-									try {
-										$("#fbox_"+gridIdEscaped).jqFilter('resetFilter');
-									} catch(ef) {}
-									if($.isFunction($t.clearToolbar)) {$t.clearToolbar.call($t,false);}
-								}
-							} catch (e) {}
-							switch (o.refreshstate) {
-								case 'firstpage':
-									$($t).trigger("reloadGrid", [{page:1}]);
-									break;
-								case 'current':
-								case 'currentfilter':
-									$($t).trigger("reloadGrid", [{current:true}]);
-									break;
-							}
-							if($.isFunction(o.afterRefresh)) {o.afterRefresh.call($t);}
-						}
-						return false;
-					}).hover(onHoverIn, onHoverOut);
+					.click(refreshClickFunc).hover(onHoverIn, onHoverOut);
 					tbd = null;
 				}
 				tdw = $(".ui-jqgrid").css("font-size") || "11px";
@@ -2084,18 +2097,21 @@ $.jgrid.extend({
 			var $t = this, i, $field;
 			if (!$t.grid) {return;}
 			var rowdata = $($t).jqGrid("getRowData",rowid);
+			
+			var rowFunc = function() {
+				if( $(this).val() == rowdata[i] ) {
+					$(this)[$t.p.useProp ? 'prop': 'attr']("checked",true);
+				} else {
+					$(this)[$t.p.useProp ? 'prop': 'attr']("checked", false);
+				}
+			};
+			
 			if (rowdata) {
 				for(i in rowdata) {
 					if(rowdata.hasOwnProperty(i)) {
 					$field = $("[name="+$.jgrid.jqID(i)+"]",formid);
 					if ($field.is("input:radio") || $field.is("input:checkbox"))  {
-						$field.each( function() {
-							if( $(this).val() == rowdata[i] ) {
-								$(this)[$t.p.useProp ? 'prop': 'attr']("checked",true);
-							} else {
-								$(this)[$t.p.useProp ? 'prop': 'attr']("checked", false);
-							}
-						});
+						$field.each(rowFunc);
 					} else {
 					// this is very slow on big table and form.
 						$field.val(rowdata[i]);
