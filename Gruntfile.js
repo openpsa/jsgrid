@@ -136,8 +136,13 @@ module.exports = function ( grunt ) {
                         dest: '<%= build_dir %>/docs/demos/data',
                         cwd: 'docs/content/demos/data/',
                         expand: true
+                    },
+                    {
+                        src: [ '*.*' ],
+                        dest: '<%= build_dir %>/docs',
+                        cwd: '<%= build_dir %>/',
+                        expand: true
                     }
-
                 ]
             },
             doc_vendor_assets: {
@@ -156,12 +161,6 @@ module.exports = function ( grunt ) {
                     },
                     {
                         src: [ 'vendor/**/*' ],
-                        dest: '<%= build_dir %>/docs',
-                        cwd: '<%= build_dir %>/',
-                        expand: true
-                    },
-                    {
-                        src: [ '*.*' ],
                         dest: '<%= build_dir %>/docs',
                         cwd: '<%= build_dir %>/',
                         expand: true
@@ -293,12 +292,12 @@ module.exports = function ( grunt ) {
                 files: [
                     '<%= app_files.js %>'
                 ],
-                tasks: [ 'jshint:src', 'concat:build_js', 'insertlocale', 'karma:unit:run', 'copy:build_i18n', 'copy:doc_vendor_assets' ]
+                tasks: [ 'jshint:src', 'concat:build_js', 'insertlocale', 'karma:unit:run', 'copy:build_i18n', 'copy:doc_assets' ]
             },
 
             less: {
                 files: [ 'less/*.less' ],
-                tasks: [ 'less:build' ]
+                tasks: [ 'less:build', 'copy:doc_assets' ]
             },
 
             jsunit: {
