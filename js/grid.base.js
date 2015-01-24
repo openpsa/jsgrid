@@ -1494,7 +1494,7 @@ $.fn.jqGrid = function( pin ) {
 				p._index[val] = i;
 			}
 		},
-		constructTr = function(id, hide, altClass, rd, cur, selected) {
+                constructTr = function(id, hide, altClass, rd, cur, selected) {
 			var tabindex = '-1', restAttr = '', attrName, style = hide ? 'display:none;' : '', self = this,
 				classes = 'ui-widget-content jqgrow ui-row-' + p.direction + (altClass ? ' ' + altClass : '') + (selected ? ' ui-state-highlight' : ''),
 				rowAttrObj = $(self).triggerHandler("jqGridRowAttr", [rd, cur, id]);
@@ -1531,6 +1531,54 @@ $.fn.jqGrid = function( pin ) {
 			return '<tr role="row" id="' + id + '" tabindex="' + tabindex + '" class="' + classes + '"' +
 				(style === '' ? '' : ' style="' + style + '"') + restAttr + '>';
 		},
+                activateInlineButtons = function(){
+                    if($('.ui-inline-button').length){
+                            $('.ui-inline-button').each(function(){
+                                $(this).on('mouseover', function(){
+                                    $(this).addClass('ui-state-hover');
+                                });
+                                $(this).on('mouseout', function(){
+                                    $(this).removeClass('ui-state-hover');
+                                });
+                            });
+                        }
+                        if($('.ui-inline-edit:not(.ui-inline-edit-form)').length){
+                            $('.ui-inline-edit:not(.ui-inline-edit-form)').each(function(){
+                                $(this).on('click', function(){
+                                    $.fn.fmatter.rowactions.call(this,'edit');
+                                });
+                            });
+                        }
+                        if($('.ui-inline-edit.ui-inline-edit-form').length){
+                            $('.ui-inline-edit.ui-inline-edit-form').each(function(){
+                                $(this).on('click', function(){
+                                    $.fn.fmatter.rowactions.call(this,'formedit');
+                                });
+                            });
+                        }
+                        if($('.ui-inline-del').length){
+                            $('.ui-inline-del').each(function(){
+                                $(this).on('click', function(){
+                                    $.fn.fmatter.rowactions.call(this,'del');
+                                });
+                            });
+                        }
+                        if($('.ui-inline-save').length){
+                            $('.ui-inline-save').each(function(){
+                                $(this).on('click', function(){
+                                    $.fn.fmatter.rowactions.call(this,'save');
+                                });
+                            });
+                        }
+                        if($('.ui-inline-cancel').length){
+                            $('.ui-inline-cancel').each(function(){
+                                $(this).on('click', function(){
+                                    console.log('toto');
+                                    $.fn.fmatter.rowactions.call(this,'cancel');
+                                });
+                            });
+                        }
+                },
 		addXmlData = function (xml, rcnt, more, adjust) {
 			var self = this, $self = $(this), startReq = new Date(), getXmlData = jgrid.getXmlData,
 			locdata = (p.datatype !== "local" && p.loadonce) || p.datatype === "xmlstring",
@@ -1722,6 +1770,8 @@ $.fn.jqGrid = function( pin ) {
 					grpdata = null;
 				}
 			}
+                        
+                        activateInlineButtons.call();
 		},
 		addJSONData = function(data, rcnt, more, adjust) {
 			var self = this, $self = $(self), startReq = new Date();
@@ -1921,6 +1971,8 @@ $.fn.jqGrid = function( pin ) {
 					grpdata = null;
 				}
 			}
+                        
+                        activateInlineButtons.call();
 		},
 		addLocalData = function() {
 			var $self = $(this), st = p.multiSort ? [] : "", sto=[], fndsort=false, cmtypes={}, grtypes=[], grindexes=[], srcformat, sorttype, newformat;
@@ -2110,6 +2162,9 @@ $.fn.jqGrid = function( pin ) {
 			retresult[localReader.records] = total;
 			retresult[localReader.root] = p.lastSelectedData.slice((page-1)*recordsperpage, page*recordsperpage);
 			retresult[localReader.userdata] = p.userData;
+                        
+                        activateInlineButtons.call();
+                        
 			return retresult;
 		},
 		updatepager = function(rn, dnd) {

@@ -324,20 +324,16 @@
 		if(rowid === undefined || $.fmatter.isEmpty(rowid)) {return "";}
                 var prefixedRowId = $(this)[0].p.idPrefix + '_' + rowid;
 		if(op.editformbutton){
-			ocl = "id='jEditButton_" + prefixedRowId + "' onclick=jQuery.fn.fmatter.rowactions.call(this,'formedit'); onmouseover=jQuery(this).addClass('ui-state-hover'); onmouseout=jQuery(this).removeClass('ui-state-hover'); ";
-			str += "<div title='"+nav.edittitle+"' style='float:left;cursor:pointer;' class='ui-pg-div ui-inline-edit' "+ocl+"><span class='ui-icon ui-icon-pencil'></span></div>";
+                    str += "<div id='jEditButton_" + prefixedRowId + "' title='"+nav.edittitle+"' class='ui-pg-div ui-inline-button ui-inline-edit ui-inline-edit-form'><span class='ui-icon ui-icon-pencil'></span></div>";
 		} else if(op.editbutton){
-			ocl = "id='jEditButton_" + prefixedRowId + "' onclick=jQuery.fn.fmatter.rowactions.call(this,'edit'); onmouseover=jQuery(this).addClass('ui-state-hover'); onmouseout=jQuery(this).removeClass('ui-state-hover') ";
-			str += "<div title='"+nav.edittitle+"' style='float:left;cursor:pointer;' class='ui-pg-div ui-inline-edit' "+ocl+"><span class='ui-icon ui-icon-pencil'></span></div>";
+                    str += "<div id='jEditButton_" + prefixedRowId + "' title='"+nav.edittitle+"' class='ui-pg-div ui-inline-button ui-inline-edit'><span class='ui-icon ui-icon-pencil'></span></div>";
 		}
 		if(op.delbutton) {
-			ocl = "id='jDeleteButton_" + prefixedRowId + "' onclick=jQuery.fn.fmatter.rowactions.call(this,'del'); onmouseover=jQuery(this).addClass('ui-state-hover'); onmouseout=jQuery(this).removeClass('ui-state-hover'); ";
-			str += "<div title='"+nav.deltitle+"' style='float:left;margin-left:5px;' class='ui-pg-div ui-inline-del' "+ocl+"><span class='ui-icon ui-icon-trash'></span></div>";
+                    str += "<div id='jDeleteButton_" + prefixedRowId + "' title='"+nav.deltitle+"' class='ui-pg-div ui-inline-button ui-inline-del'><span class='ui-icon ui-icon-trash'></span></div>";
 		}
-		ocl = "id='jSaveButton_" + prefixedRowId + "' onclick=jQuery.fn.fmatter.rowactions.call(this,'save'); onmouseover=jQuery(this).addClass('ui-state-hover'); onmouseout=jQuery(this).removeClass('ui-state-hover'); ";
-		str += "<div title='"+edit.bSubmit+"' style='float:left;display:none' class='ui-pg-div ui-inline-save' "+ocl+"><span class='ui-icon ui-icon-disk'></span></div>";
-		ocl = "id='jCancelButton_" + prefixedRowId + "' onclick=jQuery.fn.fmatter.rowactions.call(this,'cancel'); onmouseover=jQuery(this).addClass('ui-state-hover'); onmouseout=jQuery(this).removeClass('ui-state-hover'); ";
-		return str += "<div title='"+edit.bCancel+"' style='float:left;display:none;margin-left:5px;' class='ui-pg-div ui-inline-cancel' "+ocl+"><span class='ui-icon ui-icon-cancel'></span></div>";
+		
+                str += "<div id='jSaveButton_" + prefixedRowId + "' title='"+edit.bSubmit+"' class='ui-pg-div ui-inline-button ui-inline-save'><span class='ui-icon ui-icon-disk'></span></div>";
+		return str += "<div id='jCancelButton_" + prefixedRowId + "' title='"+edit.bCancel+"' class='ui-pg-div ui-inline-button ui-inline-cancel'><span class='ui-icon ui-icon-cancel'></span></div>";
 	};
 	$.unformat = function (cellval,options,pos,cnt) {
 		// specific for jqGrid only
