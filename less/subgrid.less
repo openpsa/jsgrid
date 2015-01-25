@@ -1,8 +1,22 @@
 .ui-jqgrid
 {
-    .ui-jqgrid-btable .ui-sgcollapsed span
+    .ui-jqgrid-btable
     {
-        display: block;
+        .ui-sgcollapsed span
+        {
+            display: block;
+        }
+        .ui-subgrid > td
+        {
+            &.subgrid-data
+            {
+                border-top:  0 none;
+            }
+            &.subgrid-cell
+            {
+                border-width: 0 0 1px 0;
+            }
+        }
     }
     .ui-subgrid
     {
@@ -22,17 +36,6 @@
             border-bottom-width: 1px;
             border-bottom-color: inherit;
             border-bottom-style: solid;
-        }
-        td
-        {
-            &.subgrid-data
-            {
-                border-top:  0 none !important;
-            }
-            &.subgrid-cell
-            {
-                border-width: 0 0 1px 0;
-            }
         }
         .ui-th-subgrid
         {

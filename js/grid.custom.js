@@ -74,7 +74,7 @@ $.jgrid.extend({
 				grid.emptyRows.call(self, true, true); // this work quick enough and reduce the size of memory leaks if we have someone
 			}
 
-			$(document).unbind("mouseup.jqGrid" + p.id ); 
+			$(document).unbind("mouseup.jqGrid" + p.id );
 			$(grid.hDiv).unbind("mousemove"); // TODO add namespace
 			$(self).unbind();
 
@@ -374,19 +374,19 @@ $.jgrid.extend({
 				var str = '<div id="sopt_menu" class="ui-search-menu" role="menu" style="left:'+left+'px;top:'+top+'px;">',
                                     selected = $(elem).attr("soper"), sopt_menu = $("#sopt_menu"),
                                     aoprs = [], ina, i=0, nm =$(elem).attr("colname"),len = $t.p.colModel.length;
-                            
+
                                 sopt_menu.remove();
 				while(i<len) {
 					if($t.p.colModel[i].name === nm) {break;}
 					i++;
 				}
-                                
+
 				var cm = $t.p.colModel[i], options = $.extend({}, cm.searchoptions);
 				if(!options.sopt) {
 					options.sopt = [];
 					options.sopt[0]= cm.stype==='select' ?  'eq' : p.defaultSearch;
 				}
-                                
+
 				$.each(p.odata, function() { aoprs.push(this.oper); });
 				for ( i = 0 ; i < options.sopt.length; i++) {
 					ina = $.inArray(options.sopt[i],aoprs);
@@ -394,7 +394,7 @@ $.jgrid.extend({
                                             str += '<a class="ui-corner-all g-menu-item" role="menuitem" value="'+p.odata[ina].oper+'" oper="'+p.operands[p.odata[ina].oper]+'"><span class="sopt-menu-operand">'+p.operands[p.odata[ina].oper]+'</span> <span>'+ p.odata[ina].text+'</span></a>';
 					}
 				}
-                                
+
 				str += "</div>";
 				body.append(str);
 				sopt_menu = $("#sopt_menu");
@@ -639,16 +639,8 @@ $.jgrid.extend({
 			this.triggerToolbar = triggerToolbar;
 			this.clearToolbar = clearToolbar;
 			this.toggleToolbar = toggleToolbar;
-                        
-                        var self = this;
-                        $("span.ui-search-input input",tr).each(function(){
-                            $(self).resizeFilterToolbarInput($(this));
-                        });
 		});
 	},
-        resizeFilterToolbarInput: function(input){
-            input.css('width', input.parents('th').width() - 20);
-        },
 	destroyFilterToolbar: function () {
 		return this.each(function () {
 			if (!this.ftoolbar) {
@@ -848,7 +840,7 @@ $.jgrid.extend({
 			}
 			if(p.rownumbers) { i++; }
 			if(p.multiselect) { i++; }
-			
+
 			// get the max index of frozen col
 			while(i<len)
 			{

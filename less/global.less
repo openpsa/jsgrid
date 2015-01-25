@@ -1,6 +1,9 @@
 .ui-jqgrid
 {
     position: relative;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
 
     .ui-th-ltr
     {
@@ -12,12 +15,29 @@
         border-right: none;
     }
 
+    div
+    {
+        line-height: normal;
+    }
+    table
+    {
+        border-collapse: collapse;
+        border-width: 0;
+        border-style: none;
+        td
+        {
+            padding: 0;
+        }
+    }
+
     & > .ui-jqgrid-view
     {
 	left: 0;
 	top: 0;
 	padding: 0;
 	font-size: @default-font-size;
+        position: relative;
+
         input,
         select,
         textarea,

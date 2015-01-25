@@ -4,7 +4,7 @@
     {
         &.jqfoot
         {
-            td
+            & > td
             {
                 font-weight: bold;
                 overflow: hidden;
@@ -35,6 +35,7 @@
             td
             {
                 text-align: left;
+                border-left: 0 none;
                 border-right-width: 1px;
                 border-right-color: inherit;
                 border-right-style: solid;
@@ -48,6 +49,7 @@
                 border-left-width: 1px;
                 border-left-color: inherit;
                 border-left-style: solid;
+                border-right: 0 none;
             }
         }
     }
@@ -68,7 +70,7 @@
         z-index: 99999;
     }
 
-    .ui-jqgrid-sdiv
+    & > .ui-jqgrid-view > .ui-jqgrid-sdiv
     {
         position: relative;
         margin: 0;

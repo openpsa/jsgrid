@@ -1,17 +1,16 @@
 .ui-jqgrid
 {
-    .ui-jqgrid-pager
+    & > .ui-jqgrid-pager
     {
-        border-left: 0 none !important;
-        border-right: 0 none !important;
-        border-bottom: 0 none !important;
-        margin: 0 !important;
-        padding: 0 !important;
+        border: 0 none;
+        margin: 0;
+        padding: 0;
         position: relative;
-        height: 25px;
+        height: auto;
         white-space: nowrap;
         overflow: hidden;
         font-size: @default-font-size;
+        min-height: 22px;
         .ui-pg-div
         {
             padding: 1px 0;
@@ -23,30 +22,20 @@
                 margin: 0 2px;
             }
         }
-        .ui-pg-button
-        {
-            cursor: pointer;
-            height: 19px !important;
-            &:hover
-            {
-                padding: 0;
-            }
-            span
-            {
-                display: block;
-                margin: 1px;
-                float: left;
-            }
-        }
     }
-    .ui-pager-control
+
+    .ui-jqgrid-toppager .ui-pager-control,
+    .ui-jqgrid-pager .ui-pager-control
     {
         position: relative;
+        border-left: 0;
+        border-bottom: 0;
+        border-top: 0;
     }
     .ui-pg-table
     {
         position: relative;
-        padding-bottom: 2px;
+        padding: 0;
         width: auto;
         margin: 0;
         td
@@ -55,24 +44,24 @@
             vertical-align: middle;
             padding: 1px;
         }
+        .ui-pg-input,
+        .ui-pg-selbox
+        {
+            height: auto;
+            width: auto;
+            font-size: .8em;
+            margin: 0;
+            line-height: inherit
+        }
+        .ui-pg-selbox
+        {
+            display: block;
+            padding: 1px
+        }
     }
     .ui-state-disabled:hover
     {
         padding: 1px;
-    }
-    .ui-pg-input
-    {
-        height: 13px;
-        font-size: .8em;
-        margin: 0;
-    }
-    .ui-pg-selbox
-    {
-        font-size: .8em;
-        line-height: 18px;
-        display: block;
-        height: 18px;
-        margin: 0;
     }
     .ui-separator
     {
@@ -85,9 +74,10 @@
     .ui-paging-info
     {
         font-weight: normal;
-        height: 19px;
+        height: auto;
         margin-top: 3px;
         margin-right: 4px;
+        display: inline;
     }
     td
     {
@@ -103,17 +93,35 @@
             height: auto;
         }
     }
-    .ui-jqgrid-toppager
+    .ui-pg-button
     {
-        border-left: 0 none !important;
-        border-right: 0 none !important;
-        border-top: 0 none !important;
-        margin: 0 !important;
-        padding: 0 !important;
+        cursor: pointer;
+        height: auto;
+        display: inline-block;
+        &:hover
+        {
+            padding: 0;
+        }
+        span
+        {
+            display: block;
+            margin: 1px;
+            float: left;
+        }
+    }
+
+    & > .ui-jqgrid-view > .ui-jqgrid-toppager
+    {
+        border-left: 0 none;
+        border-right: 0 none;
+        border-top: 0 none;
+        margin: 0;
+        padding: 0;
         position: relative;
-        height: 25px !important;
+        height: auto;
         white-space: nowrap;
         overflow: hidden;
+        min-height: 22px;
         .ui-pg-div
         {
             padding: 1px 0;
@@ -124,10 +132,6 @@
                 float: left;
                 margin: 0 2px;
             }
-        }
-        .ui-pg-button
-        {
-            cursor: pointer;
         }
     }
 }

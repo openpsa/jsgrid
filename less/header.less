@@ -40,20 +40,29 @@
         }
     }
 
-    .ui-jqgrid-hdiv
+    & > .ui-jqgrid-view >.ui-jqgrid-hdiv
     {
         position: relative;
         margin: 0;
         padding: 0;
         overflow: hidden;
-        border-left: 0 none !important;
-        border-top : 0 none !important;
-        border-right : 0 none !important;
+        border-left: 0 none;
+        border-top: 0 none;
+        border-right: 0 none;
+        height: auto;
     }
     .ui-jqgrid .ui-jqgrid-hbox
     {
         float: left;
         padding-right: 20px;
+    }
+    .ui-th-column
+    {
+        .cbox
+        {
+            margin-left: 1px;
+            margin-right: 1px;
+        }
     }
     .ui-jqgrid-htable
     {
@@ -61,21 +70,14 @@
         margin: 0;
         th
         {
-            height: 22px;
+            height: auto;
             padding: 0 2px 0 2px;
             div
             {
                 overflow: hidden;
                 position: relative;
-                height: 17px;
-            }
-            &.ui-th-column
-            {
-                overflow: hidden;
-                white-space: nowrap;
-                text-align: center;
-                border-top: 0 none;
-                border-bottom : 0 none;
+                height: auto;
+                margin: 2px;
             }
         }
     }
@@ -85,10 +87,16 @@
         white-space: nowrap;
         zoom: 1;
         height: 17px;
+        & > .cbox
+        {
+            margin-left: -1px;
+            margin-right: -1px;
+        }
     }
-    .ui-jqgrid-resize
+    .ui-jqgrid-labels > .ui-th-column > .ui-jqgrid-resize
     {
-        height: 20px !important;
+        height: 21px;
+        width: .3em;
         position: relative;
         cursor: e-resize;
         display: inline;
@@ -99,7 +107,10 @@
         overflow: hidden;
         position: absolute;
         display: inline;
-        cursor: pointer !important;
+        &.ui-state-disabled
+        {
+            cursor: pointer !important;
+        }
     }
     .ui-icon-asc
     {
@@ -126,4 +137,18 @@
     {
         cursor: pointer;
     }
+
+    .ui-jqgrid-labels th.ui-th-column
+    {
+        overflow: hidden;
+        white-space: nowrap;
+        text-align: center;
+        border-top: 0 none;
+        border-bottom : 0 none;
+    }
+}
+
+.ui-jqgrid-labels .ui-th-column
+{
+    &:extend(.ui-jqgrid-labels th.ui-th-column);
 }

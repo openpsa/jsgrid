@@ -1,4 +1,4 @@
-.ui-jqdialog-content
+.ui-jqdialog
 {
     .FormGrid
     {
@@ -75,45 +75,49 @@
     {
         white-space: pre
     }
+
+    .fm-button
+    {
+        display: inline-block;
+        margin:0 4px 0 0;
+        padding: .4em .5em;
+        text-decoration: none;
+        cursor: pointer;
+        position: relative;
+        text-align: center;
+        zoom: 1;
+    }
+    .ui-jqdialog-content
+    {
+        .fm-button-icon-left
+        {
+            padding-left: 1.9em;
+            .ui-icon
+            {
+                right: auto;
+                left: .2em;
+                margin-left: 0;
+                position: absolute;
+                top: 50%;
+                margin-top: -8px;
+            }
+        }
+        .fm-button-icon-right
+        {
+            padding-right: 1.9em;
+            .ui-icon
+            {
+                left: auto;
+                right: .2em;
+                margin-left: 0;
+                position: absolute;
+                top: 50%;
+                margin-top: -8px;
+            }
+        }
+    }
 }
 
-.fm-button
-{
-    display: inline-block;
-    margin:0 4px 0 0;
-    padding: .4em .5em;
-    text-decoration: none !important;
-    cursor: pointer;
-    position: relative;
-    text-align: center;
-    zoom: 1;
-}
-.fm-button-icon-left
-{
-    padding-left: 1.9em;
-    .ui-icon
-    {
-        right: auto;
-        left: .2em;
-        margin-left: 0;
-        position: absolute;
-        top: 50%;
-        margin-top: -8px;
-    }
-}
-.fm-button-icon-right
-{
-    padding-right: 1.9em;
-    .ui-icon
-    {
-        left: auto;
-        right: .2em;
-        margin-left: 0;
-        position: absolute;
-        top: 50%;
-        margin-top: -8px;
-    }
-}
 #nData,
 #pData
 {
