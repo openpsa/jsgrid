@@ -1,5 +1,8 @@
 .ui-jqgrid {
   position: relative;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
 }
 .ui-jqgrid .ui-th-ltr,
 .ui-jqgrid .ui-jqgrid-htable th.ui-th-ltr {
@@ -9,11 +12,23 @@
 .ui-jqgrid .ui-jqgrid-htable th.ui-th-rtl {
   border-right: none;
 }
+.ui-jqgrid div {
+  line-height: normal;
+}
+.ui-jqgrid table {
+  border-collapse: collapse;
+  border-width: 0;
+  border-style: none;
+}
+.ui-jqgrid table td {
+  padding: 0;
+}
 .ui-jqgrid > .ui-jqgrid-view {
   left: 0;
   top: 0;
   padding: 0;
   font-size: 11px;
+  position: relative;
 }
 .ui-jqgrid > .ui-jqgrid-view input,
 .ui-jqgrid > .ui-jqgrid-view select,
@@ -51,46 +66,50 @@
 .ui-jqgrid .ui-jqgrid-titlebar-close:hover {
   padding: 0;
 }
-.ui-jqgrid .ui-jqgrid-hdiv {
+.ui-jqgrid > .ui-jqgrid-view > .ui-jqgrid-hdiv {
   position: relative;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  border-left: 0 none !important;
-  border-top: 0 none !important;
-  border-right: 0 none !important;
+  border-left: 0 none;
+  border-top: 0 none;
+  border-right: 0 none;
+  height: auto;
 }
 .ui-jqgrid .ui-jqgrid .ui-jqgrid-hbox {
   float: left;
   padding-right: 20px;
+}
+.ui-jqgrid .ui-th-column .cbox {
+  margin-left: 1px;
+  margin-right: 1px;
 }
 .ui-jqgrid .ui-jqgrid-htable {
   table-layout: fixed;
   margin: 0;
 }
 .ui-jqgrid .ui-jqgrid-htable th {
-  height: 22px;
+  height: auto;
   padding: 0 2px 0 2px;
 }
 .ui-jqgrid .ui-jqgrid-htable th div {
   overflow: hidden;
   position: relative;
-  height: 17px;
-}
-.ui-jqgrid .ui-jqgrid-htable th.ui-th-column {
-  overflow: hidden;
-  white-space: nowrap;
-  text-align: center;
-  border-top: 0 none;
-  border-bottom: 0 none;
+  height: auto;
+  margin: 2px;
 }
 .ui-jqgrid .ui-th-div-ie {
   white-space: nowrap;
   zoom: 1;
   height: 17px;
 }
-.ui-jqgrid .ui-jqgrid-resize {
-  height: 20px !important;
+.ui-jqgrid .ui-th-div-ie > .cbox {
+  margin-left: -1px;
+  margin-right: -1px;
+}
+.ui-jqgrid .ui-jqgrid-labels > .ui-th-column > .ui-jqgrid-resize {
+  height: 21px;
+  width: .3em;
   position: relative;
   cursor: e-resize;
   display: inline;
@@ -100,6 +119,8 @@
   overflow: hidden;
   position: absolute;
   display: inline;
+}
+.ui-jqgrid .ui-grid-ico-sort.ui-state-disabled {
   cursor: pointer !important;
 }
 .ui-jqgrid .ui-icon-asc {
@@ -122,6 +143,13 @@
 .ui-jqgrid .ui-jqgrid-sortable {
   cursor: pointer;
 }
+.ui-jqgrid .ui-jqgrid-labels th.ui-th-column {
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+  border-top: 0 none;
+  border-bottom: 0 none;
+}
 .ui-jqgrid .ui-jqgrid-bdiv {
   position: relative;
   margin: 0;
@@ -134,10 +162,15 @@
   margin: 0;
   outline-style: none;
 }
+.ui-jqgrid .ui-jqgrid-btable td.jqgrid-rownum {
+  padding: 0 2px 0 2px;
+  margin: 0;
+  border: 0 none;
+}
 .ui-jqgrid tr.jqgrow {
   outline-style: none;
 }
-.ui-jqgrid tr.jqgrow td {
+.ui-jqgrid tr.jqgrow > td {
   font-weight: normal;
   overflow: hidden;
   white-space: pre;
@@ -150,7 +183,7 @@
 .ui-jqgrid tr.jqgroup {
   outline-style: none;
 }
-.ui-jqgrid tr.jqgroup td {
+.ui-jqgrid tr.jqgroup > td {
   font-weight: normal;
   overflow: hidden;
   white-space: pre;
@@ -160,29 +193,11 @@
   border-bottom-color: inherit;
   border-bottom-style: solid;
 }
-.ui-jqgrid tr.jqgfirstrow td {
+.ui-jqgrid tr.jqgfirstrow > td {
   padding: 0 2px 0 2px;
-  border-right-width: 1px;
-  border-right-style: solid;
+  border-right: 1px solid;
 }
-.ui-jqgrid tr.ui-row-ltr td {
-  text-align: left;
-  border-right-width: 1px;
-  border-right-color: inherit;
-  border-right-style: solid;
-}
-.ui-jqgrid tr.ui-row-rtl td {
-  text-align: right;
-  border-left-width: 1px;
-  border-left-color: inherit;
-  border-left-style: solid;
-}
-.ui-jqgrid tr td.jqgrid-rownum {
-  padding: 0 2px 0 2px;
-  margin: 0;
-  border: 0 none;
-}
-.ui-jqgrid tr.jqfoot td {
+.ui-jqgrid tr.jqfoot > td {
   font-weight: bold;
   overflow: hidden;
   white-space: pre;
@@ -204,6 +219,7 @@
 }
 .ui-jqgrid tr.footrow-ltr td {
   text-align: left;
+  border-left: 0 none;
   border-right-width: 1px;
   border-right-color: inherit;
   border-right-style: solid;
@@ -213,6 +229,7 @@
   border-left-width: 1px;
   border-left-color: inherit;
   border-left-style: solid;
+  border-right: 0 none;
 }
 .ui-jqgrid .ui-jqgrid-resize-mark {
   width: 2px;
@@ -228,7 +245,7 @@
   border: 0 none;
   z-index: 99999;
 }
-.ui-jqgrid .ui-jqgrid-sdiv {
+.ui-jqgrid > .ui-jqgrid-view > .ui-jqgrid-sdiv {
   position: relative;
   margin: 0;
   padding: 0;
@@ -241,45 +258,36 @@
   table-layout: fixed;
   margin-bottom: 0;
 }
-.ui-jqgrid .ui-jqgrid-pager {
-  border-left: 0 none !important;
-  border-right: 0 none !important;
-  border-bottom: 0 none !important;
-  margin: 0 !important;
-  padding: 0 !important;
+.ui-jqgrid > .ui-jqgrid-pager {
+  border: 0 none;
+  margin: 0;
+  padding: 0;
   position: relative;
-  height: 25px;
+  height: auto;
   white-space: nowrap;
   overflow: hidden;
   font-size: 11px;
+  min-height: 22px;
 }
-.ui-jqgrid .ui-jqgrid-pager .ui-pg-div {
+.ui-jqgrid > .ui-jqgrid-pager .ui-pg-div {
   padding: 1px 0;
   float: left;
   position: relative;
 }
-.ui-jqgrid .ui-jqgrid-pager .ui-pg-div span.ui-icon {
+.ui-jqgrid > .ui-jqgrid-pager .ui-pg-div span.ui-icon {
   float: left;
   margin: 0 2px;
 }
-.ui-jqgrid .ui-jqgrid-pager .ui-pg-button {
-  cursor: pointer;
-  height: 19px !important;
-}
-.ui-jqgrid .ui-jqgrid-pager .ui-pg-button:hover {
-  padding: 0;
-}
-.ui-jqgrid .ui-jqgrid-pager .ui-pg-button span {
-  display: block;
-  margin: 1px;
-  float: left;
-}
-.ui-jqgrid .ui-pager-control {
+.ui-jqgrid .ui-jqgrid-toppager .ui-pager-control,
+.ui-jqgrid .ui-jqgrid-pager .ui-pager-control {
   position: relative;
+  border-left: 0;
+  border-bottom: 0;
+  border-top: 0;
 }
 .ui-jqgrid .ui-pg-table {
   position: relative;
-  padding-bottom: 2px;
+  padding: 0;
   width: auto;
   margin: 0;
 }
@@ -288,20 +296,20 @@
   vertical-align: middle;
   padding: 1px;
 }
-.ui-jqgrid .ui-state-disabled:hover {
+.ui-jqgrid .ui-pg-table .ui-pg-input,
+.ui-jqgrid .ui-pg-table .ui-pg-selbox {
+  height: auto;
+  width: auto;
+  font-size: .8em;
+  margin: 0;
+  line-height: inherit;
+}
+.ui-jqgrid .ui-pg-table .ui-pg-selbox {
+  display: block;
   padding: 1px;
 }
-.ui-jqgrid .ui-pg-input {
-  height: 13px;
-  font-size: .8em;
-  margin: 0;
-}
-.ui-jqgrid .ui-pg-selbox {
-  font-size: .8em;
-  line-height: 18px;
-  display: block;
-  height: 18px;
-  margin: 0;
+.ui-jqgrid .ui-state-disabled:hover {
+  padding: 1px;
 }
 .ui-jqgrid .ui-separator {
   height: 18px;
@@ -312,9 +320,10 @@
 }
 .ui-jqgrid .ui-paging-info {
   font-weight: normal;
-  height: 19px;
+  height: auto;
   margin-top: 3px;
   margin-right: 4px;
+  display: inline;
 }
 .ui-jqgrid td input,
 .ui-jqgrid td select,
@@ -325,31 +334,48 @@
   width: auto;
   height: auto;
 }
-.ui-jqgrid .ui-jqgrid-toppager {
-  border-left: 0 none !important;
-  border-right: 0 none !important;
-  border-top: 0 none !important;
-  margin: 0 !important;
-  padding: 0 !important;
+.ui-jqgrid .ui-pg-button {
+  cursor: pointer;
+  height: auto;
+  display: inline-block;
+}
+.ui-jqgrid .ui-pg-button:hover {
+  padding: 0;
+}
+.ui-jqgrid .ui-pg-button span {
+  display: block;
+  margin: 1px;
+  float: left;
+}
+.ui-jqgrid > .ui-jqgrid-view > .ui-jqgrid-toppager {
+  border-left: 0 none;
+  border-right: 0 none;
+  border-top: 0 none;
+  margin: 0;
+  padding: 0;
   position: relative;
-  height: 25px !important;
+  height: auto;
   white-space: nowrap;
   overflow: hidden;
+  min-height: 22px;
 }
-.ui-jqgrid .ui-jqgrid-toppager .ui-pg-div {
+.ui-jqgrid > .ui-jqgrid-view > .ui-jqgrid-toppager .ui-pg-div {
   padding: 1px 0;
   float: left;
   position: relative;
 }
-.ui-jqgrid .ui-jqgrid-toppager .ui-pg-div span.ui-icon {
+.ui-jqgrid > .ui-jqgrid-view > .ui-jqgrid-toppager .ui-pg-div span.ui-icon {
   float: left;
   margin: 0 2px;
 }
-.ui-jqgrid .ui-jqgrid-toppager .ui-pg-button {
-  cursor: pointer;
-}
 .ui-jqgrid .ui-jqgrid-btable .ui-sgcollapsed span {
   display: block;
+}
+.ui-jqgrid .ui-jqgrid-btable .ui-subgrid > td.subgrid-data {
+  border-top: 0 none;
+}
+.ui-jqgrid .ui-jqgrid-btable .ui-subgrid > td.subgrid-cell {
+  border-width: 0 0 1px 0;
 }
 .ui-jqgrid .ui-subgrid {
   margin: 0;
@@ -368,16 +394,10 @@
   border-bottom-color: inherit;
   border-bottom-style: solid;
 }
-.ui-jqgrid .ui-subgrid td.subgrid-data {
-  border-top: 0 none !important;
-}
-.ui-jqgrid .ui-subgrid td.subgrid-cell {
-  border-width: 0 0 1px 0;
-}
 .ui-jqgrid .ui-subgrid .ui-th-subgrid {
   height: 20px;
 }
-.ui-jqgrid .loading {
+.ui-jqgrid > .loading {
   position: absolute;
   top: 45%;
   left: 45%;
@@ -388,14 +408,14 @@
   text-align: center;
   font-weight: bold;
   display: none;
-  border-width: 2px !important;
+  border-width: 2px;
   font-size: 11px;
 }
 .ui-jqgrid .jqgrid-overlay {
   display: none;
   z-index: 100;
 }
-.ui-jqgrid .ui-userdata {
+.ui-jqgrid > .ui-jqgrid-view > .ui-userdata {
   border-left: 0 none;
   border-right: 0 none;
   height: 21px;
@@ -468,27 +488,27 @@
   border-right-style: solid;
   height: 20px;
 }
-.ui-jqdialog-content .FormGrid {
+.ui-jqdialog .FormGrid {
   margin: 0;
 }
-.ui-jqdialog-content .EditTable {
+.ui-jqdialog .EditTable {
   width: 100%;
   margin-bottom: 0;
 }
-.ui-jqdialog-content .EditTable td input,
-.ui-jqdialog-content .EditTable td select,
-.ui-jqdialog-content .EditTable td textarea {
+.ui-jqdialog .EditTable td input,
+.ui-jqdialog .EditTable td select,
+.ui-jqdialog .EditTable td textarea {
   margin: 0;
 }
-.ui-jqdialog-content .EditTable td textarea {
+.ui-jqdialog .EditTable td textarea {
   width: auto;
   height: auto;
 }
-.ui-jqdialog-content .DelTable {
+.ui-jqdialog .DelTable {
   width: 100%;
   margin-bottom: 0;
 }
-.ui-jqdialog-content td .EditButton {
+.ui-jqdialog td .EditButton {
   text-align: right;
   border-top: 0 none;
   border-left: 0 none;
@@ -496,7 +516,7 @@
   padding-bottom: 5px;
   padding-top: 5px;
 }
-.ui-jqdialog-content td .navButton {
+.ui-jqdialog td .navButton {
   text-align: center;
   border-left: 0 none;
   border-top: 0 none;
@@ -504,42 +524,42 @@
   padding-bottom: 5px;
   padding-top: 5px;
 }
-.ui-jqdialog-content input.FormElement,
-.ui-jqdialog-content select.FormElement {
+.ui-jqdialog input.FormElement,
+.ui-jqdialog select.FormElement {
   padding: 0.3em;
 }
-.ui-jqdialog-content .data-line {
+.ui-jqdialog .data-line {
   padding-top: .1em;
   border: 0 none;
 }
-.ui-jqdialog-content .CaptionTD {
+.ui-jqdialog .CaptionTD {
   vertical-align: middle;
   border: 0 none;
   padding: 2px;
   white-space: nowrap;
 }
-.ui-jqdialog-content .DataTD {
+.ui-jqdialog .DataTD {
   padding: 2px;
   border: 0 none;
   vertical-align: top;
 }
-.ui-jqdialog-content .form-view-data {
+.ui-jqdialog .form-view-data {
   white-space: pre;
 }
-.fm-button {
+.ui-jqdialog .fm-button {
   display: inline-block;
   margin: 0 4px 0 0;
   padding: .4em .5em;
-  text-decoration: none !important;
+  text-decoration: none;
   cursor: pointer;
   position: relative;
   text-align: center;
   zoom: 1;
 }
-.fm-button-icon-left {
+.ui-jqdialog .ui-jqdialog-content .fm-button-icon-left {
   padding-left: 1.9em;
 }
-.fm-button-icon-left .ui-icon {
+.ui-jqdialog .ui-jqdialog-content .fm-button-icon-left .ui-icon {
   right: auto;
   left: .2em;
   margin-left: 0;
@@ -547,10 +567,10 @@
   top: 50%;
   margin-top: -8px;
 }
-.fm-button-icon-right {
+.ui-jqdialog .ui-jqdialog-content .fm-button-icon-right {
   padding-right: 1.9em;
 }
-.fm-button-icon-right .ui-icon {
+.ui-jqdialog .ui-jqdialog-content .fm-button-icon-right .ui-icon {
   left: auto;
   right: .2em;
   margin-left: 0;
@@ -640,6 +660,18 @@
 .ui-jqgrid .ui-sort-rtl {
   left: 0;
 }
+.ui-jqgrid .ui-jqgrid-bdiv tr.ui-row-ltr > td {
+  text-align: left;
+  border-right-width: 1px;
+  border-right-color: inherit;
+  border-right-style: solid;
+}
+.ui-jqgrid .ui-jqgrid-bdiv tr.ui-row-rtl > td {
+  text-align: right;
+  border-left-width: 1px;
+  border-left-color: inherit;
+  border-left-style: solid;
+}
 .ui-jqgrid .tree-wrap-ltr {
   float: left;
 }
@@ -652,6 +684,9 @@
 .ui-search-toolbar {
   padding: 2px 5px;
 }
+.ui-search-toolbar th > * {
+  display: table-cell;
+}
 .ui-search-toolbar .ui-search-oper {
   width: 20px;
   padding-right: 0.5em;
@@ -661,8 +696,6 @@
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-}
-.ui-search-toolbar .ui-search-input > select {
   width: 100%;
 }
 a.g-menu-item,
