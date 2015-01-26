@@ -5,5 +5,6 @@
     {"filename": "groupingTitle.html", "title": "Grouping Custom Title"},
     {"filename": "searchFilter.html", "title": "Search Filter"},
     {"filename": "searchFilterOperator.html", "title": "Search Filter with Operators"},
-    {"filename": "pager.html", "title": "Pagination"}
+    {"filename": "pager.html", "title": "Pagination"},
+    {"filename": "inlineedit.html", "title": "Inline Editing"}
 ]
