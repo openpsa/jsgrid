@@ -1,5 +1,5 @@
 /**
- * grid.js - v0.1.0 - 2015-01-25
+ * grid.js - v0.1.0 - 2015-01-26
  * https://openpsa.github.com/grid.js
  *
  * Copyright (c) 2015 Tony Tomov, Oleg Kiriljuk, Andreas Flack, Laurent Rajchenbach, Matthew Hutton and other contributors to jqGrid before version 4.7.1
@@ -1335,8 +1335,6 @@ $.fn.jqGrid = function( pin ) {
 					}
 				}
                                 
-                                $(self).resizeFilterToolbarInput($('tr.ui-search-toolbar th:eq('+idx+') input',$(self.hDiv)));
-                                
 				if (!skipCallbacks) {
 					feedback.call(ts, "resizeStop", nw, idx);
 				}
@@ -1711,19 +1709,19 @@ $.fn.jqGrid = function( pin ) {
                     $('.ui-inline-button').on('mouseout', function(){
                         $(this).removeClass('ui-state-hover');
                     });
-                    $('.ui-inline-edit:not(.ui-inline-edit-form)').on('click', function(){
+                    $('.ui-inline-edit:not(.ui-inline-edit-form)').on('mouseup', function(){
                         $.fn.fmatter.rowactions.call(this,'edit');
                     });
-                    $('.ui-inline-edit.ui-inline-edit-form').on('click', function(){
+                    $('.ui-inline-edit.ui-inline-edit-form').on('mouseup', function(){
                         $.fn.fmatter.rowactions.call(this,'formedit');
                     });
-                    $('.ui-inline-del').on('click', function(){
+                    $('.ui-inline-del').on('mouseup', function(){
                         $.fn.fmatter.rowactions.call(this,'del');
                     });
-                    $('.ui-inline-save').on('click', function(){
+                    $('.ui-inline-save').on('mouseup', function(){
                         $.fn.fmatter.rowactions.call(this,'save');
                     });
-                    $('.ui-inline-cancel').on('click', function(){
+                    $('.ui-inline-cancel').on('mouseup', function(){
                         $.fn.fmatter.rowactions.call(this,'cancel');
                     });
                 },
@@ -3254,7 +3252,7 @@ $.fn.jqGrid = function( pin ) {
 		});
 		}
 		var ri,ci, tdHtml;
-		$(ts).before(grid.hDiv).click(function(e) {
+		$(ts).before(grid.hDiv).mousedown(function(e) {
 			td = e.target;
 			ptr = $(td,ts.rows).closest("tr.jqgrow");
 			if($(ptr).length === 0 || ptr[0].className.indexOf( 'ui-state-disabled' ) > -1 || ($(td,ts).closest("table.ui-jqgrid-btable").attr('id') || '').replace("_frozen","") !== ts.id ) {
@@ -5283,7 +5281,6 @@ $.extend($.jgrid,{
 			return false;
 		});
 		if (p.width === 0 || !p.width) {p.width = 300;}
-		if(p.height === 0 || !p.height) {p.height =200;}
 		if(!p.zIndex) {
 			var parentZ = $(insertSelector).parents("*[role=dialog]").filter(':first').css("z-index");
 			if(parentZ) {
@@ -5300,10 +5297,8 @@ $.extend($.jgrid,{
 		}
 		if(coord.left) { coord.left += "px"; }
 		$(mw).css($.extend({
-			width: isNaN(p.width) ? "auto": p.width+"px",
-			height:isNaN(p.height) ? "auto" : p.height + "px",
-			zIndex:p.zIndex,
-			overflow: 'hidden'
+		    zIndex:p.zIndex,
+		    overflow: 'hidden'
 		},coord))
 		.attr({tabIndex: "-1","role":"dialog","aria-labelledby":aIDs.modalhead,"aria-hidden":"true"});
 		if(p.drag === undefined) { p.drag=true;}

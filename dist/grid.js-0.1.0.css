@@ -691,8 +691,8 @@
   width: 20px;
   padding-right: 0.5em;
 }
-.ui-search-toolbar .ui-search-input > input,
-.ui-search-toolbar .ui-search-input > select {
+.ui-search-toolbar .ui-search-input,
+.ui-search-toolbar .ui-search-input > * {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
