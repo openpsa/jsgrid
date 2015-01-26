@@ -1536,19 +1536,19 @@ $.fn.jqGrid = function( pin ) {
                     $('.ui-inline-button').on('mouseout', function(){
                         $(this).removeClass('ui-state-hover');
                     });
-                    $('.ui-inline-edit:not(.ui-inline-edit-form)').on('click', function(){
+                    $('.ui-inline-edit:not(.ui-inline-edit-form)').on('mouseup', function(){
                         $.fn.fmatter.rowactions.call(this,'edit');
                     });
-                    $('.ui-inline-edit.ui-inline-edit-form').on('click', function(){
+                    $('.ui-inline-edit.ui-inline-edit-form').on('mouseup', function(){
                         $.fn.fmatter.rowactions.call(this,'formedit');
                     });
-                    $('.ui-inline-del').on('click', function(){
+                    $('.ui-inline-del').on('mouseup', function(){
                         $.fn.fmatter.rowactions.call(this,'del');
                     });
-                    $('.ui-inline-save').on('click', function(){
+                    $('.ui-inline-save').on('mouseup', function(){
                         $.fn.fmatter.rowactions.call(this,'save');
                     });
-                    $('.ui-inline-cancel').on('click', function(){
+                    $('.ui-inline-cancel').on('mouseup', function(){
                         $.fn.fmatter.rowactions.call(this,'cancel');
                     });
                 },
@@ -3079,7 +3079,7 @@ $.fn.jqGrid = function( pin ) {
 		});
 		}
 		var ri,ci, tdHtml;
-		$(ts).before(grid.hDiv).click(function(e) {
+		$(ts).before(grid.hDiv).mousedown(function(e) {
 			td = e.target;
 			ptr = $(td,ts.rows).closest("tr.jqgrow");
 			if($(ptr).length === 0 || ptr[0].className.indexOf( 'ui-state-disabled' ) > -1 || ($(td,ts).closest("table.ui-jqgrid-btable").attr('id') || '').replace("_frozen","") !== ts.id ) {
