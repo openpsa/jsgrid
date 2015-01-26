@@ -14,7 +14,6 @@ module.exports = {
     },
 
     doc_files: {
-        content: [ './**/*.md' ],
         contentdir: 'docs/content',
         template: [ 'docs/template/**/*' ],
         helpers: [ 'docs/template/helpers/*.js' ],
