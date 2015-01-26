@@ -132,7 +132,6 @@ $.extend($.jgrid,{
 			return false;
 		});
 		if (p.width === 0 || !p.width) {p.width = 300;}
-		if(p.height === 0 || !p.height) {p.height =200;}
 		if(!p.zIndex) {
 			var parentZ = $(insertSelector).parents("*[role=dialog]").filter(':first').css("z-index");
 			if(parentZ) {
@@ -149,10 +148,8 @@ $.extend($.jgrid,{
 		}
 		if(coord.left) { coord.left += "px"; }
 		$(mw).css($.extend({
-			width: isNaN(p.width) ? "auto": p.width+"px",
-			height:isNaN(p.height) ? "auto" : p.height + "px",
-			zIndex:p.zIndex,
-			overflow: 'hidden'
+		    zIndex:p.zIndex,
+		    overflow: 'hidden'
 		},coord))
 		.attr({tabIndex: "-1","role":"dialog","aria-labelledby":aIDs.modalhead,"aria-hidden":"true"});
 		if(p.drag === undefined) { p.drag=true;}
