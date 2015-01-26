@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>grid.js - Search Filter</title>
+<title>grid.js - Inline Editing</title>
 <link href="../grid.js-0.1.0.css" rel="stylesheet">
 <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css" rel="stylesheet">
@@ -44,7 +44,7 @@
 
 <main class="container">
 <div class="page-header">
-<h1>Search Filter</h1>
+<h1>Inline Editing</h1>
 </div>
 
 <div class="col-md-9 demo-container">
@@ -72,10 +72,10 @@ $(document).ready(<span class="function"><span class="keyword">function</span> <
             { label: <span class="string">'Amount'</span>, name: <span class="string">'amount'</span>, width: <span class="number">80</span> },
             { label: <span class="string">'Tax'</span>, name: <span class="string">'tax'</span>, width: <span class="number">80</span> },
             { label: <span class="string">'Total'</span>, name: <span class="string">'total'</span>, width: <span class="number">80</span> },
-            { label: <span class="string">'Notes'</span>, name: <span class="string">'note'</span>, width: <span class="number">150</span> }
-        ]
-    }).filterToolbar({
-        <span class="string">"stringResult"</span>: <span class="literal">true</span>
+            { label: <span class="string">'Notes'</span>, name: <span class="string">'note'</span>, width: <span class="number">150</span> },
+            { name: <span class="string">"act"</span>, template: <span class="string">"actions"</span> }
+        ],
+        cmTemplate: { editable: <span class="literal">true</span>}
     });
 });</code></pre>
 
@@ -94,13 +94,13 @@ $(document).ready(<span class="function"><span class="keyword">function</span> <
   
   <li><a href="groupingTitle.html">Grouping Custom Title</a></li>
   
-  <li class="active"><a href="searchFilter.html">Search Filter</a></li>
+  <li><a href="searchFilter.html">Search Filter</a></li>
   
   <li><a href="searchFilterOperator.html">Search Filter with Operators</a></li>
   
   <li><a href="pager.html">Pagination</a></li>
   
-  <li><a href="inlineedit.html">Inline Editing</a></li>
+  <li class="active"><a href="inlineedit.html">Inline Editing</a></li>
   
     </ul>
 </div>
@@ -110,7 +110,7 @@ $(document).ready(<span class="function"><span class="keyword">function</span> <
 
 <footer>
   <div class="container">
-  Page generated on 2015-01-26 20:50 | <a href="https://github.com/openpsa/grid.js/tree/master/docs/content/demos/searchFilter.md">View Page Source</a>
+  Page generated on 2015-01-26 20:50 | <a href="https://github.com/openpsa/grid.js/tree/master/docs/content/demos/inlineedit.md">View Page Source</a>
   </div>
 </footer>
 
