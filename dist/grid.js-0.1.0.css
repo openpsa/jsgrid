@@ -595,8 +595,7 @@
   cursor: pointer;
 }
 .ui-inline-del,
-.ui-inline-cancel,
-.ui-inline-save {
+.ui-inline-cancel {
   margin-left: 5px;
 }
 .ui-inline-save,
