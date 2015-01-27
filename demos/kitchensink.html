@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>grid.js - Kitchen Sink</title>
+<link href="../grid.js-0.1.0.css" rel="stylesheet">
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css" rel="stylesheet">
+<link href="../docs.css" rel="stylesheet">
+
+<script src="../vendor/jquery.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="container-fluid">
+<div class="navbar-header">
+<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a href="../index.html" class="navbar-brand">grid.js</a>
+</div>
+
+<div class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+<ul class="nav navbar-nav">
+<li>
+   <a href="../configuration.html">Configuration</a>
+</li>
+
+<li class="active"> <a href="../demos/index.html">Demos</a> </li>
+<li> <a href="../download/index.html">Download</a> </li>
+</ul>
+<ul class="nav navbar-nav pull-right">
+<li> <a href="https://github.com/openpsa/grid.js">GitHub Repo</a> </li>
+</ul>
+</div>
+
+</div>
+</nav>
+
+<main class="container">
+<div class="page-header">
+<h1>Kitchen Sink</h1>
+</div>
+
+<div class="col-md-9 demo-container">
+
+<p>This demo tries to show as many UI elements as possible at the same time</p>
+<pre><code class="language-javascript">    <span class="keyword">var</span> mydata = [
+        { id: <span class="string">"1.0"</span>,  invdate: <span class="string">"2007-10-01"</span>, name: <span class="string">"test1"</span>, note: <span class="string">"note1"</span>,  amount: <span class="string">""</span>, tax: <span class="string">""</span>, closed: <span class="literal">true</span>,  ship_via: <span class="string">"TN"</span>, total: <span class="string">""</span> },
+            { id: <span class="string">"2.0"</span>,  invdate: <span class="string">"2007-10-02"</span>, name: <span class="string">"test1"</span>, note: <span class="string">"note2"</span>,  amount: <span class="string">"300.00"</span>, tax: <span class="string">"20.00"</span>, closed: <span class="literal">false</span>, ship_via: <span class="string">"FE"</span>, total: <span class="string">"320.00"</span> },
+        { id: <span class="string">"3.0"</span>,  invdate: <span class="string">"2007-09-01"</span>, name: <span class="string">"test3"</span>, note: <span class="string">"note3"</span>,  amount: <span class="string">"400.00"</span>, tax: <span class="string">"30.00"</span>, closed: <span class="literal">false</span>, ship_via: <span class="string">"FE"</span>, total: <span class="string">"430.00"</span> },
+        { id: <span class="string">"4.0"</span>,  invdate: <span class="string">"2007-10-04"</span>, name: <span class="string">"test2"</span>, note: <span class="string">"note4 note4 note4"</span>,  amount: <span class="string">"200.00"</span>, tax: <span class="string">"10.00"</span>, closed: <span class="literal">true</span>,  ship_via: <span class="string">"TN"</span>, total: <span class="string">"210.00"</span> },
+        { id: <span class="string">"5.0"</span>,  invdate: <span class="string">"2007-10-31"</span>, name: <span class="string">"test2"</span>, note: <span class="string">"note5"</span>,  amount: <span class="string">"300.00"</span>, tax: <span class="string">"20.00"</span>, closed: <span class="literal">false</span>, ship_via: <span class="string">"FE"</span>, total: <span class="string">"320.00"</span> },
+        { id: <span class="string">"6.0"</span>,  invdate: <span class="string">"2007-09-06"</span>, name: <span class="string">"test3"</span>, note: <span class="string">"note6"</span>,  amount: <span class="string">"400.00"</span>, tax: <span class="string">"30.00"</span>, closed: <span class="literal">false</span>, ship_via: <span class="string">"FE"</span>, total: <span class="string">"430.00"</span> },
+        { id: <span class="string">"7.0"</span>,  invdate: <span class="string">"2007-10-04"</span>, name: <span class="string">"test3"</span>, note: <span class="string">"note7"</span>,  amount: <span class="string">"200.00"</span>, tax: <span class="string">"10.00"</span>, closed: <span class="literal">true</span>,  ship_via: <span class="string">"TN"</span>, total: <span class="string">"210.00"</span> },
+        { id: <span class="string">"8.0"</span>,  invdate: <span class="string">"2007-10-03"</span>, name: <span class="string">"test1"</span>, note: <span class="string">"note8"</span>,  amount: <span class="string">"300.00"</span>, tax: <span class="string">"20.00"</span>, closed: <span class="literal">false</span>, ship_via: <span class="string">"FE"</span>, total: <span class="string">"320.00"</span> },
+        { id: <span class="string">"9.0"</span>,  invdate: <span class="string">"2007-09-01"</span>, name: <span class="string">"test3"</span>, note: <span class="string">"note9 note9 note9 note9"</span>,  amount: <span class="string">"400.00"</span>, tax: <span class="string">"30.00"</span>, closed: <span class="literal">false</span>, ship_via: <span class="string">"TN"</span>, total: <span class="string">"430.00"</span> },
+        { id: <span class="string">"10.0"</span>, invdate: <span class="string">"2007-09-08"</span>, name: <span class="string">"test2"</span>, note: <span class="string">"note10"</span>, amount: <span class="string">"500.00"</span>, tax: <span class="string">"30.00"</span>, closed: <span class="literal">true</span>,  ship_via: <span class="string">"TN"</span>, total: <span class="string">"530.00"</span> },
+        { id: <span class="string">"11.0"</span>, invdate: <span class="string">"2007-09-08"</span>, name: <span class="string">"test2"</span>, note: <span class="string">"note11"</span>, amount: <span class="string">"500.00"</span>, tax: <span class="string">"30.00"</span>, closed: <span class="literal">false</span>, ship_via: <span class="string">"FE"</span>, total: <span class="string">"530.00"</span> },
+        { id: <span class="string">"12.0"</span>, invdate: <span class="string">"2007-09-10"</span>, name: <span class="string">"test3"</span>, note: <span class="string">"note12"</span>, amount: <span class="string">"500.00"</span>, tax: <span class="string">"30.00"</span>, closed: <span class="literal">false</span>, ship_via: <span class="string">"FE"</span>, total: <span class="string">"530.00"</span> }
+    ],
+    $grid = $(<span class="string">"#grid"</span>),
+        initDateEdit = <span class="function"><span class="keyword">function</span> <span class="params">(elem)</span> {</span>
+            $(elem).datepicker({
+                dateFormat: <span class="string">"dd-M-yy"</span>,
+                autoSize: <span class="literal">true</span>,
+                changeYear: <span class="literal">true</span>,
+                changeMonth: <span class="literal">true</span>,
+                showButtonPanel: <span class="literal">true</span>,
+                showWeek: <span class="literal">true</span>
+            });
+        },
+        initDateSearch = <span class="function"><span class="keyword">function</span> <span class="params">(elem)</span> {</span>
+            setTimeout(<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+                $(elem).datepicker({
+                    dateFormat: <span class="string">"dd-M-yy"</span>,
+                    autoSize: <span class="literal">true</span>,
+                    changeYear: <span class="literal">true</span>,
+                    changeMonth: <span class="literal">true</span>,
+                    showWeek: <span class="literal">true</span>,
+                    showButtonPanel: <span class="literal">true</span>
+                });
+            }, <span class="number">100</span>);
+        },
+        integerTemplate = {formatter: <span class="string">"integer"</span>, align: <span class="string">"right"</span>, sorttype: <span class="string">"integer"</span>,
+            editrules: {number: <span class="literal">true</span>, required: <span class="literal">true</span>},
+            searchoptions: { sopt: [<span class="string">"eq"</span>, <span class="string">"ne"</span>, <span class="string">"lt"</span>, <span class="string">"le"</span>, <span class="string">"gt"</span>, <span class="string">"ge"</span>] }},
+            numberTemplate = {formatter: <span class="string">"number"</span>, align: <span class="string">"right"</span>, sorttype: <span class="string">"number"</span>,
+            editrules: {number: <span class="literal">true</span>, required: <span class="literal">true</span>},
+            searchoptions: { sopt: [<span class="string">"eq"</span>, <span class="string">"ne"</span>, <span class="string">"lt"</span>, <span class="string">"le"</span>, <span class="string">"gt"</span>, <span class="string">"ge"</span>] }};
+
+    $grid.jqGrid({
+        datatype: <span class="string">"local"</span>,
+        data: mydata,
+        colNames: [<span class="string">""</span>, <span class="string">"Client"</span>, <span class="string">"Date"</span>, <span class="string">"Price"</span>, <span class="string">"Tax"</span>, <span class="string">"Total"</span>, <span class="string">"Shiping"</span>, <span class="string">"Shipped via"</span>, <span class="string">"Notes"</span>],
+        colModel: [
+            { name: <span class="string">"act"</span>, template: <span class="string">"actions"</span>, formatoptions: { keys: <span class="literal">true</span> } },
+            { name: <span class="string">"name"</span>, align: <span class="string">"center"</span>, editable: <span class="literal">true</span>, width: <span class="number">65</span>, editrules: {required: <span class="literal">true</span>}, frozen: <span class="literal">true</span> },
+            { name: <span class="string">"invdate"</span>, width: <span class="number">80</span>, align: <span class="string">"center"</span>, sorttype: <span class="string">"date"</span>, frozen: <span class="literal">true</span>,
+                formatter: <span class="string">"date"</span>, formatoptions: { newformat: <span class="string">"d-M-Y"</span> }, editable: <span class="literal">true</span>, datefmt: <span class="string">"d-M-Y"</span>,
+                editoptions: { dataInit: initDateEdit },
+                searchoptions: { sopt: [<span class="string">"eq"</span>, <span class="string">"ne"</span>, <span class="string">"lt"</span>, <span class="string">"le"</span>, <span class="string">"gt"</span>, <span class="string">"ge"</span>], dataInit: initDateSearch } },
+            { name: <span class="string">"amount"</span>, width: <span class="number">75</span>, editable: <span class="literal">true</span>, template: numberTemplate },
+            { name: <span class="string">"tax"</span>, width: <span class="number">52</span>, editable: <span class="literal">true</span>, template: integerTemplate },
+            { name: <span class="string">"total"</span>, width: <span class="number">60</span>, template: numberTemplate, summaryTpl: <span class="string">"&lt;i&gt;{0}&lt;/i&gt;"</span>, summaryType: <span class="string">"sum"</span> },
+            { name: <span class="string">"closed"</span>, width: <span class="number">70</span>, align: <span class="string">"center"</span>, editable: <span class="literal">true</span>, formatter: <span class="string">"checkbox"</span>,
+                edittype: <span class="string">"checkbox"</span>, editoptions: {value: <span class="string">"Yes:No"</span>, defaultValue: <span class="string">"Yes"</span>},
+                stype: <span class="string">"select"</span>, searchoptions: { sopt: [<span class="string">"eq"</span>, <span class="string">"ne"</span>], value: <span class="string">":Any;true:Yes;false:No"</span>, clearSearch: <span class="literal">false</span> } },
+            { name: <span class="string">"ship_via"</span>, width: <span class="number">105</span>, align: <span class="string">"center"</span>, editable: <span class="literal">true</span>, formatter: <span class="string">"select"</span>,
+                edittype: <span class="string">"select"</span>, editoptions: { value: <span class="string">"FE:FedEx;TN:TNT;IN:Intim"</span>, defaultValue: <span class="string">"IN"</span> },
+                stype: <span class="string">"select"</span>, searchoptions: { sopt: [<span class="string">"eq"</span>, <span class="string">"ne"</span>], value: <span class="string">":Any;FE:FedEx;TN:TNT;IN:IN"</span>, clearSearch: <span class="literal">false</span> } },
+            { name: <span class="string">"note"</span>, width: <span class="number">60</span>, sortable: <span class="literal">false</span>, editable: <span class="literal">true</span>, edittype: <span class="string">"textarea"</span> }
+        ],
+        cmTemplate: { editable: <span class="literal">true</span>, autoResizable: <span class="literal">true</span> },
+        rowNum: <span class="number">10</span>,
+        rowList: [<span class="number">5</span>, <span class="number">10</span>, <span class="number">20</span>],
+        pager: <span class="string">"#pager"</span>,
+        gridview: <span class="literal">true</span>,
+        toppager: <span class="literal">true</span>,
+        toolbar: [<span class="literal">true</span>, <span class="string">"both"</span>],
+        footerrow: <span class="literal">true</span>,
+        multiselect: <span class="literal">true</span>,
+        rownumbers: <span class="literal">true</span>,
+        sortname: <span class="string">"invdate"</span>,
+        viewrecords: <span class="literal">true</span>,
+        sortorder: <span class="string">"desc"</span>,
+        grouping: <span class="literal">true</span>,
+        groupingView: {
+            groupField: [<span class="string">"name"</span>],
+            groupCollapse: <span class="literal">false</span>,
+            groupColumnShow: [<span class="literal">true</span>],
+            groupSummary: [<span class="literal">true</span>]
+        },
+        subGrid: <span class="literal">true</span>,
+        subGridRowExpanded: <span class="function"><span class="keyword">function</span> <span class="params">(subgridDivId, rowId)</span> {</span>
+            $(<span class="string">"#"</span> + $.jgrid.jqID(subgridDivId)).html(<span class="string">"&lt;em&gt;simple subgrid data&lt;/em&gt;"</span>);
+        },
+        caption: <span class="string">"Everything and the kitchen sink"</span>,
+        height: <span class="string">"auto"</span>,
+        shrinkToFit: <span class="literal">false</span>,
+        autoresizeOnLoad: <span class="literal">true</span>
+    }).jqGrid(<span class="string">"navGrid"</span>, <span class="string">"#pager"</span>)
+    .jqGrid(<span class="string">"filterToolbar"</span>);</code></pre>
+
+
+</div>
+
+<div class="col-md-3">
+<div id="sub-navigation" class="nav">
+    <ul class="nav">
+  
+  <li><a href="local.html">Local Data</a></li>
+  
+  <li><a href="grouping.html">Grouping</a></li>
+  
+  <li><a href="groupingDisplay.html">Grouping Custom Display Value</a></li>
+  
+  <li><a href="groupingTitle.html">Grouping Custom Title</a></li>
+  
+  <li><a href="searchFilter.html">Search Filter</a></li>
+  
+  <li><a href="searchFilterOperator.html">Search Filter with Operators</a></li>
+  
+  <li><a href="pager.html">Pagination</a></li>
+  
+  <li><a href="inlineedit.html">Inline Editing</a></li>
+  
+    </ul>
+</div>
+</div>
+
+</main>
+
+<footer>
+  <div class="container">
+  Page generated on 2015-01-27 21:43 | <a href="https://github.com/openpsa/grid.js/tree/master/docs/content/demos/kitchensink.md">View Page Source</a>
+  </div>
+</footer>
+
+      <script src="//code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
+      <script src="../grid.js-0.1.0.js"></script>
+
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../ui.js"></script>
+
+
+
+</body>
+</html>
