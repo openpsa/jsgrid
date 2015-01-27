@@ -508,7 +508,7 @@
   width: 100%;
   margin-bottom: 0;
 }
-.ui-jqdialog td .EditButton {
+.ui-jqdialog td.EditButton {
   text-align: right;
   border-top: 0 none;
   border-left: 0 none;
@@ -516,7 +516,7 @@
   padding-bottom: 5px;
   padding-top: 5px;
 }
-.ui-jqdialog td .navButton {
+.ui-jqdialog td.navButton {
   text-align: center;
   border-left: 0 none;
   border-top: 0 none;
