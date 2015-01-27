@@ -5,16 +5,6 @@
     -webkit-box-sizing: content-box;
     box-sizing: content-box;
 
-    .ui-th-ltr
-    {
-        border-left: none;
-    }
-
-    .ui-th-rtl
-    {
-        border-right: none;
-    }
-
     div
     {
         line-height: normal;
@@ -23,10 +13,30 @@
     {
         border-collapse: collapse;
         border-width: 0;
-        border-style: none;
+        border-style: hidden;
         td
         {
             padding: 0;
+            border-left-width: 1px;
+            border-left-style: solid;
+            border-left-color: inherit;
+            border-right-width: 1px;
+            border-right-style: solid;
+            border-right-color: inherit;
+        }
+    }
+
+    .ui-state-highlight,
+    .ui-state-hover
+    {
+        td
+        {
+            border-top-width: 1px;
+            border-top-style: solid;
+            border-top-color: inherit;
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: inherit;
         }
     }
 
