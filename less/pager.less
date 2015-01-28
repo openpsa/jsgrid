@@ -1,8 +1,9 @@
 .ui-jqgrid
 {
-    & > .ui-jqgrid-pager
+    & > .ui-state-default.ui-jqgrid-pager,
+    & > .ui-jqgrid-view .ui-jqgrid-toppager
     {
-        border: 0 none;
+        border-style: none;
         margin: 0;
         padding: 0;
         position: relative;
@@ -28,9 +29,6 @@
     .ui-jqgrid-pager .ui-pager-control
     {
         position: relative;
-        border-left: 0;
-        border-bottom: 0;
-        border-top: 0;
     }
     .ui-pg-table
     {
@@ -43,6 +41,7 @@
             font-weight: normal;
             vertical-align: middle;
             padding: 1px;
+            border-style: none;
         }
         .ui-pg-input,
         .ui-pg-selbox
@@ -98,40 +97,17 @@
         cursor: pointer;
         height: auto;
         display: inline-block;
-        &:hover
+        &.ui-state-hover
         {
             padding: 0;
+            border-width: 1px;
+            border-style: solid;
         }
         span
         {
             display: block;
             margin: 1px;
             float: left;
-        }
-    }
-
-    & > .ui-jqgrid-view > .ui-jqgrid-toppager
-    {
-        border-left: 0 none;
-        border-right: 0 none;
-        border-top: 0 none;
-        margin: 0;
-        padding: 0;
-        position: relative;
-        height: auto;
-        white-space: nowrap;
-        overflow: hidden;
-        min-height: 22px;
-        .ui-pg-div
-        {
-            padding: 1px 0;
-            float:left;
-            position: relative;
-            span.ui-icon
-            {
-                float: left;
-                margin: 0 2px;
-            }
         }
     }
 }
