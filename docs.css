@@ -44,6 +44,15 @@ pre .keyword {
 pre .comment {
   color: #969896;
 }
+pre .tag .title {
+  color: #63a35c;
+}
+pre .tag .attribute {
+  color: #795da3;
+}
+pre .tag .value {
+  color: #df5000;
+}
 #downloadbuilder fieldset {
   margin-bottom: 5px;
 }
