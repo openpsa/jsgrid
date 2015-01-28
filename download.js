@@ -83,7 +83,7 @@ $(document).ready(function()
         .then(function(e)
         {
             var zip = new JSZip();
-            zip.file("grid-custom.min.js", e);
+            zip.file("jsgrid-custom.min.js", e);
             return zip;
         });
     }
