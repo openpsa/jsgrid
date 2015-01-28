@@ -4,24 +4,31 @@
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
 }
-.ui-jqgrid .ui-th-ltr,
-.ui-jqgrid .ui-jqgrid-htable th.ui-th-ltr {
-  border-left: none;
-}
-.ui-jqgrid .ui-th-rtl,
-.ui-jqgrid .ui-jqgrid-htable th.ui-th-rtl {
-  border-right: none;
-}
 .ui-jqgrid div {
   line-height: normal;
 }
 .ui-jqgrid table {
   border-collapse: collapse;
   border-width: 0;
-  border-style: none;
+  border-style: hidden;
 }
 .ui-jqgrid table td {
   padding: 0;
+  border-left-width: 1px;
+  border-left-style: solid;
+  border-left-color: inherit;
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-right-color: inherit;
+}
+.ui-jqgrid .ui-state-highlight td,
+.ui-jqgrid .ui-state-hover td {
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: inherit;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: inherit;
 }
 .ui-jqgrid > .ui-jqgrid-view {
   left: 0;
@@ -40,9 +47,9 @@
   padding: .3em .2em .2em .3em;
   position: relative;
   font-size: 12px;
-  border-left: 0 none;
-  border-right: 0 none;
-  border-top: 0 none;
+  border-top-style: none;
+  border-left-style: none;
+  border-right-style: none;
 }
 .ui-jqgrid .ui-jqgrid-caption {
   text-align: left;
@@ -71,10 +78,10 @@
   margin: 0;
   padding: 0;
   overflow: hidden;
-  border-left: 0 none;
-  border-top: 0 none;
-  border-right: 0 none;
   height: auto;
+  border-left-style: none;
+  border-right-style: none;
+  border-top-style: none;
 }
 .ui-jqgrid .ui-jqgrid .ui-jqgrid-hbox {
   float: left;
@@ -147,8 +154,6 @@
   overflow: hidden;
   white-space: nowrap;
   text-align: center;
-  border-top: 0 none;
-  border-bottom: 0 none;
 }
 .ui-jqgrid .ui-jqgrid-bdiv {
   position: relative;
@@ -165,7 +170,6 @@
 .ui-jqgrid .ui-jqgrid-btable td.jqgrid-rownum {
   padding: 0 2px 0 2px;
   margin: 0;
-  border: 0 none;
 }
 .ui-jqgrid tr.jqgrow {
   outline-style: none;
@@ -176,9 +180,6 @@
   white-space: pre;
   height: 22px;
   padding: 0 2px 0 2px;
-  border-bottom-width: 1px;
-  border-bottom-color: inherit;
-  border-bottom-style: solid;
 }
 .ui-jqgrid tr.jqgroup {
   outline-style: none;
@@ -189,13 +190,12 @@
   white-space: pre;
   height: 22px;
   padding: 0 2px 0 2px;
-  border-bottom-width: 1px;
-  border-bottom-color: inherit;
-  border-bottom-style: solid;
+}
+.ui-jqgrid tr.jqgfirstrow {
+  border-bottom-style: none;
 }
 .ui-jqgrid tr.jqgfirstrow > td {
   padding: 0 2px 0 2px;
-  border-right: 1px solid;
 }
 .ui-jqgrid tr.jqfoot > td {
   font-weight: bold;
@@ -203,9 +203,6 @@
   white-space: pre;
   height: 22px;
   padding: 0 2px 0 2px;
-  border-bottom-width: 1px;
-  border-bottom-color: inherit;
-  border-bottom-style: solid;
 }
 .ui-jqgrid tr.footrow td {
   font-weight: bold;
@@ -213,23 +210,12 @@
   white-space: nowrap;
   height: 21px;
   padding: 0 2px 0 2px;
-  border-top-width: 1px;
-  border-top-color: inherit;
-  border-top-style: solid;
 }
 .ui-jqgrid tr.footrow-ltr td {
   text-align: left;
-  border-left: 0 none;
-  border-right-width: 1px;
-  border-right-color: inherit;
-  border-right-style: solid;
 }
 .ui-jqgrid tr.footrow-rtl td {
   text-align: right;
-  border-left-width: 1px;
-  border-left-color: inherit;
-  border-left-style: solid;
-  border-right: 0 none;
 }
 .ui-jqgrid .ui-jqgrid-resize-mark {
   width: 2px;
@@ -250,16 +236,15 @@
   margin: 0;
   padding: 0;
   overflow: hidden;
-  border-left: 0 none !important;
-  border-top: 0 none !important;
-  border-right: 0 none !important;
 }
 .ui-jqgrid .ui-jqgrid-ftable {
   table-layout: fixed;
   margin-bottom: 0;
+  border-top-style: inherit;
 }
-.ui-jqgrid > .ui-jqgrid-pager {
-  border: 0 none;
+.ui-jqgrid > .ui-state-default.ui-jqgrid-pager,
+.ui-jqgrid > .ui-jqgrid-view .ui-jqgrid-toppager {
+  border-style: none;
   margin: 0;
   padding: 0;
   position: relative;
@@ -269,21 +254,23 @@
   font-size: 11px;
   min-height: 22px;
 }
-.ui-jqgrid > .ui-jqgrid-pager .ui-pg-div {
+.ui-jqgrid > .ui-state-default.ui-jqgrid-pager .ui-pg-div,
+.ui-jqgrid > .ui-jqgrid-view .ui-jqgrid-toppager .ui-pg-div {
   padding: 1px 0;
   float: left;
   position: relative;
 }
-.ui-jqgrid > .ui-jqgrid-pager .ui-pg-div span.ui-icon {
+.ui-jqgrid > .ui-state-default.ui-jqgrid-pager .ui-pg-div span.ui-icon,
+.ui-jqgrid > .ui-jqgrid-view .ui-jqgrid-toppager .ui-pg-div span.ui-icon {
   float: left;
   margin: 0 2px;
+}
+.ui-jqgrid > .ui-jqgrid-view .ui-jqgrid-toppager {
+  border-bottom-style: solid;
 }
 .ui-jqgrid .ui-jqgrid-toppager .ui-pager-control,
 .ui-jqgrid .ui-jqgrid-pager .ui-pager-control {
   position: relative;
-  border-left: 0;
-  border-bottom: 0;
-  border-top: 0;
 }
 .ui-jqgrid .ui-pg-table {
   position: relative;
@@ -295,6 +282,7 @@
   font-weight: normal;
   vertical-align: middle;
   padding: 1px;
+  border-style: none;
 }
 .ui-jqgrid .ui-pg-table .ui-pg-input,
 .ui-jqgrid .ui-pg-table .ui-pg-selbox {
@@ -339,34 +327,15 @@
   height: auto;
   display: inline-block;
 }
-.ui-jqgrid .ui-pg-button:hover {
+.ui-jqgrid .ui-pg-button.ui-state-hover {
   padding: 0;
+  border-width: 1px;
+  border-style: solid;
 }
 .ui-jqgrid .ui-pg-button span {
   display: block;
   margin: 1px;
   float: left;
-}
-.ui-jqgrid > .ui-jqgrid-view > .ui-jqgrid-toppager {
-  border-left: 0 none;
-  border-right: 0 none;
-  border-top: 0 none;
-  margin: 0;
-  padding: 0;
-  position: relative;
-  height: auto;
-  white-space: nowrap;
-  overflow: hidden;
-  min-height: 22px;
-}
-.ui-jqgrid > .ui-jqgrid-view > .ui-jqgrid-toppager .ui-pg-div {
-  padding: 1px 0;
-  float: left;
-  position: relative;
-}
-.ui-jqgrid > .ui-jqgrid-view > .ui-jqgrid-toppager .ui-pg-div span.ui-icon {
-  float: left;
-  margin: 0 2px;
 }
 .ui-jqgrid .ui-jqgrid-btable .ui-sgcollapsed span {
   display: block;
@@ -387,12 +356,6 @@
 }
 .ui-jqgrid .ui-subgrid tr.ui-subtblcell td {
   height: 18px;
-  border-right-width: 1px;
-  border-right-color: inherit;
-  border-right-style: solid;
-  border-bottom-width: 1px;
-  border-bottom-color: inherit;
-  border-bottom-style: solid;
 }
 .ui-jqgrid .ui-subgrid .ui-th-subgrid {
   height: 20px;
@@ -416,10 +379,10 @@
   z-index: 100;
 }
 .ui-jqgrid > .ui-jqgrid-view > .ui-userdata {
-  border-left: 0 none;
-  border-right: 0 none;
   height: 21px;
   overflow: hidden;
+  border-left-style: none;
+  border-right-style: none;
 }
 .ui-jqgrid .ui-jqdialog {
   font-size: 11px;
@@ -483,9 +446,6 @@
   right: -3px;
 }
 .ui-jqgrid-dnd tr td {
-  border-right-width: 1px;
-  border-right-color: inherit;
-  border-right-style: solid;
   height: 20px;
 }
 .ui-jqdialog .FormGrid {
@@ -510,17 +470,11 @@
 }
 .ui-jqdialog td.EditButton {
   text-align: right;
-  border-top: 0 none;
-  border-left: 0 none;
-  border-right: 0 none;
   padding-bottom: 5px;
   padding-top: 5px;
 }
 .ui-jqdialog td.navButton {
   text-align: center;
-  border-left: 0 none;
-  border-top: 0 none;
-  border-right: 0 none;
   padding-bottom: 5px;
   padding-top: 5px;
 }
@@ -588,7 +542,6 @@
 .ui-jqgrid .selected-row,
 .ui-jqgrid .selected-row td {
   font-style: normal;
-  border-left: 0 none;
 }
 .ui-inline-button {
   float: left;
@@ -633,14 +586,6 @@
 .ui-jqgrid .treeclick {
   cursor: pointer;
 }
-.ui-jqgrid .ui-th-ltr,
-.ui-jqgrid .ui-jqgrid-htable th.ui-th-ltr {
-  border-left: none;
-}
-.ui-jqgrid .ui-th-rtl,
-.ui-jqgrid .ui-jqgrid-htable th.ui-th-rtl {
-  border-right: none;
-}
 .ui-jqgrid .ui-jqgrid-caption-rtl {
   text-align: right;
 }
@@ -661,15 +606,9 @@
 }
 .ui-jqgrid .ui-jqgrid-bdiv tr.ui-row-ltr > td {
   text-align: left;
-  border-right-width: 1px;
-  border-right-color: inherit;
-  border-right-style: solid;
 }
 .ui-jqgrid .ui-jqgrid-bdiv tr.ui-row-rtl > td {
   text-align: right;
-  border-left-width: 1px;
-  border-left-color: inherit;
-  border-left-style: solid;
 }
 .ui-jqgrid .tree-wrap-ltr {
   float: left;
