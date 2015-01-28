@@ -5,9 +5,8 @@ $(document).ready(function()
     if (   $('.demo-container').length > 0
         && $('pre code.language-javascript').length > 0)
     {
-        var container = $('code.language-javascript')
-            .parent()
-            .hide();
+        var container = $('code.language-javascript').parent();
+
         $('<table id="grid"></table><div id="pager"></div>')
             .insertBefore(container);
         $('<div class="btn-group"></div>')

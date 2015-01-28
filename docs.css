@@ -62,3 +62,6 @@ pre .tag .value {
 .demo-container .btn-group {
   margin-top: 1em;
 }
+.demo-container pre {
+  display: none;
+}
