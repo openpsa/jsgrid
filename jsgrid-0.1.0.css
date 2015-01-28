@@ -81,6 +81,7 @@
   height: auto;
   border-left-style: none;
   border-right-style: none;
+  border-top-style: none;
 }
 .ui-jqgrid .ui-jqgrid .ui-jqgrid-hbox {
   float: left;
@@ -263,6 +264,9 @@
 .ui-jqgrid > .ui-jqgrid-view .ui-jqgrid-toppager .ui-pg-div span.ui-icon {
   float: left;
   margin: 0 2px;
+}
+.ui-jqgrid > .ui-jqgrid-view .ui-jqgrid-toppager {
+  border-bottom-style: solid;
 }
 .ui-jqgrid .ui-jqgrid-toppager .ui-pager-control,
 .ui-jqgrid .ui-jqgrid-pager .ui-pager-control {
