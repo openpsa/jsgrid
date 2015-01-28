@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>jsgrid - jsgrid</title>
+<title>jsgrid - Getting started</title>
 <link href="./jsgrid-0.1.0.css" rel="stylesheet">
 <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="./octicons/octicons.css" rel="stylesheet">
@@ -45,16 +45,20 @@
 
 <main class="container">
 <div class="page-header">
-<h1>jsgrid <small>&ndash; Free jqGrid</small></h1>
+<h1>Getting started</h1>
 </div>
 
 <div class="col-md-9">
 
-<p>jsgrid is a jQuery plugin for displaying and manipulating tabular
-data. It is a fork of jqGrid, or to be more specific, a fork of the
-last version before the licence change.</p>
-<p>These pages are a work in progress. You can help out by submitting
-Pull Requests!</p>
+<p>Download jsgrid from <a href="download/index.html">our download builder</a> where you can choose exactly the components and language you want, or you can just download the files from the <a href="https://github.com/openpsa/jsgrid/tree/master/dist"><code>dist/</code></a> folder that include all the components.
+You can use the bundled jQuery or the one you use in your existing project. jsgrid requires jQuery 1.6+.
+Include jQuery and jsgrid in your HTML :</p>
+<pre><code class="language-html">&lt;script type=&quot;text/javascript&quot; src=&quot;jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;jsgrid.min.js&quot;&gt;&lt;/script&gt;
+&lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;jsgrid.min.css&quot;&gt;</code></pre>
+<p>If you use a custom build without a default language, you need to include a locale file, too:</p>
+<pre><code class="language-html">&lt;script type=&quot;text/javascript&quot; src=&quot;i18n/grid.locale-xx.min.js&quot;&gt;&lt;/script&gt;</code></pre>
+<p>While awaiting our start guide, you can look at the <a href="demos/local.html">basic setup</a> and the <a href="configuration.html">configuration options</a> for help.</p>
 
 
 </div>
@@ -62,10 +66,6 @@ Pull Requests!</p>
 <div class="col-md-3">
   <div id="sub-navigation" class="nav">
     <ul class="nav">
-  
-  <li><a href="./gettingstarted.html">Getting started</a></li>
-  
-  <li><a href="./releaseNotes.html">Release Notes</a></li>
   
     </ul>
   </div>
@@ -75,7 +75,7 @@ Pull Requests!</p>
 
 <footer>
   <div class="container">
-  Page generated on 2015-01-28 20:05 | <a href="https://github.com/openpsa/jsgrid/tree/master/docs/content/index.md">View Page Source</a>
+  Page generated on 2015-01-28 20:05 | <a href="https://github.com/openpsa/jsgrid/tree/master/docs/content/gettingstarted.md">View Page Source</a>
   </div>
 </footer>
 
