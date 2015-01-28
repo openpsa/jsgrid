@@ -5,7 +5,7 @@ title: Release Notes
 1.0 (Unreleased)
 ---
 
-1.0 is the first release of grid.js.
+1.0 is the first release of jsgrid.
 
 ### Compatibility with jqGrid 4.7.0
 

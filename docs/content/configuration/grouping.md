@@ -3,7 +3,7 @@ title: Grouping
 section: Configuration
 ---
 
-The simplest way to group in grid.js is to enable grouping with the
+The simplest way to group in jsgrid is to enable grouping with the
 grid option `grouping` and define a field name on which grouping
 occurs. The name value specified should correspond to the name in the
 `colModel` The definition is done with the `groupField` array which is a part of the grid option `groupingView`.

@@ -1,11 +1,11 @@
 ---
-title: grid.js
+title: jsgrid
 subtitle: Free jqGrid
 subpages:
  - {path: './releaseNotes.html', title: 'Release Notes'}
 ---
 
-grid.js is a jQuery plugin for displaying and manipulating tabular
+jsgrid is a jQuery plugin for displaying and manipulating tabular
 data. It is a fork of jqGrid, or to be more specific, a fork of the
 last version before the licence change.
 

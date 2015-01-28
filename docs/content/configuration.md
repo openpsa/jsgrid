@@ -7,4 +7,4 @@ subpages:
  - {path: './configuration/grouping.html', title: 'Grouping'}
 ---
 
-These pages are a work in progress. You can help out by submitting a [pull request](https://github.com/openpsa/grid.js/pulls) with more documentation.
+These pages are a work in progress. You can help out by submitting a [pull request](https://github.com/openpsa/jsgrid/pulls) with more documentation.

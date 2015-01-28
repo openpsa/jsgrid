@@ -1,13 +1,13 @@
 {
   "author": "Tony Tomov, Oleg Kiriljuk, Andreas Flack, Laurent Rajchenbach, Matthew Hutton and other contributors to jqGrid before version 4.7.1",
-  "name": "grid.js",
+  "name": "jsgrid",
   "license": "MIT GPL-2.0",
   "version": "0.1.0",
-  "homepage": "https://openpsa.github.com/grid.js",
-  "bugs": "https://github.com/openpsa/grid.js/issues",
+  "homepage": "https://openpsa.github.com/jsgrid",
+  "bugs": "https://github.com/openpsa/jsgrid/issues",
   "repository": {
     "type": "git",
-    "url": "git@github.com:openpsa/grid.js.git"
+    "url": "git@github.com:openpsa/jsgrid.git"
   },
   "dependencies": {},
   "devDependencies": {

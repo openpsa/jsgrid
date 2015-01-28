@@ -1,7 +1,7 @@
 $(document).ready(function()
 {
-    var urlprefix = 'https://raw.githubusercontent.com/openpsa/grid.js/master/',
-        proxy_prefix = 'https://rawgit.com/openpsa/grid.js/master/',
+    var urlprefix = 'https://raw.githubusercontent.com/openpsa/jsgrid/master/',
+        proxy_prefix = 'https://rawgit.com/openpsa/jsgrid/master/',
         button = $('#download-button'),
         defaultlocale = $('#default-locale');
 
@@ -106,10 +106,10 @@ $(document).ready(function()
     {
         button.button('css');
 
-        return load_file(proxy_prefix + 'dist/grid.js-0.1.0.min.css')
+        return load_file(proxy_prefix + 'dist/jsgrid-0.1.0.min.css')
             .then(function(e)
             {
-                zip.file("grid.js-0.1.0.min.css", e);
+                zip.file("jsgrid-0.1.0.min.css", e);
                 return zip;
             });
     }
