@@ -154,6 +154,12 @@ module.exports = function ( grunt ) {
                         expand: true
                     },
                     {
+                        src: [ '**/octicons.{woff,svg,css,ttf,eot}' ],
+                        dest: '<%= build_dir %>/docs/octicons',
+                        cwd: 'bower_components/octicons/octicons/',
+                        expand: true
+                    },
+                    {
                         src: [ 'jszip.min.js' ],
                         dest: '<%= build_dir %>/docs',
                         cwd: 'bower_components/jszip/dist/',
