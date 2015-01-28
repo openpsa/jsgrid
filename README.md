@@ -9,10 +9,21 @@ The idea is to turn this repo into a community-driven and free (meaning open-sou
 
 Enjoy!
 
+## Install notes
+Download grid.js from [our download builder](http://openpsa.github.io/grid.js/download/index.html) where you can choose exactly the components and language you want, or you can just download the files from the `dist/` folder that includes all the components.
+You can use the jQuery bundled or the one you use in your existing project (if existing). grid.js support actually jQuery 1.6+.
+Include jQuery and grid.js in your HTML :
+
+```html
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="grid.js.min.js"></script>
+<link type="text/css" rel="stylesheet" href="grid.js.css">
+```
+While awaiting our start guide, you can look at the [basic setup](http://openpsa.github.io/grid.js/demos/local.html) and the [configuration options](http://openpsa.github.io/grid.js/configuration.html) for help.
 
 ## Development Setup
 
-To use grid.js, you can simply download the files from the `dist/` folder. For a deveploment setup, you will need `npm` and `bower` installed. Once you have them, clone this repo and change into the new directory:
+You will need `npm` and `bower` installed. Once you have them, clone this repo and change into the new directory:
 
 ```bash
 git clone https://github.com/openpsa/grid.js
