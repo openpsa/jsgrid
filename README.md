@@ -9,7 +9,7 @@ The idea is to turn this repo into a community-driven and free (meaning open-sou
 
 Enjoy!
 
-## Installataion
+## Installation
 Download grid.js from [our download builder](http://openpsa.github.io/grid.js/download/index.html) where you can choose exactly the components and language you want, or you can just download the files from the `dist/` folder that include all the components.
 You can use the bundled jQuery or the one you use in your existing project. grid.js requires jQuery 1.6+.
 Include jQuery and grid.js in your HTML :
