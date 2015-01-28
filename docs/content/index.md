@@ -2,6 +2,7 @@
 title: jsgrid
 subtitle: Free jqGrid
 subpages:
+ - {path: './gettingstarted.html', title: 'Getting started'}
  - {path: './releaseNotes.html', title: 'Release Notes'}
 ---
 
