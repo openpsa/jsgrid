@@ -6,11 +6,14 @@
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
 </button>
-<a href="{{ assets }}/index.html" class="navbar-brand">{{package.name}}</a>
+<a href="https://github.com/openpsa/grid.js" class="navbar-brand">{{package.name}}</a>
 </div>
 
 <div class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
 <ul class="nav navbar-nav">
+<li{{#is section "Home"}} class="active"{{/is}}>
+   <a href="{{assets}}/index.html">Home</a>
+</li>
 <li{{#is section "Configuration"}} class="active"{{/is}}>
    <a href="{{assets}}/configuration.html">Configuration</a>
 </li>
