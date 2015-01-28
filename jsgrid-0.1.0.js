@@ -1,6 +1,6 @@
 /**
- * grid.js - v0.1.0 - 2015-01-28
- * https://openpsa.github.com/grid.js
+ * jsgrid - v0.1.0 - 2015-01-28
+ * https://openpsa.github.com/jsgrid
  *
  * Copyright (c) 2015 Tony Tomov, Oleg Kiriljuk, Andreas Flack, Laurent Rajchenbach, Matthew Hutton and other contributors to jqGrid before version 4.7.1
  * Dual-licensed under the MIT and GPL-2.0 licenses.
@@ -3321,7 +3321,7 @@ $.fn.jqGrid = function( pin ) {
 			if (p.treeGrid === true) {
 				p.datatype = p.treedatatype;
 			}
-			if (p.datatype === "local" && p.dataTypeOrg && p.loadonce && opts.fromServer) {
+			if (p.datatype === "local" && p.dataTypeOrg && p.loadonce && opts && opts.fromServer) {
 				p.datatype = String(p.dataTypeOrg);
 				delete p.dataTypeOrg;
 			}
