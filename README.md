@@ -19,6 +19,12 @@ Include jQuery and grid.js in your HTML :
 <script type="text/javascript" src="grid.js.min.js"></script>
 <link type="text/css" rel="stylesheet" href="grid.js.css">
 ```
+If you don't use the [download builder](http://openpsa.github.io/grid.js/download/index.html) with default language, you might want to include locale file :
+
+```html
+<script type="text/javascript" src="i18n/grid.locale-xx.min.js"></script>
+```
+
 While awaiting our start guide, you can look at the [basic setup](http://openpsa.github.io/grid.js/demos/local.html) and the [configuration options](http://openpsa.github.io/grid.js/configuration.html) for help.
 
 ## Development Setup
