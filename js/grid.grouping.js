@@ -249,9 +249,9 @@ $.jgrid.extend({
 							break;// next grouping header of the same lever are found
 						}
 						if (itemGroupingLevel === num + 1) {
-							$(r).show().find(">td>span."+"tree-wrap-"+p.direction).removeClass(minus).addClass(plus);
+							$(r).show().find(">td>span."+"tree-wrap-"+$t.p.direction).removeClass(minus).addClass(plus);
 							if(frz) {
-								$(r2).show().find(">td>span."+"tree-wrap-"+p.direction).removeClass(minus).addClass(plus);
+								$(r2).show().find(">td>span."+"tree-wrap-"+$t.p.direction).removeClass(minus).addClass(plus);
 							}
 						}
 					} else if (showData) {
