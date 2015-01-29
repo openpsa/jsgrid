@@ -55,9 +55,9 @@ grid option <code>grouping</code> and define a field name on which grouping
 occurs. The name value specified should correspond to the name in the
 <code>colModel</code> The definition is done with the <code>groupField</code> array which is a part of the grid option <code>groupingView</code>.</p>
 <p>It is important to note that if you want the grouping to be correct, then the data should come from server to the grid sorted by that field. When we are in local mode (the data is an array) the data is grouped (sorted) automatically so there is no need to define any additional sort column.</p>
-<p>In order to inform the server that we want to have a grouped data, jqGrid adds to the <code>sidx</code> parameter the groupField name on which we group. This done only if we have enabled the grouping and the data is remote.</p>
+<p>In order to inform the server that we want to have a grouped data, jqGrid adds to the <code>sidx</code> parameter the <code>groupField</code> name on which we group. This done only if we have enabled the grouping and the data is remote.</p>
 <h2 id="limitations">Limitations</h2>
-<p>When the grouping is enabled, the following options will be set explicitly in the code:</p>
+<p>When <code>grouping</code> is enabled, the following options will be set explicitly in the code:</p>
 <ul>
 <li><code>scroll</code> = <code>false</code></li>
 <li><code>rownumbers</code> = <code>false</code></li>
@@ -66,13 +66,14 @@ occurs. The name value specified should correspond to the name in the
 </ul>
 <p>Please refer to the <a href="./options.html">options</a> page for more information.</p>
 <h2 id="grouping-options">Grouping options</h2>
-<p>All options in grouping are set as grid options and can be changed dynamically using the <code>setGridParam</code> method.
+<p>All grouping options are set as grid options and can be changed dynamically using the <code>setGridParam</code> method.
 Two options are related to grouping:</p>
 <ul>
 <li><code>grouping</code></li>
 <li><code>groupingView</code></li>
 </ul>
-<p>The first option <code>grouping</code> is boolean and enables or disables the grouping feature into the grid. The default value of this option is <code>false</code>. To enable grouping set it to <code>true</code>.</p>
+<p>The first option <code>grouping</code> is boolean and enables or disables the
+grouping feature. The default value is <code>false</code>.</p>
 <p>The <code>groupingView</code> option is an object and has a lot of sub-options.
 Below is a example on how this should be used:</p>
 <pre><code class="language-javascript">$(<span class="string">"#grid"</span>).jqGrid({
@@ -116,25 +117,24 @@ any valid HTML content.</p>
 <h3 id="-groupsummary-"><code>groupSummary</code></h3>
 <p><strong>Type:</strong> array
 <strong>Default:</strong> <code>[]</code></p>
-<p>Enable or disable the summary (footer) row of the current group level. If grouping is set, the default value for the group is <code>false</code>.</p>
-<h3 id="-groupsummarypos-"><code>groupSummaryPos</code></h3>
+<p>Enable or disable the summary row of the current group level. If grouping is set, the default value for the group is <code>false</code>.</p>
+<h4 id="-groupsummarypos-"><code>groupSummaryPos</code></h4>
 <p><strong>Type:</strong> array
 <strong>Default:</strong> <code>[]</code></p>
 <p>Set the position of the summary row at current group level. Possible
  values are:</p>
 <ul>
-<li><code>&#39;header&#39;</code> - The summary values are placed at the same row where the
-group values are.</li>
-<li><code>&#39;footer&#39;</code> - An additional row at end of the group level is built and the summary values are placed here</li>
+<li><code>&#39;header&#39;</code> - The summary values are placed in the group header row.</li>
+<li><code>&#39;footer&#39;</code> - An additional row at end of the group level is built and the summary values are placed there</li>
 </ul>
+<h4 id="-showsummaryonhide-"><code>showSummaryOnHide</code></h4>
+<p><strong>Type:</strong> boolean
+<strong>Default:</strong> <code>false</code></p>
+<p>Show or hide the summary row when we collapse the group.</p>
 <h3 id="-hidefirstgroupcol-"><code>hideFirstGroupCol</code></h3>
 <p><strong>Type:</strong> boolean
 <strong>Default:</strong> <code>false</code></p>
 <p>If set to <code>true</code> the values in the first column are replaced with empty ones so that we have a pretty view. This usually is set if the first column is a group column.</p>
-<h3 id="-showsummaryonhide-"><code>showSummaryOnHide</code></h3>
-<p><strong>Type:</strong> boolean
-<strong>Default:</strong> <code>false</code></p>
-<p>Show or hide the summary (footer) row when we collapse the group.</p>
 <h3 id="-groupcollapse-"><code>groupCollapse</code></h3>
 <p><strong>Type:</strong> boolean
 <strong>Default:</strong> <code>false</code></p>
@@ -161,7 +161,7 @@ be added to the group. Parameters passed to this function are : previous value, 
 groups. Every element should return a value which will be displayed as
 the grouped value. Parameters passed to this function are: current value, source value, <code>colModel</code> option, group index and group object.</p>
 <h2 id="-colmodel-options"><code>colModel</code> Options</h2>
-<p>If the group summary footer row is enabled, we use additional options
+<p>If <code>groupSummary</code> is enabled, we use additional options
 in the  <a href="./colModel.html">Column model</a> to configure the summary
 field.</p>
 <h3 id="-summarytype-"><code>summaryType</code></h3>
@@ -175,14 +175,14 @@ field.</p>
 <li><code>&#39;min&#39;</code> - apply the min function to the current group value and return the result</li>
 <li><code>&#39;max&#39;</code> - apply the max function to the current group value and return the result</li>
 </ul>
-<p>The option can be defined as function. If defined we pass three parameters to it - the current value, the name and the record object. The function should return value. Note that this value will be used again for the group value until it changes.</p>
+<p>The option can be defined as a function. If defined we pass three parameters to it - the current value, the name and the record object. The function should return value. Note that this value will be used again for the group value until it changes.</p>
 <p>Below is a example on using this function - simulating the <code>sum</code> function.</p>
 <pre><code class="language-javascript"><span class="function"><span class="keyword">function</span> <span class="title">mysum</span><span class="params">(val, name, record)</span>
 {</span>
     <span class="keyword">return</span> parseFloat(val||<span class="number">0</span>) + parseFloat((record[name]||<span class="number">0</span>));
 }
 
-jQuery(<span class="string">"#grid"</span>).jqGrid({
+$(<span class="string">"#grid"</span>).jqGrid({
   <span class="comment">//...</span>
   colModel : [
      <span class="comment">//{..},</span>
@@ -226,7 +226,7 @@ decimal point.</p>
 
 <footer>
   <div class="container">
-  Page generated on 2015-01-29 20:54 | <a href="https://github.com/openpsa/jsgrid/tree/master/docs/content/configuration/grouping.md">View Page Source</a>
+  Page generated on 2015-01-29 21:54 | <a href="https://github.com/openpsa/jsgrid/tree/master/docs/content/configuration/grouping.md">View Page Source</a>
   </div>
 </footer>
 

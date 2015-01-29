@@ -24,12 +24,16 @@ footer {
 #sub-navigation .nav li.active > a {
   color: #333333;
 }
+main.container h2 code,
 main.container h3 code,
 main.container h4 code {
-  color: #333333;
+  color: #333;
+  background-color: rgba(0, 0, 0, 0.04);
 }
 main.container .internal-link {
   cursor: pointer;
+  color: #333;
+  background-color: rgba(0, 0, 0, 0.04);
 }
 pre .string {
   color: #df5000;

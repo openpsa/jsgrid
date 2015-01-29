@@ -50,7 +50,28 @@
 
 <div class="col-md-9">
 
-<p>These pages are a work in progress. You can help out by submitting a <a href="https://github.com/openpsa/jsgrid/pulls">pull request</a> with more documentation.</p>
+<p>jsgrid is configured by setting options on various levels to control
+the grid behaviour and features. Typically, this is done right in the
+constructor:</p>
+<pre><code class="language-javascript">$(<span class="string">"#grid"</span>).jqGrid({
+    <span class="comment">// configure backend URL</span>
+    url: <span class="string">'example.php'</span>,
+    <span class="comment">// Enable the caption layer</span>
+    caption: <span class="string">'My first jsgrid'</span>
+});</code></pre>
+<p>You can find a reference of all options under the links on the right.</p>
+<h2 id="changing-global-defaults">Changing Global Defaults</h2>
+<p>If you want to re-use settings across multiple grids, you can also set
+options globally:</p>
+<pre><code class="language-javascript">$.extend(<span class="literal">true</span>, $.jgrid.defaults, { caption: <span class="string">'The default caption for all grids'</span> });</code></pre>
+<p>Of course, the global settings have to be changed before instantiating
+the grid, and global settings will get overwritten by options set
+directly in the grid constructor:</p>
+<pre><code class="language-javascript">$.extend(<span class="literal">true</span>, $.jgrid.defaults, { caption: <span class="string">'This will get overwritten'</span> });
+$(<span class="string">"#grid"</span>).jqGrid({
+    url: <span class="string">'example.php'</span>,
+    caption: <span class="string">'This will be rendered'</span>
+});</code></pre>
 
 
 </div>
@@ -73,7 +94,7 @@
 
 <footer>
   <div class="container">
-  Page generated on 2015-01-29 20:54 | <a href="https://github.com/openpsa/jsgrid/tree/master/docs/content/configuration.md">View Page Source</a>
+  Page generated on 2015-01-29 21:54 | <a href="https://github.com/openpsa/jsgrid/tree/master/docs/content/configuration.md">View Page Source</a>
   </div>
 </footer>
 

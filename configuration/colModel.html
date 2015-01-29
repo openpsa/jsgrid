@@ -52,9 +52,9 @@
 
 <p>The <code>colModel</code> property defines the individual grid columns as an array
 of properties. This is the most important part of the grid.</p>
-<pre><code class="language-javascript">jQuery(<span class="string">"#gridid"</span>).jqGrid({
+<pre><code class="language-javascript">$(<span class="string">"#grid"</span>).jqGrid({
    <span class="comment">//...</span>
-   colModel: [ {name:<span class="string">'name1'</span>, index:<span class="string">'index1'</span>...}, {...}, ... ],
+   colModel: [ {name: <span class="string">'name1'</span>, index: <span class="string">'index1'</span>} <span class="comment">/*, {...}, ...*/</span> ],
    <span class="comment">//...</span>
 });</code></pre>
 <p>The only required property is <code>name</code>. The <code>colModel</code> options can also be get or set using <code>getColProp</code> and <code>setColProp</code>.</p>
@@ -199,7 +199,7 @@ this column comes from the name property.</p>
 <h3 id="-surl-"><code>surl</code></h3>
 <p><strong>Type:</strong> string
 <strong>Default:</strong> <code>&#39;&#39;</code></p>
-<p>Valid only in Custom Searching and <code>edittype : &#39;select&#39;</code>. Describes
+<p>Valid only in Custom Searching and <code>edittype</code> <code>&#39;select&#39;</code>. Describes
 the URL from where we can get an already-constructed select element.</p>
 <h2 id="editing">Editing</h2>
 <h3 id="-editoptions-"><code>editoptions</code></h3>
@@ -267,7 +267,7 @@ Possible values:</p>
 
 <footer>
   <div class="container">
-  Page generated on 2015-01-29 20:54 | <a href="https://github.com/openpsa/jsgrid/tree/master/docs/content/configuration/colModel.md">View Page Source</a>
+  Page generated on 2015-01-29 21:54 | <a href="https://github.com/openpsa/jsgrid/tree/master/docs/content/configuration/colModel.md">View Page Source</a>
   </div>
 </footer>
 
