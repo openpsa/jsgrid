@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>jsgrid - Ticket 96</title>
+<link href="../../jsgrid-0.1.0.css" rel="stylesheet">
+<link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../octicons/octicons.css" rel="stylesheet">
+<link href="https://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css" rel="stylesheet">
+<link href="../../docs.css" rel="stylesheet">
+
+<script src="../../vendor/jquery.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="container-fluid">
+<div class="navbar-header">
+<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a href="../../index.html" class="navbar-brand">jsgrid</a>
+</div>
+
+<div class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+<ul class="nav navbar-nav">
+<li>
+   <a href="../../configuration.html">Configuration</a>
+</li>
+
+<li class="active"> <a href="../../demos/index.html">Demos</a> </li>
+<li> <a href="../../download/index.html">Download</a> </li>
+</ul>
+<ul class="nav navbar-nav pull-right">
+<li> <a href="https://github.com/openpsa/jsgrid"><span class="octicon octicon-mark-github"></span> GitHub Repo</a> </li>
+</ul>
+</div>
+
+</div>
+</nav>
+
+<main class="container">
+<div class="page-header">
+<h1>Ticket 96</h1>
+</div>
+
+<div class="col-md-9 demo-container">
+
+<p>See <a href="https://github.com/openpsa/jsgrid/issues/96">https://github.com/openpsa/jsgrid/issues/96</a> and description in
+source code below</p>
+<pre><code class="language-javascript">$(<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+
+    <span class="keyword">var</span> mydata = [{
+        CQD_AUTO_KEY: <span class="string">'id0'</span>,
+        COMPANY_NAME: <span class="string">"Company 0"</span>,
+        COMPANY_REF_NUMBER: <span class="string">"ref 1"</span>,
+        SALESPERSON_NAME: <span class="string">"Brad"</span>,
+        PN: <span class="string">"2135s42354f"</span>
+    }, {
+        CQD_AUTO_KEY: <span class="string">'id1'</span>,
+        COMPANY_NAME: <span class="string">"Company 1"</span>,
+        COMPANY_REF_NUMBER: <span class="string">"ref 1"</span>,
+        SALESPERSON_NAME: <span class="string">"Brad"</span>,
+        PN: <span class="string">"2135s42354f"</span>
+    }, {
+        CQD_AUTO_KEY: <span class="string">'id2'</span>,
+        COMPANY_NAME: <span class="string">"Company 1"</span>,
+        COMPANY_REF_NUMBER: <span class="string">"ref 1"</span>,
+        SALESPERSON_NAME: <span class="string">"Brad"</span>,
+        PN: <span class="string">"2135s42354f"</span>
+    }, {
+        CQD_AUTO_KEY: <span class="string">'id3'</span>,
+        COMPANY_NAME: <span class="string">"Company 3"</span>,
+        COMPANY_REF_NUMBER: <span class="string">"ref 1"</span>,
+        SALESPERSON_NAME: <span class="string">"Brad"</span>,
+        PN: <span class="string">"2135s42354f"</span>
+    }, {
+        CQD_AUTO_KEY: <span class="string">'id4'</span>,
+        COMPANY_NAME: <span class="string">"Company 4"</span>,
+        COMPANY_REF_NUMBER: <span class="string">"ref 1"</span>,
+        SALESPERSON_NAME: <span class="string">"Brad"</span>,
+        PN: <span class="string">"2135s42354f"</span>
+    }, {
+        CQD_AUTO_KEY: <span class="string">'id5'</span>,
+        COMPANY_NAME: <span class="string">"Company 5"</span>,
+        COMPANY_REF_NUMBER: <span class="string">"ref 1"</span>,
+        SALESPERSON_NAME: <span class="string">"Brad"</span>,
+        PN: <span class="string">"2135s42354f"</span>
+    }, {
+        CQD_AUTO_KEY: <span class="string">'id6'</span>,
+        COMPANY_NAME: <span class="string">"Company 5"</span>,
+        COMPANY_REF_NUMBER: <span class="string">"ref 1"</span>,
+        SALESPERSON_NAME: <span class="string">"Brad"</span>,
+        PN: <span class="string">"2135s42354f"</span>
+    }, {
+        CQD_AUTO_KEY: <span class="string">'id7'</span>,
+        COMPANY_NAME: <span class="string">"Company 0"</span>,
+        COMPANY_REF_NUMBER: <span class="string">"ref 1"</span>,
+        SALESPERSON_NAME: <span class="string">"Steve"</span>,
+        PN: <span class="string">"2135s42354f"</span>
+    }, {
+        CQD_AUTO_KEY: <span class="string">'id8'</span>,
+        COMPANY_NAME: <span class="string">"Company 1"</span>,
+        COMPANY_REF_NUMBER: <span class="string">"ref 1"</span>,
+        SALESPERSON_NAME: <span class="string">"Steve"</span>,
+        PN: <span class="string">"2135s42354f"</span>
+    }, {
+        CQD_AUTO_KEY: <span class="string">'id9'</span>,
+        COMPANY_NAME: <span class="string">"Company 1"</span>,
+        COMPANY_REF_NUMBER: <span class="string">"ref 1"</span>,
+        SALESPERSON_NAME: <span class="string">"Steve"</span>,
+        PN: <span class="string">"2135s42354f"</span>
+    }, {
+        CQD_AUTO_KEY: <span class="string">'id10'</span>,
+        COMPANY_NAME: <span class="string">"Company 3"</span>,
+        COMPANY_REF_NUMBER: <span class="string">"ref 1"</span>,
+        SALESPERSON_NAME: <span class="string">"Steve"</span>,
+        PN: <span class="string">"2135s42354f"</span>
+    }, {
+        CQD_AUTO_KEY: <span class="string">'id11'</span>,
+        COMPANY_NAME: <span class="string">"Company 4"</span>,
+        COMPANY_REF_NUMBER: <span class="string">"ref 1"</span>,
+        SALESPERSON_NAME: <span class="string">"Steve"</span>,
+        PN: <span class="string">"2135s42354f"</span>
+    }, {
+        CQD_AUTO_KEY: <span class="string">'id12'</span>,
+        COMPANY_NAME: <span class="string">"Company 5"</span>,
+        COMPANY_REF_NUMBER: <span class="string">"ref 1"</span>,
+        SALESPERSON_NAME: <span class="string">"Steve"</span>,
+        PN: <span class="string">"2135s42354f"</span>
+    }, {
+        CQD_AUTO_KEY: <span class="string">'id13'</span>,
+        COMPANY_NAME: <span class="string">"Company 5"</span>,
+        COMPANY_REF_NUMBER: <span class="string">"ref 1"</span>,
+        SALESPERSON_NAME: <span class="string">"Steve"</span>,
+        PN: <span class="string">"2135s42354f"</span>
+    }];
+
+
+    $(<span class="string">"#grid"</span>).jqGrid({
+        datatype: <span class="string">"local"</span>,
+        data: mydata,
+        caption: <span class="string">"Report"</span>,
+        colModel: [
+            { label: <span class="string">' '</span>, name: <span class="string">"act"</span>, template: <span class="string">"actions"</span> },
+            { label: <span class="string">'CQD_AUTO_KEY'</span>, name: <span class="string">'CQD_AUTO_KEY'</span>, width: <span class="number">150</span>, key: <span class="literal">true</span>, align: <span class="string">'left'</span>},
+            { label: <span class="string">'Company Name'</span>, name: <span class="string">'COMPANY_NAME'</span>, width: <span class="number">250</span>, align: <span class="string">'left'</span> },
+            { label: <span class="string">'Ref No'</span>, name: <span class="string">'COMPANY_REF_NUMBER'</span>, width: <span class="number">150</span>, align: <span class="string">'left'</span> },
+            { label: <span class="string">'Salesperson'</span>, name: <span class="string">'SALESPERSON_NAME'</span>, width: <span class="number">100</span>, align: <span class="string">'left'</span>, summaryType:<span class="string">'count'</span> },
+            { label: <span class="string">'PN'</span>, name: <span class="string">'PN'</span>, width: <span class="number">500</span>, align: <span class="string">'left'</span> },
+        ],
+        height: <span class="string">'auto'</span>,
+        cmTemplate: { editable: <span class="literal">true</span>},
+        pager: <span class="string">'#pager'</span>,
+        rowNum: <span class="number">50</span>,
+        rowList: [<span class="number">25</span>,<span class="number">50</span>,<span class="number">100</span>],
+        ignoreCase: <span class="literal">true</span>,
+        viewrecords: <span class="literal">true</span>,
+        sortname: <span class="string">'TOTAL_PRICE'</span>,
+        sortorder: <span class="string">'desc'</span>,
+        grouping: <span class="literal">true</span>,
+        groupingView : {
+            groupField : [<span class="string">'SALESPERSON_NAME'</span>,<span class="string">'COMPANY_NAME'</span>,<span class="string">'COMPANY_REF_NUMBER'</span>],
+            groupSummary : [<span class="literal">true</span>,<span class="literal">true</span>,<span class="literal">true</span>],
+            groupColumnShow : [<span class="literal">false</span>,<span class="literal">false</span>,<span class="literal">false</span>],
+            groupSummaryPos: [<span class="string">'footer'</span>,<span class="string">'footer'</span>,<span class="string">'footer'</span>],
+        groupText : [<span class="string">'&lt;b&gt;{0} - &lt;/b&gt;{1} Open'</span>,<span class="string">'&lt;b&gt;{0}&lt;/b&gt;'</span>,<span class="string">'&lt;b&gt;{0}&lt;/b&gt;'</span>],
+            groupCollapse: <span class="literal">false</span>,
+            groupOrder: [<span class="string">'asc'</span>,<span class="string">'asc'</span>,<span class="string">'asc'</span>],
+        },
+        subGrid: <span class="literal">true</span>,
+        subGridRowExpanded: <span class="function"><span class="keyword">function</span> <span class="params">(subgrid_id, rowId)</span> {</span>
+            $(<span class="string">"#"</span> + subgrid_id).html(<span class="string">"&lt;em&gt;this text does not show up, although it should. removing key: true would allow this to show.&lt;/em&gt;"</span>);
+        },
+    });
+
+    $(<span class="string">"#grid"</span>).jqGrid(
+        <span class="string">'navGrid'</span>,
+        <span class="string">'#pager'</span>,
+        {add: <span class="literal">false</span>, edit: <span class="literal">true</span>, del: <span class="literal">false</span>},
+        {},
+        {},
+        {},
+        {multipleSearch:<span class="literal">true</span>, multipleGroup:<span class="literal">true</span>}
+    );
+
+});</code></pre>
+
+
+</div>
+
+<div class="col-md-3">
+<div id="sub-navigation" class="nav">
+    <ul class="nav">
+  
+  <li><a href="local.html">Local Data</a></li>
+  
+  <li><a href="grouping.html">Grouping</a></li>
+  
+  <li><a href="groupingDisplay.html">Grouping Custom Display Value</a></li>
+  
+  <li><a href="groupingTitle.html">Grouping Custom Title</a></li>
+  
+  <li><a href="searchFilter.html">Search Filter</a></li>
+  
+  <li><a href="searchFilterOperator.html">Search Filter with Operators</a></li>
+  
+  <li><a href="pager.html">Pagination</a></li>
+  
+  <li><a href="inlineedit.html">Inline Editing</a></li>
+  
+    </ul>
+</div>
+</div>
+
+</main>
+
+<footer>
+  <div class="container">
+  Page generated on 2015-01-29 19:53 | <a href="https://github.com/openpsa/jsgrid/tree/master/docs/content/demos/tickets/96.md">View Page Source</a>
+  </div>
+</footer>
+
+      <script src="//code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
+      <script src="../../jsgrid-0.1.0.js"></script>
+
+<script src="../../bootstrap/js/bootstrap.min.js"></script>
+<script src="../../ui.js"></script>
+
+
+
+</body>
+</html>
