@@ -7,9 +7,9 @@ The `colModel` property defines the individual grid columns as an array
 of properties. This is the most important part of the grid.
 
 ```javascript
-jQuery("#gridid").jqGrid({
+$("#grid").jqGrid({
    //...
-   colModel: [ {name:'name1', index:'index1'...}, {...}, ... ],
+   colModel: [ {name: 'name1', index: 'index1'} /*, {...}, ...*/ ],
    //...
 });
 ```
@@ -208,7 +208,7 @@ Determines the type of the element when searching.
 **Type:** string
 **Default:** `''`
 
-Valid only in Custom Searching and `edittype : 'select'`. Describes
+Valid only in Custom Searching and `edittype` `'select'`. Describes
 the URL from where we can get an already-constructed select element.
 
 ## Editing

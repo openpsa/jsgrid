@@ -10,11 +10,11 @@ occurs. The name value specified should correspond to the name in the
 
 It is important to note that if you want the grouping to be correct, then the data should come from server to the grid sorted by that field. When we are in local mode (the data is an array) the data is grouped (sorted) automatically so there is no need to define any additional sort column.
 
-In order to inform the server that we want to have a grouped data, jqGrid adds to the `sidx` parameter the groupField name on which we group. This done only if we have enabled the grouping and the data is remote.
+In order to inform the server that we want to have a grouped data, jqGrid adds to the `sidx` parameter the `groupField` name on which we group. This done only if we have enabled the grouping and the data is remote.
 
 ## Limitations
 
-When the grouping is enabled, the following options will be set explicitly in the code:
+When `grouping` is enabled, the following options will be set explicitly in the code:
 * `scroll` = `false`
 * `rownumbers` = `false`
 * `treeGrid` = `false`
@@ -23,13 +23,14 @@ When the grouping is enabled, the following options will be set explicitly in th
 Please refer to the [options](./options.md) page for more information.
 
 ## Grouping options
-All options in grouping are set as grid options and can be changed dynamically using the `setGridParam` method.
+All grouping options are set as grid options and can be changed dynamically using the `setGridParam` method.
 Two options are related to grouping:
 
   - `grouping`
   - `groupingView`
 
-The first option `grouping` is boolean and enables or disables the grouping feature into the grid. The default value of this option is `false`. To enable grouping set it to `true`.
+The first option `grouping` is boolean and enables or disables the
+grouping feature. The default value is `false`.
 
 The `groupingView` option is an object and has a lot of sub-options.
 Below is a example on how this should be used:
@@ -46,7 +47,6 @@ $("#grid").jqGrid({
 ```
 
 Below is the list of the options that can be set in `groupingView`:
-
 
 ### `groupField`
 **Type:** array
@@ -93,29 +93,28 @@ Shows or hides the column on which we group. The value here should be a boolean 
 **Type:** array
 **Default:** `[]`
 
-Enable or disable the summary (footer) row of the current group level. If grouping is set, the default value for the group is `false`.
+Enable or disable the summary row of the current group level. If grouping is set, the default value for the group is `false`.
 
-### `groupSummaryPos`
+#### `groupSummaryPos`
 **Type:** array
 **Default:** `[]`
 
 Set the position of the summary row at current group level. Possible
  values are:
- - `'header'` - The summary values are placed at the same row where the
- group values are.
- - `'footer'` - An additional row at end of the group level is built and the summary values are placed here
+ - `'header'` - The summary values are placed in the group header row.
+ - `'footer'` - An additional row at end of the group level is built and the summary values are placed there
+
+#### `showSummaryOnHide`
+**Type:** boolean
+**Default:** `false`
+
+Show or hide the summary row when we collapse the group.
 
 ### `hideFirstGroupCol`
 **Type:** boolean
 **Default:** `false`
 
 If set to `true` the values in the first column are replaced with empty ones so that we have a pretty view. This usually is set if the first column is a group column.
-
-### `showSummaryOnHide`
-**Type:** boolean
-**Default:** `false`
-
-Show or hide the summary (footer) row when we collapse the group.
 
 ### `groupCollapse`
 **Type:** boolean
@@ -154,7 +153,7 @@ the grouped value. Parameters passed to this function are: current value, source
 
 ## `colModel` Options
 
-If the group summary footer row is enabled, we use additional options
+If `groupSummary` is enabled, we use additional options
 in the  [Column model](./colModel.md) to configure the summary
 field.
 
@@ -170,7 +169,7 @@ The option determines what type of calculation we should do with the current gro
  - `'min'` - apply the min function to the current group value and return the result
  - `'max'` - apply the max function to the current group value and return the result
 
-The option can be defined as function. If defined we pass three parameters to it - the current value, the name and the record object. The function should return value. Note that this value will be used again for the group value until it changes.
+The option can be defined as a function. If defined we pass three parameters to it - the current value, the name and the record object. The function should return value. Note that this value will be used again for the group value until it changes.
 
 Below is a example on using this function - simulating the `sum` function.
 
@@ -180,7 +179,7 @@ function mysum(val, name, record)
     return parseFloat(val||0) + parseFloat((record[name]||0));
 }
 
-jQuery("#grid").jqGrid({
+$("#grid").jqGrid({
   //...
   colModel : [
      //{..},
