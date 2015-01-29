@@ -3,7 +3,9 @@ $(document).ready(function()
     var urlprefix = 'https://raw.githubusercontent.com/openpsa/jsgrid/master/',
         proxy_prefix = 'https://rawgit.com/openpsa/jsgrid/master/',
         button = $('#download-button'),
-        defaultlocale = $('#default-locale');
+        defaultlocale = $('#default-locale'),
+        selected_modules = [],
+        preamble;
 
 
     function report_error(error)
@@ -23,7 +25,7 @@ $(document).ready(function()
                 return e;
             });
 
-        if ($('#default-locale').val() !== '')
+        if (defaultlocale.val() !== '')
         {
             return promise.then(insert_locale);
         }
@@ -32,7 +34,7 @@ $(document).ready(function()
 
     function insert_locale(js)
     {
-        return load_file(proxy_prefix + $('#default-locale').val())
+        return load_file(proxy_prefix + defaultlocale.val())
             .then(function(e)
             {
                 return js.replace(/\/\/::grunt-insert-locale/, e);
@@ -43,9 +45,9 @@ $(document).ready(function()
     {
         var requests = [];
 
-        $('.module input[type="checkbox"]:checked').each(function(index, element)
+        $.each(selected_modules, function(index, element)
         {
-            requests.push(load_file(proxy_prefix + $(this).val()));
+            requests.push(load_file(proxy_prefix + element));
         });
 
         return $.when.apply($, requests)
@@ -80,10 +82,11 @@ $(document).ready(function()
         {
             report_error(e);
         })
-        .then(function(e)
+        .then(function(content)
         {
             var zip = new JSZip();
-            zip.file("jsgrid-custom.min.js", e);
+
+            zip.file("jsgrid-custom.min.js", preamble + "\n" + content);
             return zip;
         });
     }
@@ -151,6 +154,25 @@ $(document).ready(function()
 
     function build()
     {
+        var now = new Date();
+
+        selected_modules = [];
+        $('.module input[type="checkbox"]:checked').each(function()
+        {
+            selected_modules.push($(this).val());
+        });
+
+        preamble = '// jsgrid custom build from ' + now.toISOString() + "\n";
+
+        if (selected_modules.length > 0)
+        {
+            preamble += '// Selected modules: ' + selected_modules.join(', ') + "\n";
+        }
+        if (defaultlocale.val() !== '')
+        {
+            preamble += '// Default locale: ' + defaultlocale.val() + "\n";
+        }
+
         return build_base()
             .then(build_jsfile)
             .then(compile)
