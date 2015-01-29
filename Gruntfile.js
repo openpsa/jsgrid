@@ -359,7 +359,7 @@ module.exports = function ( grunt ) {
                     layout: 'demos.hbs',
                     data: ['package.json', '<%= doc_files.datadir %>/demos.json'],
                 },
-                src: ['demos/*.md'],
+                src: ['demos/**/*.md'],
                 dest: '<%= build_dir %>/docs/',
                 cwd: '<%= doc_files.contentdir %>/',
                 expand: true
