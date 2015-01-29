@@ -59,6 +59,10 @@ pre .tag .value {
 #downloadbuilder .helptext {
   color: #777777;
 }
+.download-sidebar button[disabled] {
+  pointer-events: auto;
+  cursor: wait;
+}
 .demo-container .btn-group {
   margin-top: 1em;
 }
