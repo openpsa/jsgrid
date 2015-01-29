@@ -1,5 +1,5 @@
 /**
- * jsgrid - v0.1.0 - 2015-01-28
+ * jsgrid - v0.1.0 - 2015-01-29
  * https://openpsa.github.com/jsgrid
  *
  * Copyright (c) 2015 Tony Tomov, Oleg Kiriljuk, Andreas Flack, Laurent Rajchenbach, Matthew Hutton and other contributors to jqGrid before version 4.7.1
@@ -3321,11 +3321,12 @@ $.fn.jqGrid = function( pin ) {
 			if (p.treeGrid === true) {
 				p.datatype = p.treedatatype;
 			}
-			if (p.datatype === "local" && p.dataTypeOrg && p.loadonce && opts && opts.fromServer) {
+                        opts = opts || {};
+			if (p.datatype === "local" && p.dataTypeOrg && p.loadonce && opts.fromServer) {
 				p.datatype = String(p.dataTypeOrg);
 				delete p.dataTypeOrg;
 			}
-			if (opts && opts.current) {
+			if (opts.current) {
 				gridSelf.selectionPreserver.call(self);
 			}
 			if(p.datatype==="local"){ $self.jqGrid("resetSelection");  if(p.data.length) { normalizeData.call(self); refreshIndex();} }
@@ -3338,7 +3339,7 @@ $.fn.jqGrid = function( pin ) {
 				clearArray(p.savedRow); // p.savedRow = [];
 			}
 			if(p.scroll) {emptyRows.call(self, true, false);}
-			if (opts && opts.page) {
+			if (opts.page) {
 				var page = parseInt(opts.page, 10);
 				if (page > p.lastpage) { page = p.lastpage; }
 				if (page < 1) { page = 1; }
