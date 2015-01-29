@@ -28,7 +28,7 @@ $(document).ready(function () {
             { label: 'Tax', name: 'tax', width: 80 },
             { label: 'Total', name: 'total', width: 80 },
             { label: 'Notes', name: 'note', width: 150 },
-            { name: "act", template: "actions" }
+            { label: 'Actions', name: "act", template: "actions" }
         ],
         cmTemplate: { editable: true}
     });
