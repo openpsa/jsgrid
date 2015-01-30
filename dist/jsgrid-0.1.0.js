@@ -1,5 +1,5 @@
 /**
- * jsgrid - v0.1.0 - 2015-01-29
+ * jsgrid - v0.1.0 - 2015-01-30
  * https://openpsa.github.com/jsgrid
  *
  * Copyright (c) 2015 Tony Tomov, Oleg Kiriljuk, Andreas Flack, Laurent Rajchenbach, Matthew Hutton and other contributors to jqGrid before version 4.7.1
@@ -12228,7 +12228,7 @@ $.jgrid.extend({
 /**
  * jqGrid extension for SubGrid Data
  * Tony Tomov tony@trirand.com
- * http://trirand.com/blog/ 
+ * http://trirand.com/blog/
  * Dual licensed under the MIT and GPL licenses:
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -12412,12 +12412,12 @@ addSubGrid : function( pos, sind ) {
 			i = sind;
 			len = sind+1;
 		}
-		
+
 		var clickFunc = function() {
 			var tr = $(this).parent("tr")[0];
 			pID = ts.p.id;
 			_id = tr.id;
-			$r = $("#" + pID + "_" + _id + "_expandedContent");
+			$r = $(tr.nextSibling);
 			if($(this).hasClass("sgcollapsed")) {
 				if(ts.p.subGridOptions.reloadOnExpand === true || ( ts.p.subGridOptions.reloadOnExpand === false && !$r.hasClass('ui-subgrid') ) ) {
 					atd = pos >=1 ? "<td colspan='"+pos+"'>&#160;</td>":"";
@@ -12460,7 +12460,7 @@ addSubGrid : function( pos, sind ) {
 			}
 			return false;
 		};
-		
+
 		while(i < len) {
 			if($(ts.rows[i]).hasClass('jqgrow')) {
 				if(ts.p.scroll) {
