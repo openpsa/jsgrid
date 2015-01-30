@@ -12417,7 +12417,7 @@ addSubGrid : function( pos, sind ) {
 			var tr = $(this).parent("tr")[0];
 			pID = ts.p.id;
 			_id = tr.id;
-			$r = $(tr.nextSibling);
+		        $r = $("#" + $.jgrid.jqID(pID + "_" + _id) + "_expandedContent");
 			if($(this).hasClass("sgcollapsed")) {
 				if(ts.p.subGridOptions.reloadOnExpand === true || ( ts.p.subGridOptions.reloadOnExpand === false && !$r.hasClass('ui-subgrid') ) ) {
 					atd = pos >=1 ? "<td colspan='"+pos+"'>&#160;</td>":"";
