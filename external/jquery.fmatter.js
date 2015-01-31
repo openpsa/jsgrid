@@ -3,20 +3,20 @@
  * formatter for values but most of the values if for jqGrid
  * Some of this was inspired and based on how YUI does the table datagrid but in jQuery fashion
  * we are trying to keep it as light as possible
- * Joshua Burnett josh@9ci.com	
+ * Joshua Burnett josh@9ci.com
  * http://www.greenbill.com
  *
  * Changes from Tony Tomov tony@trirand.com
  * Dual licensed under the MIT and GPL licenses:
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl-2.0.html
- * 
+ *
 **/
 /*jshint eqeqeq:false */
 /*global jQuery */
 
 (function($) {
-"use strict";	
+"use strict";
 	$.fmatter = {};
 	//opts can be id:row id for the row, rowdata:the data for the row, colmodel:the column model for this column
 	//example {id:1234,}
@@ -41,7 +41,7 @@
 				return true;
 			}
 			o = $.trim(o).replace(/\&nbsp\;/ig,'').replace(/\&#160\;/ig,'');
-			return o==="";	
+			return o==="";
 		}
 	});
 	$.fn.fmatter = function(formatType, cellval, opts, rwd, act) {
@@ -106,7 +106,7 @@
 				// Append suffix
 				sOutput = (opts.suffix) ? sOutput + opts.suffix : sOutput;
 				return sOutput;
-				
+
 			}
 			return nData;
 		}
@@ -238,9 +238,9 @@
 		cellval = ret.join(", ");
 		return  cellval === "" ? $.fn.fmatter.defaultFormat(cellval,opts) : cellval;
 	};
-	$.fn.fmatter.rowactions = function(act) {
-		var $tr = $(this).closest("tr.jqgrow"),
-			rid = $tr.attr("id"),
+	$.fn.fmatter.rowactions = function(e, act) {
+	    var $tr = $(this).closest("tr.jqgrow"),
+                rid = $tr.attr("id"),
 			$id = $(this).closest("table.ui-jqgrid-btable").attr('id').replace(/_frozen([^_]*)$/,'$1'),
 			$grid = $("#"+$.jgrid.jqID($id)),
 			$t = $grid[0],
@@ -285,6 +285,9 @@
 			restoreAfterError: op.restoreAfterError,
 			mtype: op.mtype
 		};
+		if ((!p.multiselect && rid !== p.selrow) || (p.multiselect && $.inArray(rid, p.selarrrow) < 0)) {
+			$grid.jqGrid('setSelection', rid, e);
+		}
 		switch(act)
 		{
 			case 'edit':
@@ -310,10 +313,13 @@
 				$grid.jqGrid('delGridRow', rid, op.delOptions);
 				break;
 			case 'formedit':
-				$grid.jqGrid('setSelection', rid);
 				$grid.jqGrid('editGridRow', rid, op.editOptions);
 				break;
 		}
+		if (e.stopPropagation) {
+			e.stopPropagation();
+		}
+		return false; // prevent other processing of the click on the row
 	};
 	$.fn.fmatter.actions = function(cellval,opts) {
 		var op={keys:false, editbutton:true, delbutton:true, editformbutton: false}, nav = $.jgrid.nav, edit = $.jgrid.edit,
@@ -331,7 +337,7 @@
 		if(op.delbutton) {
                     str += "<div id='jDeleteButton_" + prefixedRowId + "' title='"+nav.deltitle+"' class='ui-pg-div ui-inline-button ui-inline-del'><span class='ui-icon ui-icon-trash'></span></div>";
 		}
-		
+
                 str += "<div id='jSaveButton_" + prefixedRowId + "' title='"+edit.bSubmit+"' class='ui-pg-div ui-inline-button ui-inline-save'><span class='ui-icon ui-icon-disk'></span></div>";
 		return str += "<div id='jCancelButton_" + prefixedRowId + "' title='"+edit.bCancel+"' class='ui-pg-div ui-inline-button ui-inline-cancel'><span class='ui-icon ui-icon-cancel'></span></div>";
 	};
@@ -404,7 +410,7 @@
 		var op = $.extend({}, options.colModel.formatoptions !== undefined ? options.colModel.formatoptions: options.colModel.editoptions),
 		sep = op.separator === undefined ? ":" : op.separator,
 		delim = op.delimiter === undefined ? ";" : op.delimiter;
-		
+
 		if(op.value){
 			var oSelect = op.value,
 			msl =  op.multiple === true ? true : false,
@@ -416,7 +422,7 @@
 					sv = so[i].split(sep);
 					if(sv.length > 2 ) {
 						sv[1] = $.map(sv,function(n,i){if(i>0) {return n;}}).join(sep);
-					}					
+					}
 					if(msl) {
 						if($.inArray(sv[1],scell)>-1) {
 							ret[j] = sv[0];
@@ -448,7 +454,7 @@
 		var op = $.jgrid.formatter.date || {};
 		if(opts.formatoptions !== undefined) {
 			op = $.extend({},op,opts.formatoptions);
-		}		
+		}
 		if(!$.fmatter.isEmpty(cellval)) {
 			return $.jgrid.parseDate(op.newformat,cellval,op.srcformat,op);
 		}

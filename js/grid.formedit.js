@@ -903,13 +903,17 @@ $.jgrid.extend({
 			}
 			function restoreInline()
 			{
-				var i;
-				if (rowid !== "_empty" && p.savedRow !== undefined && p.savedRow.length > 0 && $.isFunction($.fn.jqGrid.restoreRow)) {
-					for (i=0;i<p.savedRow.length;i++) {
-						if (p.savedRow[i].id == rowid) {
-							$self.jqGrid('restoreRow',rowid);
-							break;
-						}
+				var editingInfo = jgrid.detectRowEditing.call($t, rowid);
+				if (editingInfo != null) {
+					if (editingInfo.mode === "inlineEditing") {
+						$self.jqGrid("restoreRow", rowid);
+					} else {
+						var savedRowInfo = editingInfo.savedRow;
+						tr = $t.rows[savedRowInfo.id];
+						$self.jqGrid("restoreCell", savedRowInfo.id, savedRowInfo.ic);
+						// remove highlighting of the cell
+						$(tr.cells[savedRowInfo.ic]).removeClass("edit-cell ui-state-highlight");
+						$(tr).addClass("ui-state-highlight").attr({"aria-selected":"true", "tabindex" : "0"});
 					}
 				}
 			}
