@@ -1,10 +1,11 @@
 [
     {"filename": "local.html", "title": "Local Data"},
+    {"filename": "pager.html", "title": "Pagination"},
+    {"filename": "kitchensink.html", "title": "Kitchen Sink"},
     {"filename": "grouping.html", "title": "Grouping"},
     {"filename": "groupingDisplay.html", "title": "Grouping Custom Display Value"},
     {"filename": "groupingTitle.html", "title": "Grouping Custom Title"},
+    {"filename": "inlineedit.html", "title": "Inline Editing"},
     {"filename": "searchFilter.html", "title": "Search Filter"},
-    {"filename": "searchFilterOperator.html", "title": "Search Filter with Operators"},
-    {"filename": "pager.html", "title": "Pagination"},
-    {"filename": "inlineedit.html", "title": "Inline Editing"}
+    {"filename": "searchFilterOperator.html", "title": "Search Filter with Operators"}
 ]
