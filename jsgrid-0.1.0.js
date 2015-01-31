@@ -1,5 +1,5 @@
 /**
- * jsgrid - v0.1.0 - 2015-01-30
+ * jsgrid - v0.1.0 - 2015-01-31
  * https://openpsa.github.com/jsgrid
  *
  * Copyright (c) 2015 Tony Tomov, Oleg Kiriljuk, Andreas Flack, Laurent Rajchenbach, Matthew Hutton and other contributors to jqGrid before version 4.7.1
@@ -1334,7 +1334,7 @@ $.fn.jqGrid = function( pin ) {
 						self.sDiv.scrollLeft = self.bDiv.scrollLeft;
 					}
 				}
-                                
+
 				if (!skipCallbacks) {
 					feedback.call(ts, "resizeStop", nw, idx);
 				}
@@ -1794,7 +1794,7 @@ $.fn.jqGrid = function( pin ) {
 			var $tbody = $(self.tBodies[0]); //$self.children("tbody").filter(":first");
 			if(gxml && gl){
 				if (adjust) { rn *= adjust+1; }
-				
+
 				var xmlFunc = function (k) {
 					var cell = cells[this];
 					if (!cell) { return false; }
@@ -1802,7 +1802,7 @@ $.fn.jqGrid = function( pin ) {
 					rd[colModel[k+gi+si+ni].name] = v;
 					rowData.push( addCell(rid,v,k+gi+si+ni,j+rcnt,xmlr, rd) );
 				};
-				
+
 				while (j<gl) {
 					xmlr = gxml[j];
 					rid = getId(xmlr,br+j);
@@ -1929,7 +1929,7 @@ $.fn.jqGrid = function( pin ) {
 					grpdata = null;
 				}
 			}
-                        
+
                         activateInlineButtons.call();
 		},
 		addJSONData = function(data, rcnt, more, adjust) {
@@ -2132,7 +2132,7 @@ $.fn.jqGrid = function( pin ) {
 					grpdata = null;
 				}
 			}
-                        
+
                         activateInlineButtons.call();
 		},
 		addLocalData = function() {
@@ -2323,9 +2323,9 @@ $.fn.jqGrid = function( pin ) {
 			retresult[localReader.records] = total;
 			retresult[localReader.root] = p.lastSelectedData.slice((page-1)*recordsperpage, page*recordsperpage);
 			retresult[localReader.userdata] = p.userData;
-                        
+
                         activateInlineButtons.call();
-                        
+
 			return retresult;
 		},
 		updatepager = function(rn, dnd) {
@@ -2450,13 +2450,13 @@ $.fn.jqGrid = function( pin ) {
 				if(p.grouping) {
 					$self.jqGrid('groupingSetup');
 					var grp = p.groupingView, gi, gs="", index;
-					
+
 					var groupingFunc = function(cmIndex, cmValue) {
 						if (cmValue.name === index && cmValue.index){
 							index = cmValue.index;
 						}
 					};
-					
+
 					for(gi=0;gi<grp.groupField.length;gi++) {
 						index = grp.groupField[gi];
 						$.each(p.colModel, groupingFunc);
@@ -3290,6 +3290,7 @@ $.fn.jqGrid = function( pin ) {
 			if (!cSel) {
 				return;
 			}
+
 			if ( !p.multikey ) {
 				if(p.multiselect && p.multiboxonly) {
 					if(scb){$(ts).jqGrid("setSelection",ri,true,e);}
@@ -3308,7 +3309,13 @@ $.fn.jqGrid = function( pin ) {
 						$(ts).jqGrid("setSelection",ri,true,e);
 					}
 				} else {
-					$(ts).jqGrid("setSelection",ri,true,e);
+                                    var oldSelRow = p.selrow;
+                                    $(ts).jqGrid("setSelection",ri,true,e);
+                                    if (oldSelRow === ri && p.savedRow.length === 0) {
+                                        td.parent().removeClass("ui-state-highlight").attr({"aria-selected":"false", "tabindex" : "-1"});
+                                        p.selrow = null;
+                                    }
+				    //$(ts).jqGrid("setSelection",ri,true,e);
 				}
 			} else {
 				if(e[p.multikey]) {
@@ -3769,7 +3776,7 @@ $.jgrid.extend({
 					}
 				}
 			};
-			
+
 			while(j<len){
 				if(getall) { ind = rows[j]; }
 				if( $(ind).hasClass('jqgrow') ) {
