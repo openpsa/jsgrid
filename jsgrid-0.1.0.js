@@ -1736,19 +1736,19 @@ $.fn.jqGrid = function( pin ) {
                         .on('mouseout', '.ui-inline-button', function(){
                             $(this).removeClass('ui-state-hover');
                         })
-                        .on('mouseup', '.ui-inline-edit:not(.ui-inline-edit-form)', function(event){
+                        .on('click', '.ui-inline-edit:not(.ui-inline-edit-form)', function(event){
                             $.fn.fmatter.rowactions.call(this, event, 'edit');
                         })
-                        .on('mouseup', '.ui-inline-edit.ui-inline-edit-form', function(event){
+                        .on('click', '.ui-inline-edit.ui-inline-edit-form', function(event){
                             $.fn.fmatter.rowactions.call(this, event, 'formedit');
                         })
-                        .on('mouseup', '.ui-inline-del', function(event){
+                        .on('click', '.ui-inline-del', function(event){
                             $.fn.fmatter.rowactions.call(this, event, 'del');
                         })
-                        .on('mouseup', '.ui-inline-save', function(event){
+                        .on('click', '.ui-inline-save', function(event){
                             $.fn.fmatter.rowactions.call(this, event, 'save');
                         })
-                        .on('mouseup', '.ui-inline-cancel', function(event){
+                        .on('click', '.ui-inline-cancel', function(event){
                             $.fn.fmatter.rowactions.call(this, event, 'cancel');
                         });
                 },
@@ -3297,7 +3297,7 @@ $.fn.jqGrid = function( pin ) {
 		});
 		}
 		var ri,ci, tdHtml;
-		$(ts).before(grid.hDiv).mousedown(function(e) {
+		$(ts).before(grid.hDiv).click(function(e) {
 			td = e.target;
 			ptr = $(td,ts.rows).closest("tr.jqgrow");
 			if($(ptr).length === 0 || ptr[0].className.indexOf( 'ui-state-disabled' ) > -1 || ($(td,ts).closest("table.ui-jqgrid-btable").attr('id') || '').replace("_frozen","") !== ts.id ) {
