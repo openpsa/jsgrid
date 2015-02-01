@@ -1557,27 +1557,27 @@ $.fn.jqGrid = function( pin ) {
 				(style === '' ? '' : ' style="' + style + '"') + restAttr + '>';
 		},
                 activateInlineButtons = function(){
-                    $('.ui-inline-button').on('mouseover', function(){
-                        $(this).addClass('ui-state-hover');
-                    });
-                    $('.ui-inline-button').on('mouseout', function(){
-                        $(this).removeClass('ui-state-hover');
-                    });
-                    $('.ui-inline-edit:not(.ui-inline-edit-form)').on('mouseup', function(event){
-                        $.fn.fmatter.rowactions.call(this, event, 'edit');
-                    });
-                    $('.ui-inline-edit.ui-inline-edit-form').on('mouseup', function(event){
-                        $.fn.fmatter.rowactions.call(this, event, 'formedit');
-                    });
-                    $('.ui-inline-del').on('mouseup', function(event){
-                        $.fn.fmatter.rowactions.call(this, event, 'del');
-                    });
-                    $('.ui-inline-save').on('mouseup', function(event){
-                        $.fn.fmatter.rowactions.call(this, event, 'save');
-                    });
-                    $('.ui-inline-cancel').on('mouseup', function(event){
-                        $.fn.fmatter.rowactions.call(this, event, 'cancel');
-                    });
+                    $(this).on('mouseover', '.ui-inline-button', function(){
+                            $(this).addClass('ui-state-hover');
+                        })
+                        .on('mouseout', '.ui-inline-button', function(){
+                            $(this).removeClass('ui-state-hover');
+                        })
+                        .on('mouseup', '.ui-inline-edit:not(.ui-inline-edit-form)', function(event){
+                            $.fn.fmatter.rowactions.call(this, event, 'edit');
+                        })
+                        .on('mouseup', '.ui-inline-edit.ui-inline-edit-form', function(event){
+                            $.fn.fmatter.rowactions.call(this, event, 'formedit');
+                        })
+                        .on('mouseup', '.ui-inline-del', function(event){
+                            $.fn.fmatter.rowactions.call(this, event, 'del');
+                        })
+                        .on('mouseup', '.ui-inline-save', function(event){
+                            $.fn.fmatter.rowactions.call(this, event, 'save');
+                        })
+                        .on('mouseup', '.ui-inline-cancel', function(event){
+                            $.fn.fmatter.rowactions.call(this, event, 'cancel');
+                        });
                 },
 		addXmlData = function (xml, rcnt, more, adjust) {
 			var self = this, $self = $(this), startReq = new Date(), getXmlData = jgrid.getXmlData,
@@ -1784,7 +1784,7 @@ $.fn.jqGrid = function( pin ) {
 				}
 			}
 
-                        activateInlineButtons.call();
+                        activateInlineButtons.call(self);
 		},
 		addJSONData = function(data, rcnt, more, adjust) {
 			var self = this, $self = $(self), startReq = new Date();
@@ -1987,7 +1987,7 @@ $.fn.jqGrid = function( pin ) {
 				}
 			}
 
-                        activateInlineButtons.call();
+                        activateInlineButtons.call(self);
 		},
 		addLocalData = function() {
 			var $self = $(this), st = p.multiSort ? [] : "", sto=[], fndsort=false, cmtypes={}, grtypes=[], grindexes=[], srcformat, sorttype, newformat;
@@ -2178,7 +2178,7 @@ $.fn.jqGrid = function( pin ) {
 			retresult[localReader.root] = p.lastSelectedData.slice((page-1)*recordsperpage, page*recordsperpage);
 			retresult[localReader.userdata] = p.userData;
 
-                        activateInlineButtons.call();
+                        activateInlineButtons.call(self);
 
 			return retresult;
 		},
