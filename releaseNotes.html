@@ -88,6 +88,7 @@
 <li><strong><code>jsonmap</code> works with local data:</strong> The only exception is when you use the <code>dataTypeOrg</code> option. The option will be set automatically after loading the data from the server and changing the <code>datatype</code> to <code>&quot;local&quot;</code>. It allows you to use <code>jsonmap</code> for the data loaded from the server and then skip it in later processing of the local data.</li>
 <li><strong>jqGrid can run without locale file:</strong> Content from <code>grid.locale-en.js</code> is included directly in the code. If you want to use a different default locale (or none at all), you can use the <a href="download/index.html">Download Builder</a></li>
 <li><strong>additional option <code>fromServer: true</code> in <code>.trigger(&quot;reloadGrid&quot;)</code>:</strong> This allows reloading the data from the server when <code>loadonce</code> is set to <code>true</code>.</li>
+<li><strong>new <code>singleSelectClickMode</code> option:</strong> It allows to control deselection of previously selected rows on clicking on the row. Default behaviour is to toggle the selection. You can restore the previous behavior (i.e. disallow deselection) by specifying <code>singleSelectClickMode: &quot;selectonly&quot;</code> or <code>singleSelectClickMode: &quot;&quot;</code>. Note that the behaviour of <code>setSelection</code> method is not changed. Multiple calls of <code>setSelection</code> will not deselect the row.</li>
 </ul>
 <h3 id="new-options">New Options</h3>
 <ul>
@@ -157,7 +158,7 @@
 
 <footer>
   <div class="container">
-  Page generated on 2015-01-31 15:13 | <a href="https://github.com/openpsa/jsgrid/tree/master/docs/content/releaseNotes.md">View Page Source</a>
+  Page generated on 2015-02-01 11:48 | <a href="https://github.com/openpsa/jsgrid/tree/master/docs/content/releaseNotes.md">View Page Source</a>
   </div>
 </footer>
 
