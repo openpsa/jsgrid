@@ -256,6 +256,14 @@ If this option is set to `true`, a new column at left of the grid is added. The 
 
 Determines the width of the row number column if `rownumbers` option is set to `true`.
 
+### `singleSelectClickMode`
+**Type:** string
+**Default:** `'toggle'`
+**Changeable:** Yes
+
+When `multiselect` is `false`, clicking on a selected row will
+deselect it. Set this to `'selectonly'` to disallow deselection
+
 ### `multiselect`
 **Type:** boolean
 **Default:** `false`
