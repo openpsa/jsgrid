@@ -148,6 +148,7 @@ $.extend($.jgrid,{
 		}
 		if(coord.left) { coord.left += "px"; }
 		$(mw).css($.extend({
+		    width: p.width,
 		    zIndex:p.zIndex,
 		    overflow: 'hidden'
 		},coord))
