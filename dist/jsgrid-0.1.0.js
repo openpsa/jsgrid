@@ -1,5 +1,5 @@
 /**
- * jsgrid - v0.1.0 - 2015-02-01
+ * jsgrid - v0.1.0 - 2015-02-04
  * https://openpsa.github.com/jsgrid
  *
  * Copyright (c) 2015 Tony Tomov, Oleg Kiriljuk, Andreas Flack, Laurent Rajchenbach, Matthew Hutton and other contributors to jqGrid before version 4.7.1
@@ -5350,6 +5350,7 @@ $.extend($.jgrid,{
 		}
 		if(coord.left) { coord.left += "px"; }
 		$(mw).css($.extend({
+		    width: p.width,
 		    zIndex:p.zIndex,
 		    overflow: 'hidden'
 		},coord))
