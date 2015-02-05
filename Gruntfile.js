@@ -318,7 +318,7 @@ module.exports = function ( grunt ) {
 
             docs: {
                 files: [
-                    '<%= doc_files.contentdir %>/**/*.md',
+                    '<%= doc_files.contentdir %>/**/*.*',
                     '<%= doc_files.template %>',
                     '<%= doc_files.helpers %>',
                     '<%= doc_files.less %>',
