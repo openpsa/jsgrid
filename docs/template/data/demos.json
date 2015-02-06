@@ -1,5 +1,6 @@
 [
     {"filename": "local.html", "title": "Local Data"},
+    {"filename": "remote.html", "title": "Remote Data"},
     {"filename": "pager.html", "title": "Pagination"},
     {"filename": "kitchensink.html", "title": "Kitchen Sink"},
     {"filename": "grouping.html", "title": "Grouping"},
