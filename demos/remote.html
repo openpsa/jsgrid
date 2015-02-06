@@ -50,6 +50,10 @@
 
 <div class="col-md-9 demo-container">
 
+<p>Click one of the buttons and see the request / response in your debug
+console. Please note that sorting won&#39;t work here because the backend
+always returns static dummy data (but you can see the parameters being
+set in your debug console).</p>
 <pre><code class="language-javascript">$(document).ready(<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
     $(<span class="string">"#grid"</span>).jqGrid({
     caption:<span class="string">'Remote data example'</span>,
@@ -61,21 +65,24 @@
             { label: <span class="string">'Tax'</span>, name: <span class="string">'tax'</span>, width: <span class="number">80</span> },
             { label: <span class="string">'Total'</span>, name: <span class="string">'total'</span>, width: <span class="number">80</span> },
             { label: <span class="string">'Notes'</span>, name: <span class="string">'note'</span>, width: <span class="number">150</span> }
-        ],
-        pager: <span class="string">'#pager'</span>
+        ]
     });
 
     $(<span class="string">'&lt;button type="button" class="btn btn-default"&gt;Get JSON&lt;/button&gt;'</span>)
         .on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
-            $(<span class="string">'#grid'</span>).jqGrid(<span class="string">'setGridParam'</span>,{url: <span class="string">'./data/basic.json'</span>}).trigger(<span class="string">'reloadGrid'</span>);
-        })
-        .insertAfter($(<span class="string">'#show-code'</span>));
+           $(<span class="string">'#grid'</span>).jqGrid(<span class="string">'setGridParam'</span>, {
+                datatype: <span class="string">'json'</span>,
+                url: <span class="string">'./data/basic.json'</span>}).trigger(<span class="string">'reloadGrid'</span>);
+            })
+            .insertAfter($(<span class="string">'#show-code'</span>));
 
     $(<span class="string">'&lt;button type="button" class="btn btn-default"&gt;Get XML&lt;/button&gt;'</span>)
         .on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
-            $(<span class="string">'#grid'</span>).jqGrid(<span class="string">'setGridParam'</span>,{url: <span class="string">'./data/basic.xml'</span>}).trigger(<span class="string">'reloadGrid'</span>);
-        })
-        .insertAfter($(<span class="string">'#show-code'</span>));
+             $(<span class="string">'#grid'</span>).jqGrid(<span class="string">'setGridParam'</span>, {
+                 datatype: <span class="string">'xml'</span>,
+                 url: <span class="string">'./data/basic.xml'</span>}).trigger(<span class="string">'reloadGrid'</span>);
+            })
+            .insertAfter($(<span class="string">'#show-code'</span>));
 });</code></pre>
 
 
@@ -86,6 +93,8 @@
     <ul class="nav">
   
   <li><a href="local.html">Local Data</a></li>
+  
+  <li class="active"><a href="remote.html">Remote Data</a></li>
   
   <li><a href="pager.html">Pagination</a></li>
   
@@ -111,7 +120,7 @@
 
 <footer>
   <div class="container">
-  Page generated on 2015-02-05 22:08 | <a href="https://github.com/openpsa/jsgrid/tree/master/docs/content/demos/remote.md">View Page Source</a>
+  Page generated on 2015-02-07 00:14 | <a href="https://github.com/openpsa/jsgrid/tree/master/docs/content/demos/remote.md">View Page Source</a>
   </div>
 </footer>
 
