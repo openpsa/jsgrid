@@ -1,0 +1,195 @@
+.ui-jqgrid .ui-icon,
+.ui-jqdialog .ui-icon {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0);
+  background-image: none;
+  text-indent: 0;
+}
+.ui-jqgrid .ui-icon.pull-left,
+.ui-jqdialog .ui-icon.pull-left {
+  margin-right: .3em;
+}
+.ui-jqgrid .ui-icon.pull-right,
+.ui-jqdialog .ui-icon.pull-right {
+  margin-left: .3em;
+}
+.ui-jqgrid .navtable .ui-icon,
+.ui-jqdialog .navtable .ui-icon,
+.ui-jqgrid .ui-pg-table .ui-icon,
+.ui-jqdialog .ui-pg-table .ui-icon,
+.ui-jqgrid .ui-inline-button .ui-icon,
+.ui-jqdialog .ui-inline-button .ui-icon,
+.ui-jqgrid .jqgroup .ui-icon,
+.ui-jqdialog .jqgroup .ui-icon,
+.ui-jqgrid .ui-subgrid .ui-icon,
+.ui-jqdialog .ui-subgrid .ui-icon,
+.ui-jqgrid .ui-sgcollapsed .ui-icon,
+.ui-jqdialog .ui-sgcollapsed .ui-icon {
+  width: 1.28571429em;
+  text-align: center;
+}
+.ui-jqgrid .s-ico,
+.ui-jqdialog .s-ico {
+  font-size: 1.33333333em;
+  line-height: 0.75em;
+  vertical-align: -15%;
+}
+.ui-jqgrid .ui-icon-seek-first:before,
+.ui-jqdialog .ui-icon-seek-first:before {
+  content: "\f048";
+}
+.ui-jqgrid .ui-icon-seek-prev:before,
+.ui-jqdialog .ui-icon-seek-prev:before {
+  content: "\f04a";
+}
+.ui-jqgrid .ui-icon-seek-next:before,
+.ui-jqdialog .ui-icon-seek-next:before {
+  content: "\f04e";
+}
+.ui-jqgrid .ui-icon-seek-end:before,
+.ui-jqdialog .ui-icon-seek-end:before {
+  content: "\f051";
+}
+.ui-jqgrid .ui-icon-triangle-1-s:before,
+.ui-jqdialog .ui-icon-triangle-1-s:before {
+  content: "\f0de";
+}
+.ui-jqgrid .ui-icon-triangle-1-n:before,
+.ui-jqdialog .ui-icon-triangle-1-n:before {
+  content: "\f0dd";
+}
+.ui-jqgrid .ui-icon-circle-triangle-n:before,
+.ui-jqdialog .ui-icon-circle-triangle-n:before {
+  content: "\f139";
+}
+.ui-jqgrid .ui-icon-circle-triangle-s:before,
+.ui-jqdialog .ui-icon-circle-triangle-s:before {
+  content: "\f13a";
+}
+.ui-jqgrid .ui-icon-pencil:before,
+.ui-jqdialog .ui-icon-pencil:before {
+  content: "\f040";
+}
+.ui-jqgrid .ui-icon-plus:before,
+.ui-jqdialog .ui-icon-plus:before {
+  content: "\f067";
+}
+.ui-jqgrid .ui-icon-trash:before,
+.ui-jqdialog .ui-icon-trash:before {
+  content: "\f014";
+}
+.ui-jqgrid .ui-icon-search:before,
+.ui-jqdialog .ui-icon-search:before {
+  content: "\f002";
+}
+.ui-jqgrid .ui-icon-refresh:before,
+.ui-jqdialog .ui-icon-refresh:before {
+  content: "\f021";
+}
+.ui-jqgrid .ui-icon-document:before,
+.ui-jqdialog .ui-icon-document:before {
+  content: "\f016";
+}
+.ui-jqgrid .ui-icon-disk:before,
+.ui-jqdialog .ui-icon-disk:before {
+  content: "\f0c7";
+}
+.ui-jqgrid .ui-icon-cancel:before,
+.ui-jqdialog .ui-icon-cancel:before {
+  content: "\f05e";
+}
+.ui-jqgrid .ui-icon-closethick:before,
+.ui-jqdialog .ui-icon-closethick:before {
+  content: "\f00d";
+}
+.ui-jqgrid .ui-icon-triangle-1-w:before,
+.ui-jqdialog .ui-icon-triangle-1-w:before {
+  content: "\f0d9";
+}
+.ui-jqgrid .ui-icon-triangle-1-e:before,
+.ui-jqdialog .ui-icon-triangle-1-e:before {
+  content: "\f0da";
+}
+.ui-jqgrid .ui-icon-disk:before,
+.ui-jqdialog .ui-icon-disk:before {
+  content: "\f0c7";
+}
+.ui-jqgrid .ui-icon-close:before,
+.ui-jqdialog .ui-icon-close:before {
+  content: "\f0e2";
+}
+.ui-jqgrid .ui-icon-scissors:before,
+.ui-jqdialog .ui-icon-scissors:before {
+  content: "\f014";
+}
+.ui-jqgrid .ui-icon-cancel:before,
+.ui-jqdialog .ui-icon-cancel:before {
+  content: "\f05e";
+}
+.ui-jqgrid .ui-icon-search:before,
+.ui-jqdialog .ui-icon-search:before {
+  content: "\f002";
+}
+.ui-jqgrid .ui-icon-arrowreturnthick-1-w:before,
+.ui-jqdialog .ui-icon-arrowreturnthick-1-w:before {
+  content: "\f0e2";
+}
+.ui-jqgrid .ui-icon-comment:before,
+.ui-jqdialog .ui-icon-comment:before {
+  content: "\f0e6";
+}
+.ui-jqgrid .ui-icon-plus:before,
+.ui-jqdialog .ui-icon-plus:before {
+  content: "\f067";
+}
+.ui-jqgrid .ui-icon-minus:before,
+.ui-jqdialog .ui-icon-minus:before {
+  content: "\f068";
+}
+.ui-jqgrid .ui-icon-carat-1-sw,
+.ui-jqdialog .ui-icon-carat-1-sw {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.ui-jqgrid .ui-icon-carat-1-sw:before,
+.ui-jqdialog .ui-icon-carat-1-sw:before {
+  content: "\f112";
+}
+.ui-jqgrid .ui-icon-carat-1-se,
+.ui-jqdialog .ui-icon-carat-1-se {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.ui-jqgrid .ui-icon-carat-1-se:before,
+.ui-jqdialog .ui-icon-carat-1-se:before {
+  content: "\f064";
+}
+.ui-jqgrid .ui-icon-circlesmall-plus:before,
+.ui-jqdialog .ui-icon-circlesmall-plus:before {
+  content: "\f196";
+}
+.ui-jqgrid .ui-icon-circlesmall-minus:before,
+.ui-jqdialog .ui-icon-circlesmall-minus:before {
+  content: "\f147";
+}
+.ui-jqgrid .ui-icon-radio-off:before,
+.ui-jqdialog .ui-icon-radio-off:before {
+  content: "\f10c";
+}
+.ui-jqgrid .ui-icon-triangle-1-e:before,
+.ui-jqdialog .ui-icon-triangle-1-e:before {
+  content: "\f0da";
+}
+.ui-jqgrid .ui-icon-triangle-1-w:before,
+.ui-jqdialog .ui-icon-triangle-1-w:before {
+  content: "\f0d9";
+}

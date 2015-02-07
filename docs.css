@@ -63,6 +63,13 @@ pre .tag .value {
 #downloadbuilder .helptext {
   color: #777777;
 }
+#downloadbuilder h3 .group-toggle {
+  cursor: default;
+}
+#downloadbuilder h3 .group-toggle .glyphicon {
+  font-size: 70%;
+  margin-right: 0.2em;
+}
 .download-sidebar button[disabled] {
   pointer-events: auto;
   cursor: wait;
