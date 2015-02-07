@@ -86,8 +86,8 @@ $(document).ready(function()
         {
             var zip = new JSZip();
 
-            zip.file("jsgrid-custom.min.js", preamble + "\n" + content);
-            zip.file("jsgrid-custom.js", preamble + "\n" + js);
+            zip.file("jsgrid-0.1.0-custom.min.js", preamble + "\n" + content);
+            zip.file("jsgrid-0.1.0-custom.js", preamble + "\n" + js);
             return zip;
         });
     }
