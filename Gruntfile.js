@@ -142,6 +142,12 @@ module.exports = function ( grunt ) {
                         dest: '<%= build_dir %>/docs',
                         cwd: '<%= build_dir %>/',
                         expand: true
+                    },
+                    {
+                        src: [ 'iconsets/*.css' ],
+                        dest: '<%= build_dir %>/docs',
+                        cwd: '<%= build_dir %>/',
+                        expand: true
                     }
                 ]
             },
@@ -217,7 +223,8 @@ module.exports = function ( grunt ) {
         less: {
             build: {
                 files: {
-                    '<%= build_dir %>/<%= filename %>.css': '<%= app_files.less %>'
+                    '<%= build_dir %>/<%= filename %>.css': '<%= app_files.less %>',
+                    '<%= build_dir %>/iconsets/fontawesome.css': '<%= app_files.fa_less %>'
                 }
             },
             compile: {
@@ -302,7 +309,7 @@ module.exports = function ( grunt ) {
             },
 
             less: {
-                files: [ 'less/*.less' ],
+                files: [ 'less/**/*.less' ],
                 tasks: [ 'less:build', 'copy:doc_assets' ]
             },
 

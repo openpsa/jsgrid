@@ -1,0 +1,197 @@
+@import (reference) "bower_components/fontawesome/less/font-awesome.less";
+
+.ui-jqgrid,
+.ui-jqdialog
+{
+    .ui-icon
+    {
+        .fa;
+        background-image: none;
+        text-indent: 0;
+    }
+
+    .navtable,
+    .ui-pg-table,
+    .ui-inline-button,
+    .jqgroup,
+    .ui-subgrid,
+    .ui-sgcollapsed
+    {
+        .ui-icon
+        {
+            .fa-fw;
+        }
+    }
+
+    .s-ico
+    {
+        .fa-lg;
+    }
+
+    // pager
+    .ui-icon-seek-first:before
+    {
+        content: @fa-var-step-backward;
+    }
+    .ui-icon-seek-prev:before
+    {
+        content: @fa-var-backward;
+    }
+    .ui-icon-seek-next:before
+    {
+        content: @fa-var-forward;
+    }
+    .ui-icon-seek-end:before
+    {
+        content: @fa-var-step-forward;
+    }
+
+    // sort
+    .ui-icon-triangle-1-s:before
+    {
+        content: @fa-var-sort-asc;
+    }
+    .ui-icon-triangle-1-n:before
+    {
+        content: @fa-var-sort-desc;
+    }
+
+    // collapse/expand
+    .ui-icon-circle-triangle-n:before
+    {
+        content: @fa-var-chevron-circle-up;
+    }
+    .ui-icon-circle-triangle-s:before
+    {
+        content: @fa-var-chevron-circle-down;
+    }
+
+    // nav
+    .ui-icon-pencil:before
+    {
+        content: @fa-var-pencil;
+    }
+    .ui-icon-plus:before
+    {
+        content: @fa-var-plus;
+    }
+    .ui-icon-trash:before
+    {
+        content: @fa-var-trash-o;
+    }
+    .ui-icon-search:before
+    {
+        content: @fa-var-search;
+    }
+    .ui-icon-refresh:before
+    {
+        content: @fa-var-refresh;
+    }
+    .ui-icon-document:before
+    {
+        content: @fa-var-file-o;
+    }
+    .ui-icon-disk:before
+    {
+        content: @fa-var-floppy-o;
+    }
+    .ui-icon-cancel:before
+    {
+        content: @fa-var-ban;
+    }
+
+    // actions
+    // form
+    .ui-icon-closethick:before
+    {
+        content: @fa-var-times;
+    }
+    .ui-icon-triangle-1-w:before
+    {
+        content: @fa-var-caret-left;
+    }
+    .ui-icon-triangle-1-e:before
+    {
+        content: @fa-var-caret-right;
+    }
+    .ui-icon-disk:before
+    {
+        content: @fa-var-floppy-o;
+    }
+    .ui-icon-close:before
+    {
+        content: @fa-var-undo;
+    }
+    .ui-icon-scissors:before
+    {
+        content: @fa-var-trash-o;
+    }
+    .ui-icon-cancel:before
+    {
+        content: @fa-var-ban;
+    }
+
+    // search
+    .ui-icon-search:before
+    {
+        content: @fa-var-search;
+    }
+    .ui-icon-arrowreturnthick-1-w:before
+    {
+        content: @fa-var-undo;
+    }
+    .ui-icon-comment:before
+    {
+        content: @fa-var-comments-o;
+    }
+
+    // subgrid
+    .ui-icon-plus:before
+    {
+        content: @fa-var-plus;
+    }
+    .ui-icon-minus:before
+    {
+        content: @fa-var-minus;
+    }
+    .ui-icon-carat-1-sw
+    {
+        .fa-rotate-180;
+        &:before
+        {
+            content: @fa-var-reply;
+        }
+    }
+    .ui-icon-carat-1-se
+    {
+        .fa-rotate-180;
+        &:before
+        {
+            content: @fa-var-share;
+        }
+    }
+
+    // grouping
+    .ui-icon-circlesmall-plus:before
+    {
+        content: @fa-var-plus-square-o;
+    }
+    .ui-icon-circlesmall-minus:before
+    {
+        content: @fa-var-minus-square-o;
+    }
+
+    //treeGrid
+    .ui-icon-radio-off:before
+    {
+        content: @fa-var-circle-o;
+    }
+    .ui-icon-triangle-1-e:before
+    {
+        content: @fa-var-caret-right;
+    }
+    .ui-icon-triangle-1-w:before
+    {
+        content: @fa-var-caret-left;
+    }
+}

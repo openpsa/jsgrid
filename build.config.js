@@ -10,6 +10,7 @@ module.exports = {
         external: [ 'external/**/*.js' ],
         i18n: [ 'i18n/**/*.js' ],
         less: 'less/grid.less',
+        fa_less: 'less/iconsets/fontawesome.less',
         jsunit: [ 'test/**/*.js' ]
     },
 
