@@ -1,5 +1,5 @@
 /**
- * jsgrid - v0.1.0 - 2015-02-04
+ * jsgrid - v0.1.0 - 2015-02-07
  * https://openpsa.github.com/jsgrid
  *
  * Copyright (c) 2015 Tony Tomov, Oleg Kiriljuk, Andreas Flack, Laurent Rajchenbach, Matthew Hutton and other contributors to jqGrid before version 4.7.1
@@ -370,6 +370,13 @@ $.extend(true,$.jgrid,{
 					if (format[k] === 'g') {
 						ts.h = parseInt(date[k], 10);
 					}
+					if (format[k] === 'n') {
+						ts.m = parseInt(date[k], 10);
+					}
+					if (format[k] === 'j') {
+						ts.d = parseInt(date[k], 10);
+					}
+					
 					if(date[k] !== undefined) {
 						ts[format[k].toLowerCase()] = parseInt(date[k],10);
 					}
@@ -6124,6 +6131,8 @@ $.jgrid.extend({
 					v = this.stype === "custom" && $.isFunction(this.searchoptions.custom_value) && $elem.length > 0 && $elem[0].nodeName.toUpperCase() === "SPAN" ?
 						this.searchoptions.custom_value.call($t, $elem.children(".customelement:first"), "get") :
 						$elem.val();
+					// unformat if a date.
+					v = !!v && this.formatter && typeof this.formatter === 'string' && this.formatter === 'date' ? $.unformat.date.call($t,v,this) : v;		
 					if(v || so==="nu" || so==="nn") {
 						sdata[nm] = v;
 						sopt[nm] = so;
