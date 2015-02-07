@@ -221,7 +221,7 @@ $(document).ready(function()
             title: function()
             {
                 var groupname = $(this).text();
-                return 'click select/deselect all items in ' + groupname;
+                return 'click to select/deselect all items in ' + groupname;
             }
         });
 });
