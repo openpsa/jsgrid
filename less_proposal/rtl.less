@@ -1,0 +1,70 @@
+.ui-jqgrid
+{
+    .ui-jqgrid-caption-rtl
+    {
+        text-align: right;
+    }
+    .ui-jqgrid-hbox-rtl
+    {
+        float: right;
+        padding-left: 20px;
+    }
+    .ui-jqgrid-resize-ltr
+    {
+        float: right;
+        margin: -2px -2px -2px 0;
+    }
+    .ui-jqgrid-resize-rtl
+    {
+        float: left;
+        margin: -2px 0 -1px -3px;
+    }
+    .ui-sort-rtl
+    {
+        left: 0;
+    }
+
+    .ui-jqgrid-bdiv
+    {
+        tr
+        {
+            &.ui-row-ltr
+            {
+                & > td
+                {
+                    text-align: left;
+                }
+            }
+            &.ui-row-rtl
+            {
+                & > td
+                {
+                    text-align: right;
+                }
+            }
+        }
+    }
+
+    .tree-wrap-ltr
+    {
+        float: left;
+    }
+    .tree-wrap-rtl
+    {
+        float: right;
+    }
+    .ui-ellipsis
+    {
+        text-overflow: ellipsis;
+    }
+
+    /* FOOTER */
+    &.footrow-ltr td
+    {
+        text-align: left;
+    }
+    &.footrow-rtl td
+    {
+        text-align: right;
+    }
+}

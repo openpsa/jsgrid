@@ -1,0 +1,179 @@
+.ui-jqgrid
+{
+    position: relative;
+    .ui-jqgrid-bdiv
+    {
+        position: relative;
+        overflow: auto;
+    }
+    & > .ui-jqgrid-view
+    {
+        position: relative;
+    }
+    tr
+    {
+        &.jqgrow > td
+        {
+            overflow: hidden;
+        }
+        &.jqgroup > td
+        {
+            overflow: hidden;
+        }
+    }
+
+    /* LOADING */
+    & > .loading
+    {
+        position: absolute;
+        z-index: 101;
+        display: none;
+    }
+    .jqgrid-overlay
+    {
+        display: none;
+        z-index: 100;
+    }
+
+    /* HEADER */
+    .ui-jqgrid-titlebar
+    {
+        position: relative;
+    }
+    .ui-jqgrid-titlebar-close
+    {
+        position: absolute;
+        span
+        {
+            display: block;
+        }
+    }
+    & > .ui-jqgrid-view >.ui-jqgrid-hdiv
+    {
+        position: relative;
+        overflow: hidden;
+    }
+    .ui-jqgrid .ui-jqgrid-hbox
+    {
+        float: left;
+    }
+    .ui-jqgrid-htable th div
+    {
+        overflow: hidden;
+        position: relative;
+    }
+    .ui-jqgrid-labels > .ui-th-column > .ui-jqgrid-resize
+    {
+        position: relative;
+        display: inline;
+        overflow: hidden;
+    }
+    .ui-grid-ico-sort
+    {
+        overflow: hidden;
+        position: absolute;
+        display: inline;
+    }
+    .ui-jqgrid-labels th.ui-th-column
+    {
+        overflow: hidden;
+    }
+    .ui-jqgrid-labels .ui-th-column
+    {
+        &:extend(.ui-jqgrid-labels th.ui-th-column);
+    }
+
+    /* TOOLBAR */
+    & > .ui-jqgrid-view > .ui-userdata
+    {
+        overflow: hidden;
+    }
+
+    /* SEARCH */
+    .ui-search-toolbar th > *
+    {
+        display: table-cell
+    }
+
+    /* PAGER */
+    & > .ui-state-default.ui-jqgrid-pager,
+    & > .ui-jqgrid-view .ui-jqgrid-toppager
+    {
+        position: relative;
+        overflow: hidden;
+        .ui-pg-div
+        {
+            float: left;
+            position: relative;
+            span.ui-icon
+            {
+                float: left;
+            }
+        }
+    }
+    .ui-jqgrid-toppager .ui-pager-control,
+    .ui-jqgrid-pager .ui-pager-control
+    {
+        position: relative;
+    }
+    .ui-pg-table
+    {
+        position: relative;
+        td
+        {
+            vertical-align: middle;
+        }
+        .ui-pg-selbox
+        {
+            display: block;
+        }
+        .ui-separator
+        {
+            float: right;
+        }
+        .ui-paging-info
+        {
+            display: inline;
+        }
+        .ui-pg-button
+        {
+            display: inline-block;
+            span
+            {
+                display: block;
+                float: left;
+            }
+        }
+    }
+
+    /* FOOTER */
+    tr
+    {
+        &.jqfoot > td
+        {
+            overflow: hidden;
+        }
+        &.footrow td
+        {
+            overflow: hidden;
+        }
+    }
+    .ui-jqgrid-resize-mark
+    {
+        position: absolute;
+        overflow: hidden;
+        display: none;
+        z-index: 99999;
+    }
+    & > .ui-jqgrid-view > .ui-jqgrid-sdiv
+    {
+        position: relative;
+        overflow: hidden;
+    }
+
+}
+
+/* SEARCH */
+#sopt_menu{
+    position: absolute;
+}

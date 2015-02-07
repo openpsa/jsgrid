@@ -1,0 +1,111 @@
+@default-font-size: 11px;
+
+.ui-jqgrid
+{
+    div
+    {
+        line-height: normal;
+    }
+    & > .ui-jqgrid-view
+    {
+        font-size: @default-font-size;
+        input,
+        select,
+        textarea,
+        button
+        {
+            font-size: @default-font-size;
+        }
+    }
+    .ui-jqgrid-bdiv
+    {
+        text-align: left;
+    }
+    tr
+    {
+        &.jqgrow > td
+        {
+            font-weight: normal;
+            white-space: pre;
+        }
+        &.jqgroup > td
+        {
+            font-weight: normal;
+            white-space: pre;
+        }
+    }
+
+    /* LOADING */
+    & > .loading
+    {
+        text-align: center;
+        font-weight: bold;
+        font-size: @default-font-size;
+    }
+
+    /* HEADER */
+    .ui-jqgrid-titlebar
+    {
+        font-size: 12px;
+    }
+    .ui-jqgrid-caption
+    {
+        text-align: left;
+    }
+    .ui-th-div-ie
+    {
+        white-space: nowrap;
+    }
+    .ui-jqgrid-labels th.ui-th-column
+    {
+        white-space: nowrap;
+        text-align: center;
+    }
+
+    /* PAGER */
+    & > .ui-state-default.ui-jqgrid-pager,
+    & > .ui-jqgrid-view .ui-jqgrid-toppager
+    {
+        white-space: nowrap;
+        font-size: @default-font-size;
+    }
+    .ui-pg-table
+    {
+        td
+        {
+            font-weight: normal;
+        }
+        .ui-pg-input,
+        .ui-pg-selbox
+        {
+            font-size: .8em;
+            line-height: inherit
+        }
+    }
+    .ui-paging-info
+    {
+        font-weight: normal;
+    }
+
+    /* FOOTER */
+    tr
+    {
+        &.jqfoot > td
+        {
+            font-weight: bold;
+            white-space: pre;
+        }
+        &.footrow td
+        {
+            font-weight: bold;
+            white-space:nowrap;
+        }
+    }
+}
+
+/* SEARCH */
+#sopt_menu{
+    .sopt-menu-operand{
+        font-weight: bold;
+    }
+}

@@ -1,0 +1,150 @@
+.ui-jqgrid
+{
+    table
+    {
+        border-style: hidden;
+        td
+        {
+            border-left-style: solid;
+            border-left-color: inherit;
+            border-right-style: solid;
+            border-right-color: inherit;
+        }
+    }
+    .ui-state-highlight,
+    .ui-state-hover
+    {
+        td
+        {
+            border-top-style: solid;
+            border-top-color: inherit;
+            border-bottom-style: solid;
+            border-bottom-color: inherit;
+        }
+    }
+    .ui-jqgrid-btable
+    {
+        outline-style: none;
+    }
+    tr
+    {
+        &.jqgrow
+        {
+            outline-style: none;
+        }
+        &.jqgroup
+        {
+            outline-style: none;
+        }
+        &.jqgfirstrow
+        {
+            border-bottom-style: none;
+        }
+    }
+
+    /* HEADER */
+    .ui-jqgrid-titlebar
+    {
+        border-top-style: none;
+        border-left-style: none;
+        border-right-style: none;
+    }
+    .ui-jqgrid-titlebar-close
+    {
+        cursor: pointer;
+    }
+    & > .ui-jqgrid-view > .ui-jqgrid-hdiv
+    {
+        border-left-style: none;
+        border-right-style: none;
+        border-top-style: none;
+    }
+    .ui-grid-ico-sort
+    {
+        &.ui-state-disabled
+        {
+            cursor: pointer !important;
+        }
+    }
+    .ui-jqgrid-sortable
+    {
+        cursor: pointer;
+    }
+    .ui-jqgrid-labels > .ui-th-column > .ui-jqgrid-resize
+    {
+        cursor: e-resize;
+    }
+
+    /* TOOLBAR */
+    & > .ui-jqgrid-view > .ui-userdata
+    {
+        border-left-style: none;
+        border-right-style: none;
+    }
+
+    /* SEARCH */
+    .ui-search-toolbar a
+    {
+        &.g-menu-item,
+        &.soptclass,
+        &.clearsearchclass
+        {
+            cursor: pointer;
+        }
+    }
+
+    /* PAGER */
+    & > .ui-state-default.ui-jqgrid-pager,
+    & > .ui-jqgrid-view .ui-jqgrid-toppager
+    {
+        border-style: none;
+    }
+    & > .ui-jqgrid-view .ui-jqgrid-toppager
+    {
+        border-bottom-style: solid;
+    }
+    .ui-pg-table td
+    {
+        border-style: none;
+    }
+    .ui-separator
+    {
+        border-left-style: solid;
+        border-left-color: #ccc;
+        border-right-style: solid;
+        border-right-color: #ccc;
+    }
+    .ui-pg-button
+    {
+        cursor: pointer;
+        &.ui-state-hover
+        {
+            border-style: solid;
+        }
+    }
+
+    /* FOOTER */
+    .ui-jqgrid-resize-mark
+    {
+        background-color: #777;
+        cursor: e-resize;
+        cursor: col-resize;
+    }
+    .ui-jqgrid-ftable
+    {
+        border-top-style: inherit;
+    }
+}
+/* SEARCH */
+#sopt_menu{
+    background-color: #FAFAFA;
+    a{
+        cursor: pointer;
+        border-color: #CCC;
+        border-style: solid;
+        color: #999;
+    }
+    .sopt-menu-operand{
+        color: #000;
+    }
+}
