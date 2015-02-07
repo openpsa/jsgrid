@@ -230,6 +230,8 @@ $.jgrid.extend({
 					v = this.stype === "custom" && $.isFunction(this.searchoptions.custom_value) && $elem.length > 0 && $elem[0].nodeName.toUpperCase() === "SPAN" ?
 						this.searchoptions.custom_value.call($t, $elem.children(".customelement:first"), "get") :
 						$elem.val();
+					// unformat if a date.
+					v = !!v && this.formatter && typeof this.formatter === 'string' && this.formatter === 'date' ? $.unformat.date.call($t,v,this) : v;		
 					if(v || so==="nu" || so==="nn") {
 						sdata[nm] = v;
 						sopt[nm] = so;
