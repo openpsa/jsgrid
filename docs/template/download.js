@@ -5,7 +5,8 @@ $(document).ready(function()
         button = $('#download-button'),
         defaultlocale = $('#default-locale'),
         selected_modules = [],
-        preamble;
+        preamble,
+        version = '';
 
 
     function report_error(error)
@@ -13,6 +14,18 @@ $(document).ready(function()
         var message = error.responseText || error.statusText;
         $('<div class="alert alert-danger" role="alert"><strong>Error:</strong> ' + message + '</div>')
             .insertAfter($('#download-button'));
+    }
+
+    function getVersion()
+    {
+        if (version === '') {
+            version = load_file(proxy_prefix + 'package.json')
+                    .then(function (e) {
+                        var r = JSON.parse(e);
+                        return r.version;
+                    });
+        }
+        return version;
     }
 
     function build_base()
@@ -86,8 +99,8 @@ $(document).ready(function()
         {
             var zip = new JSZip();
 
-            zip.file("jsgrid-0.1.0-custom.min.js", preamble + "\n" + content);
-            zip.file("jsgrid-0.1.0-custom.js", preamble + "\n" + js);
+            zip.file('jsgrid-' + getVersion() + '-custom.min.js', preamble + "\n" + content);
+            zip.file('jsgrid-' + getVersion() + '-custom.js', preamble + "\n" + js);
             return zip;
         });
     }
@@ -110,10 +123,10 @@ $(document).ready(function()
     {
         button.button('css');
 
-        return load_file(proxy_prefix + 'dist/jsgrid-0.1.0.min.css')
+        return load_file(proxy_prefix + 'dist/jsgrid-' + getVersion() + '.min.css')
             .then(function(e)
             {
-                zip.file("jsgrid-0.1.0.min.css", e);
+                zip.file('jsgrid-' + getVersion() + '.min.css', e);
                 return zip;
             });
     }
