@@ -204,12 +204,24 @@ $(document).ready(function()
     });
 
     $('h3')
-        .addClass('checkbox')
-        .prepend(
-            $('<input type="checkbox">')
-                .on('change', function()
-                    {
-                        $(this).closest('fieldset').find('div.checkbox input[type="checkbox"]:not([disabled])').prop('checked', $(this).is(':checked'));
-                    }))
-        .wrapInner('<label>');
+        .prepend($('<span class="glyphicon glyphicon-unchecked">'))
+        .wrapInner($('<span class="group-toggle"></span>'));
+
+    $('h3 .group-toggle')
+        .on('click', function()
+        {
+            var toggle = $(this).find('.glyphicon'),
+                is_checked = toggle.hasClass('glyphicon-check');
+            toggle.toggleClass('glyphicon-unchecked glyphicon-check');
+            $(this).closest('fieldset').find('div.checkbox input[type="checkbox"]:not([disabled])').prop('checked', !is_checked);
+        })
+        .tooltip(
+        {
+            placement: 'auto left',
+            title: function()
+            {
+                var groupname = $(this).text();
+                return 'click select/deselect all items in ' + groupname;
+            }
+        });
 });
