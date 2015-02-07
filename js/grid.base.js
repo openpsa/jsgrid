@@ -197,6 +197,13 @@ $.extend(true,$.jgrid,{
 					if (format[k] === 'g') {
 						ts.h = parseInt(date[k], 10);
 					}
+					if (format[k] === 'n') {
+						ts.m = parseInt(date[k], 10);
+					}
+					if (format[k] === 'j') {
+						ts.d = parseInt(date[k], 10);
+					}
+					
 					if(date[k] !== undefined) {
 						ts[format[k].toLowerCase()] = parseInt(date[k],10);
 					}
