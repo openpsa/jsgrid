@@ -46,12 +46,7 @@
     }
     tr
     {
-        &.jqgrow > td
-        {
-            height: 22px;
-            padding: 0 2px 0 2px;
-        }
-        &.jqgroup > td
+        &.jqgrow > td, &.jqgroup > td
         {
             height: 22px;
             padding: 0 2px 0 2px;
@@ -78,7 +73,6 @@
     {
         padding: .3em .2em .2em .3em;
     }
-
     .ui-jqgrid-title
     {
         margin: .1em 0 .2em;
@@ -102,7 +96,6 @@
             padding: 0;
         }
     }
-
     & > .ui-jqgrid-view >.ui-jqgrid-hdiv
     {
         margin: 0;
@@ -133,7 +126,6 @@
             }
         }
     }
-
     .ui-th-div-ie
     {
         zoom: 1;
@@ -149,26 +141,26 @@
         height: 21px;
         width: .3em;
     }
+    .ui-icon-asc, .ui-icon-desc
+    {
+        height: 12px;
+    }
     .ui-icon-asc
     {
         margin-top: -3px;
-        height: 12px;
     }
     .ui-icon-desc
     {
         margin-top: 3px;
-        height: 12px;
     }
-    .ui-i-asc
+    .ui-i-asc, .ui-i-desc
     {
         margin-top: 0;
         height: 16px;
     }
     .ui-i-desc
     {
-        margin-top: 0;
         margin-left: 13px;
-        height: 16px;
     }
 
     /* TOOLBAR */
@@ -217,7 +209,7 @@
         padding: 0;
         width: auto;
         margin: 0;
-        td
+        td, .ui-pg-selbox
         {
             padding: 1px;
         }
@@ -227,10 +219,6 @@
             height: auto;
             width: auto;
             margin: 0;
-        }
-        .ui-pg-selbox
-        {
-            padding: 1px
         }
     }
     .ui-state-disabled:hover
@@ -279,18 +267,18 @@
     /* FOOTER */
     tr
     {
+        &.jqfoot > td, &.footrow td{
+            padding: 0 2px 0 2px;
+        }
         &.jqfoot > td
         {
             height: 22px;
-            padding: 0 2px 0 2px;
         }
         &.footrow td
         {
             height: 21px;
-            padding: 0 2px 0 2px;
         }
     }
-
     .ui-jqgrid-resize-mark
     {
         width: 2px;
@@ -299,13 +287,11 @@
         height: 100px;
         border: 0 none;
     }
-
     & > .ui-jqgrid-view > .ui-jqgrid-sdiv
     {
         margin: 0;
         padding: 0;
     }
-
     .ui-jqgrid-ftable
     {
         table-layout: fixed;

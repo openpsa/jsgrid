@@ -3,20 +3,11 @@
     position: relative;
     .ui-jqgrid-bdiv
     {
-        position: relative;
         overflow: auto;
-    }
-    & > .ui-jqgrid-view
-    {
-        position: relative;
     }
     tr
     {
-        &.jqgrow > td
-        {
-            overflow: hidden;
-        }
-        &.jqgroup > td
+        &.jqgrow > td, &.jqgroup > td
         {
             overflow: hidden;
         }
@@ -36,10 +27,6 @@
     }
 
     /* HEADER */
-    .ui-jqgrid-titlebar
-    {
-        position: relative;
-    }
     .ui-jqgrid-titlebar-close
     {
         position: absolute;
@@ -50,7 +37,6 @@
     }
     & > .ui-jqgrid-view >.ui-jqgrid-hdiv
     {
-        position: relative;
         overflow: hidden;
     }
     .ui-jqgrid .ui-jqgrid-hbox
@@ -60,11 +46,9 @@
     .ui-jqgrid-htable th div
     {
         overflow: hidden;
-        position: relative;
     }
     .ui-jqgrid-labels > .ui-th-column > .ui-jqgrid-resize
     {
-        position: relative;
         display: inline;
         overflow: hidden;
     }
@@ -99,26 +83,18 @@
     & > .ui-state-default.ui-jqgrid-pager,
     & > .ui-jqgrid-view .ui-jqgrid-toppager
     {
-        position: relative;
         overflow: hidden;
         .ui-pg-div
         {
             float: left;
-            position: relative;
             span.ui-icon
             {
                 float: left;
             }
         }
     }
-    .ui-jqgrid-toppager .ui-pager-control,
-    .ui-jqgrid-pager .ui-pager-control
-    {
-        position: relative;
-    }
     .ui-pg-table
     {
-        position: relative;
         td
         {
             vertical-align: middle;
@@ -149,11 +125,7 @@
     /* FOOTER */
     tr
     {
-        &.jqfoot > td
-        {
-            overflow: hidden;
-        }
-        &.footrow td
+        &.jqfoot > td, &.footrow td
         {
             overflow: hidden;
         }
@@ -167,10 +139,8 @@
     }
     & > .ui-jqgrid-view > .ui-jqgrid-sdiv
     {
-        position: relative;
         overflow: hidden;
     }
-
 }
 
 /* SEARCH */
