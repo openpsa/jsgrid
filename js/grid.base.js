@@ -3138,8 +3138,10 @@ $.fn.jqGrid = function( pin ) {
 				return this;
 			}
 			ri = ptr[0].id;
-			var scb = $(td).hasClass("cbox"), cSel = feedback.call(ts, "beforeSelectRow", ri, e);
-			if (td.tagName === 'A' || ((jgrid.detectRowEditing.call(ts, ri) !== null) && !scb)) { return; }
+			var scb = $(td).hasClass("cbox"), cSel = feedback.call(ts, "beforeSelectRow", ri, e),
+                            editingInfo = jgrid.detectRowEditing.call(ts, ri),
+                            locked = editingInfo!= null && editingInfo.mode !== "cellEditing";
+			if (td.tagName === 'A' || (locked && !scb)) { return; }
 			td = $(td).closest("tr.jqgrow>td");
 			if (td.length > 0) {
 				ci = getCellIndex(td);

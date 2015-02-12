@@ -1,0 +1,703 @@
+/*           */
+/* FONT PART */
+/*           */
+@default-font-size: 11px;
+.ui-jqgrid
+{
+    line-height: normal;
+    font-size: @default-font-size;
+    text-align: left;
+    tr
+    {
+        &.jqgrow > td, &.jqgroup > td
+        {
+            font-weight: normal;
+            white-space: pre;
+        }
+    }
+
+    /* LOADING */
+    & > .loading
+    {
+        text-align: center;
+        font-weight: bold;
+    }
+
+    /* HEADER */
+    .ui-jqgrid-titlebar
+    {
+        font-size: 12px;
+    }
+    .ui-th-div-ie
+    {
+        white-space: nowrap;
+    }
+    .ui-jqgrid-labels th.ui-th-column
+    {
+        white-space: nowrap;
+        text-align: center;
+    }
+
+    /* PAGER */
+    & > .ui-state-default.ui-jqgrid-pager,
+    & > .ui-jqgrid-view .ui-jqgrid-toppager
+    {
+        white-space: nowrap;
+    }
+    .ui-pg-table
+    {
+        td
+        {
+            font-weight: normal;
+        }
+        .ui-pg-input,
+        .ui-pg-selbox
+        {
+            font-size: .8em;
+        }
+    }
+
+    /* FOOTER */
+    tr
+    {
+        &.jqfoot > td
+        {
+            font-weight: bold;
+            white-space: pre;
+        }
+        &.footrow td
+        {
+            font-weight: bold;
+            white-space:nowrap;
+        }
+    }
+}
+
+/* SEARCH */
+#sopt_menu{
+    .sopt-menu-operand{
+        font-weight: bold;
+    }
+}
+
+
+/*            */
+/* COLOR PART */
+/*            */
+.ui-jqgrid
+{
+    table
+    {
+        border-style: hidden;
+        td
+        {
+            border-left-style: solid;
+            border-left-color: inherit;
+            border-right-style: solid;
+            border-right-color: inherit;
+        }
+    }
+    .ui-state-highlight,
+    .ui-state-hover
+    {
+        td
+        {
+            border-top-style: solid;
+            border-top-color: inherit;
+            border-bottom-style: solid;
+            border-bottom-color: inherit;
+        }
+    }
+    .ui-jqgrid-btable
+    {
+        outline-style: none;
+    }
+    tr
+    {
+        &.jqgrow, &.jqgroup
+        {
+            outline-style: none;
+        }
+        &.jqgfirstrow
+        {
+            border-bottom-style: none;
+        }
+    }
+
+    /* HEADER */
+    & > .ui-jqgrid-view > .ui-jqgrid-hdiv,
+    .ui-jqgrid-titlebar
+    {
+        border-top-style: none;
+        border-left-style: none;
+        border-right-style: none;
+    }
+    .ui-jqgrid-titlebar-close,
+    .ui-jqgrid-sortable
+    {
+        cursor: pointer;
+    }
+    .ui-grid-ico-sort
+    {
+        &.ui-state-disabled
+        {
+            cursor: pointer !important;
+        }
+    }
+    .ui-jqgrid-labels > .ui-th-column > .ui-jqgrid-resize
+    {
+        cursor: e-resize;
+    }
+
+    /* TOOLBAR */
+    & > .ui-jqgrid-view > .ui-userdata
+    {
+        border-left-style: none;
+        border-right-style: none;
+    }
+
+    /* SEARCH */
+    .ui-search-toolbar a
+    {
+        &.g-menu-item,
+        &.soptclass,
+        &.clearsearchclass
+        {
+            cursor: pointer;
+        }
+    }
+
+    /* PAGER */
+    & > .ui-state-default.ui-jqgrid-pager,
+    & > .ui-jqgrid-view .ui-jqgrid-toppager
+    {
+        border-style: none;
+    }
+    & > .ui-jqgrid-view .ui-jqgrid-toppager
+    {
+        border-bottom-style: solid;
+    }
+    .ui-pg-table td
+    {
+        border-style: none;
+    }
+    .ui-separator
+    {
+        border-left-style: solid;
+        border-left-color: #ccc;
+        border-right-style: solid;
+        border-right-color: #ccc;
+    }
+    .ui-pg-button
+    {
+        cursor: pointer;
+        &.ui-state-hover
+        {
+            border-style: solid;
+        }
+    }
+
+    /* FOOTER */
+    .ui-jqgrid-resize-mark
+    {
+        background-color: #777;
+        cursor: e-resize;
+        cursor: col-resize;
+    }
+    .ui-jqgrid-ftable
+    {
+        border-top-style: inherit;
+    }
+}
+/* SEARCH */
+#sopt_menu{
+    background-color: #FAFAFA;
+    a{
+        cursor: pointer;
+        border-color: #CCC;
+        border-style: solid;
+        color: #999;
+    }
+    .sopt-menu-operand{
+        color: #000;
+    }
+}
+
+
+/*                   */
+/* POSITIONNING PART */
+/*                   */
+.ui-jqgrid
+{
+    position: relative;
+    .ui-jqgrid-bdiv
+    {
+        overflow: auto;
+    }
+    tr
+    {
+        &.jqgrow > td, &.jqgroup > td
+        {
+            overflow: hidden;
+        }
+    }
+
+    /* LOADING */
+    & > .loading
+    {
+        position: absolute;
+        z-index: 101;
+        display: none;
+    }
+    .jqgrid-overlay
+    {
+        display: none;
+        z-index: 100;
+    }
+
+    /* HEADER */
+    .ui-jqgrid-titlebar-close
+    {
+        position: absolute;
+        span
+        {
+            display: block;
+        }
+    }
+    & > .ui-jqgrid-view >.ui-jqgrid-hdiv
+    {
+        overflow: hidden;
+    }
+    .ui-jqgrid .ui-jqgrid-hbox
+    {
+        float: left;
+    }
+    .ui-jqgrid-htable th div
+    {
+        overflow: hidden;
+    }
+    .ui-jqgrid-labels > .ui-th-column > .ui-jqgrid-resize
+    {
+        display: inline;
+        overflow: hidden;
+    }
+    .ui-grid-ico-sort
+    {
+        overflow: hidden;
+        position: absolute;
+        display: inline;
+    }
+    .ui-jqgrid-labels th.ui-th-column
+    {
+        overflow: hidden;
+    }
+    .ui-jqgrid-labels .ui-th-column
+    {
+        &:extend(.ui-jqgrid-labels th.ui-th-column);
+    }
+
+    /* TOOLBAR */
+    & > .ui-jqgrid-view > .ui-userdata
+    {
+        overflow: hidden;
+    }
+
+    /* SEARCH */
+    .ui-search-toolbar th > *
+    {
+        display: table-cell
+    }
+
+    /* PAGER */
+    & > .ui-state-default.ui-jqgrid-pager,
+    & > .ui-jqgrid-view .ui-jqgrid-toppager
+    {
+        overflow: hidden;
+        .ui-pg-div
+        {
+            float: left;
+            span.ui-icon
+            {
+                float: left;
+            }
+        }
+    }
+    .ui-pg-table
+    {
+        td
+        {
+            vertical-align: middle;
+        }
+        .ui-pg-selbox
+        {
+            display: block;
+        }
+        .ui-separator
+        {
+            float: right;
+        }
+        .ui-paging-info
+        {
+            display: inline;
+        }
+        .ui-pg-button
+        {
+            display: inline-block;
+            span
+            {
+                display: block;
+                float: left;
+            }
+        }
+    }
+
+    /* FOOTER */
+    tr
+    {
+        &.jqfoot > td, &.footrow td
+        {
+            overflow: hidden;
+        }
+    }
+    .ui-jqgrid-resize-mark
+    {
+        position: absolute;
+        overflow: hidden;
+        display: none;
+        z-index: 99999;
+    }
+    & > .ui-jqgrid-view > .ui-jqgrid-sdiv
+    {
+        overflow: hidden;
+    }
+}
+
+/* SEARCH */
+#sopt_menu{
+    position: absolute;
+}
+
+
+/*             */
+/* SIZING PART */
+/*             */
+.ui-jqgrid
+{
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    table
+    {
+        border-collapse: collapse;
+        border-width: 0;
+        td
+        {
+            padding: 0;
+            border-left-width: 1px;
+            border-right-width: 1px;
+        }
+    }
+    .ui-state-highlight,
+    .ui-state-hover
+    {
+        td
+        {
+            border-top-width: 1px;
+            border-bottom-width: 1px;
+        }
+    }
+    & > .ui-jqgrid-view
+    {
+        left: 0;
+        top: 0;
+        padding: 0;
+    }
+    .ui-jqgrid-bdiv
+    {
+        margin: 0;
+        padding: 0;
+    }
+    .ui-jqgrid-btable
+    {
+        table-layout: fixed;
+        margin: 0;
+        td.jqgrid-rownum
+        {
+            padding: 0 2px 0 2px;
+            margin: 0;
+        }
+    }
+    tr
+    {
+        &.jqgrow > td, &.jqgroup > td
+        {
+            height: 22px;
+            padding: 0 2px 0 2px;
+        }
+        &.jqgfirstrow > td
+        {
+            padding: 0 2px 0 2px;
+        }
+    }
+
+    /* LOADING */
+    & > .loading
+    {
+        top: 45%;
+        left: 45%;
+        width: auto;
+        padding: 6px;
+        margin: 5px;
+        border-width: 2px;
+    }
+
+    /* HEADER */
+    .ui-jqgrid-titlebar
+    {
+        padding: .3em .2em .2em .3em;
+    }
+    .ui-jqgrid-title
+    {
+        margin: .1em 0 .2em;
+    }
+    .ui-jqgrid-titlebar-close
+    {
+        top: 50%;
+        width: 19px;
+        margin: -10px 0 0 0;
+        padding: 1px;
+        height: 18px;
+    }
+    .ui-jqgrid-titlebar-close
+    {
+        span
+        {
+            margin: 1px;
+        }
+        &:hover
+            {
+            padding: 0;
+        }
+    }
+    & > .ui-jqgrid-view >.ui-jqgrid-hdiv
+    {
+        margin: 0;
+        padding: 0;
+        height: auto;
+    }
+    .ui-jqgrid .ui-jqgrid-hbox
+    {
+        padding-right: 20px;
+    }
+    .ui-th-column .cbox
+    {
+        margin-left: 1px;
+        margin-right: 1px;
+    }
+    .ui-jqgrid-htable
+    {
+        table-layout: fixed;
+        margin: 0;
+        th
+        {
+            height: auto;
+            padding: 0 2px 0 2px;
+            div
+            {
+                height: auto;
+                margin: 2px;
+            }
+        }
+    }
+    .ui-th-div-ie
+    {
+        zoom: 1;
+        height: 17px;
+        & > .cbox
+        {
+            margin-left: -1px;
+            margin-right: -1px;
+        }
+    }
+    .ui-jqgrid-labels > .ui-th-column > .ui-jqgrid-resize
+    {
+        height: 21px;
+        width: .3em;
+    }
+    .ui-icon-asc, .ui-icon-desc
+    {
+        height: 12px;
+    }
+    .ui-icon-asc
+    {
+        margin-top: -3px;
+    }
+    .ui-icon-desc
+    {
+        margin-top: 3px;
+    }
+    .ui-i-asc, .ui-i-desc
+    {
+        margin-top: 0;
+        height: 16px;
+    }
+    .ui-i-desc
+    {
+        margin-left: 13px;
+    }
+
+    /* TOOLBAR */
+    & > .ui-jqgrid-view > .ui-userdata
+    {
+        height : 21px;
+    }
+
+    /* SEARCH */
+    .ui-search-toolbar
+    {
+        padding: 2px 5px;
+        .ui-search-oper
+        {
+            width: 20px;
+            padding-right: 0.5em;
+        }
+        .ui-search-input, .ui-search-input > *
+        {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            width: 100%;
+        }
+    }
+
+    /* PAGER */
+    & > .ui-state-default.ui-jqgrid-pager,
+    & > .ui-jqgrid-view .ui-jqgrid-toppager
+    {
+        margin: 0;
+        padding: 0;
+        height: auto;
+        min-height: 22px;
+        .ui-pg-div
+        {
+            padding: 1px 0;
+            span.ui-icon
+            {
+                margin: 0 2px;
+            }
+        }
+    }
+    .ui-pg-table
+    {
+        padding: 0;
+        width: auto;
+        margin: 0;
+        td, .ui-pg-selbox
+        {
+            padding: 1px;
+        }
+        .ui-pg-input,
+        .ui-pg-selbox
+        {
+            height: auto;
+            width: auto;
+            margin: 0;
+        }
+    }
+    .ui-state-disabled:hover
+        {
+        padding: 1px;
+    }
+    .ui-separator
+    {
+        height: 18px;
+        border-left-width: 1px;
+        border-right-width: 1px;
+        margin: 1px;
+    }
+    .ui-paging-info
+    {
+        height: auto;
+        margin-top: 3px;
+        margin-right: 4px;
+    }
+    td
+    {
+        input, select, textarea
+        {
+            margin: 0;
+        }
+        textarea
+        {
+            width: auto;
+            height: auto;
+        }
+    }
+    .ui-pg-button
+    {
+        height: auto;
+        &.ui-state-hover
+        {
+            padding: 0;
+            border-width: 1px;
+        }
+        span
+        {
+            margin: 1px;
+        }
+    }
+
+    /* FOOTER */
+    tr
+    {
+        &.jqfoot > td, &.footrow td{
+            padding: 0 2px 0 2px;
+        }
+        &.jqfoot > td
+        {
+            height: 22px;
+        }
+        &.footrow td
+        {
+            height: 21px;
+        }
+    }
+    .ui-jqgrid-resize-mark
+    {
+        width: 2px;
+        left: 0;
+        top: 0;
+        height: 100px;
+        border: 0 none;
+    }
+    & > .ui-jqgrid-view > .ui-jqgrid-sdiv
+    {
+        margin: 0;
+        padding: 0;
+    }
+    .ui-jqgrid-ftable
+    {
+        table-layout: fixed;
+        margin-bottom: 0;
+    }
+}
+
+/* SEARCH */
+a
+{
+    &.g-menu-item,
+    &.soptclass,
+    &.clearsearchclass
+    {
+        padding-right: 0.3em;
+        padding-left: 0.3em;
+    }
+}
+#sopt_menu{
+    padding: 3px 0;
+    a{
+        padding: 0 2px;
+        border-width: 1px;
+        margin: 0 2px;
+    }
+}

@@ -1,3 +1,6 @@
+/*           */
+/* FONT PART */
+/*           */
 .ui-jqgrid
 {
     .selected-row
@@ -10,29 +13,49 @@
     }
 }
 
-.ui-inline-button
+
+/*            */
+/* COLOR PART */
+/*            */
+.ui-jqgrid .ui-inline-button
 {
-    float: left;
     cursor: pointer;
 }
 
-.ui-inline-del, .ui-inline-cancel
+
+/*                   */
+/* POSITIONNING PART */
+/*                   */
+.ui-jqgrid
 {
-    margin-left: 5px;
+    .ui-inline-button
+    {
+        float: left;
+    }
+    .ui-inline-save, .ui-inline-cancel
+    {
+        display:none;
+    }
 }
 
-.ui-inline-save, .ui-inline-cancel
-{
-    display:none;
-}
 
-.ui-state-hover
+/*             */
+/* SIZING PART */
+/*             */
+.ui-jqgrid
 {
-    .ui-inline-button&
-     {
-         span
-         {
-             margin: -1px;
-         }
-     }
+    .ui-inline-del, .ui-inline-cancel
+    {
+        margin-left: 5px;
+    }
+    .ui-state-hover
+    {
+        &.ui-inline-button
+        {
+            span
+            {
+                margin: -1px;
+            }
+        }
+    }
 }

@@ -1,3 +1,87 @@
+/*           */
+/* FONT PART */
+/*           */
+.ui-jqdialog
+{
+    td
+    {
+        &.EditButton
+        {
+            text-align: right;
+        }
+        &.navButton
+        {
+            text-align: center;
+        }
+    }
+    .CaptionTD
+    {
+        white-space: nowrap;
+    }
+    .form-view-data
+    {
+        white-space: pre
+    }.fm-button
+    {
+        text-decoration: none;
+        text-align: center;
+    }
+}
+
+
+/*            */
+/* COLOR PART */
+/*            */
+.ui-jqdialog
+{
+    .fm-button
+    {
+        cursor: pointer;
+    }
+}
+
+
+/*                   */
+/* POSITIONNING PART */
+/*                   */
+.ui-jqdialog
+{
+    .CaptionTD
+    {
+        vertical-align: middle;
+    }
+    .DataTD
+    {
+        vertical-align: top;
+    }
+    .fm-button
+    {
+        display: inline-block;
+        position: relative;
+        zoom: 1;
+    }
+    .ui-jqdialog-content
+    {
+        .fm-button-icon-left .ui-icon
+        {
+            position: absolute;
+        }
+        .fm-button-icon-right .ui-icon
+        {
+            position: absolute;
+        }
+    }
+}
+#nData,
+#pData
+{
+    float: left;
+}
+
+
+/*             */
+/* SIZING PART */
+/*             */
 .ui-jqdialog
 {
     .FormGrid
@@ -10,9 +94,7 @@
         margin-bottom: 0;
         td
         {
-            input,
-            select,
-            textarea
+            input, select, textarea
             {
                 margin: 0;
             }
@@ -32,13 +114,11 @@
     {
         &.EditButton
         {
-            text-align: right;
             padding-bottom: 5px;
             padding-top: 5px;
         }
         &.navButton
         {
-            text-align: center;
             padding-bottom: 5px;
             padding-top: 5px;
         }
@@ -55,31 +135,18 @@
     }
     .CaptionTD
     {
-        vertical-align: middle;
         border: 0 none;
-        padding: 2px; white-space: nowrap;
+        padding: 2px;
     }
     .DataTD
     {
         padding: 2px;
         border: 0 none;
-        vertical-align: top;
     }
-    .form-view-data
-    {
-        white-space: pre
-    }
-
     .fm-button
     {
-        display: inline-block;
         margin:0 4px 0 0;
         padding: .4em .5em;
-        text-decoration: none;
-        cursor: pointer;
-        position: relative;
-        text-align: center;
-        zoom: 1;
     }
     .ui-jqdialog-content
     {
@@ -91,7 +158,6 @@
                 right: auto;
                 left: .2em;
                 margin-left: 0;
-                position: absolute;
                 top: 50%;
                 margin-top: -8px;
             }
@@ -104,7 +170,6 @@
                 left: auto;
                 right: .2em;
                 margin-left: 0;
-                position: absolute;
                 top: 50%;
                 margin-top: -8px;
             }
@@ -115,7 +180,6 @@
 #nData,
 #pData
 {
-    float: left;
     margin: 3px;
     padding: 0;
     width: 15px;
