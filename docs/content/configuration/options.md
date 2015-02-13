@@ -203,16 +203,23 @@ Defines the caption for the grid. This caption appears in the caption layer, whi
 #### `hidegrid`
 **Type:** boolean
 **Default:** `true`
-**Changeable:** No
+**Changeable:** Yes
 
 Enables or disables the show/hide grid button, which appears on the right side of the caption layer (see How It Works). Takes effect only if the `caption` property is not empty.
 
 #### `hiddengrid`
 **Type:** boolean
 **Default:** `false`
-**Changeable:** No
+**Changeable:** Yes
 
 If set to `true` the grid is initially is hidden. The data is not loaded (no request is sent) and only the caption layer is shown. When the show/hide button is clicked for the first time to show grid, the request is sent to the server, the data is loaded, and grid is shown. From this point we have a regular grid. This option has effect only if the `caption` property is not empty and the `hidegrid` property is set to `true`.
+
+#### `fullscreen`
+**Type:** boolean
+**Default:** `false`
+**Changeable:** Yes
+
+If set to `true`, enable the fullscreen button, which appears on the right side of the caption layer (see How It Works). Beware : Safari 5.1 disallow keyboard entries in fullscreen mode.
 
 ### `footerrow`
 **Type:** boolean

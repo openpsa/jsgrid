@@ -132,7 +132,6 @@
         border-left-style: none;
         border-right-style: none;
     }
-    .ui-jqgrid-titlebar-close,
     .ui-jqgrid-sortable
     {
         cursor: pointer;
@@ -256,14 +255,6 @@
     }
 
     /* HEADER */
-    .ui-jqgrid-titlebar-close
-    {
-        position: absolute;
-        span
-        {
-            display: block;
-        }
-    }
     & > .ui-jqgrid-view >.ui-jqgrid-hdiv
     {
         overflow: hidden;
@@ -455,29 +446,17 @@
     .ui-jqgrid-titlebar
     {
         padding: .3em .2em .2em .3em;
+        a{
+            height: 16px;
+            margin: -2px 1px 0;
+            padding: 1px;
+            top: 0;
+            width: 16px;
+        }
     }
     .ui-jqgrid-title
     {
         margin: .1em 0 .2em;
-    }
-    .ui-jqgrid-titlebar-close
-    {
-        top: 50%;
-        width: 19px;
-        margin: -10px 0 0 0;
-        padding: 1px;
-        height: 18px;
-    }
-    .ui-jqgrid-titlebar-close
-    {
-        span
-        {
-            margin: 1px;
-        }
-        &:hover
-            {
-            padding: 0;
-        }
     }
     & > .ui-jqgrid-view >.ui-jqgrid-hdiv
     {
