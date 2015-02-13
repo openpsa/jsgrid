@@ -3378,50 +3378,7 @@ $.fn.jqGrid = function( pin ) {
 		}
 		hb = null;
 		if(p.caption) {
-			var tdt = p.datatype;
-			if(p.hidegrid===true) {
-				$(".ui-jqgrid-titlebar-close",grid.cDiv).click( function(e){
-					var elems = ".ui-jqgrid-bdiv,.ui-jqgrid-hdiv,.ui-jqgrid-pager,.ui-jqgrid-sdiv",
-					counter, self = this;
-					if(p.toolbar[0]===true) {
-						if( p.toolbar[1]==='both') {
-							elems += ',#' + jqID($(grid.ubDiv).attr('id'));
-						}
-						elems += ',#' + jqID($(grid.uDiv).attr('id'));
-					}
-					counter = $(elems, p.gView).length;
-					if(p.toppager) {
-						elems += ',' + p.toppager;
-					}
-
-					if(p.gridstate === 'visible') {
-						$(elems, p.gBox).slideUp("fast", function() {
-							counter--;
-							if (counter === 0) {
-								$("span",self).removeClass("ui-icon-circle-triangle-n").addClass("ui-icon-circle-triangle-s");
-								p.gridstate = 'hidden';
-								if($(p.gBox).hasClass("ui-resizable")) { $(".ui-resizable-handle",p.gBox).hide(); }
-								$(grid.cDiv).addClass("ui-corner-bottom");
-								if (!hg) { feedback.call(ts, "onHeaderClick", p.gridstate, e); }
-							}
-						});
-					} else if(p.gridstate === 'hidden'){
-						$(grid.cDiv).removeClass("ui-corner-bottom");
-						$(elems,p.gBox).slideDown("fast", function() {
-							counter--;
-							if (counter === 0) {
-								$("span",self).removeClass("ui-icon-circle-triangle-s").addClass("ui-icon-circle-triangle-n");
-								if(hg) {p.datatype = tdt;populate.call(ts);hg=false;}
-								p.gridstate = 'visible';
-								if($(p.gBox).hasClass("ui-resizable")) { $(".ui-resizable-handle",p.gBox).show(); }
-								if (!hg) { feedback.call(ts, "onHeaderClick", p.gridstate, e); }
-							}
-						});
-					}
-					return false;
-				});
-				if(hg) {p.datatype="local"; $(".ui-jqgrid-titlebar-close",grid.cDiv).trigger("click");}
-			}
+			if(hg) {p.datatype="local"; $(".ui-jqgrid-titlebar-close",grid.cDiv).trigger("click");}
 		} else {
 			$(grid.cDiv).hide();
 			$(grid.cDiv).nextAll("div:visible").filter(":first").addClass('ui-corner-top'); // set on top toolbar or toppager or on hDiv
