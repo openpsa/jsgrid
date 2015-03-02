@@ -10,6 +10,9 @@
     "url": "git@github.com:openpsa/jsgrid.git"
   },
   "dependencies": {},
+  "scripts": {
+    "preinstall": "npm i -g bower"
+  },
   "devDependencies": {
     "assemble": "^0.4.42",
     "grunt": "^0.4.5",

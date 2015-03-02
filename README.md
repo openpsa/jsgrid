@@ -29,7 +29,7 @@ While awaiting our start guide, you can look at the [basic setup](http://openpsa
 
 ## Development Setup
 
-You will need `npm` and `bower` installed. Once you have them, clone this repo and change into the new directory:
+You will need [Node.js](http://nodejs.org/) installed. Once you have them, clone this repo and change into the new directory:
 
 ```bash
 git clone https://github.com/openpsa/jsgrid
