@@ -11,7 +11,7 @@
   },
   "dependencies": {},
   "scripts": {
-    "preinstall": "npm i -g bower"
+    "install": "node installDependencies.js"
   },
   "devDependencies": {
     "assemble": "^0.4.42",
@@ -28,6 +28,7 @@
     "grunt-karma": "^0.9.0",
     "karma-firefox-launcher": "^0.1.4",
     "karma-qunit": "^0.1.4",
-    "qunitjs": "^1.16.0"
+    "qunitjs": "^1.16.0",
+	"package-script":  "^0.0.8"
   }
 }
