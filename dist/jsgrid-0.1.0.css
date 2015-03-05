@@ -65,7 +65,8 @@
 .ui-jqgrid table {
   border-style: hidden;
 }
-.ui-jqgrid table td {
+.ui-jqgrid table td,
+.ui-jqgrid table th {
   border-left-style: solid;
   border-left-color: inherit;
   border-right-style: solid;
@@ -283,7 +284,8 @@
   border-collapse: collapse;
   border-width: 0;
 }
-.ui-jqgrid table td {
+.ui-jqgrid table td,
+.ui-jqgrid table th {
   padding: 0;
   border-left-width: 1px;
   border-right-width: 1px;
