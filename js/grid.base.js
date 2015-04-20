@@ -1027,6 +1027,7 @@ $.fn.jqGrid = function( pin ) {
 			caption: "",
 			hidegrid: true,
 			hiddengrid: false,
+            fullscreen: false,
 			postData: {},
 			userData: {},
 			treeGrid : false,
@@ -3276,12 +3277,70 @@ $.fn.jqGrid = function( pin ) {
 			}
 		}
 		if(hg) {$(grid.bDiv).hide();}
+        var setFullscreenButton = function(){
+            if(p.caption && p.fullscreen === true && screenfull.enabled){
+                p.heightOrg = p.height;
+                return $('<a role="link" class="ui-button ui-icon ui-icon-arrow-4-diag" ' + (p.fsHint ? 'title="' + p.fsHint + '"' : '') + ' style="float:' + (dir==='rtl'?'left':'right') + ';" />')
+                    .click(function(){
+                        screenfull.toggle(document.getElementById(p.gBoxId));
+                        $(p.idSel).jqGrid('setGridWidth', parseInt($(window).width())).jqGrid('setGridHeight', parseInt($(window).height()));
+                        document.addEventListener(screenfull.raw.fullscreenchange, function () {
+                            if(!screenfull.isFullscreen){
+                                $(p.idSel).jqGrid('setGridWidth', p.widthOrg).jqGrid('setGridHeight', p.heightOrg);
+                            }
+                        });
+                    });
+            }
+            return '';
+        };
+        var setcloseButton = function(){
+            if(p.caption && p.hidegrid === true){
+                var tdt = p.datatype;
+                return $('<a role="link" class="ui-button ui-icon ui-icon-circle-triangle-n" ' + (p.showhide ? 'title="' + p.showhide + '"' : '') + ' style="float:' + (dir==='rtl'?'left':'right') + ';" />')
+                    .click( function(e){
+                        var elems = ".ui-jqgrid-bdiv,.ui-jqgrid-hdiv,.ui-jqgrid-pager,.ui-jqgrid-sdiv", counter, self = this;
+                        if(p.toolbar[0]===true) {
+                            if( p.toolbar[1]==='both') {
+                                elems += ',#' + jqID($(grid.ubDiv).attr('id'));
+                            }
+                            elems += ',#' + jqID($(grid.uDiv).attr('id'));
+                        }
+                        counter = $(elems, p.gView).length;
+                        if(p.toppager) {
+                            elems += ',' + p.toppager;
+                        }
+
+                        if(p.gridstate === 'visible') {
+                            $(elems, p.gBox).slideUp("fast", function() {
+                                counter--;
+                                if (counter === 0) {
+                                    $(self).removeClass("ui-icon-circle-triangle-n").addClass("ui-icon-circle-triangle-s");
+                                    p.gridstate = 'hidden';
+                                    if($(p.gBox).hasClass("ui-resizable")) { $(".ui-resizable-handle",p.gBox).hide(); }
+                                    $(grid.cDiv).addClass("ui-corner-bottom");
+                                    if (!hg) { feedback.call(ts, "onHeaderClick", p.gridstate, e); }
+                                }
+                            });
+                        } else if(p.gridstate === 'hidden'){
+                            $(grid.cDiv).removeClass("ui-corner-bottom");
+                            $(elems,p.gBox).slideDown("fast", function() {
+                                counter--;
+                                if (counter === 0) {
+                                    $(self).removeClass("ui-icon-circle-triangle-s").addClass("ui-icon-circle-triangle-n");
+                                    if(hg) {p.datatype = tdt;populate.call(ts);hg=false;}
+                                    p.gridstate = 'visible';
+                                    if($(p.gBox).hasClass("ui-resizable")) { $(".ui-resizable-handle",p.gBox).show(); }
+                                    if (!hg) { feedback.call(ts, "onHeaderClick", p.gridstate, e); }
+                                }
+                            });
+                        }
+                        return false;
+                    });
+            }
+            return '';
+        };
 		grid.cDiv = document.createElement("div");
-		var arf = p.hidegrid===true ? $("<a role='link' class='ui-jqgrid-titlebar-close ui-corner-all HeaderButton' " + (p.showhide ? "title='"+p.showhide+"'" : "")+" />").hover(
-			function(){ arf.addClass('ui-state-hover');},
-			function() {arf.removeClass('ui-state-hover');})
-		.append("<span class='ui-icon ui-icon-circle-triangle-n'></span>").css((dir==="rtl"?"left":"right"),"0") : "";
-		$(grid.cDiv).append(arf).append("<span class='ui-jqgrid-title'>"+p.caption+"</span>")
+		$(grid.cDiv).append("<span class='ui-jqgrid-title'>"+p.caption+"</span>").append(setcloseButton).append(setFullscreenButton)
 		.addClass("ui-jqgrid-titlebar ui-jqgrid-caption"+(dir==="rtl" ? "-rtl" :"" )+" ui-widget-header ui-corner-top ui-helper-clearfix");
 		$(grid.cDiv).insertBefore(grid.hDiv);
 		if( p.toolbar[0] ) {
@@ -3319,50 +3378,7 @@ $.fn.jqGrid = function( pin ) {
 		}
 		hb = null;
 		if(p.caption) {
-			var tdt = p.datatype;
-			if(p.hidegrid===true) {
-				$(".ui-jqgrid-titlebar-close",grid.cDiv).click( function(e){
-					var elems = ".ui-jqgrid-bdiv,.ui-jqgrid-hdiv,.ui-jqgrid-pager,.ui-jqgrid-sdiv",
-					counter, self = this;
-					if(p.toolbar[0]===true) {
-						if( p.toolbar[1]==='both') {
-							elems += ',#' + jqID($(grid.ubDiv).attr('id'));
-						}
-						elems += ',#' + jqID($(grid.uDiv).attr('id'));
-					}
-					counter = $(elems, p.gView).length;
-					if(p.toppager) {
-						elems += ',' + p.toppager;
-					}
-
-					if(p.gridstate === 'visible') {
-						$(elems, p.gBox).slideUp("fast", function() {
-							counter--;
-							if (counter === 0) {
-								$("span",self).removeClass("ui-icon-circle-triangle-n").addClass("ui-icon-circle-triangle-s");
-								p.gridstate = 'hidden';
-								if($(p.gBox).hasClass("ui-resizable")) { $(".ui-resizable-handle",p.gBox).hide(); }
-								$(grid.cDiv).addClass("ui-corner-bottom");
-								if (!hg) { feedback.call(ts, "onHeaderClick", p.gridstate, e); }
-							}
-						});
-					} else if(p.gridstate === 'hidden'){
-						$(grid.cDiv).removeClass("ui-corner-bottom");
-						$(elems,p.gBox).slideDown("fast", function() {
-							counter--;
-							if (counter === 0) {
-								$("span",self).removeClass("ui-icon-circle-triangle-s").addClass("ui-icon-circle-triangle-n");
-								if(hg) {p.datatype = tdt;populate.call(ts);hg=false;}
-								p.gridstate = 'visible';
-								if($(p.gBox).hasClass("ui-resizable")) { $(".ui-resizable-handle",p.gBox).show(); }
-								if (!hg) { feedback.call(ts, "onHeaderClick", p.gridstate, e); }
-							}
-						});
-					}
-					return false;
-				});
-				if(hg) {p.datatype="local"; $(".ui-jqgrid-titlebar-close",grid.cDiv).trigger("click");}
-			}
+			if(hg) {p.datatype="local"; $(".ui-jqgrid-titlebar-close",grid.cDiv).trigger("click");}
 		} else {
 			$(grid.cDiv).hide();
 			$(grid.cDiv).nextAll("div:visible").filter(":first").addClass('ui-corner-top'); // set on top toolbar or toppager or on hDiv
