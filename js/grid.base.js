@@ -2330,111 +2330,148 @@ $.fn.jqGrid = function( pin ) {
 				var rcnt = !p.scroll ? 1 : self.rows.length-1;
 				if (!feedback.call(self, "beforeRequest")) { return; }
 				if ($.isFunction(p.datatype)) { p.datatype.call(self,p.postData,"load_"+p.id, rcnt, npage, adjust); return;}
-				if(p.url != null && p.datatype != 'local'){
-                                    $.ajax($.extend({
-                                        url:p.url,
-                                        type:p.mtype,
-                                        data: $.isFunction(p.serializeGridData)? p.serializeGridData.call(self,p.postData) : p.postData,
-                                        success:function(data,st, xhr) {
-                                            if ($.isFunction(p.beforeProcessing)) {
-                                                if (p.beforeProcessing.call(self, data, st, xhr) === false) {
-                                                    endReq.call(self);
-                                                    return;
-                                                }
-                                            }
+				if (p.url != null && p.datatype != 'local') {
+                    var detectFormat = function (data) {
+                        if(typeof data === 'object'){
+                            p.datatype = 'json';
+                            return data;
+                        } else if(typeof data === 'function'){
+                            p.datatype = 'json';
+                            return data();
+                        }
 
-                                            if(xhr.responseJSON !== undefined){
-                                                p.datatype = 'json';
-                                                addJSONData.call(self, data, rcnt, npage > 1, adjust);
-                                            } else if(xhr.responseXML !== undefined){
-                                                p.datatype = 'xml';
-                                                addXmlData.call(self, data, rcnt, npage > 1, adjust);
-                                            } else {
-                                                try{
-                                                    data = $.parseJSON(data);
-                                                    p.datatype = 'json';
-                                                    addJSONData.call(self, data, rcnt, npage > 1, adjust);
-                                                }catch(e){
-                                                    try{
-                                                        data = $.parseXML(data);
-                                                        p.datatype = 'xml';
-                                                        addXmlData.call(self, data, rcnt, npage > 1, adjust);
-                                                    } catch(er){
-                                                        //TODO: alert user
-                                                    }
-                                                }
-                                            }
+                        try {
+                            data = $.parseJSON(data);
+                            p.datatype = 'json';
+                            return data;
+                        } catch (e) {
+                            try {
+                                data = $.parseXML(data);
+                                p.datatype = 'xml';
+                                return data;
+                            } catch (e) {
+                                p.datatype = null;
+                                throw 'invalid or malformed data.';
+                            }
+                        }
+                    },
+                        addData = function (data) {
+                            if (p.datatype === 'json') {
+                                addJSONData.call(self, data, rcnt, npage > 1, adjust);
+                            } else if (p.datatype === 'xml') {
+                                addXmlData.call(self, data, rcnt, npage > 1, adjust);
+                            }
+                        },
+                        postAjaxAction = function (data) {
+                            $self.triggerHandler("jqGridLoadComplete", [data]);
+                            if (lc) {
+                                lc.call(self, data);
+                            }
+                            if (p.autoresizeOnLoad) {
+                                $self.jqGrid("autoResizeAllColumns");
+                            }
+                            $self.triggerHandler("jqGridAfterLoadComplete", [data]);
+                            if (pvis) {
+                                gridSelf.populateVisible();
+                            }
+                            if (p.loadonce || p.treeGrid) {
+                                p.dataTypeOrg = p.datatype;
+                                p.datatype = "local";
+                            }
+                            data = null;
+                            if (npage === 1) {
+                                endReq.call(self);
+                            }
+                        };
 
-                                            $self.triggerHandler("jqGridLoadComplete", [data]);
-                                            if(lc) { lc.call(self,data); }
-											if (p.autoresizeOnLoad) {$self.jqGrid("autoResizeAllColumns");}
-                                            $self.triggerHandler("jqGridAfterLoadComplete", [data]);
-                                            if (pvis) { gridSelf.populateVisible(); }
-											if (p.loadonce || p.treeGrid) {
-												p.dataTypeOrg = p.datatype;
-												p.datatype = "local";
-											}
-                                            data=null;
-                                            if (npage === 1) { endReq.call(self); }
-                                        },
-                                        error:function(xhr,st,err){
-                                            if($.isFunction(p.loadError)) { p.loadError.call(self,xhr,st,err); }
-                                            if (npage === 1) { endReq.call(self); }
-                                            xhr=null;
-                                        },
-                                        beforeSend: function(xhr, settings ){
-                                            var gotoreq = true;
-                                            if($.isFunction(p.loadBeforeSend)) {
-                                                gotoreq = p.loadBeforeSend.call(self,xhr, settings);
-                                            }
-                                            if(gotoreq === undefined) { gotoreq = true; }
-                                            if(gotoreq === false) {
-                                                return false;
-                                            }
-                                            beginReq.call(self);
-                                        }
-                                    },jgrid.ajaxOptions, p.ajaxGridOptions));
-                                } else {
-                                    dt = p.datatype.toLowerCase();
-                                    switch(dt) {
-                                        case "xmlstring":
-                                            beginReq.call(self);
-                                            dstr = typeof p.datastr !== 'string' ? p.datastr : $.parseXML(p.datastr);
-                                            addXmlData.call(self, dstr);
-                                           	feedback.call(self, "loadComplete", dstr);
-											if (ts.p.autoresizeOnLoad) {$self.jqGrid("autoResizeAllColumns");}
-                                            $self.triggerHandler("jqGridAfterLoadComplete", [dstr]);
-                                            p.datatype = "local";
-                                            p.datastr = null;
-                                            endReq.call(self);
-                                            break;
-                                        case "jsonstring":
-                                            beginReq.call(self);
-                                            if(typeof p.datastr === 'string') { dstr = $.jgrid.parse(pdatastr); }
-                                            else { dstr = p.datastr; }
-                                            addJSONData.call(self, dstr);
-                                            feedback.call(self, "loadComplete", dstr);
-											if (ts.p.autoresizeOnLoad) {$self.jqGrid("autoResizeAllColumns");}
-                                            $self.triggerHandler("jqGridAfterLoadComplete", [dstr]);
-                                            p.datatype = "local";
-                                            p.datastr = null;
-                                            endReq.call(self);
-                                            break;
-                                        case "local":
-                                        case "clientside":
-                                            beginReq.call(self);
-                                            p.datatype = "local";
-                                            var req = addLocalData.call(self);
-                                            addJSONData.call(self, req,rcnt,npage>1,adjust);
-                                            $self.triggerHandler("jqGridLoadComplete", [req]);
-                                            if(lc) { lc.call(self,req); }
-											if (p.autoresizeOnLoad) {$self.jqGrid("autoResizeAllColumns");}
-                                            $self.triggerHandler("jqGridAfterLoadComplete", [req]);
-                                            if (pvis) { gridSelf.populateVisible.call(self); }
-                                            endReq.call(self);
-                                            break;
-                                    }
+                    if ((typeof p.url == 'string' || p.url instanceof String) && (p.url.substr(0, 1) === '/' || p.url.substr(0, 4) === 'http')) {
+                        $.ajax($.extend({
+                            url: p.url,
+                            type: p.mtype,
+                            data: $.isFunction(p.serializeGridData) ? p.serializeGridData.call(self, p.postData) : p.postData,
+                            success: function (data, st, xhr) {
+                                if ($.isFunction(p.beforeProcessing) && p.beforeProcessing.call(self, data, st, xhr) === false) {
+                                    endReq.call(self);
+                                    return;
                                 }
+
+                                if (xhr.responseJSON !== undefined) {
+                                    p.datatype = 'json';
+                                } else if (xhr.responseXML !== undefined) {
+                                    p.datatype = 'xml';
+                                } else {
+                                    var data = detectFormat(data);
+                                }
+
+                                addData(data);
+                                postAjaxAction(data);
+                            },
+                            error: function (xhr, st, err) {
+                                if ($.isFunction(p.loadError)) {
+                                    p.loadError.call(self, xhr, st, err);
+                                }
+                                if (npage === 1) {
+                                    endReq.call(self);
+                                }
+                                xhr = null;
+                            },
+                            beforeSend: function (xhr, settings) {
+                                if ($.isFunction(p.loadBeforeSend) && p.loadBeforeSend.call(self, xhr, settings) === false){
+                                    return false;
+                                }
+                                beginReq.call(self);
+                            }
+                        }, jgrid.ajaxOptions, p.ajaxGridOptions));
+                    } else {
+                        addData(detectFormat(p.url));
+                    }
+                } else {
+                    dt = p.datatype.toLowerCase();
+                    switch (dt) {
+                        case "xmlstring":
+                            beginReq.call(self);
+                            dstr = typeof p.datastr !== 'string' ? p.datastr : $.parseXML(p.datastr);
+                            addXmlData.call(self, dstr);
+                        case "jsonstring":
+                            beginReq.call(self);
+                            if (typeof p.datastr === 'string') {
+                                dstr = $.jgrid.parse(p.datastr);
+                            } else {
+                                dstr = p.datastr;
+                            }
+                            addJSONData.call(self, dstr);
+                        case "xmlstring":
+                        case "jsonstring":
+                            feedback.call(self, "loadComplete", dstr);
+                            if (ts.p.autoresizeOnLoad) {
+                                $self.jqGrid("autoResizeAllColumns");
+                            }
+                            $self.triggerHandler("jqGridAfterLoadComplete", [dstr]);
+                            p.datatype = "local";
+                            p.datastr = null;
+                            endReq.call(self);
+                            break;
+                        case "local":
+                        case "clientside":
+                            beginReq.call(self);
+                            p.datatype = "local";
+                            var req = addLocalData.call(self);
+                            addJSONData.call(self, req, rcnt, npage > 1, adjust);
+                            $self.triggerHandler("jqGridLoadComplete", [req]);
+                            if (lc) {
+                                lc.call(self, req);
+                            }
+                            if (p.autoresizeOnLoad) {
+                                $self.jqGrid("autoResizeAllColumns");
+                            }
+                            $self.triggerHandler("jqGridAfterLoadComplete", [req]);
+                            if (pvis) {
+                                gridSelf.populateVisible.call(self);
+                            }
+                            endReq.call(self);
+                            break;
+                    }
+                }
                             }
 		},
 		setHeadCheckBox = function (checked) {
