@@ -1565,24 +1565,32 @@ $.fn.jqGrid = function( pin ) {
 				(style === '' ? '' : ' style="' + style + '"') + restAttr + '>';
 		},
                 activateInlineButtons = function(){
-                    $(this).on('mouseover', '.ui-inline-button', function(){
+                    $(this)
+                    	.off('mouseover', '.ui-inline-button')
+                    	.on('mouseover', '.ui-inline-button', function(){
                             $(this).addClass('ui-state-hover');
                         })
+                        .off('mouseout', '.ui-inline-button')
                         .on('mouseout', '.ui-inline-button', function(){
                             $(this).removeClass('ui-state-hover');
                         })
+                        .off('click', '.ui-inline-edit:not(.ui-inline-edit-form)')
                         .on('click', '.ui-inline-edit:not(.ui-inline-edit-form)', function(event){
                             $.fn.fmatter.rowactions.call(this, event, 'edit');
                         })
+                        .off('click', '.ui-inline-edit.ui-inline-edit-form')
                         .on('click', '.ui-inline-edit.ui-inline-edit-form', function(event){
                             $.fn.fmatter.rowactions.call(this, event, 'formedit');
                         })
+                        .off('click', '.ui-inline-del')
                         .on('click', '.ui-inline-del', function(event){
                             $.fn.fmatter.rowactions.call(this, event, 'del');
                         })
+                        .off('click', '.ui-inline-save')
                         .on('click', '.ui-inline-save', function(event){
                             $.fn.fmatter.rowactions.call(this, event, 'save');
                         })
+                        .off('click', '.ui-inline-cancel')
                         .on('click', '.ui-inline-cancel', function(event){
                             $.fn.fmatter.rowactions.call(this, event, 'cancel');
                         });
